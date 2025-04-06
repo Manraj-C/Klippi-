@@ -1,10 +1,26 @@
 
-import React from "react"
+import React, { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { ArrowRight, Sparkles, MessageSquare, PieChart, Bot, Calendar } from "lucide-react"
+import { ArrowRight, Sparkles, MessageSquare, PieChart, Bot, Calendar, Mail, Zap, Check, X } from "lucide-react"
 
 const HeroSection = () => {
+  const [activeSlide, setActiveSlide] = useState(0);
+  const totalSlides = 2;
+  
+  // Auto-rotate carousel every 5 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveSlide((prev) => (prev + 1) % totalSlides);
+    }, 5000);
+    
+    return () => clearInterval(interval);
+  }, []);
+
+  const handleDotClick = (index: number) => {
+    setActiveSlide(index);
+  };
+
   return (
     <div className="pt-28 pb-20 md:pt-32 md:pb-28">
       <div className="container px-4 mx-auto">
@@ -33,9 +49,12 @@ const HeroSection = () => {
         </div>
 
         <div className="glass-card rounded-2xl p-1 max-w-5xl mx-auto overflow-hidden">
+          {/* Carousel Container */}
           <div className="relative h-[350px] md:h-[500px] rounded-2xl bg-gradient-to-br from-muted to-background overflow-hidden">
-            {/* Product Visualization Mock */}
-            <div className="absolute inset-0 flex items-center justify-center">
+            {/* Dashboard Mock */}
+            <div 
+              className={`absolute inset-0 flex items-center justify-center transition-opacity duration-500 ease-in-out ${activeSlide === 0 ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
+            >
               {/* Dashboard-like interface */}
               <div className="w-full max-w-4xl p-4 md:p-8 h-[300px] md:h-[400px] glass-card rounded-xl border border-white/5 shadow-lg overflow-hidden relative">
                 {/* Header with logo */}
@@ -123,6 +142,98 @@ const HeroSection = () => {
                   </div>
                 </div>
               </div>
+            </div>
+            
+            {/* Gmail Integration Mock */}
+            <div 
+              className={`absolute inset-0 flex items-center justify-center transition-opacity duration-500 ease-in-out ${activeSlide === 1 ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
+            >
+              {/* Gmail-like interface with AI assistant */}
+              <div className="w-full max-w-4xl h-[300px] md:h-[400px] glass-card rounded-xl border border-white/5 shadow-lg overflow-hidden">
+                {/* Gmail header */}
+                <div className="flex items-center justify-between px-4 py-2 bg-background/80 border-b border-white/10">
+                  <div className="flex items-center gap-3">
+                    <Mail className="w-5 h-5 text-primary" />
+                    <span className="font-medium text-white">Gmail</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center">
+                      <span className="text-xs text-primary font-bold">K</span>
+                    </div>
+                    <Badge variant="outline" className="text-xs bg-green-500/20 text-green-400">Active</Badge>
+                  </div>
+                </div>
+                
+                {/* Email Content */}
+                <div className="p-4 flex flex-col h-[calc(100%-44px)]">
+                  {/* Email Thread */}
+                  <div className="glass-card rounded-lg p-3 mb-4">
+                    <div className="flex justify-between mb-2">
+                      <div className="flex items-center gap-2">
+                        <div className="w-8 h-8 rounded-full bg-blue-500/20 flex items-center justify-center">
+                          <span className="text-xs text-blue-400">AC</span>
+                        </div>
+                        <div>
+                          <p className="text-sm font-medium">Anna Chen (Acme Corp)</p>
+                          <p className="text-xs text-foreground/60">to me, 30 min ago</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="text-sm text-foreground/80 mt-2">
+                      <p>Hi there,</p>
+                      <p className="mt-2">We've been using the API integration for a few weeks now and have run into some issues with the data syncing. Sometimes there's a delay of up to 30 minutes. Is this expected behavior or something we should troubleshoot?</p>
+                      <p className="mt-2">Also, we'd love to discuss upgrading to the enterprise plan. When would you be available for a quick call?</p>
+                      <p className="mt-2">Best,<br />Anna</p>
+                    </div>
+                  </div>
+                  
+                  {/* AI Assistant Interface */}
+                  <div className="glass-card rounded-lg bg-primary/5 border border-primary/20 p-3">
+                    <div className="flex items-center gap-2 mb-2">
+                      <Bot className="w-4 h-4 text-primary" />
+                      <span className="text-sm font-medium text-primary">Klip Assistant</span>
+                      <Badge variant="outline" className="ml-auto text-xs">Suggested Response</Badge>
+                    </div>
+                    
+                    <div className="text-sm text-foreground/80 bg-background/50 rounded-md p-3 mb-2">
+                      <p>Hi Anna,</p>
+                      <p className="mt-1">Thank you for reaching out. Regarding the API sync delays - this isn't expected behavior. The typical sync time should be under 5 minutes. I'll create a support ticket to investigate this right away.</p>
+                      <p className="mt-1">I'd be happy to discuss the enterprise upgrade options. How about this Thursday at 2pm or Friday at 11am? Let me know what works best for you.</p>
+                      <p className="mt-1">Best regards,</p>
+                    </div>
+                    
+                    <div className="flex items-center justify-between mt-3 border-t border-white/10 pt-2">
+                      <div className="flex items-center gap-1.5">
+                        <span className="text-xs text-foreground/70">Issues identified:</span>
+                        <Badge className="bg-yellow-500/20 text-yellow-400 text-xs">API Sync Delay</Badge>
+                        <Badge className="bg-green-500/20 text-green-400 text-xs">Upgrade Opportunity</Badge>
+                      </div>
+                      <div className="flex gap-2">
+                        <Button size="sm" variant="outline" className="h-7 px-2">
+                          <X className="w-3.5 h-3.5 mr-1" />
+                          Dismiss
+                        </Button>
+                        <Button size="sm" className="bg-primary/80 hover:bg-primary h-7 px-2">
+                          <Zap className="w-3.5 h-3.5 mr-1" />
+                          Use Response
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            {/* Carousel Navigation Dots */}
+            <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-2">
+              {[...Array(totalSlides)].map((_, idx) => (
+                <button 
+                  key={idx}
+                  onClick={() => handleDotClick(idx)}
+                  className={`w-2.5 h-2.5 rounded-full transition-all ${activeSlide === idx ? 'bg-primary w-8' : 'bg-white/30'}`}
+                  aria-label={`View slide ${idx + 1}`}
+                />
+              ))}
             </div>
             
             {/* Glowing effect in background */}
