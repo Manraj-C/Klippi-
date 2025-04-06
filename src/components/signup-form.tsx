@@ -4,7 +4,8 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { useToast } from "@/hooks/use-toast"
-import { ArrowRight, Mail, CheckCircle } from "lucide-react"
+import { ArrowRight, Mail, CheckCircle, AlertCircle } from "lucide-react"
+import { supabase } from "@/lib/supabase"
 
 const SignupForm = () => {
   const [email, setEmail] = useState("")
@@ -15,19 +16,41 @@ const SignupForm = () => {
   const [isSubmitted, setIsSubmitted] = useState(false)
   const { toast } = useToast()
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
     
-    // Simulate form submission
-    setTimeout(() => {
+    try {
+      // Insert data into Supabase waitlist table
+      const { error } = await supabase
+        .from('waitlist')
+        .insert([
+          { 
+            email,
+            name,
+            company,
+            role,
+            created_at: new Date().toISOString()
+          }
+        ])
+
+      if (error) throw error
+      
       setIsSubmitting(false)
       setIsSubmitted(true)
       toast({
         title: "Thanks for joining the waitlist!",
         description: "We'll notify you when Klip is ready.",
       })
-    }, 1500)
+    } catch (error) {
+      console.error('Error submitting to waitlist:', error)
+      setIsSubmitting(false)
+      toast({
+        title: "Something went wrong",
+        description: "We couldn't add you to the waitlist. Please try again.",
+        variant: "destructive",
+      })
+    }
   }
 
   if (isSubmitted) {
