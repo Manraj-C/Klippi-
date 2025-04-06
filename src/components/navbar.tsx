@@ -1,7 +1,6 @@
 
 import React from "react"
 import { Button } from "@/components/ui/button"
-import { Facebook, Twitter, Instagram, Linkedin, Github } from "lucide-react"
 
 const Navbar = () => {
   return (
@@ -24,20 +23,6 @@ const Navbar = () => {
           <Button variant="ghost" className="text-foreground/80 hover:text-foreground" asChild>
             <a href="#contact">Contact</a>
           </Button>
-          <div className="hidden md:flex items-center gap-3 ml-2 border-l border-white/10 pl-4">
-            <a href="https://twitter.com/klipapp" target="_blank" rel="noopener noreferrer" className="text-foreground/70 hover:text-foreground">
-              <Twitter size={18} />
-            </a>
-            <a href="https://instagram.com/klipapp" target="_blank" rel="noopener noreferrer" className="text-foreground/70 hover:text-foreground">
-              <Instagram size={18} />
-            </a>
-            <a href="https://linkedin.com/company/klipapp" target="_blank" rel="noopener noreferrer" className="text-foreground/70 hover:text-foreground">
-              <Linkedin size={18} />
-            </a>
-            <a href="https://github.com/klipapp" target="_blank" rel="noopener noreferrer" className="text-foreground/70 hover:text-foreground">
-              <Github size={18} />
-            </a>
-          </div>
           <Button className="bg-gradient-to-r from-primary to-secondary hover:opacity-90" asChild>
             <a href="#signup">Join Waitlist</a>
           </Button>
