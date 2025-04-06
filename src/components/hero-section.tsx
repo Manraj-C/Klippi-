@@ -2,11 +2,11 @@
 import React, { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { ArrowRight, Sparkles, MessageSquare, PieChart, Bot, Calendar, Mail, Zap, Check, X } from "lucide-react"
+import { ArrowRight, Sparkles, MessageSquare, PieChart, Bot, Calendar, Mail, Zap, Check, X, Edit2, Database, CheckCircle, FileText, ExternalLink } from "lucide-react"
 
 const HeroSection = () => {
   const [activeSlide, setActiveSlide] = useState(0);
-  const totalSlides = 2;
+  const totalSlides = 3; // Updated to 3 slides
   
   // Auto-rotate carousel every 5 seconds
   useEffect(() => {
@@ -217,6 +217,114 @@ const HeroSection = () => {
                           <Zap className="w-3.5 h-3.5 mr-1" />
                           Use Response
                         </Button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* CRM Update Mock - NEW SLIDE */}
+            <div 
+              className={`absolute inset-0 flex items-center justify-center transition-opacity duration-500 ease-in-out ${activeSlide === 2 ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
+            >
+              {/* Gainsight-like CRM interface */}
+              <div className="w-full max-w-4xl h-[300px] md:h-[400px] glass-card rounded-xl border border-white/5 shadow-lg overflow-hidden">
+                {/* CRM header */}
+                <div className="flex items-center justify-between px-4 py-2 bg-background/80 border-b border-white/10">
+                  <div className="flex items-center gap-3">
+                    <Database className="w-5 h-5 text-primary" />
+                    <span className="font-medium text-white">Gainsight CRM</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center">
+                      <span className="text-xs text-primary font-bold">K</span>
+                    </div>
+                    <Badge variant="outline" className="text-xs bg-blue-500/20 text-blue-400">Updating</Badge>
+                  </div>
+                </div>
+                
+                {/* Main content split view */}
+                <div className="grid grid-cols-1 md:grid-cols-2 h-[calc(100%-44px)]">
+                  {/* Email panel - left side */}
+                  <div className="p-4 border-r border-white/10">
+                    <div className="flex items-center gap-2 mb-3">
+                      <FileText className="w-4 h-4 text-primary" />
+                      <h3 className="text-sm font-medium">Email from TechCorp</h3>
+                    </div>
+                    
+                    <div className="glass-card rounded-lg p-3 text-sm text-foreground/80">
+                      <p className="mb-2 text-foreground/60 text-xs italic">Excerpt from customer email:</p>
+                      <p>"...We've just completed the integration with Tableau for analytics reporting. The team is finding it really helpful for visualizing the data from your platform. We're also looking into using Zapier to connect with our internal ticketing system..."</p>
+                      <div className="mt-3 pt-2 border-t border-white/10">
+                        <div className="flex items-center">
+                          <Bot className="w-4 h-4 text-secondary mr-2" />
+                          <span className="text-xs text-secondary">Insights detected:</span>
+                        </div>
+                        <div className="mt-2 flex flex-wrap gap-1">
+                          <Badge className="bg-purple-500/20 text-purple-400 text-xs">Using Tableau</Badge>
+                          <Badge className="bg-orange-500/20 text-orange-400 text-xs">Considering Zapier</Badge>
+                          <Badge className="bg-green-500/20 text-green-400 text-xs">Positive Experience</Badge>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* CRM update panel - right side */}
+                  <div className="p-4">
+                    <div className="flex items-center gap-2 mb-3">
+                      <Edit2 className="w-4 h-4 text-primary" />
+                      <h3 className="text-sm font-medium">Updating Customer Profile</h3>
+                    </div>
+                    
+                    <div className="glass-card rounded-lg p-3">
+                      <div className="space-y-3">
+                        <div>
+                          <div className="flex items-center justify-between">
+                            <div className="flex items-center">
+                              <span className="text-xs text-foreground/70">Tech Stack</span>
+                            </div>
+                            <Badge className="text-xs bg-green-500/20 text-green-400">Auto-Updated</Badge>
+                          </div>
+                          <div className="mt-1 p-2 bg-background/50 rounded-md text-sm flex items-center">
+                            <span className="line-through text-foreground/50 mr-2">["Internal Analytics", "Power BI"]</span>
+                            <span className="text-green-400">["Internal Analytics", "Power BI", "Tableau"]</span>
+                            <CheckCircle className="w-3.5 h-3.5 ml-2 text-green-400" />
+                          </div>
+                        </div>
+                        
+                        <div>
+                          <div className="flex items-center justify-between">
+                            <span className="text-xs text-foreground/70">Integration Interests</span>
+                            <Badge className="text-xs bg-green-500/20 text-green-400">Auto-Updated</Badge>
+                          </div>
+                          <div className="mt-1 p-2 bg-background/50 rounded-md text-sm flex items-center">
+                            <span className="line-through text-foreground/50 mr-2">["API", "Webhooks"]</span>
+                            <span className="text-green-400">["API", "Webhooks", "Zapier"]</span>
+                            <CheckCircle className="w-3.5 h-3.5 ml-2 text-green-400" />
+                          </div>
+                        </div>
+                        
+                        <div>
+                          <div className="flex items-center justify-between">
+                            <span className="text-xs text-foreground/70">Action Items</span>
+                            <Badge className="text-xs bg-blue-500/20 text-blue-400">Suggested</Badge>
+                          </div>
+                          <div className="mt-1 text-sm">
+                            <div className="flex items-center gap-2 p-2 bg-background/50 rounded-md">
+                              <Check className="w-3.5 h-3.5 text-blue-400" />
+                              <span>Share Zapier integration documentation</span>
+                            </div>
+                          </div>
+                        </div>
+                        
+                        <div className="flex justify-between items-center pt-2">
+                          <div className="text-xs text-foreground/60">Updated 2 fields automatically</div>
+                          <Button size="sm" className="h-7 px-2 bg-primary/80 hover:bg-primary">
+                            <ExternalLink className="w-3.5 h-3.5 mr-1" />
+                            View In Gainsight
+                          </Button>
+                        </div>
                       </div>
                     </div>
                   </div>
