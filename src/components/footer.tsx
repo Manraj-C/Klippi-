@@ -1,5 +1,6 @@
 
 import React from "react"
+import { Facebook, Twitter, Instagram, Linkedin, Github } from "lucide-react"
 
 const Footer = () => {
   return (
@@ -19,6 +20,24 @@ const Footer = () => {
             <a href="#signup" className="text-sm text-foreground/70 hover:text-foreground">Sign Up</a>
             <a href="#" className="text-sm text-foreground/70 hover:text-foreground">Privacy</a>
             <a href="#" className="text-sm text-foreground/70 hover:text-foreground">Terms</a>
+          </div>
+          
+          <div className="flex items-center gap-4 mb-4 md:mb-0">
+            <a href="https://twitter.com/klipapp" target="_blank" rel="noopener noreferrer" className="text-foreground/70 hover:text-foreground">
+              <Twitter size={18} />
+            </a>
+            <a href="https://facebook.com/klipapp" target="_blank" rel="noopener noreferrer" className="text-foreground/70 hover:text-foreground">
+              <Facebook size={18} />
+            </a>
+            <a href="https://instagram.com/klipapp" target="_blank" rel="noopener noreferrer" className="text-foreground/70 hover:text-foreground">
+              <Instagram size={18} />
+            </a>
+            <a href="https://linkedin.com/company/klipapp" target="_blank" rel="noopener noreferrer" className="text-foreground/70 hover:text-foreground">
+              <Linkedin size={18} />
+            </a>
+            <a href="https://github.com/klipapp" target="_blank" rel="noopener noreferrer" className="text-foreground/70 hover:text-foreground">
+              <Github size={18} />
+            </a>
           </div>
           
           <div className="text-sm text-foreground/70">
