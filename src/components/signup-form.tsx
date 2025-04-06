@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { useToast } from "@/hooks/use-toast"
 import { ArrowRight, Mail, CheckCircle, AlertCircle } from "lucide-react"
-import { supabase } from "@/lib/supabase"
+import { supabase, isSupabaseConfigured } from "@/lib/supabase"
 
 const SignupForm = () => {
   const [email, setEmail] = useState("")
@@ -21,6 +21,11 @@ const SignupForm = () => {
     setIsSubmitting(true)
     
     try {
+      // Check if Supabase is properly configured
+      if (!isSupabaseConfigured()) {
+        throw new Error("Supabase is not properly configured. Please set up your environment variables.");
+      }
+      
       // Insert data into Supabase waitlist table
       const { error } = await supabase
         .from('waitlist')
