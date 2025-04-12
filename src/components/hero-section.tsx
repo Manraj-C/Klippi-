@@ -1,8 +1,7 @@
-
 import React, { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { ArrowRight, Sparkles, MessageSquare, PieChart, Bot, Calendar, Mail, Zap, Check, X, Edit2, Database, CheckCircle, FileText, ExternalLink, Save, Search, Settings, Inbox, Star, Clock, Archive, Trash2, Tag, ChevronDown, Menu, Paperclip, MoreVertical, Users, BarChart4, Bell, AlertCircle, CheckSquare, User, Filter, ArrowUpRight, ChevronRight, Newspaper, Briefcase } from "lucide-react"
+import { ArrowRight, Sparkles, MessageSquare, PieChart, Bot, Calendar, Mail, Zap, Check, X, Edit2, Database, CheckCircle, FileText, ExternalLink, Save, Search, Settings, Inbox, Star, Clock, Archive, Trash2, Tag, ChevronDown, Menu, Paperclip, MoreVertical, Users, BarChart4, Bell, AlertCircle, CheckSquare, User, Filter, ArrowUpRight, ChevronRight, Newspaper, Briefcase, SendHorizontal, Copy } from "lucide-react"
 
 const HeroSection = () => {
   const [activeSlide, setActiveSlide] = useState(0);
