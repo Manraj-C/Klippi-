@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { ArrowRight, Sparkles, MessageSquare, PieChart, Bot, Calendar, Mail, Zap, Check, X, Edit2, Database, CheckCircle, FileText, ExternalLink, Save, Search, Settings, Inbox, Star, Clock, Archive, Trash2, Tag, ChevronDown, Menu, Paperclip, MoreVertical } from "lucide-react"
+import { ArrowRight, Sparkles, MessageSquare, PieChart, Bot, Calendar, Mail, Zap, Check, X, Edit2, Database, CheckCircle, FileText, ExternalLink, Save, Search, Settings, Inbox, Star, Clock, Archive, Trash2, Tag, ChevronDown, Menu, Paperclip, MoreVertical, Users, BarChart4, Bell, AlertCircle, CheckSquare, User, Filter, ArrowUpRight, ChevronRight } from "lucide-react"
 
 const HeroSection = () => {
   const [activeSlide, setActiveSlide] = useState(0);
@@ -74,7 +74,7 @@ const HeroSection = () => {
             <div 
               className={`absolute inset-0 flex items-center justify-center transition-opacity duration-500 ease-in-out ${activeSlide === 0 ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
             >
-              <div className="w-full max-w-4xl p-4 md:p-8 h-[300px] md:h-[400px] glass-card rounded-xl border border-white/5 shadow-lg overflow-hidden relative">
+              <div className="w-full max-w-4xl p-4 md:p-8 h-[300px] md:h-[400px] glass-card rounded-xl border border-white/5 shadow-lg overflow-hidden">
                 <div className="flex items-center gap-2 mb-4">
                   <div className="h-8 w-8 rounded-lg bg-primary/20 flex items-center justify-center">
                     <span className="text-primary font-bold">K</span>
@@ -360,109 +360,189 @@ const HeroSection = () => {
               className={`absolute inset-0 flex items-center justify-center transition-opacity duration-500 ease-in-out ${activeSlide === 2 ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
             >
               <div className="w-full max-w-4xl h-[300px] md:h-[400px] glass-card rounded-xl border border-white/5 shadow-lg overflow-hidden">
-                <div className="flex items-center justify-between px-4 py-2 bg-blue-600 text-white border-b border-blue-500">
+                <div className="flex items-center justify-between px-4 py-2 bg-blue-600 text-white">
                   <div className="flex items-center gap-3">
-                    <Database className="w-5 h-5 text-white" />
-                    <span className="font-medium text-white">Gainsight</span>
+                    <img src="https://www.gainsight.com/wp-content/themes/gainsight/assets/images/logos/Logo/Gainsight-Standard.svg" alt="Gainsight" className="h-5" />
                   </div>
-                  <div className="flex items-center gap-2">
-                    <div className="w-6 h-6 rounded-full bg-white flex items-center justify-center">
+                  <div className="flex items-center gap-3">
+                    <Bell className="w-4 h-4 text-white/80" />
+                    <Settings className="w-4 h-4 text-white/80" />
+                    <div className="w-6 h-6 rounded-full bg-white flex items-center justify-center ml-2">
                       <span className="text-xs text-blue-600 font-bold">K</span>
                     </div>
-                    <Badge variant="outline" className="text-xs bg-white/20 text-white border-white/40">Connected</Badge>
                   </div>
                 </div>
                 
-                <div className="grid grid-cols-1 md:grid-cols-2 h-[calc(100%-44px)]">
-                  <div className="p-4 border-r border-white/10">
-                    <div className="flex items-center gap-2 mb-3">
-                      <FileText className="w-4 h-4 text-blue-400" />
-                      <h3 className="text-sm font-medium">TechCorp Customer Profile</h3>
-                    </div>
-                    
-                    <div className="glass-card rounded-lg p-3 text-sm">
-                      <div className="flex justify-between mb-3">
-                        <div className="text-foreground/60 text-xs">Customer Since:</div>
-                        <div className="text-xs font-medium">Apr 2024</div>
-                      </div>
-                      <div className="flex justify-between mb-3">
-                        <div className="text-foreground/60 text-xs">Health Score:</div>
-                        <div className="text-green-400 font-medium">85% (Healthy)</div>
-                      </div>
-                      <div className="flex justify-between mb-3">
-                        <div className="text-foreground/60 text-xs">Renewal Date:</div>
-                        <div className="text-xs font-medium">Jan 15, 2026</div>
-                      </div>
-                      <div className="flex justify-between mb-3">
-                        <div className="text-foreground/60 text-xs">ARR:</div>
-                        <div className="text-xs font-medium">$125,000</div>
-                      </div>
+                <div className="bg-gray-100 text-gray-800 h-[calc(100%-40px)] flex">
+                  <div className="w-48 bg-white border-r border-gray-200 shrink-0 hidden md:block">
+                    <div className="py-2">
+                      <div className="px-3 py-2 text-sm font-medium text-blue-600">Cockpit</div>
                       
-                      <div className="mt-3 pt-2 border-t border-white/10">
-                        <div className="flex items-center">
-                          <Bot className="w-4 h-4 text-blue-400 mr-2" />
-                          <span className="text-xs text-blue-400">AI Insights:</span>
+                      <div className="space-y-0.5 mt-2">
+                        <div className="flex items-center px-3 py-2 text-gray-700 bg-blue-50 border-l-2 border-blue-600">
+                          <Users className="w-4 h-4 mr-2 text-gray-500" />
+                          <span className="text-sm">Customers</span>
                         </div>
-                        <p className="mt-1.5 text-xs text-foreground/80">This account has been consistently expanding usage. Consider discussing enterprise features during next QBR.</p>
+                        
+                        <div className="flex items-center px-3 py-2 text-gray-700 hover:bg-gray-50">
+                          <BarChart4 className="w-4 h-4 mr-2 text-gray-500" />
+                          <span className="text-sm">Analytics</span>
+                        </div>
+                        
+                        <div className="flex items-center px-3 py-2 text-gray-700 hover:bg-gray-50">
+                          <AlertCircle className="w-4 h-4 mr-2 text-gray-500" />
+                          <span className="text-sm">Risk Center</span>
+                        </div>
+                        
+                        <div className="flex items-center px-3 py-2 text-gray-700 hover:bg-gray-50">
+                          <CheckSquare className="w-4 h-4 mr-2 text-gray-500" />
+                          <span className="text-sm">Success Plans</span>
+                        </div>
                       </div>
                     </div>
                   </div>
                   
-                  <div className="p-4 bg-white/5">
-                    <div className="flex items-center justify-between gap-2 mb-3">
-                      <div className="flex items-center">
-                        <Edit2 className="w-4 h-4 text-blue-400 mr-2" />
-                        <h3 className="text-sm font-medium">Update Customer Profile</h3>
+                  <div className="flex-1 flex flex-col">
+                    <div className="bg-white px-4 py-3 border-b border-gray-200 flex flex-wrap justify-between items-center">
+                      <div className="flex items-center mb-2 md:mb-0">
+                        <h3 className="text-lg font-medium text-gray-800">TechCorp Inc.</h3>
+                        <Badge className="ml-2 bg-green-100 text-green-700 border border-green-200">Active</Badge>
                       </div>
-                      <Button size="sm" className="h-7 px-3 bg-blue-600 hover:bg-blue-700 text-white">
-                        <Save className="w-3.5 h-3.5 mr-1.5" />
-                        Save Changes
-                      </Button>
+                      
+                      <div className="flex items-center gap-2">
+                        <Button variant="outline" size="sm" className="h-8 text-xs bg-white border-gray-300 text-gray-700 flex items-center gap-1">
+                          <Filter className="w-3.5 h-3.5" />
+                          Filter
+                        </Button>
+                        <Button variant="outline" size="sm" className="h-8 text-xs bg-white border-gray-300 text-gray-700">
+                          <MoreVertical className="w-3.5 h-3.5" />
+                        </Button>
+                      </div>
                     </div>
                     
-                    <div className="space-y-3">
-                      <div className="glass-card rounded-lg p-3">
-                        <div className="flex items-center justify-between mb-2">
-                          <div className="flex items-center">
-                            <span className="text-xs font-medium text-blue-400">Technology Stack</span>
+                    <div className="flex-1 overflow-auto bg-gray-50 p-4">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div className="bg-white rounded-md border border-gray-200 shadow-sm overflow-hidden">
+                          <div className="px-4 py-3 border-b border-gray-200 flex justify-between items-center">
+                            <div className="flex items-center">
+                              <div className="w-6 h-6 rounded-full bg-blue-100 flex items-center justify-center">
+                                <User className="w-3.5 h-3.5 text-blue-600" />
+                              </div>
+                              <span className="ml-2 text-sm font-medium text-gray-700">Customer Information</span>
+                            </div>
+                            <Button size="sm" variant="ghost" className="h-7 w-7 p-0">
+                              <Edit2 className="h-3.5 w-3.5 text-gray-500" />
+                            </Button>
                           </div>
-                          <Badge className="text-xs bg-blue-500/20 text-blue-400">Editable</Badge>
+                          
+                          <div className="p-4">
+                            <div className="space-y-3 text-sm">
+                              <div className="flex justify-between">
+                                <span className="text-gray-500">Customer Since</span>
+                                <span className="text-gray-900 font-medium">Apr 2024</span>
+                              </div>
+                              <div className="flex justify-between">
+                                <span className="text-gray-500">ARR</span>
+                                <span className="text-gray-900 font-medium">$125,000</span>
+                              </div>
+                              <div className="flex justify-between">
+                                <span className="text-gray-500">Renewal Date</span>
+                                <span className="text-gray-900 font-medium">Jan 15, 2026</span>
+                              </div>
+                              <div className="flex justify-between">
+                                <span className="text-gray-500">Segment</span>
+                                <Badge className="bg-blue-100 text-blue-700 border border-blue-200">Enterprise</Badge>
+                              </div>
+                            </div>
+                          </div>
                         </div>
                         
-                        <div className="mt-1 p-2 rounded-md text-sm flex flex-wrap gap-1.5 bg-white/5 border border-white/10">
-                          <Badge className="bg-white/10 text-foreground border border-white/20 hover:bg-white/20">Internal Analytics</Badge>
-                          <Badge className="bg-white/10 text-foreground border border-white/20 hover:bg-white/20">Power BI</Badge>
-                          <Badge className="bg-white/10 text-foreground border border-white/20 hover:bg-white/20">Tableau</Badge>
-                          <Badge className="bg-blue-500/20 text-blue-400 border border-blue-400/30 hover:bg-blue-500/30">+ Add</Badge>
-                        </div>
-                      </div>
-                      
-                      <div className="glass-card rounded-lg p-3">
-                        <div className="flex items-center justify-between mb-2">
-                          <span className="text-xs font-medium text-blue-400">Integration Interests</span>
-                          <Badge className="text-xs bg-blue-500/20 text-blue-400">Editable</Badge>
-                        </div>
-                        <div className="mt-1 p-2 rounded-md flex flex-wrap gap-1.5 bg-white/5 border border-white/10">
-                          <Badge className="bg-white/10 text-foreground border border-white/20 hover:bg-white/20">API</Badge>
-                          <Badge className="bg-white/10 text-foreground border border-white/20 hover:bg-white/20">Webhooks</Badge>
-                          <Badge className="bg-white/10 text-foreground border border-white/20 hover:bg-white/20">Zapier</Badge>
-                          <Badge className="bg-blue-500/20 text-blue-400 border border-blue-400/30 hover:bg-blue-500/30">+ Add</Badge>
-                        </div>
-                      </div>
-                      
-                      <div className="glass-card rounded-lg p-3">
-                        <div className="flex items-center justify-between mb-2">
-                          <span className="text-xs font-medium text-blue-400">Action Items</span>
-                          <Badge className="text-xs bg-blue-500/20 text-blue-400">Priority</Badge>
-                        </div>
-                        <div className="mt-1 text-sm">
-                          <div className="flex items-center gap-2 p-2 bg-white/5 rounded-md border border-white/10 mb-1.5">
-                            <Check className="w-3.5 h-3.5 text-blue-400" />
-                            <span className="text-xs">Share Zapier integration documentation</span>
+                        <div className="bg-white rounded-md border border-gray-200 shadow-sm overflow-hidden">
+                          <div className="px-4 py-3 border-b border-gray-200 flex justify-between items-center">
+                            <div className="flex items-center">
+                              <div className="w-6 h-6 rounded-full bg-green-100 flex items-center justify-center">
+                                <PieChart className="w-3.5 h-3.5 text-green-600" />
+                              </div>
+                              <span className="ml-2 text-sm font-medium text-gray-700">Health Score</span>
+                            </div>
                           </div>
-                          <div className="flex items-center gap-2 p-2 bg-white/5 rounded-md border border-white/10">
-                            <Check className="w-3.5 h-3.5 text-blue-400" />
-                            <span className="text-xs">Schedule enterprise feature demo</span>
+                          
+                          <div className="p-4">
+                            <div className="flex items-center justify-between mb-2">
+                              <span className="text-2xl font-bold text-green-600">85</span>
+                              <Badge className="bg-green-100 text-green-700 border border-green-200">Healthy</Badge>
+                            </div>
+                            
+                            <div className="w-full bg-gray-200 rounded-full h-2.5">
+                              <div className="bg-green-600 h-2.5 rounded-full" style={{ width: '85%' }}></div>
+                            </div>
+                            
+                            <div className="mt-3 pt-3 border-t border-gray-100">
+                              <div className="flex items-center">
+                                <ArrowUpRight className="w-4 h-4 text-green-600 mr-1" />
+                                <span className="text-xs text-green-600">+5% from last quarter</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        
+                        <div className="bg-white rounded-md border border-gray-200 shadow-sm overflow-hidden">
+                          <div className="px-4 py-3 border-b border-gray-200 flex justify-between items-center">
+                            <div className="flex items-center">
+                              <div className="w-6 h-6 rounded-full bg-purple-100 flex items-center justify-center">
+                                <CheckSquare className="w-3.5 h-3.5 text-purple-600" />
+                              </div>
+                              <span className="ml-2 text-sm font-medium text-gray-700">Success Plan</span>
+                            </div>
+                            <Button size="sm" variant="ghost" className="h-7 w-7 p-0">
+                              <MoreVertical className="h-3.5 w-3.5 text-gray-500" />
+                            </Button>
+                          </div>
+                          
+                          <div className="p-4">
+                            <div className="space-y-2">
+                              <div className="flex items-center gap-2">
+                                <div className="w-5 h-5 rounded bg-green-100 flex items-center justify-center flex-shrink-0">
+                                  <Check className="w-3 h-3 text-green-600" />
+                                </div>
+                                <span className="text-sm text-gray-700">API integration complete</span>
+                              </div>
+                              <div className="flex items-center gap-2">
+                                <div className="w-5 h-5 rounded bg-green-100 flex items-center justify-center flex-shrink-0">
+                                  <Check className="w-3 h-3 text-green-600" />
+                                </div>
+                                <span className="text-sm text-gray-700">User onboarding workshop</span>
+                              </div>
+                              <div className="flex items-center gap-2">
+                                <div className="w-5 h-5 rounded bg-gray-100 flex items-center justify-center flex-shrink-0">
+                                  <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
+                                </div>
+                                <span className="text-sm text-gray-700">Schedule enterprise feature demo</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        
+                        <div className="bg-white rounded-md border border-gray-200 shadow-sm overflow-hidden">
+                          <div className="px-4 py-3 border-b border-gray-200 flex justify-between items-center">
+                            <div className="flex items-center">
+                              <div className="w-6 h-6 rounded-full bg-blue-100 flex items-center justify-center">
+                                <Bot className="w-3.5 h-3.5 text-blue-600" />
+                              </div>
+                              <span className="ml-2 text-sm font-medium text-gray-700">Klippi AI Insights</span>
+                            </div>
+                            <Badge className="bg-blue-100 text-blue-700 border border-blue-200">New</Badge>
+                          </div>
+                          
+                          <div className="p-4">
+                            <div className="text-sm text-gray-600 mb-3">
+                              This account has been consistently expanding usage. Consider discussing enterprise features during next QBR.
+                            </div>
+                            
+                            <Button variant="outline" size="sm" className="w-full justify-between text-blue-600 border-blue-200 hover:bg-blue-50">
+                              <span>View full analysis</span>
+                              <ChevronRight className="w-4 h-4" />
+                            </Button>
                           </div>
                         </div>
                       </div>
