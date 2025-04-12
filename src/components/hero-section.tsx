@@ -6,7 +6,7 @@ import { ArrowRight, Sparkles, MessageSquare, PieChart, Bot, Calendar, Mail, Zap
 
 const HeroSection = () => {
   const [activeSlide, setActiveSlide] = useState(0);
-  const totalSlides = 3; // Updated to 3 slides
+  const totalSlides = 3;
   
   // Auto-rotate carousel every 5 seconds
   useEffect(() => {
@@ -35,6 +35,30 @@ const HeroSection = () => {
             Empowering Customer Success Managers to streamline workflows, automate tasks, 
             and deliver exceptional client experiences with intelligent AI assistance.
           </p>
+          
+          {/* New section for B2BC vs B2B options */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-4xl mb-10">
+            <div className="glass-card p-6 rounded-xl border border-primary/20 text-left">
+              <Badge className="mb-3 bg-primary/10 text-primary hover:bg-primary/20">For Individual CSMs</Badge>
+              <h3 className="text-xl font-semibold mb-2">Supercharge Your Performance</h3>
+              <p className="text-sm text-foreground/70 mb-4">Get ahead in your role with AI assistance that helps you handle more accounts, deliver exceptional service, and stand out in your organization.</p>
+              <Button variant="outline" size="sm" className="border-primary/30 text-primary hover:bg-primary/10">
+                Learn More
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+            </div>
+            
+            <div className="glass-card p-6 rounded-xl border border-secondary/20 text-left">
+              <Badge className="mb-3 bg-secondary/10 text-secondary hover:bg-secondary/20">For CS Teams</Badge>
+              <h3 className="text-xl font-semibold mb-2">Elevate Your Entire Team</h3>
+              <p className="text-sm text-foreground/70 mb-4">Scale your CS operations with a unified platform that standardizes workflows, provides actionable insights, and boosts efficiency across your entire department.</p>
+              <Button variant="outline" size="sm" className="border-secondary/30 text-secondary hover:bg-secondary/10">
+                Request Demo
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+            </div>
+          </div>
+          
           <div className="flex flex-col sm:flex-row gap-4 w-full justify-center">
             <Button size="lg" className="bg-gradient-to-r from-primary to-secondary hover:opacity-90 text-white h-12 px-8 text-base" asChild>
               <a href="#signup">
