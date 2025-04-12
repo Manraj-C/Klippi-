@@ -2,7 +2,7 @@
 import React from "react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { Mail, Search, Settings, Inbox, Star, Clock, Archive, Trash2, Tag, ChevronDown, Menu, MoreVertical, Briefcase, SendHorizontal, Copy } from "lucide-react"
+import { Mail, Search, Settings, Inbox, Star, Clock, Archive, Trash2, Tag, ChevronDown, Menu, MoreVertical, Briefcase, SendHorizontal, Copy, Bot, FileText, Database } from "lucide-react"
 
 interface EmailDraftSlideProps {
   active: boolean
@@ -136,16 +136,37 @@ const EmailDraftContent = () => (
       
       {/* Klippi Assistant Draft Response */}
       <div className="p-3 rounded-lg bg-blue-50 border border-blue-100">
-        <div className="flex items-center justify-between mb-3">
+        <div className="flex items-center justify-between mb-2">
           <div className="flex items-center gap-2">
             <div className="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white flex-shrink-0">
-              <span className="text-sm">K</span>
+              <Bot className="w-4 h-4" />
             </div>
             <div>
               <div className="flex items-center gap-2">
                 <h3 className="font-medium text-gray-800">Klippi Assistant</h3>
-                <Badge className="bg-blue-100 text-blue-700 border-blue-200 text-xs">Draft Response</Badge>
+                <Badge className="bg-blue-100 text-blue-700 border-blue-200 text-xs">Auto-Generated Response</Badge>
               </div>
+            </div>
+          </div>
+          <Badge variant="outline" className="text-xs bg-green-100 text-green-700 border-green-200">
+            Using Product Documentation
+          </Badge>
+        </div>
+
+        {/* Contextual Information Panel */}
+        <div className="mb-3 bg-gray-50 rounded-md p-2 border border-gray-200">
+          <div className="flex items-center gap-1 text-xs text-gray-500 mb-1">
+            <Database className="w-3 h-3" /> 
+            <span className="font-semibold">Context Sources:</span>
+          </div>
+          <div className="flex flex-wrap gap-2">
+            <div className="flex items-center gap-1 px-1.5 py-0.5 bg-gray-100 rounded text-xs text-gray-600">
+              <FileText className="w-3 h-3 text-blue-500" />
+              <span>Slack Integration Guide v2.3</span>
+            </div>
+            <div className="flex items-center gap-1 px-1.5 py-0.5 bg-gray-100 rounded text-xs text-gray-600">
+              <FileText className="w-3 h-3 text-green-500" />
+              <span>API Documentation</span>
             </div>
           </div>
         </div>
@@ -174,8 +195,8 @@ const EmailDraftContent = () => (
         
         <div className="flex justify-between items-center">
           <div className="flex items-center gap-1 text-xs text-gray-600">
-            <span>Generated in 3.2s</span> • 
-            <span className="text-blue-600 hover:underline cursor-pointer">View detailed docs reference</span>
+            <Bot className="w-3 h-3 text-blue-500" />
+            <span>Generated in 3.2s from product documentation</span>
           </div>
           <div className="flex gap-2">
             <Button variant="outline" size="sm" className="h-8 px-3 border-gray-300 text-gray-700 hover:bg-gray-50">
