@@ -6,6 +6,7 @@ import FeaturesSection from "@/components/features-section"
 import IntegrationsSection from "@/components/integrations-section"
 import SignupForm from "@/components/signup-form"
 import Footer from "@/components/footer"
+import { User, Users } from "lucide-react"
 
 const Index = () => {
   return (
