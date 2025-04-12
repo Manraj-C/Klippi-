@@ -18,7 +18,7 @@ interface FeatureCardProps {
 }
 
 const FeatureCard = ({ title, description, icon, className, badge }: FeatureCardProps) => (
-  <div className={cn("glass-card rounded-xl p-6 flex flex-col", className)}>
+  <div className={cn("glass-card rounded-xl p-6 flex flex-col h-full", className)}>
     <div className="mb-4 p-2 w-fit rounded-lg bg-primary/20">
       {icon}
     </div>
@@ -82,11 +82,6 @@ const FeaturesSection = () => {
       title: "CRM Actions",
       description: "Complete tasks in Gainsight/Salesforce automatically based on client needs and conversation context.",
       icon: <CheckCheck className="h-6 w-6 text-primary" />
-    },
-    {
-      title: "Slack Integration",
-      description: "Send timely messages and updates to team members and channels without switching contexts.",
-      icon: <MessageSquare className="h-6 w-6 text-primary" />
     },
     {
       title: "Powerful Workflows",
@@ -182,7 +177,7 @@ const FeaturesSection = () => {
           </p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {sharedFeatures.map((feature, index) => (
             <FeatureCard
               key={index}
