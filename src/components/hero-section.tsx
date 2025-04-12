@@ -29,7 +29,7 @@ const HeroSection = () => {
             <Sparkles className="w-4 h-4 mr-1" /> Coming Soon
           </Badge>
           <h1 className="text-4xl md:text-6xl font-bold mb-6 tracking-tight">
-            Meet <span className="text-gradient">Klip</span>, Your AI CSM <br className="hidden md:block" />
+            Meet <span className="text-gradient">Klip</span>, Your AI Customer Success Manager <br className="hidden md:block" />
           </h1>
           <p className="text-lg md:text-xl text-foreground/80 max-w-3xl mb-8">
             Empowering Customer Success Managers to streamline workflows, automate tasks, 
