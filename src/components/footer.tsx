@@ -11,7 +11,7 @@ const Footer = () => {
             <div className="size-8 rounded-lg bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
               <span className="text-white font-bold text-xl">K</span>
             </div>
-            <span className="text-xl font-bold text-foreground">Klip</span>
+            <span className="text-xl font-bold text-foreground">Klippi</span>
           </div>
           
           <div className="flex flex-wrap justify-center gap-6 mb-6 md:mb-0">
@@ -23,19 +23,19 @@ const Footer = () => {
           </div>
           
           <div className="flex items-center gap-4 mb-6 md:mb-0">
-            <a href="https://twitter.com/klipapp" target="_blank" rel="noopener noreferrer" className="text-foreground/70 hover:text-primary transition-colors">
+            <a href="https://twitter.com/klippiapp" target="_blank" rel="noopener noreferrer" className="text-foreground/70 hover:text-primary transition-colors">
               <Twitter size={18} />
             </a>
-            <a href="https://facebook.com/klipapp" target="_blank" rel="noopener noreferrer" className="text-foreground/70 hover:text-primary transition-colors">
+            <a href="https://facebook.com/klippiapp" target="_blank" rel="noopener noreferrer" className="text-foreground/70 hover:text-primary transition-colors">
               <Facebook size={18} />
             </a>
-            <a href="https://instagram.com/klipapp" target="_blank" rel="noopener noreferrer" className="text-foreground/70 hover:text-primary transition-colors">
+            <a href="https://instagram.com/klippiapp" target="_blank" rel="noopener noreferrer" className="text-foreground/70 hover:text-primary transition-colors">
               <Instagram size={18} />
             </a>
-            <a href="https://linkedin.com/company/klipapp" target="_blank" rel="noopener noreferrer" className="text-foreground/70 hover:text-primary transition-colors">
+            <a href="https://linkedin.com/company/klippiapp" target="_blank" rel="noopener noreferrer" className="text-foreground/70 hover:text-primary transition-colors">
               <Linkedin size={18} />
             </a>
-            <a href="https://github.com/klipapp" target="_blank" rel="noopener noreferrer" className="text-foreground/70 hover:text-primary transition-colors">
+            <a href="https://github.com/klippiapp" target="_blank" rel="noopener noreferrer" className="text-foreground/70 hover:text-primary transition-colors">
               <Github size={18} />
             </a>
           </div>
@@ -43,7 +43,7 @@ const Footer = () => {
         
         <div className="mt-8 pt-8 border-t border-border text-center md:text-left">
           <div className="text-sm text-foreground/60">
-            &copy; {new Date().getFullYear()} Klip. All rights reserved.
+            &copy; {new Date().getFullYear()} Klippi. All rights reserved.
           </div>
         </div>
       </div>

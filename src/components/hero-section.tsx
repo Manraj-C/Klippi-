@@ -7,7 +7,6 @@ const HeroSection = () => {
   const [activeSlide, setActiveSlide] = useState(0);
   const totalSlides = 3;
   
-  // Auto-rotate carousel every 7 seconds
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveSlide((prev) => (prev + 1) % totalSlides);
@@ -28,7 +27,7 @@ const HeroSection = () => {
             <Sparkles className="w-4 h-4 mr-1" /> Coming Soon
           </Badge>
           <h1 className="text-4xl md:text-6xl font-bold mb-6 tracking-tight">
-            Meet <span className="text-gradient">Klip</span>, Your AI Customer Success Manager <br className="hidden md:block" />
+            Meet <span className="text-gradient">Klippi</span>, Your AI Customer Success Manager <br className="hidden md:block" />
           </h1>
           <p className="text-lg md:text-xl text-foreground/80 max-w-3xl mb-8">
             Empowering Customer Success Managers to streamline workflows, automate tasks, 
@@ -80,7 +79,7 @@ const HeroSection = () => {
                   <div className="h-8 w-8 rounded-lg bg-primary/20 flex items-center justify-center">
                     <span className="text-primary font-bold">K</span>
                   </div>
-                  <h3 className="text-lg font-semibold text-white">Klip Dashboard</h3>
+                  <h3 className="text-lg font-semibold text-white">Klippi Dashboard</h3>
                 </div>
                 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 h-[calc(100%-40px)]">
@@ -339,7 +338,7 @@ const HeroSection = () => {
                       <div className="w-6 h-6 rounded-full bg-blue-600 flex items-center justify-center text-white mr-2">
                         <span className="text-xs">K</span>
                       </div>
-                      <span className="text-sm text-blue-800">Klip Assistant is active</span>
+                      <span className="text-sm text-blue-800">Klippi Assistant is active</span>
                       <Badge className="ml-2 bg-green-100 text-green-700 border-green-200">Auto-responses enabled</Badge>
                     </div>
                     <div className="flex gap-2">

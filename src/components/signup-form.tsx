@@ -45,7 +45,7 @@ const SignupForm = () => {
       setIsSubmitted(true)
       toast({
         title: "Thanks for joining the waitlist!",
-        description: "We'll notify you when Klip is ready.",
+        description: "We'll notify you when Klippi is ready.",
       })
     } catch (error) {
       console.error('Error submitting to waitlist:', error)
@@ -66,7 +66,7 @@ const SignupForm = () => {
         </div>
         <h3 className="text-2xl font-bold mb-2">You're on the list!</h3>
         <p className="text-foreground/70 mb-6">
-          We'll notify you when Klip is ready to revolutionize your Customer Success workflow.
+          We'll notify you when Klippi is ready to revolutionize your Customer Success workflow.
         </p>
         <Button variant="outline" onClick={() => setIsSubmitted(false)}>
           Back to form

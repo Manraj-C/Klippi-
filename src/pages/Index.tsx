@@ -24,7 +24,7 @@ const Index = () => {
                 Be the <span className="text-gradient">First to Know</span>
               </h2>
               <p className="text-foreground/80 max-w-2xl mx-auto mb-6">
-                Join our waitlist to get early access to Klip, whether you're an individual CSM or leading a team.
+                Join our waitlist to get early access to Klippi, whether you're an individual CSM or leading a team.
               </p>
               
               <div className="flex flex-wrap justify-center gap-4 mb-12">

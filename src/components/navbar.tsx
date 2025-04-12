@@ -10,7 +10,7 @@ const Navbar = () => {
           <div className="size-8 rounded-lg bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
             <span className="text-white font-bold text-xl">K</span>
           </div>
-          <span className="text-xl font-bold text-foreground">Klip</span>
+          <span className="text-xl font-bold text-foreground">Klippi</span>
         </div>
         
         <div className="flex items-center gap-4">
