@@ -3,7 +3,7 @@ import React from "react"
 import { 
   Mail, Database, MessageSquare, Settings, 
   TrendingUp, Brain, Layers, Book, CheckCheck,
-  Users, User, BarChart, Target
+  Users, User, BarChart, Target, Search, Share
 } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Badge } from "@/components/ui/badge"
@@ -92,6 +92,16 @@ const FeaturesSection = () => {
       title: "Powerful Workflows",
       description: "Automate complex daily tasks with intelligent, adaptive workflows that learn from your preferences.",
       icon: <Settings className="h-6 w-6 text-primary" />
+    },
+    {
+      title: "Automate Customer Research",
+      description: "Instantly gather insights from your product data, support tickets, and past communications to understand client health and needs without manual digging.",
+      icon: <Search className="h-6 w-6 text-primary" />
+    },
+    {
+      title: "Scale Client Communications",
+      description: "Create personalized updates for multiple accounts simultaneously, ensuring consistent messaging while maintaining the human touch your clients expect.",
+      icon: <Share className="h-6 w-6 text-primary" />
     }
   ]
   
