@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { ArrowRight, Sparkles } from "lucide-react"
 import DashboardSlide from "@/components/slides/dashboard-slide"
-import EmailInboxSlide from "@/components/slides/email-inbox-slide"
+import MeetingAssistantSlide from "@/components/slides/meeting-assistant-slide"
 import EmailDraftSlide from "@/components/slides/email-draft-slide"
 
 const HeroSection = () => {
@@ -76,7 +76,7 @@ const HeroSection = () => {
         <div className="glass-card rounded-2xl p-1 max-w-5xl mx-auto overflow-hidden">
           <div className="relative h-[450px] md:h-[600px] rounded-2xl bg-gradient-to-br from-muted to-background overflow-hidden">
             <DashboardSlide active={activeSlide === 0} />
-            <EmailInboxSlide active={activeSlide === 1} />
+            <MeetingAssistantSlide active={activeSlide === 1} />
             <EmailDraftSlide active={activeSlide === 2} />
             
             <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-2">
