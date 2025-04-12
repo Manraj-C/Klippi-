@@ -5,25 +5,25 @@
 
 @layer base {
   :root {
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 240 10% 3.9%;
-    --card-foreground: 0 0% 98%;
-    --popover: 240 10% 3.9%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 252 87% 67%;
+    --background: 250 30% 99%;
+    --foreground: 250 25% 18%;
+    --card: 250 30% 99%;
+    --card-foreground: 250 25% 18%;
+    --popover: 250 30% 99%;
+    --popover-foreground: 250 25% 18%;
+    --primary: 250 70% 60%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 217 91% 60%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
-    --accent: 240 3.7% 15.9%;
-    --accent-foreground: 0 0% 98%;
+    --secondary: 260 40% 50%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 250 20% 96%;
+    --muted-foreground: 250 10% 50%;
+    --accent: 250 20% 96%;
+    --accent-foreground: 250 25% 18%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 252 87% 67%;
+    --border: 250 20% 90%;
+    --input: 250 20% 90%;
+    --ring: 250 70% 60%;
     --radius: 0.75rem;
   }
 }
@@ -45,10 +45,14 @@
 
 @layer utilities {
   .glass-card {
-    @apply bg-white/5 backdrop-blur-sm border border-white/10 shadow-xl;
+    @apply bg-white/70 backdrop-blur-sm border border-white/20 shadow-md;
   }
   
   .text-gradient {
     @apply bg-gradient-to-br from-primary to-secondary bg-clip-text text-transparent;
+  }
+
+  .artisan-shadow {
+    @apply shadow-[0_4px_20px_rgba(0,0,0,0.08)];
   }
 }

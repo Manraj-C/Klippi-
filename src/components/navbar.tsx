@@ -4,13 +4,13 @@ import { Button } from "@/components/ui/button"
 
 const Navbar = () => {
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-white/10">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-background/90 backdrop-blur-md border-b border-border">
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
         <div className="flex items-center gap-2">
           <div className="size-8 rounded-lg bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
             <span className="text-white font-bold text-xl">K</span>
           </div>
-          <span className="text-xl font-bold text-white">Klip</span>
+          <span className="text-xl font-bold text-foreground">Klip</span>
         </div>
         
         <div className="flex items-center gap-4">
@@ -23,7 +23,7 @@ const Navbar = () => {
           <Button variant="ghost" className="text-foreground/80 hover:text-foreground" asChild>
             <a href="#contact">Contact</a>
           </Button>
-          <Button className="bg-gradient-to-r from-primary to-secondary hover:opacity-90" asChild>
+          <Button className="bg-gradient-to-r from-primary to-secondary hover:opacity-90 text-white" asChild>
             <a href="#signup">Join Waitlist</a>
           </Button>
         </div>
