@@ -1,7 +1,8 @@
+
 import React, { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { ArrowRight, Sparkles, MessageSquare, PieChart, Bot, Calendar, Mail, Zap, Check, X, Edit2, Database, CheckCircle, FileText, ExternalLink, Save, Search, Settings, Inbox, Star, Clock, Archive, Trash2, Tag, ChevronDown, Menu, Paperclip, MoreVertical, Users, BarChart4, Bell, AlertCircle, CheckSquare, User, Filter, ArrowUpRight, ChevronRight } from "lucide-react"
+import { ArrowRight, Sparkles, MessageSquare, PieChart, Bot, Calendar, Mail, Zap, Check, X, Edit2, Database, CheckCircle, FileText, ExternalLink, Save, Search, Settings, Inbox, Star, Clock, Archive, Trash2, Tag, ChevronDown, Menu, Paperclip, MoreVertical, Users, BarChart4, Bell, AlertCircle, CheckSquare, User, Filter, ArrowUpRight, ChevronRight, Newspaper, Briefcase } from "lucide-react"
 
 const HeroSection = () => {
   const [activeSlide, setActiveSlide] = useState(0);
@@ -360,190 +361,257 @@ const HeroSection = () => {
               className={`absolute inset-0 flex items-center justify-center transition-opacity duration-500 ease-in-out ${activeSlide === 2 ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
             >
               <div className="w-full max-w-4xl h-[300px] md:h-[400px] glass-card rounded-xl border border-white/5 shadow-lg overflow-hidden">
-                <div className="flex items-center justify-between px-4 py-2 bg-blue-600 text-white">
-                  <div className="flex items-center gap-3">
-                    <img src="https://www.gainsight.com/wp-content/themes/gainsight/assets/images/logos/Logo/Gainsight-Standard.svg" alt="Gainsight" className="h-5" />
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <Bell className="w-4 h-4 text-white/80" />
-                    <Settings className="w-4 h-4 text-white/80" />
-                    <div className="w-6 h-6 rounded-full bg-white flex items-center justify-center ml-2">
-                      <span className="text-xs text-blue-600 font-bold">K</span>
+                <div className="flex flex-col h-full bg-white text-gray-800">
+                  <div className="flex items-center justify-between bg-white border-b border-gray-200 px-3 py-2">
+                    <div className="flex items-center gap-2">
+                      <Menu className="w-5 h-5 text-gray-600" />
+                      <div className="flex items-center">
+                        <Mail className="w-5 h-5 text-red-500" />
+                        <span className="font-medium text-gray-700 text-lg ml-1">Gmail</span>
+                      </div>
+                    </div>
+                    
+                    <div className="flex-1 mx-4">
+                      <div className="bg-gray-100 rounded-lg flex items-center px-4 py-2 max-w-xl mx-auto">
+                        <Search className="w-4 h-4 text-gray-500 mr-2" />
+                        <span className="text-sm text-gray-500">Search mail</span>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-center gap-3">
+                      <Settings className="w-5 h-5 text-gray-600" />
+                      <div className="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center text-white">
+                        <span className="text-sm">K</span>
+                      </div>
                     </div>
                   </div>
-                </div>
-                
-                <div className="bg-gray-100 text-gray-800 h-[calc(100%-40px)] flex">
-                  <div className="w-48 bg-white border-r border-gray-200 shrink-0 hidden md:block">
-                    <div className="py-2">
-                      <div className="px-3 py-2 text-sm font-medium text-blue-600">Cockpit</div>
+                  
+                  <div className="flex flex-1 overflow-hidden">
+                    <div className="hidden md:block w-48 bg-white border-r border-gray-200 py-2 pr-1">
+                      <Button variant="outline" className="mb-4 ml-2 bg-blue-50 text-gray-700 border border-gray-300 rounded-2xl pl-2 pr-4 py-1.5 h-auto flex justify-start items-center w-36">
+                        <Edit2 className="w-4 h-4 mr-3 text-gray-600" />
+                        <span className="text-sm font-medium">Compose</span>
+                      </Button>
                       
-                      <div className="space-y-0.5 mt-2">
-                        <div className="flex items-center px-3 py-2 text-gray-700 bg-blue-50 border-l-2 border-blue-600">
-                          <Users className="w-4 h-4 mr-2 text-gray-500" />
-                          <span className="text-sm">Customers</span>
+                      <div className="space-y-1">
+                        <div className="flex items-center pl-2 pr-3 py-1.5 rounded-r-full bg-blue-100 text-blue-800">
+                          <Inbox className="w-4 h-4 mr-3" />
+                          <span className="text-sm font-medium">Inbox</span>
+                          <Badge className="ml-auto bg-red-500 text-white text-xs px-1.5 py-0.5 rounded-full">4</Badge>
                         </div>
                         
-                        <div className="flex items-center px-3 py-2 text-gray-700 hover:bg-gray-50">
-                          <BarChart4 className="w-4 h-4 mr-2 text-gray-500" />
-                          <span className="text-sm">Analytics</span>
+                        <div className="flex items-center pl-2 pr-3 py-1.5 rounded-r-full text-gray-700 hover:bg-gray-100">
+                          <Star className="w-4 h-4 mr-3" />
+                          <span className="text-sm">Starred</span>
                         </div>
                         
-                        <div className="flex items-center px-3 py-2 text-gray-700 hover:bg-gray-50">
-                          <AlertCircle className="w-4 h-4 mr-2 text-gray-500" />
-                          <span className="text-sm">Risk Center</span>
+                        <div className="flex items-center pl-2 pr-3 py-1.5 rounded-r-full text-gray-700 hover:bg-gray-100">
+                          <Clock className="w-4 h-4 mr-3" />
+                          <span className="text-sm">Snoozed</span>
                         </div>
                         
-                        <div className="flex items-center px-3 py-2 text-gray-700 hover:bg-gray-50">
-                          <CheckSquare className="w-4 h-4 mr-2 text-gray-500" />
-                          <span className="text-sm">Success Plans</span>
+                        <div className="flex items-center pl-2 pr-3 py-1.5 rounded-r-full text-gray-700 hover:bg-gray-100">
+                          <Archive className="w-4 h-4 mr-3" />
+                          <span className="text-sm">Archived</span>
+                        </div>
+                        
+                        <div className="flex items-center pl-2 pr-3 py-1.5 rounded-r-full text-gray-700 hover:bg-gray-100">
+                          <Trash2 className="w-4 h-4 mr-3" />
+                          <span className="text-sm">Trash</span>
+                        </div>
+                      </div>
+                      
+                      <div className="mt-3 pt-2 border-t border-gray-200">
+                        <div className="flex items-center pl-2 pr-3 py-1.5 text-gray-700 justify-between">
+                          <span className="text-sm font-medium">Labels</span>
+                          <ChevronDown className="w-4 h-4" />
+                        </div>
+                        
+                        <div className="flex items-center pl-2 pr-3 py-1.5 rounded-r-full text-gray-700 hover:bg-gray-100">
+                          <Tag className="w-4 h-4 mr-3 text-green-600" />
+                          <span className="text-sm">Clients</span>
+                        </div>
+                        
+                        <div className="flex items-center pl-2 pr-3 py-1.5 rounded-r-full text-gray-700 hover:bg-gray-100">
+                          <Tag className="w-4 h-4 mr-3 text-yellow-600" />
+                          <span className="text-sm">Important</span>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div className="flex-1 flex flex-col">
+                      <div className="flex items-center justify-between py-1 px-3 border-b border-gray-200">
+                        <div className="flex items-center gap-4">
+                          <div className="flex items-center">
+                            <input type="checkbox" className="w-4 h-4 border-gray-300 rounded" />
+                          </div>
+                          <div className="flex items-center gap-1">
+                            <Button variant="ghost" className="h-8 w-8 p-1" title="Refresh">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-gray-600"><path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"/><path d="M16 21h5v-5"/></svg>
+                            </Button>
+                            <Button variant="ghost" className="h-8 w-8 p-1" title="More actions">
+                              <MoreVertical className="w-4 h-4 text-gray-600" />
+                            </Button>
+                          </div>
+                        </div>
+                        
+                        <div className="text-xs text-gray-500">1-10 of 356</div>
+                      </div>
+                      
+                      <div className="flex-1 overflow-auto">
+                        <div className="flex items-center px-3 py-2 border-b border-gray-100 bg-blue-50 hover:shadow-md hover:z-10 relative transition-shadow cursor-pointer">
+                          <div className="flex items-center gap-3 min-w-0">
+                            <input type="checkbox" className="w-4 h-4 border-gray-300 rounded" />
+                            <Star className="w-4 h-4 text-yellow-400" />
+                            <div className="w-6 h-6 rounded-full bg-blue-600 flex items-center justify-center text-white flex-shrink-0">
+                              <span className="text-xs">K</span>
+                            </div>
+                            
+                            <div className="flex-shrink-0 font-medium w-32 md:w-48 truncate">Klippi Assistant</div>
+                            
+                            <div className="flex flex-1 min-w-0">
+                              <span className="font-medium mr-1.5">Daily Client News Digest</span>
+                              <span className="text-gray-600 truncate"> - Your morning briefing: TechCorp featured in WSJ, Nova Systems announces new CFO...</span>
+                            </div>
+                            
+                            <div className="flex items-center gap-2 ml-2">
+                              <Newspaper className="w-4 h-4 text-gray-400" />
+                              <span className="text-xs whitespace-nowrap font-medium">7:02 AM</span>
+                            </div>
+                          </div>
+                        </div>
+                        
+                        <div className="flex items-center px-3 py-2 border-b border-gray-100 hover:bg-gray-50 cursor-pointer">
+                          <div className="flex items-center gap-3 min-w-0">
+                            <input type="checkbox" className="w-4 h-4 border-gray-300 rounded" />
+                            <Star className="w-4 h-4 text-gray-400 hover:text-gray-600" />
+                            <Tag className="w-4 h-4 text-yellow-400" />
+                            
+                            <div className="flex-shrink-0 w-32 md:w-48 truncate">Anna Chen (Acme Corp)</div>
+                            
+                            <div className="flex flex-1 min-w-0">
+                              <span className="mr-1.5">API sync delays and upgrade discussion</span>
+                              <span className="text-gray-500 truncate"> - We've been using the API integration for a few weeks now...</span>
+                            </div>
+                            
+                            <div className="text-xs whitespace-nowrap ml-2">11:42 AM</div>
+                          </div>
+                        </div>
+                        
+                        <div className="flex items-center px-3 py-2 border-b border-gray-100 hover:bg-gray-50 cursor-pointer">
+                          <div className="flex items-center gap-3 min-w-0">
+                            <input type="checkbox" className="w-4 h-4 border-gray-300 rounded" />
+                            <Star className="w-4 h-4 text-gray-400 hover:text-gray-600" />
+                            <div className="w-6 h-6 rounded-full bg-blue-600 flex items-center justify-center text-white flex-shrink-0">
+                              <span className="text-xs">K</span>
+                            </div>
+                            
+                            <div className="flex-shrink-0 w-32 md:w-48 truncate">Klippi Assistant</div>
+                            
+                            <div className="flex flex-1 min-w-0">
+                              <span className="mr-1.5">Client Opportunity Alert: TechCorp</span>
+                              <span className="text-gray-500 truncate"> - TechCorp just announced plans to expand their cloud services division...</span>
+                            </div>
+                            
+                            <div className="text-xs whitespace-nowrap ml-2">Yesterday</div>
+                          </div>
+                        </div>
+                        
+                        <div className="flex items-center px-3 py-2 border-b border-gray-100 hover:bg-gray-50 cursor-pointer">
+                          <div className="flex items-center gap-3 min-w-0">
+                            <input type="checkbox" className="w-4 h-4 border-gray-300 rounded" />
+                            <Star className="w-4 h-4 text-gray-400 hover:text-gray-600" />
+                            <div className="flex-shrink-0 w-32 md:w-48 truncate">DataFlow Solutions</div>
+                            <div className="flex flex-1 min-w-0">
+                              <span className="mr-1.5">RE: Integration partnership</span>
+                              <span className="text-gray-500 truncate"> - Thank you for your interest in partnering with us...</span>
+                            </div>
+                            <div className="text-xs whitespace-nowrap ml-2">Apr 11</div>
+                          </div>
+                        </div>
+                        
+                        <div className="flex items-center px-3 py-2 border-b border-gray-100 hover:bg-gray-50 cursor-pointer">
+                          <div className="flex items-center gap-3 min-w-0">
+                            <input type="checkbox" className="w-4 h-4 border-gray-300 rounded" />
+                            <Star className="w-4 h-4 text-yellow-400" />
+                            <div className="w-6 h-6 rounded-full bg-blue-600 flex items-center justify-center text-white flex-shrink-0">
+                              <span className="text-xs">K</span>
+                            </div>
+                            
+                            <div className="flex-shrink-0 w-32 md:w-48 truncate">Klippi Assistant</div>
+                            
+                            <div className="flex flex-1 min-w-0">
+                              <span className="mr-1.5">Weekly Customer Health Report</span>
+                              <span className="text-gray-500 truncate"> - 3 accounts need attention, 7 accounts trending positively...</span>
+                            </div>
+                            
+                            <div className="text-xs whitespace-nowrap ml-2">Apr 10</div>
+                          </div>
+                        </div>
+
+                        <div className="flex items-center px-3 py-2 border-b border-gray-100 hover:bg-gray-50 cursor-pointer">
+                          <div className="flex items-center gap-3 min-w-0">
+                            <input type="checkbox" className="w-4 h-4 border-gray-300 rounded" />
+                            <Star className="w-4 h-4 text-gray-400 hover:text-gray-600" />
+                            <div className="flex-shrink-0 w-32 md:w-48 truncate">Product Updates</div>
+                            <div className="flex flex-1 min-w-0">
+                              <span className="mr-1.5">New features released</span>
+                              <span className="text-gray-500 truncate"> - We're excited to announce our latest feature updates...</span>
+                            </div>
+                            <div className="text-xs whitespace-nowrap ml-2">Apr 9</div>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
                   
-                  <div className="flex-1 flex flex-col">
-                    <div className="bg-white px-4 py-3 border-b border-gray-200 flex flex-wrap justify-between items-center">
-                      <div className="flex items-center mb-2 md:mb-0">
-                        <h3 className="text-lg font-medium text-gray-800">TechCorp Inc.</h3>
-                        <Badge className="ml-2 bg-green-100 text-green-700 border border-green-200">Active</Badge>
+                  <div className="bg-blue-50 border-t border-blue-100 py-2 px-3">
+                    <div className="flex-1 p-3 rounded-lg bg-white border border-gray-200">
+                      <div className="flex items-center gap-2 mb-1">
+                        <div className="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white flex-shrink-0">
+                          <span className="text-sm">K</span>
+                        </div>
+                        <div>
+                          <div className="flex items-center gap-2">
+                            <h3 className="font-medium">Klippi Assistant</h3>
+                            <Badge className="bg-green-100 text-green-700 text-xs">Automated</Badge>
+                          </div>
+                          <p className="text-xs text-gray-500">to me</p>
+                        </div>
                       </div>
                       
-                      <div className="flex items-center gap-2">
-                        <Button variant="outline" size="sm" className="h-8 text-xs bg-white border-gray-300 text-gray-700 flex items-center gap-1">
-                          <Filter className="w-3.5 h-3.5" />
-                          Filter
-                        </Button>
-                        <Button variant="outline" size="sm" className="h-8 text-xs bg-white border-gray-300 text-gray-700">
-                          <MoreVertical className="w-3.5 h-3.5" />
-                        </Button>
+                      <div className="pt-2 pb-1 text-sm">
+                        <h4 className="font-medium mb-2">Daily Client News Digest - April 12, 2025</h4>
+                        <p className="mb-3 text-gray-700">Good morning! Here are the top news stories about your clients from the past 24 hours:</p>
+                        
+                        <div className="space-y-4">
+                          <div className="p-2 rounded bg-gray-50 border-l-2 border-blue-600">
+                            <div className="flex items-center gap-2 mb-1">
+                              <Briefcase className="w-4 h-4 text-blue-600" />
+                              <span className="font-medium text-gray-800">TechCorp Inc.</span>
+                            </div>
+                            <p className="text-xs text-gray-700 mb-1">• Featured in Wall Street Journal: "TechCorp Leads Innovation in Cloud Security"</p>
+                            <p className="text-xs text-gray-700">• Q1 Earnings announced: Revenue up 23% year-over-year</p>
+                          </div>
+                          
+                          <div className="p-2 rounded bg-gray-50 border-l-2 border-purple-600">
+                            <div className="flex items-center gap-2 mb-1">
+                              <Briefcase className="w-4 h-4 text-purple-600" />
+                              <span className="font-medium text-gray-800">Nova Systems</span>
+                            </div>
+                            <p className="text-xs text-gray-700 mb-1">• Announced new CFO: Sarah Chen joining from FinTech Global</p>
+                            <p className="text-xs text-gray-700">• Upcoming product launch event scheduled for May 15</p>
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                    
-                    <div className="flex-1 overflow-auto bg-gray-50 p-4">
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div className="bg-white rounded-md border border-gray-200 shadow-sm overflow-hidden">
-                          <div className="px-4 py-3 border-b border-gray-200 flex justify-between items-center">
-                            <div className="flex items-center">
-                              <div className="w-6 h-6 rounded-full bg-blue-100 flex items-center justify-center">
-                                <User className="w-3.5 h-3.5 text-blue-600" />
-                              </div>
-                              <span className="ml-2 text-sm font-medium text-gray-700">Customer Information</span>
-                            </div>
-                            <Button size="sm" variant="ghost" className="h-7 w-7 p-0">
-                              <Edit2 className="h-3.5 w-3.5 text-gray-500" />
-                            </Button>
-                          </div>
-                          
-                          <div className="p-4">
-                            <div className="space-y-3 text-sm">
-                              <div className="flex justify-between">
-                                <span className="text-gray-500">Customer Since</span>
-                                <span className="text-gray-900 font-medium">Apr 2024</span>
-                              </div>
-                              <div className="flex justify-between">
-                                <span className="text-gray-500">ARR</span>
-                                <span className="text-gray-900 font-medium">$125,000</span>
-                              </div>
-                              <div className="flex justify-between">
-                                <span className="text-gray-500">Renewal Date</span>
-                                <span className="text-gray-900 font-medium">Jan 15, 2026</span>
-                              </div>
-                              <div className="flex justify-between">
-                                <span className="text-gray-500">Segment</span>
-                                <Badge className="bg-blue-100 text-blue-700 border border-blue-200">Enterprise</Badge>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        
-                        <div className="bg-white rounded-md border border-gray-200 shadow-sm overflow-hidden">
-                          <div className="px-4 py-3 border-b border-gray-200 flex justify-between items-center">
-                            <div className="flex items-center">
-                              <div className="w-6 h-6 rounded-full bg-green-100 flex items-center justify-center">
-                                <PieChart className="w-3.5 h-3.5 text-green-600" />
-                              </div>
-                              <span className="ml-2 text-sm font-medium text-gray-700">Health Score</span>
-                            </div>
-                          </div>
-                          
-                          <div className="p-4">
-                            <div className="flex items-center justify-between mb-2">
-                              <span className="text-2xl font-bold text-green-600">85</span>
-                              <Badge className="bg-green-100 text-green-700 border border-green-200">Healthy</Badge>
-                            </div>
-                            
-                            <div className="w-full bg-gray-200 rounded-full h-2.5">
-                              <div className="bg-green-600 h-2.5 rounded-full" style={{ width: '85%' }}></div>
-                            </div>
-                            
-                            <div className="mt-3 pt-3 border-t border-gray-100">
-                              <div className="flex items-center">
-                                <ArrowUpRight className="w-4 h-4 text-green-600 mr-1" />
-                                <span className="text-xs text-green-600">+5% from last quarter</span>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        
-                        <div className="bg-white rounded-md border border-gray-200 shadow-sm overflow-hidden">
-                          <div className="px-4 py-3 border-b border-gray-200 flex justify-between items-center">
-                            <div className="flex items-center">
-                              <div className="w-6 h-6 rounded-full bg-purple-100 flex items-center justify-center">
-                                <CheckSquare className="w-3.5 h-3.5 text-purple-600" />
-                              </div>
-                              <span className="ml-2 text-sm font-medium text-gray-700">Success Plan</span>
-                            </div>
-                            <Button size="sm" variant="ghost" className="h-7 w-7 p-0">
-                              <MoreVertical className="h-3.5 w-3.5 text-gray-500" />
-                            </Button>
-                          </div>
-                          
-                          <div className="p-4">
-                            <div className="space-y-2">
-                              <div className="flex items-center gap-2">
-                                <div className="w-5 h-5 rounded bg-green-100 flex items-center justify-center flex-shrink-0">
-                                  <Check className="w-3 h-3 text-green-600" />
-                                </div>
-                                <span className="text-sm text-gray-700">API integration complete</span>
-                              </div>
-                              <div className="flex items-center gap-2">
-                                <div className="w-5 h-5 rounded bg-green-100 flex items-center justify-center flex-shrink-0">
-                                  <Check className="w-3 h-3 text-green-600" />
-                                </div>
-                                <span className="text-sm text-gray-700">User onboarding workshop</span>
-                              </div>
-                              <div className="flex items-center gap-2">
-                                <div className="w-5 h-5 rounded bg-gray-100 flex items-center justify-center flex-shrink-0">
-                                  <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
-                                </div>
-                                <span className="text-sm text-gray-700">Schedule enterprise feature demo</span>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        
-                        <div className="bg-white rounded-md border border-gray-200 shadow-sm overflow-hidden">
-                          <div className="px-4 py-3 border-b border-gray-200 flex justify-between items-center">
-                            <div className="flex items-center">
-                              <div className="w-6 h-6 rounded-full bg-blue-100 flex items-center justify-center">
-                                <Bot className="w-3.5 h-3.5 text-blue-600" />
-                              </div>
-                              <span className="ml-2 text-sm font-medium text-gray-700">Klippi AI Insights</span>
-                            </div>
-                            <Badge className="bg-blue-100 text-blue-700 border border-blue-200">New</Badge>
-                          </div>
-                          
-                          <div className="p-4">
-                            <div className="text-sm text-gray-600 mb-3">
-                              This account has been consistently expanding usage. Consider discussing enterprise features during next QBR.
-                            </div>
-                            
-                            <Button variant="outline" size="sm" className="w-full justify-between text-blue-600 border-blue-200 hover:bg-blue-50">
-                              <span>View full analysis</span>
-                              <ChevronRight className="w-4 h-4" />
-                            </Button>
-                          </div>
+                      
+                      <div className="flex items-center justify-between pt-3 border-t border-gray-100 mt-3">
+                        <div className="text-xs text-gray-500">Klippi scanned 200+ news sources to compile this report</div>
+                        <div className="flex gap-2">
+                          <Button variant="outline" size="sm" className="h-7 px-2 border-gray-300 text-gray-600 hover:bg-gray-100 text-xs">
+                            <Settings className="w-3 h-3 mr-1" />
+                            Settings
+                          </Button>
                         </div>
                       </div>
                     </div>
