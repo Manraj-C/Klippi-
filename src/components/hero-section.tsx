@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { ArrowRight, Sparkles, MessageSquare, PieChart, Bot, Calendar, Mail, Zap, Check, X, Edit2, Database, CheckCircle, FileText, ExternalLink, Save, Search, Settings, Inbox, Star, Clock, Archive, Trash2, Label, ChevronDown, Menu, Paperclip, MoreVertical } from "lucide-react"
+import { ArrowRight, Sparkles, MessageSquare, PieChart, Bot, Calendar, Mail, Zap, Check, X, Edit2, Database, CheckCircle, FileText, ExternalLink, Save, Search, Settings, Inbox, Star, Clock, Archive, Trash2, Tag, ChevronDown, Menu, Paperclip, MoreVertical } from "lucide-react"
 
 const HeroSection = () => {
   const [activeSlide, setActiveSlide] = useState(0);
@@ -227,12 +227,12 @@ const HeroSection = () => {
                         </div>
                         
                         <div className="flex items-center pl-2 pr-3 py-1.5 rounded-r-full text-gray-700 hover:bg-gray-100">
-                          <Label className="w-4 h-4 mr-3 text-green-600" />
+                          <Tag className="w-4 h-4 mr-3 text-green-600" />
                           <span className="text-sm">Clients</span>
                         </div>
                         
                         <div className="flex items-center pl-2 pr-3 py-1.5 rounded-r-full text-gray-700 hover:bg-gray-100">
-                          <Label className="w-4 h-4 mr-3 text-yellow-600" />
+                          <Tag className="w-4 h-4 mr-3 text-yellow-600" />
                           <span className="text-sm">Important</span>
                         </div>
                       </div>
@@ -262,7 +262,7 @@ const HeroSection = () => {
                           <div className="flex items-center gap-3 min-w-0">
                             <input type="checkbox" className="w-4 h-4 border-gray-300 rounded" />
                             <Star className="w-4 h-4 text-gray-400 hover:text-gray-600" />
-                            <Label className="w-4 h-4 text-yellow-400" />
+                            <Tag className="w-4 h-4 text-yellow-400" />
                             
                             <div className="flex-shrink-0 font-medium w-48 truncate">Anna Chen (Acme Corp)</div>
                             
@@ -308,7 +308,7 @@ const HeroSection = () => {
                           <div className="flex items-center gap-3 min-w-0">
                             <input type="checkbox" className="w-4 h-4 border-gray-300 rounded" />
                             <Star className="w-4 h-4 text-yellow-400" />
-                            <Label className="w-4 h-4 text-green-400" />
+                            <Tag className="w-4 h-4 text-green-400" />
                             <div className="flex-shrink-0 w-48 truncate">Sarah Johnson</div>
                             <div className="flex flex-1 min-w-0">
                               <span className="mr-1.5">Customer success metrics</span>
