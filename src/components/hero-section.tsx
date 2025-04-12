@@ -74,7 +74,7 @@ const HeroSection = () => {
         </div>
 
         <div className="glass-card rounded-2xl p-1 max-w-5xl mx-auto overflow-hidden">
-          <div className="relative h-[350px] md:h-[500px] rounded-2xl bg-gradient-to-br from-muted to-background overflow-hidden">
+          <div className="relative h-[450px] md:h-[600px] rounded-2xl bg-gradient-to-br from-muted to-background overflow-hidden">
             <DashboardSlide active={activeSlide === 0} />
             <EmailInboxSlide active={activeSlide === 1} />
             <EmailDraftSlide active={activeSlide === 2} />
