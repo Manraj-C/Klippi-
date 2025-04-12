@@ -124,7 +124,6 @@ const FeaturesSection = () => {
           
           <TabsContent value="individual" className="mt-0">
             <div className="mb-8 text-center">
-              <Badge className="mb-2 bg-primary/10 text-primary hover:bg-primary/20">B2BC Solution</Badge>
               <h3 className="text-2xl font-semibold mb-3">Amplify Your Individual Impact</h3>
               <p className="text-foreground/80 max-w-2xl mx-auto">
                 Designed for ambitious CSMs who want to deliver exceptional service while managing more accounts efficiently.
@@ -146,7 +145,6 @@ const FeaturesSection = () => {
           
           <TabsContent value="team" className="mt-0">
             <div className="mb-8 text-center">
-              <Badge className="mb-2 bg-secondary/10 text-secondary hover:bg-secondary/20">B2B Solution</Badge>
               <h3 className="text-2xl font-semibold mb-3">Scale Your CS Organization</h3>
               <p className="text-foreground/80 max-w-2xl mx-auto">
                 A comprehensive platform that standardizes excellence across your CS team while providing leadership with valuable insights.
