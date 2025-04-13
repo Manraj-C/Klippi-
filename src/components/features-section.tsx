@@ -1,10 +1,9 @@
-
 import React from "react"
 import { 
   Mail, Database, MessageSquare, Settings, 
   TrendingUp, Brain, Layers, Book, CheckCheck,
   Users, User, BarChart, Target, Search, Share,
-  HeadsetHelp, InboxCheck
+  Headset, Check
 } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Badge } from "@/components/ui/badge"
@@ -119,7 +118,7 @@ const FeaturesSection = () => {
     {
       title: "Offload Support Emails",
       description: "Get AI to draft customer replies using your knowledge base.",
-      icon: <HeadsetHelp className="h-6 w-6 text-primary" />,
+      icon: <Headset className="h-6 w-6 text-primary" />,
       image: "/lovable-uploads/23de9735-893d-4c08-a5c3-b2d4bcdab592.png",
       cta: {
         text: "Try the Support Email Agent"
