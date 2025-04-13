@@ -1,6 +1,6 @@
 
 import React from "react"
-import { Brain, Layers, Book, Target } from "lucide-react"
+import { Brain, Layers, Book, Target, Database } from "lucide-react"
 
 export const AIFeatures = () => {
   return (
@@ -48,6 +48,16 @@ export const AIFeatures = () => {
           <div>
             <h4 className="font-medium mb-1">Personalized Rules</h4>
             <p className="text-sm text-foreground/70">Set up automation that adapts dynamically to your unique workflow.</p>
+          </div>
+        </div>
+        
+        <div className="flex items-start gap-3">
+          <div className="p-1.5 rounded-md bg-primary/20 shrink-0 mt-1">
+            <Database className="h-5 w-5 text-primary" />
+          </div>
+          <div>
+            <h4 className="font-medium mb-1">Secure Cloud Backend</h4>
+            <p className="text-sm text-foreground/70">Powered by Supabase for enterprise-grade security and reliability.</p>
           </div>
         </div>
       </div>

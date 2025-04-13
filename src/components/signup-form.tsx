@@ -1,12 +1,11 @@
-
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { useToast } from "@/hooks/use-toast"
-import { ArrowRight, Mail, CheckCircle } from "lucide-react"
-import { supabase, isSupabaseConfigured } from "@/lib/supabase"
+import { ArrowRight, Mail, CheckCircle, AlertCircle } from "lucide-react"
+import { supabase, isSupabaseConfigured, testSupabaseConnection } from "@/lib/supabase"
 
 const SignupForm = () => {
   const [email, setEmail] = useState("")
@@ -15,19 +14,39 @@ const SignupForm = () => {
   const [licenseType, setLicenseType] = useState("individual")
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [connectionStatus, setConnectionStatus] = useState<{
+    checked: boolean;
+    success: boolean;
+    message: string;
+  }>({
+    checked: false,
+    success: false,
+    message: 'Checking connection...'
+  })
   const { toast } = useToast()
+
+  useEffect(() => {
+    const checkConnection = async () => {
+      const result = await testSupabaseConnection();
+      setConnectionStatus({
+        checked: true,
+        success: result.success,
+        message: result.message
+      });
+    };
+    
+    checkConnection();
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
     
     try {
-      // Check if Supabase is properly configured
       if (!isSupabaseConfigured()) {
         throw new Error("Supabase is not properly configured. Please set up your environment variables.");
       }
       
-      // Insert data into Supabase 'Website registrations' table
       const { error } = await supabase
         .from('Website registrations')
         .insert([
@@ -42,7 +61,6 @@ const SignupForm = () => {
 
       if (error) throw error
       
-      // Send notification email using Supabase Edge Function
       const { error: emailError } = await supabase.functions.invoke('send-waitlist-notification', {
         body: {
           email,
@@ -61,7 +79,7 @@ const SignupForm = () => {
         title: "Thanks for joining the waitlist!",
         description: "We'll notify you when Klippi is ready.",
       })
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error submitting to waitlist:', error)
       setIsSubmitting(false)
       toast({
@@ -91,7 +109,19 @@ const SignupForm = () => {
 
   return (
     <div className="glass-card rounded-xl p-8">
-      <h3 className="text-2xl font-bold mb-6">Join the Waitlist</h3>
+      <h3 className="text-2xl font-bold mb-4">Join the Waitlist</h3>
+      
+      {connectionStatus.checked && (
+        <div className={`mb-4 p-3 rounded-lg flex items-center gap-2 text-sm ${connectionStatus.success ? 'bg-green-500/10 text-green-600' : 'bg-red-500/10 text-red-600'}`}>
+          {connectionStatus.success ? (
+            <CheckCircle className="h-4 w-4" />
+          ) : (
+            <AlertCircle className="h-4 w-4" />
+          )}
+          <span>{connectionStatus.message}</span>
+        </div>
+      )}
+      
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="space-y-2">
@@ -154,7 +184,7 @@ const SignupForm = () => {
         <Button 
           type="submit" 
           className="w-full bg-gradient-to-r from-primary to-secondary hover:opacity-90 h-12"
-          disabled={isSubmitting}
+          disabled={isSubmitting || !connectionStatus.success}
         >
           {isSubmitting ? "Submitting..." : (
             <>
