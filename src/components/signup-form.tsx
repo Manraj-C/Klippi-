@@ -3,15 +3,16 @@ import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { useToast } from "@/hooks/use-toast"
-import { ArrowRight, Mail, CheckCircle, AlertCircle } from "lucide-react"
+import { ArrowRight, Mail, CheckCircle } from "lucide-react"
 import { supabase, isSupabaseConfigured } from "@/lib/supabase"
 
 const SignupForm = () => {
   const [email, setEmail] = useState("")
   const [name, setName] = useState("")
   const [company, setCompany] = useState("")
-  const [role, setRole] = useState("")
+  const [licenseType, setLicenseType] = useState("individual")
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
   const { toast } = useToast()
@@ -34,12 +35,25 @@ const SignupForm = () => {
             email,
             name,
             company,
-            role,
+            license_type: licenseType,
             created_at: new Date().toISOString()
           }
         ])
 
       if (error) throw error
+      
+      // Send notification email using Supabase Edge Function
+      const { error: emailError } = await supabase.functions.invoke('send-waitlist-notification', {
+        body: {
+          email,
+          name,
+          company,
+          licenseType,
+          recipientEmail: "manraj@klippi.ai"
+        }
+      })
+
+      if (emailError) console.error('Error sending notification email:', emailError)
       
       setIsSubmitting(false)
       setIsSubmitted(true)
@@ -123,15 +137,17 @@ const SignupForm = () => {
           </div>
           
           <div className="space-y-2">
-            <Label htmlFor="role">Role</Label>
-            <Input
-              id="role"
-              placeholder="Customer Success Manager"
-              value={role}
-              onChange={(e) => setRole(e.target.value)}
-              required
-              className="bg-white/5 border-white/10 focus-visible:ring-primary"
-            />
+            <Label>License Type</Label>
+            <RadioGroup value={licenseType} onValueChange={setLicenseType} className="flex gap-4">
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value="individual" id="individual" />
+                <Label htmlFor="individual" className="font-normal cursor-pointer">Individual CSM</Label>
+              </div>
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value="team" id="team" />
+                <Label htmlFor="team" className="font-normal cursor-pointer">Team</Label>
+              </div>
+            </RadioGroup>
           </div>
         </div>
         
