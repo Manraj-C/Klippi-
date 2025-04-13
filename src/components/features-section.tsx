@@ -3,11 +3,13 @@ import React from "react"
 import { 
   Mail, Database, MessageSquare, Settings, 
   TrendingUp, Brain, Layers, Book, CheckCheck,
-  Users, User, BarChart, Target, Search, Share
+  Users, User, BarChart, Target, Search, Share,
+  HeadsetHelp, InboxCheck
 } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Badge } from "@/components/ui/badge"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Button } from "@/components/ui/button"
 
 interface FeatureCardProps {
   title: string;
@@ -15,9 +17,14 @@ interface FeatureCardProps {
   icon: React.ReactNode;
   className?: string;
   badge?: string;
+  image?: string;
+  cta?: {
+    text: string;
+    icon?: React.ReactNode;
+  };
 }
 
-const FeatureCard = ({ title, description, icon, className, badge }: FeatureCardProps) => (
+const FeatureCard = ({ title, description, icon, className, badge, image, cta }: FeatureCardProps) => (
   <div className={cn("glass-card rounded-xl p-6 flex flex-col h-full", className)}>
     <div className="mb-4 p-2 w-fit rounded-lg bg-primary/20">
       {icon}
@@ -30,7 +37,38 @@ const FeatureCard = ({ title, description, icon, className, badge }: FeatureCard
         </Badge>
       )}
     </h3>
-    <p className="text-foreground/70 text-sm">{description}</p>
+    <p className="text-foreground/70 text-sm mb-4">{description}</p>
+    
+    {image && (
+      <div className="mt-auto mb-4 overflow-hidden rounded-lg">
+        <img src={image} alt={title} className="w-full h-auto object-cover" />
+      </div>
+    )}
+    
+    {cta && (
+      <div className="mt-auto">
+        <Button variant="ghost" size="sm" className="group text-primary hover:text-primary hover:bg-primary/10 p-0">
+          <span>{cta.text}</span>
+          {cta.icon || (
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1"
+            >
+              <path d="M5 12h14" />
+              <path d="m12 5 7 7-7 7" />
+            </svg>
+          )}
+        </Button>
+      </div>
+    )}
   </div>
 )
 
@@ -79,9 +117,13 @@ const FeaturesSection = () => {
   
   const sharedFeatures = [
     {
-      title: "CRM Actions",
-      description: "Complete tasks in Gainsight/Salesforce automatically based on client needs and conversation context.",
-      icon: <CheckCheck className="h-6 w-6 text-primary" />
+      title: "Offload Support Emails",
+      description: "Get AI to draft customer replies using your knowledge base.",
+      icon: <HeadsetHelp className="h-6 w-6 text-primary" />,
+      image: "/lovable-uploads/23de9735-893d-4c08-a5c3-b2d4bcdab592.png",
+      cta: {
+        text: "Try the Support Email Agent"
+      }
     },
     {
       title: "Powerful Workflows",
@@ -177,13 +219,16 @@ const FeaturesSection = () => {
           </p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {sharedFeatures.map((feature, index) => (
             <FeatureCard
               key={index}
               title={feature.title}
               description={feature.description}
               icon={feature.icon}
+              image={feature.image}
+              cta={feature.cta}
+              className="flex flex-col h-full"
             />
           ))}
         </div>
