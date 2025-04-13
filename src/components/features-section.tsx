@@ -1,4 +1,3 @@
-
 import React from "react"
 import { 
   Mail, Database, MessageSquare, Settings, 
@@ -120,7 +119,7 @@ const FeaturesSection = () => {
       title: "Offload Support Emails",
       description: "Get AI to draft customer replies using your knowledge base.",
       icon: <Headset className="h-6 w-6 text-primary" />,
-      image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&w=800&h=450",
+      image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&w=800&h=450&q=80",
       cta: {
         text: "Try the Support Email Agent"
       }
@@ -129,7 +128,7 @@ const FeaturesSection = () => {
       title: "Powerful Workflows",
       description: "Automate complex daily tasks with intelligent, adaptive workflows that learn from your preferences.",
       icon: <Settings className="h-6 w-6 text-primary" />,
-      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&h=450",
+      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&h=450&q=80",
       cta: {
         text: "Explore Workflow Automation"
       }
@@ -138,7 +137,7 @@ const FeaturesSection = () => {
       title: "Automate Customer Research",
       description: "Instantly gather insights from your product data, support tickets, and past communications to understand client health and needs without manual digging.",
       icon: <Search className="h-6 w-6 text-primary" />,
-      image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&h=450",
+      image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&h=450&q=80",
       cta: {
         text: "See Research Tools"
       }
@@ -147,7 +146,7 @@ const FeaturesSection = () => {
       title: "Scale Client Communications",
       description: "Create personalized updates for multiple accounts simultaneously, ensuring consistent messaging while maintaining the human touch your clients expect.",
       icon: <Share className="h-6 w-6 text-primary" />,
-      image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&h=450",
+      image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&h=450&q=80",
       cta: {
         text: "Try Communication Tools"
       }
