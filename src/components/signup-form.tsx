@@ -27,9 +27,9 @@ const SignupForm = () => {
         throw new Error("Supabase is not properly configured. Please set up your environment variables.");
       }
       
-      // Insert data into Supabase waitlist table
+      // Insert data into Supabase 'Website registrations' table
       const { error } = await supabase
-        .from('waitlist')
+        .from('Website registrations')
         .insert([
           { 
             email,
