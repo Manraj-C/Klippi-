@@ -11,16 +11,34 @@ export type Database = {
     Tables: {
       "Website registrations": {
         Row: {
+          company: string | null
           created_at: string
+          email: string
+          full_name: string | null
           id: number
+          "Licence Type": Database["public"]["Enums"]["Licence Type"] | null
+          license_type: string | null
+          name: string | null
         }
         Insert: {
+          company?: string | null
           created_at?: string
+          email: string
+          full_name?: string | null
           id?: number
+          "Licence Type"?: Database["public"]["Enums"]["Licence Type"] | null
+          license_type?: string | null
+          name?: string | null
         }
         Update: {
+          company?: string | null
           created_at?: string
+          email?: string
+          full_name?: string | null
           id?: number
+          "Licence Type"?: Database["public"]["Enums"]["Licence Type"] | null
+          license_type?: string | null
+          name?: string | null
         }
         Relationships: []
       }
@@ -32,7 +50,7 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      "Licence Type": "Individual CSM" | "Team"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -147,6 +165,8 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      "Licence Type": ["Individual CSM", "Team"],
+    },
   },
 } as const
