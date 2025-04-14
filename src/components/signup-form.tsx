@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -5,7 +6,7 @@ import { Label } from "@/components/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { useToast } from "@/hooks/use-toast"
 import { ArrowRight, Mail, CheckCircle, AlertCircle } from "lucide-react"
-import { supabase, isSupabaseConfigured, testSupabaseConnection } from "@/lib/supabase"
+import { supabase, testSupabaseConnection } from "@/lib/supabase"
 
 const SignupForm = () => {
   const [email, setEmail] = useState("")
@@ -43,10 +44,7 @@ const SignupForm = () => {
     setIsSubmitting(true)
     
     try {
-      if (!isSupabaseConfigured()) {
-        throw new Error("Supabase is not properly configured. Please set up your environment variables.");
-      }
-      
+      // Insert data into the "Website registrations" table
       const { error } = await supabase
         .from('Website registrations')
         .insert([
@@ -61,17 +59,21 @@ const SignupForm = () => {
 
       if (error) throw error
       
-      const { error: emailError } = await supabase.functions.invoke('send-waitlist-notification', {
-        body: {
-          email,
-          name,
-          company,
-          licenseType,
-          recipientEmail: "manraj@klippi.ai"
-        }
-      })
-
-      if (emailError) console.error('Error sending notification email:', emailError)
+      // Try to send email notification if the Edge Function exists
+      try {
+        await supabase.functions.invoke('send-waitlist-notification', {
+          body: {
+            email,
+            name,
+            company,
+            licenseType,
+            recipientEmail: "manraj@klippi.ai"
+          }
+        })
+      } catch (emailError) {
+        console.error('Error sending notification email:', emailError)
+        // Don't fail the submission if just the email notification fails
+      }
       
       setIsSubmitting(false)
       setIsSubmitted(true)
