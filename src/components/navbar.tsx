@@ -1,8 +1,35 @@
 
-import React from "react"
+import React, { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
+import { Link, useNavigate } from "react-router-dom"
+import { supabase } from "@/integrations/supabase/client"
+import { LogIn, LogOut, User } from "lucide-react"
 
 const Navbar = () => {
+  const [session, setSession] = useState(null)
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    // Get initial session
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session)
+    })
+
+    // Listen for auth changes
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(
+      (_event, session) => {
+        setSession(session)
+      }
+    )
+
+    return () => subscription.unsubscribe()
+  }, [])
+
+  const handleLogout = async () => {
+    await supabase.auth.signOut()
+    navigate('/')
+  }
+
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/90 backdrop-blur-md border-b border-border">
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
@@ -23,9 +50,24 @@ const Navbar = () => {
           <Button variant="ghost" className="text-foreground/80 hover:text-foreground" asChild>
             <a href="#contact">Contact</a>
           </Button>
-          <Button className="bg-gradient-to-r from-primary to-secondary hover:opacity-90 text-white" asChild>
-            <a href="#signup">Join Waitlist</a>
-          </Button>
+          
+          {session ? (
+            <Button 
+              variant="outline" 
+              className="flex items-center gap-2"
+              onClick={handleLogout}
+            >
+              <LogOut className="h-4 w-4" />
+              Sign out
+            </Button>
+          ) : (
+            <Button className="bg-gradient-to-r from-primary to-secondary hover:opacity-90 text-white" asChild>
+              <Link to="/auth">
+                <LogIn className="mr-2 h-4 w-4" />
+                Sign In
+              </Link>
+            </Button>
+          )}
         </div>
       </div>
     </header>
