@@ -1,0 +1,686 @@
+
+import { useState } from "react";
+import DashboardLayout from "@/components/dashboard/DashboardLayout";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { 
+  User, Mail, Bell, Lock, Laptop, Bot, Plug, BellOff, Check, X,
+  Save, Image as ImageIcon
+} from "lucide-react";
+import { Label } from "@/components/ui/label";
+import { Switch } from "@/components/ui/switch";
+import { Separator } from "@/components/ui/separator";
+
+const Settings = () => {
+  const [activeTab, setActiveTab] = useState("profile");
+  
+  // Mock user data
+  const user = {
+    name: "Alex Johnson",
+    email: "alex@example.com",
+    role: "Customer Success Manager",
+    company: "Klippi AI",
+    avatar: null,
+    timezone: "America/New_York"
+  };
+
+  // Mock integration data
+  const integrations = [
+    {
+      id: "slack",
+      name: "Slack",
+      status: "connected",
+      icon: "💬",
+      description: "Send notifications and updates to Slack channels."
+    },
+    {
+      id: "zoom",
+      name: "Zoom",
+      status: "connected",
+      icon: "🎥",
+      description: "Start and join meetings directly from Klippi."
+    },
+    {
+      id: "google_calendar",
+      name: "Google Calendar",
+      status: "connected",
+      icon: "📅",
+      description: "Sync meetings and events with your calendar."
+    },
+    {
+      id: "salesforce",
+      name: "Salesforce",
+      status: "disconnected",
+      icon: "☁️",
+      description: "Sync customer data with your CRM."
+    },
+    {
+      id: "hubspot",
+      name: "HubSpot",
+      status: "disconnected",
+      icon: "🔷",
+      description: "Import contacts and companies from HubSpot."
+    },
+    {
+      id: "zendesk",
+      name: "Zendesk",
+      status: "disconnected",
+      icon: "🎫",
+      description: "Sync support tickets and customer inquiries."
+    }
+  ];
+
+  return (
+    <DashboardLayout>
+      <h1 className="text-3xl font-bold mb-6">Settings</h1>
+
+      <div className="flex flex-col lg:flex-row gap-6">
+        <Tabs 
+          orientation="vertical"
+          defaultValue="profile" 
+          value={activeTab} 
+          onValueChange={setActiveTab}
+          className="w-full lg:w-[200px] flex-shrink-0"
+        >
+          <TabsList className="flex flex-row lg:flex-col h-auto lg:h-auto justify-start w-full bg-transparent gap-2">
+            <TabsTrigger 
+              value="profile" 
+              className="w-full flex justify-start gap-2 data-[state=active]:bg-muted"
+            >
+              <User className="h-4 w-4" />
+              Profile
+            </TabsTrigger>
+            <TabsTrigger 
+              value="notifications" 
+              className="w-full flex justify-start gap-2 data-[state=active]:bg-muted"
+            >
+              <Bell className="h-4 w-4" />
+              Notifications
+            </TabsTrigger>
+            <TabsTrigger 
+              value="security" 
+              className="w-full flex justify-start gap-2 data-[state=active]:bg-muted"
+            >
+              <Lock className="h-4 w-4" />
+              Security
+            </TabsTrigger>
+            <TabsTrigger 
+              value="appearance" 
+              className="w-full flex justify-start gap-2 data-[state=active]:bg-muted"
+            >
+              <Laptop className="h-4 w-4" />
+              Appearance
+            </TabsTrigger>
+            <TabsTrigger 
+              value="ai" 
+              className="w-full flex justify-start gap-2 data-[state=active]:bg-muted"
+            >
+              <Bot className="h-4 w-4" />
+              AI Settings
+            </TabsTrigger>
+            <TabsTrigger 
+              value="integrations" 
+              className="w-full flex justify-start gap-2 data-[state=active]:bg-muted"
+            >
+              <Plug className="h-4 w-4" />
+              Integrations
+            </TabsTrigger>
+          </TabsList>
+        </Tabs>
+
+        <div className="flex-1">
+          {/* Profile Settings */}
+          <TabsContent value="profile" className="mt-0 space-y-6">
+            <Card>
+              <CardHeader>
+                <CardTitle>Profile Information</CardTitle>
+                <CardDescription>Update your account details and profile information</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="flex flex-col md:flex-row gap-6 mb-6">
+                  <div className="w-full md:w-32 flex flex-col items-center gap-2">
+                    <div className="w-32 h-32 rounded-full bg-primary/10 flex items-center justify-center">
+                      {user.avatar ? (
+                        <img 
+                          src={user.avatar} 
+                          alt={user.name} 
+                          className="w-full h-full rounded-full object-cover"
+                        />
+                      ) : (
+                        <span className="text-primary text-4xl font-bold">
+                          {user.name.charAt(0)}
+                        </span>
+                      )}
+                    </div>
+                    <Button variant="outline" size="sm" className="w-full gap-2">
+                      <ImageIcon className="h-4 w-4" />
+                      Change
+                    </Button>
+                  </div>
+                  <div className="flex-1 grid gap-4">
+                    <div className="grid gap-2">
+                      <Label htmlFor="name">Full Name</Label>
+                      <Input id="name" defaultValue={user.name} />
+                    </div>
+                    <div className="grid gap-2">
+                      <Label htmlFor="email">Email Address</Label>
+                      <Input id="email" type="email" defaultValue={user.email} />
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div className="grid gap-2">
+                        <Label htmlFor="role">Job Role</Label>
+                        <Input id="role" defaultValue={user.role} />
+                      </div>
+                      <div className="grid gap-2">
+                        <Label htmlFor="company">Company</Label>
+                        <Input id="company" defaultValue={user.company} />
+                      </div>
+                    </div>
+                    <div className="grid gap-2">
+                      <Label htmlFor="timezone">Time Zone</Label>
+                      <select 
+                        id="timezone" 
+                        className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                        defaultValue={user.timezone}
+                      >
+                        <option value="America/New_York">Eastern Time (US & Canada)</option>
+                        <option value="America/Chicago">Central Time (US & Canada)</option>
+                        <option value="America/Denver">Mountain Time (US & Canada)</option>
+                        <option value="America/Los_Angeles">Pacific Time (US & Canada)</option>
+                        <option value="Europe/London">London</option>
+                        <option value="Europe/Paris">Paris</option>
+                        <option value="Asia/Tokyo">Tokyo</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div className="flex justify-end">
+                  <Button className="gap-2">
+                    <Save className="h-4 w-4" />
+                    Save Changes
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          {/* Notifications Settings */}
+          <TabsContent value="notifications" className="mt-0 space-y-6">
+            <Card>
+              <CardHeader>
+                <CardTitle>Notification Preferences</CardTitle>
+                <CardDescription>Configure how and when you receive notifications</CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                <div className="space-y-4">
+                  <div className="font-medium">Email Notifications</div>
+                  <div className="space-y-3">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <div className="font-medium">Meeting Reminders</div>
+                        <div className="text-sm text-muted-foreground">Receive email reminders before scheduled meetings</div>
+                      </div>
+                      <Switch defaultChecked />
+                    </div>
+                    <Separator />
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <div className="font-medium">Client Updates</div>
+                        <div className="text-sm text-muted-foreground">Receive updates when client information changes</div>
+                      </div>
+                      <Switch defaultChecked />
+                    </div>
+                    <Separator />
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <div className="font-medium">Risk Alerts</div>
+                        <div className="text-sm text-muted-foreground">Receive alerts when new risks are detected</div>
+                      </div>
+                      <Switch defaultChecked />
+                    </div>
+                    <Separator />
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <div className="font-medium">Task Assignments</div>
+                        <div className="text-sm text-muted-foreground">Receive notifications when tasks are assigned to you</div>
+                      </div>
+                      <Switch defaultChecked />
+                    </div>
+                    <Separator />
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <div className="font-medium">Newsletter & Updates</div>
+                        <div className="text-sm text-muted-foreground">Receive news about Klippi features and updates</div>
+                      </div>
+                      <Switch />
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="space-y-4">
+                  <div className="font-medium">In-App Notifications</div>
+                  <div className="space-y-3">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <div className="font-medium">Messages</div>
+                        <div className="text-sm text-muted-foreground">Show notifications for new messages</div>
+                      </div>
+                      <Switch defaultChecked />
+                    </div>
+                    <Separator />
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <div className="font-medium">Meeting Start</div>
+                        <div className="text-sm text-muted-foreground">Show notifications when meetings are about to start</div>
+                      </div>
+                      <Switch defaultChecked />
+                    </div>
+                    <Separator />
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <div className="font-medium">Task Due Dates</div>
+                        <div className="text-sm text-muted-foreground">Show notifications for upcoming due dates</div>
+                      </div>
+                      <Switch defaultChecked />
+                    </div>
+                  </div>
+                </div>
+
+                <div className="pt-2 flex justify-end">
+                  <Button className="gap-2">
+                    <Save className="h-4 w-4" />
+                    Save Preferences
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+            
+            <Card>
+              <CardHeader>
+                <CardTitle>Notification Schedule</CardTitle>
+                <CardDescription>Set quiet hours when you don't want to be disturbed</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <div className="font-medium">Enable Quiet Hours</div>
+                      <div className="text-sm text-muted-foreground">Pause notifications during specific times</div>
+                    </div>
+                    <Switch />
+                  </div>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="grid gap-2">
+                      <Label htmlFor="quiet-start">Start Time</Label>
+                      <Input 
+                        id="quiet-start" 
+                        type="time" 
+                        defaultValue="22:00" 
+                        disabled
+                      />
+                    </div>
+                    <div className="grid gap-2">
+                      <Label htmlFor="quiet-end">End Time</Label>
+                      <Input 
+                        id="quiet-end" 
+                        type="time" 
+                        defaultValue="08:00" 
+                        disabled
+                      />
+                    </div>
+                  </div>
+                  
+                  <div className="pt-2 flex justify-end">
+                    <Button disabled>Save Schedule</Button>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          {/* Security Settings */}
+          <TabsContent value="security" className="mt-0 space-y-6">
+            <Card>
+              <CardHeader>
+                <CardTitle>Password</CardTitle>
+                <CardDescription>Change your password to keep your account secure</CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="grid gap-2">
+                  <Label htmlFor="current-password">Current Password</Label>
+                  <Input id="current-password" type="password" />
+                </div>
+                <div className="grid gap-2">
+                  <Label htmlFor="new-password">New Password</Label>
+                  <Input id="new-password" type="password" />
+                </div>
+                <div className="grid gap-2">
+                  <Label htmlFor="confirm-password">Confirm New Password</Label>
+                  <Input id="confirm-password" type="password" />
+                </div>
+                <div className="pt-2 flex justify-end">
+                  <Button>Update Password</Button>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader>
+                <CardTitle>Two-Factor Authentication</CardTitle>
+                <CardDescription>Add an extra layer of security to your account</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <div className="font-medium">Enable Two-Factor Authentication</div>
+                      <div className="text-sm text-muted-foreground">
+                        Secure your account with a second verification step
+                      </div>
+                    </div>
+                    <Switch />
+                  </div>
+                  
+                  <div className="rounded-lg border p-4 bg-muted/30">
+                    <p className="text-sm text-muted-foreground">
+                      Two-factor authentication adds an additional layer of security to your account 
+                      by requiring more than just a password to sign in.
+                    </p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader>
+                <CardTitle>Active Sessions</CardTitle>
+                <CardDescription>Manage devices that are currently signed in to your account</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  <div className="rounded-lg border p-4">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <div className="font-medium">Current Session</div>
+                        <div className="text-sm text-muted-foreground">
+                          Chrome on macOS • San Francisco, CA • Active now
+                        </div>
+                      </div>
+                      <span className="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">
+                        Current
+                      </span>
+                    </div>
+                  </div>
+                  
+                  <div className="rounded-lg border p-4">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <div className="font-medium">Mobile App</div>
+                        <div className="text-sm text-muted-foreground">
+                          iPhone • New York, NY • Last active: 2 hours ago
+                        </div>
+                      </div>
+                      <Button variant="ghost" size="sm" className="text-destructive">Sign Out</Button>
+                    </div>
+                  </div>
+                  
+                  <div className="pt-2 flex justify-end">
+                    <Button variant="destructive">Sign Out All Other Devices</Button>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          {/* Appearance Settings */}
+          <TabsContent value="appearance" className="mt-0 space-y-6">
+            <Card>
+              <CardHeader>
+                <CardTitle>Theme</CardTitle>
+                <CardDescription>Customize the look and feel of the application</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  <div className="grid grid-cols-3 gap-4">
+                    <div className="border rounded-lg p-4 flex flex-col items-center gap-2 bg-background cursor-pointer ring-2 ring-primary">
+                      <div className="h-20 w-full bg-background border rounded-md flex items-center justify-center">
+                        <div className="w-10 h-10 bg-primary rounded-md"></div>
+                      </div>
+                      <span className="text-sm font-medium">Light</span>
+                    </div>
+                    <div className="border rounded-lg p-4 flex flex-col items-center gap-2 cursor-pointer">
+                      <div className="h-20 w-full bg-zinc-950 border rounded-md flex items-center justify-center">
+                        <div className="w-10 h-10 bg-primary rounded-md"></div>
+                      </div>
+                      <span className="text-sm font-medium">Dark</span>
+                    </div>
+                    <div className="border rounded-lg p-4 flex flex-col items-center gap-2 cursor-pointer">
+                      <div className="h-20 w-full bg-background border rounded-md flex items-center justify-center">
+                        <div className="w-10 h-10 bg-primary rounded-md"></div>
+                        <span className="text-xs">System</span>
+                      </div>
+                      <span className="text-sm font-medium">System</span>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader>
+                <CardTitle>Dashboard Layout</CardTitle>
+                <CardDescription>Customize your dashboard view</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <div className="font-medium">Compact View</div>
+                      <div className="text-sm text-muted-foreground">Show more items in a condensed view</div>
+                    </div>
+                    <Switch />
+                  </div>
+                  <Separator />
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <div className="font-medium">Show Recent Activities</div>
+                      <div className="text-sm text-muted-foreground">Display recent activities on dashboard</div>
+                    </div>
+                    <Switch defaultChecked />
+                  </div>
+                  <Separator />
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <div className="font-medium">Show Analytics</div>
+                      <div className="text-sm text-muted-foreground">Display analytics charts on dashboard</div>
+                    </div>
+                    <Switch defaultChecked />
+                  </div>
+
+                  <div className="pt-2 flex justify-end">
+                    <Button>Save Layout Preferences</Button>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          {/* AI Settings */}
+          <TabsContent value="ai" className="mt-0 space-y-6">
+            <Card>
+              <CardHeader>
+                <CardTitle>AI Assistant Preferences</CardTitle>
+                <CardDescription>Customize how Klippi AI assists you</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <div className="font-medium">Enable AI Assistant</div>
+                      <div className="text-sm text-muted-foreground">Allow Klippi to provide AI-powered assistance</div>
+                    </div>
+                    <Switch defaultChecked />
+                  </div>
+                  <Separator />
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <div className="font-medium">Meeting Summaries</div>
+                      <div className="text-sm text-muted-foreground">Automatically generate summaries after meetings</div>
+                    </div>
+                    <Switch defaultChecked />
+                  </div>
+                  <Separator />
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <div className="font-medium">Risk Detection</div>
+                      <div className="text-sm text-muted-foreground">Analyze communications to detect potential risks</div>
+                    </div>
+                    <Switch defaultChecked />
+                  </div>
+                  <Separator />
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <div className="font-medium">Email Drafting</div>
+                      <div className="text-sm text-muted-foreground">Generate draft responses for client communications</div>
+                    </div>
+                    <Switch defaultChecked />
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+            
+            <Card>
+              <CardHeader>
+                <CardTitle>Data Usage & Privacy</CardTitle>
+                <CardDescription>Configure how your data is used by our AI systems</CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <div className="font-medium">Data Processing Consent</div>
+                    <div className="text-sm text-muted-foreground">Allow Klippi to process your data for AI features</div>
+                  </div>
+                  <Switch defaultChecked />
+                </div>
+                <Separator />
+                <div className="flex items-center justify-between">
+                  <div>
+                    <div className="font-medium">Improve AI with your data</div>
+                    <div className="text-sm text-muted-foreground">Allow anonymous data to help improve our models</div>
+                  </div>
+                  <Switch defaultChecked />
+                </div>
+                <Separator />
+                <div className="flex items-center justify-between">
+                  <div>
+                    <div className="font-medium">Data Retention</div>
+                    <div className="text-sm text-muted-foreground">How long we store your processed data</div>
+                  </div>
+                  <select 
+                    className="w-32 rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background"
+                    defaultValue="90"
+                  >
+                    <option value="30">30 days</option>
+                    <option value="60">60 days</option>
+                    <option value="90">90 days</option>
+                    <option value="180">180 days</option>
+                    <option value="365">1 year</option>
+                  </select>
+                </div>
+
+                <div className="pt-2 flex justify-end">
+                  <Button>Save Privacy Settings</Button>
+                </div>
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          {/* Integrations Settings */}
+          <TabsContent value="integrations" className="mt-0 space-y-6">
+            <Card>
+              <CardHeader>
+                <CardTitle>Connected Services</CardTitle>
+                <CardDescription>Manage integrations with other tools and services</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="grid gap-6">
+                  {integrations.map((integration) => (
+                    <div key={integration.id} className="flex items-center justify-between">
+                      <div className="flex items-center gap-4">
+                        <div className="h-10 w-10 rounded-md bg-muted flex items-center justify-center text-xl">
+                          {integration.icon}
+                        </div>
+                        <div>
+                          <div className="font-medium">{integration.name}</div>
+                          <div className="text-sm text-muted-foreground">{integration.description}</div>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        {integration.status === "connected" ? (
+                          <>
+                            <span className="flex items-center text-xs text-green-600 gap-1">
+                              <Check className="h-3 w-3" /> Connected
+                            </span>
+                            <Button variant="outline" size="sm">Configure</Button>
+                            <Button variant="ghost" size="sm">Disconnect</Button>
+                          </>
+                        ) : (
+                          <>
+                            <span className="flex items-center text-xs text-muted-foreground gap-1">
+                              <X className="h-3 w-3" /> Disconnected
+                            </span>
+                            <Button size="sm">Connect</Button>
+                          </>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader>
+                <CardTitle>API Access</CardTitle>
+                <CardDescription>Manage API keys for programmatic access to your data</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  <div className="flex flex-col gap-2">
+                    <Label htmlFor="api-key">API Key</Label>
+                    <div className="flex gap-2">
+                      <Input 
+                        id="api-key" 
+                        value="••••••••••••••••••••••••••••••" 
+                        readOnly 
+                        className="font-mono"
+                      />
+                      <Button variant="outline">Copy</Button>
+                    </div>
+                  </div>
+                  
+                  <div className="flex justify-between items-center">
+                    <div>
+                      <p className="text-sm text-muted-foreground">Last used: Never</p>
+                      <p className="text-sm text-muted-foreground">Created on: April 10, 2025</p>
+                    </div>
+                    <Button variant="destructive" size="sm">Revoke Key</Button>
+                  </div>
+                  
+                  <div className="pt-2 flex justify-end">
+                    <Button>Generate New API Key</Button>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </TabsContent>
+        </div>
+      </div>
+    </DashboardLayout>
+  );
+};
+
+export default Settings;
