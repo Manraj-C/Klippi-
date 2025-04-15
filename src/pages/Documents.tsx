@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import DashboardLayout from "@/components/dashboard/DashboardLayout";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -6,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { 
-  Search, Upload, FolderPlus, GridIcon, ListIcon, FileText, FilePdf, 
+  Search, Upload, FolderPlus, GridIcon, ListIcon, FileText, FileIcon, 
   FileImage, FileSpreadsheet, Download, Share2, MoreHorizontal, Trash2 
 } from "lucide-react";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
@@ -15,7 +14,6 @@ const Documents = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
   
-  // Mock documents data
   const documents = [
     {
       id: 1,
@@ -79,21 +77,18 @@ const Documents = () => {
     }
   ];
 
-  // Filter documents based on search query
   const filteredDocuments = documents.filter(doc => 
     doc.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
     (doc.client && doc.client.toLowerCase().includes(searchQuery.toLowerCase()))
   );
 
-  // Filter for client-specific documents
   const clientDocuments = filteredDocuments.filter(doc => doc.client !== null);
-  // Filter for internal documents
   const internalDocuments = filteredDocuments.filter(doc => doc.client === null);
   
   const getFileIcon = (type: string) => {
     switch(type) {
       case 'pdf':
-        return <FilePdf className="h-6 w-6 text-rose-500" />;
+        return <FileIcon className="h-6 w-6 text-rose-500" />;
       case 'doc':
         return <FileText className="h-6 w-6 text-blue-500" />;
       case 'xlsx':
@@ -166,7 +161,6 @@ const Documents = () => {
           <TabsTrigger value="internal">Internal</TabsTrigger>
         </TabsList>
         
-        {/* All Documents Tab */}
         <TabsContent value="all" className="mt-0">
           {viewMode === "grid" ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
@@ -256,7 +250,6 @@ const Documents = () => {
           )}
         </TabsContent>
         
-        {/* Client Documents Tab - Similar structure to All Documents but filtered */}
         <TabsContent value="client" className="mt-0">
           {viewMode === "grid" ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
@@ -344,7 +337,6 @@ const Documents = () => {
           )}
         </TabsContent>
         
-        {/* Internal Documents Tab - Similar structure again but filtered */}
         <TabsContent value="internal" className="mt-0">
           {viewMode === "grid" ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
