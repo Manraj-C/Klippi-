@@ -16,6 +16,7 @@ import Meetings from "./pages/Meetings";
 import Messages from "./pages/Messages";
 import Documents from "./pages/Documents";
 import Settings from "./pages/Settings";
+import Klippi from "./pages/Klippi";
 
 const queryClient = new QueryClient();
 
@@ -66,6 +67,7 @@ const App = () => (
           <Route path="/dashboard/messages" element={<Messages />} />
           <Route path="/dashboard/documents" element={<Documents />} />
           <Route path="/dashboard/settings" element={<Settings />} />
+          <Route path="/dashboard/klippi" element={<Klippi />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

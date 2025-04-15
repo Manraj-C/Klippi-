@@ -27,6 +27,7 @@ import {
   Settings,
   LogOut,
   PlusCircle,
+  Sparkles,
 } from "lucide-react";
 
 interface DashboardLayoutProps {
@@ -123,6 +124,14 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
                       <a href="/dashboard/documents">
                         <FileText />
                         <span>Documents</span>
+                      </a>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                  <SidebarMenuItem>
+                    <SidebarMenuButton asChild tooltip="Klippi AI">
+                      <a href="/dashboard/klippi">
+                        <Sparkles />
+                        <span>Klippi AI</span>
                       </a>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
