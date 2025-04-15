@@ -29,6 +29,7 @@ import {
   PlusCircle,
   Sparkles,
   Inbox,
+  Zap,
 } from "lucide-react";
 
 interface DashboardLayoutProps {
@@ -136,11 +137,27 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
                       </a>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
+                </SidebarMenu>
+              </SidebarGroupContent>
+            </SidebarGroup>
+
+            <SidebarGroup>
+              <SidebarGroupLabel>AI Tools</SidebarGroupLabel>
+              <SidebarGroupContent>
+                <SidebarMenu>
                   <SidebarMenuItem>
                     <SidebarMenuButton asChild tooltip="Klippi AI">
                       <a href="/dashboard/klippi">
                         <Sparkles />
                         <span>Klippi AI</span>
+                      </a>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                  <SidebarMenuItem>
+                    <SidebarMenuButton asChild tooltip="AI CSM Flows">
+                      <a href="/dashboard/ai-flows">
+                        <Zap />
+                        <span>AI CSM Flows</span>
                       </a>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
