@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Link, useNavigate } from "react-router-dom"
 import { supabase } from "@/integrations/supabase/client"
-import { LogIn, LogOut, User } from "lucide-react"
+import { LogIn, LogOut, User, LayoutDashboard } from "lucide-react"
 
 const Navbar = () => {
   const [session, setSession] = useState(null)
@@ -41,25 +41,41 @@ const Navbar = () => {
         </div>
         
         <div className="flex items-center gap-4">
-          <Button variant="ghost" className="text-foreground/80 hover:text-foreground" asChild>
-            <a href="#features">Features</a>
-          </Button>
-          <Button variant="ghost" className="text-foreground/80 hover:text-foreground" asChild>
-            <a href="#integrations">Integrations</a>
-          </Button>
-          <Button variant="ghost" className="text-foreground/80 hover:text-foreground" asChild>
-            <a href="#contact">Contact</a>
-          </Button>
+          {!session && (
+            <>
+              <Button variant="ghost" className="text-foreground/80 hover:text-foreground" asChild>
+                <a href="#features">Features</a>
+              </Button>
+              <Button variant="ghost" className="text-foreground/80 hover:text-foreground" asChild>
+                <a href="#integrations">Integrations</a>
+              </Button>
+              <Button variant="ghost" className="text-foreground/80 hover:text-foreground" asChild>
+                <a href="#contact">Contact</a>
+              </Button>
+            </>
+          )}
           
           {session ? (
-            <Button 
-              variant="outline" 
-              className="flex items-center gap-2"
-              onClick={handleLogout}
-            >
-              <LogOut className="h-4 w-4" />
-              Sign out
-            </Button>
+            <div className="flex items-center gap-4">
+              <Button 
+                variant="ghost" 
+                className="flex items-center gap-2"
+                asChild
+              >
+                <Link to="/dashboard">
+                  <LayoutDashboard className="h-4 w-4" />
+                  Dashboard
+                </Link>
+              </Button>
+              <Button 
+                variant="outline" 
+                className="flex items-center gap-2"
+                onClick={handleLogout}
+              >
+                <LogOut className="h-4 w-4" />
+                Sign out
+              </Button>
+            </div>
           ) : (
             <Button className="bg-gradient-to-r from-primary to-secondary hover:opacity-90 text-white" asChild>
               <Link to="/auth">
