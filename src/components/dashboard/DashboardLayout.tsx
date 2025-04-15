@@ -28,6 +28,7 @@ import {
   LogOut,
   PlusCircle,
   Sparkles,
+  Inbox,
 } from "lucide-react";
 
 interface DashboardLayoutProps {
@@ -116,6 +117,14 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
                       <a href="/dashboard/messages">
                         <MessageSquare />
                         <span>Messages</span>
+                      </a>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                  <SidebarMenuItem>
+                    <SidebarMenuButton asChild tooltip="Inbox">
+                      <a href="/dashboard/inbox">
+                        <Inbox />
+                        <span>Inbox</span>
                       </a>
                     </SidebarMenuButton>
                   </SidebarMenuItem>

@@ -17,6 +17,7 @@ import Messages from "./pages/Messages";
 import Documents from "./pages/Documents";
 import Settings from "./pages/Settings";
 import Klippi from "./pages/Klippi";
+import Inbox from "./pages/Inbox";
 
 const queryClient = new QueryClient();
 
@@ -68,6 +69,7 @@ const App = () => (
           <Route path="/dashboard/documents" element={<Documents />} />
           <Route path="/dashboard/settings" element={<Settings />} />
           <Route path="/dashboard/klippi" element={<Klippi />} />
+          <Route path="/dashboard/inbox" element={<Inbox />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
