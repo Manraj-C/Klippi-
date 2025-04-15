@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import DashboardLayout from "@/components/dashboard/DashboardLayout";
 import { Card, CardContent } from "@/components/ui/card";
@@ -162,11 +161,9 @@ const Clients = () => {
         </TabsContent>
         
         <TabsContent value="active" className="mt-0">
-          {/* Similar table structure for active clients */}
           <div className="rounded-md border">
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
-                {/* Table content similar to above, filtered for active clients */}
                 <thead className="bg-muted/50">
                   <tr>
                     <th className="whitespace-nowrap px-4 py-3 text-left font-medium">Client</th>
@@ -205,11 +202,9 @@ const Clients = () => {
         </TabsContent>
         
         <TabsContent value="inactive" className="mt-0">
-          {/* Similar table structure for inactive clients */}
           <div className="rounded-md border">
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
-                {/* Table content similar to above, filtered for inactive clients */}
                 <thead className="bg-muted/50">
                   <tr>
                     <th className="whitespace-nowrap px-4 py-3 text-left font-medium">Client</th>

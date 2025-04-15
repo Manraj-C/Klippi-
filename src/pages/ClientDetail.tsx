@@ -1,4 +1,3 @@
-
 import { useParams } from "react-router-dom";
 import { useState } from "react";
 import DashboardLayout from "@/components/dashboard/DashboardLayout";
@@ -15,7 +14,6 @@ const ClientDetail = () => {
   const { id } = useParams();
   const [activeTab, setActiveTab] = useState("overview");
   
-  // Mock client data - would be fetched from API in a real application
   const client = {
     id: id,
     name: "Acme Inc.",
@@ -96,7 +94,6 @@ const ClientDetail = () => {
 
   return (
     <DashboardLayout>
-      {/* Client Header */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
         <div className="flex items-center gap-4">
           <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center text-primary text-xl font-bold">
@@ -116,7 +113,6 @@ const ClientDetail = () => {
         </div>
       </div>
 
-      {/* Quick Info Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
         <Card>
           <CardContent className="p-4 flex items-center gap-3">
@@ -164,7 +160,6 @@ const ClientDetail = () => {
         </Card>
       </div>
 
-      {/* Contact Information */}
       <Card className="mb-6">
         <CardContent className="p-4">
           <div className="flex flex-col lg:flex-row gap-6">
@@ -193,7 +188,6 @@ const ClientDetail = () => {
         </CardContent>
       </Card>
 
-      {/* Detailed Content Tabs */}
       <Tabs defaultValue="overview" value={activeTab} onValueChange={setActiveTab} className="mb-6">
         <TabsList className="grid grid-cols-5 md:w-[600px]">
           <TabsTrigger value="overview">Overview</TabsTrigger>
@@ -203,9 +197,7 @@ const ClientDetail = () => {
           <TabsTrigger value="notes">Notes</TabsTrigger>
         </TabsList>
         
-        {/* Overview Tab */}
         <TabsContent value="overview" className="mt-6 space-y-6">
-          {/* Recent Interactions */}
           <Card>
             <CardHeader>
               <CardTitle>Recent Interactions</CardTitle>
@@ -231,7 +223,6 @@ const ClientDetail = () => {
             </CardContent>
           </Card>
 
-          {/* Open Tasks */}
           <Card>
             <CardHeader>
               <CardTitle>Open Tasks</CardTitle>
@@ -255,7 +246,6 @@ const ClientDetail = () => {
             </CardContent>
           </Card>
 
-          {/* Risk Assessment */}
           <Card>
             <CardHeader>
               <CardTitle>Risk Assessment</CardTitle>
@@ -286,7 +276,6 @@ const ClientDetail = () => {
           </Card>
         </TabsContent>
 
-        {/* Interactions Tab */}
         <TabsContent value="interactions" className="mt-6">
           <Card>
             <CardHeader>
@@ -315,7 +304,6 @@ const ClientDetail = () => {
           </Card>
         </TabsContent>
 
-        {/* Tasks Tab */}
         <TabsContent value="tasks" className="mt-6">
           <Card>
             <CardHeader>
@@ -353,7 +341,6 @@ const ClientDetail = () => {
           </Card>
         </TabsContent>
 
-        {/* Risks Tab */}
         <TabsContent value="risks" className="mt-6">
           <Card>
             <CardHeader>
@@ -399,7 +386,6 @@ const ClientDetail = () => {
           </Card>
         </TabsContent>
 
-        {/* Notes Tab */}
         <TabsContent value="notes" className="mt-6">
           <Card>
             <CardHeader>
