@@ -53,7 +53,7 @@ const Settings = () => {
       category: "Communications",
       status: "connected",
       icon: "🎥",
-      logo: "https://download.logo.wine/logo/Zoom_Video_Communications/Zoom_Video_Communications-Logo.wine.png",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/6/6b/Zoom_Video_Communications_Logo.svg",
       description: "Let Klippi join your meetings to take notes and identify action items."
     },
     {
@@ -80,7 +80,7 @@ const Settings = () => {
       category: "CRM",
       status: "disconnected",
       icon: "🔷",
-      logo: "https://www.hubspot.com/hubfs/HubSpot_Logos/HubSpot-Logos_Full-Color_RGB/HubSpot_Logo_Gradient.svg",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/8/8d/HubSpot_Logo.svg",
       description: "Sync contacts and get AI-powered relationship insights."
     },
     {
@@ -107,7 +107,7 @@ const Settings = () => {
       category: "Support",
       status: "disconnected",
       icon: "💬",
-      logo: "https://logos-download.com/wp-content/uploads/2016/09/Intercom_logo.png",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/2/27/Intercom_logo.svg",
       description: "Get real-time analysis of customer conversations and sentiment."
     },
     {
