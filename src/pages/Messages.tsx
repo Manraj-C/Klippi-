@@ -21,13 +21,37 @@ const Messages = () => {
       messages: [
         {
           id: 101,
+          sender: "me",
+          content: "Hi Klippi, I just received the Q1 performance data for TechStart Inc. Could you analyze this Excel file and prepare a QBR deck for next week's meeting? Focus on user adoption metrics and feature usage trends.",
+          timestamp: "2025-04-20T08:25:00",
+          attachments: [
+            {
+              name: "TechStart_Q1_2025_Metrics.xlsx",
+              type: "spreadsheet"
+            }
+          ]
+        },
+        {
+          id: 102,
           sender: "them",
-          content: "📅 Good morning! I noticed you have 3 QBRs scheduled this week. I've prepared research documents for each client:\n\n- Acme Corp (Tuesday 10 AM)\n- TechStart Inc (Wednesday 2 PM)\n- Global Systems (Friday 11 AM)\n\nThe one-page briefs include recent performance metrics, engagement scores, and key discussion points. Would you like me to share these now?",
+          content: "I'll analyze the Excel file and prepare a comprehensive QBR deck for TechStart Inc. Here's what I've found from the data:\n\n📈 Key Insights:\n- User adoption increased 27% QoQ\n- Feature engagement up 15% across core modules\n- API usage doubled since January\n\nI've prepared a draft QBR deck incorporating these insights. Would you like me to:\n1. Add benchmarks against similar customers?\n2. Include success stories from similar implementations?\n3. Generate talking points for areas of improvement?",
           timestamp: "2025-04-20T08:30:00"
+        },
+        {
+          id: 103,
+          sender: "me",
+          content: "Yes, please add all three! Also, could you analyze our recent support tickets and customer feedback to identify any potential risks or areas we should proactively address during the QBR?",
+          timestamp: "2025-04-20T08:35:00"
+        },
+        {
+          id: 104,
+          sender: "them",
+          content: "I've updated the QBR deck and analyzed recent interactions. Here's what I found:\n\n🎯 Support Ticket Analysis:\n- 80% of tickets resolved within SLA\n- Common theme: Advanced reporting features requests\n- No critical issues reported\n\n💡 Proactive Discussion Points:\n1. Opportunity to upgrade to Enterprise plan\n2. Interest in beta testing new analytics module\n3. Potential for customer advisory board participation\n\nI've added these insights to the deck and included talking points. Would you like me to schedule a prep session to review the deck together?",
+          timestamp: "2025-04-20T08:40:00"
         }
       ],
       unread: true,
-      lastUpdated: "2025-04-20T08:30:00"
+      lastUpdated: "2025-04-20T08:40:00"
     },
     {
       id: 2,
