@@ -1,123 +1,108 @@
-
 import { useState } from "react";
 import DashboardLayout from "@/components/dashboard/DashboardLayout";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Search, PlusCircle, Send, Paperclip } from "lucide-react";
+import { Search, PlusCircle, Send, Paperclip, Calendar, AlertTriangle, MessageCircle, ChartBar, Newspaper } from "lucide-react";
 
 const Messages = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedConversation, setSelectedConversation] = useState(1);
   const [messageInput, setMessageInput] = useState("");
   
-  // Mock conversation data
   const conversations = [
     {
       id: 1,
       contact: {
-        name: "John Smith",
-        company: "Acme Inc.",
+        name: "Klippi QBR Assistant",
+        company: "AI Assistant",
         avatar: null
       },
       messages: [
         {
           id: 101,
           sender: "them",
-          content: "Hi, I had a question about the API integration we discussed last week.",
-          timestamp: "2025-04-14T10:30:00"
-        },
-        {
-          id: 102,
-          sender: "me",
-          content: "Hi John, sure thing. What specifically are you looking to know about the API?",
-          timestamp: "2025-04-14T10:35:00"
-        },
-        {
-          id: 103,
-          sender: "them",
-          content: "We're trying to understand how to authenticate properly. The docs mention OAuth but we're not seeing how to get the client ID.",
-          timestamp: "2025-04-14T10:40:00"
-        },
-        {
-          id: 104,
-          sender: "me",
-          content: "Let me help with that. You'll need to generate API credentials in your admin dashboard. I can walk you through it if you'd like.",
-          timestamp: "2025-04-14T10:42:00"
-        },
-        {
-          id: 105,
-          sender: "them",
-          content: "That would be really helpful! Do you have time for a quick call tomorrow?",
-          timestamp: "2025-04-14T10:45:00"
+          content: "📅 Good morning! I noticed you have 3 QBRs scheduled this week. I've prepared research documents for each client:\n\n- Acme Corp (Tuesday 10 AM)\n- TechStart Inc (Wednesday 2 PM)\n- Global Systems (Friday 11 AM)\n\nThe one-page briefs include recent performance metrics, engagement scores, and key discussion points. Would you like me to share these now?",
+          timestamp: "2025-04-20T08:30:00"
         }
       ],
       unread: true,
-      lastUpdated: "2025-04-14T10:45:00"
+      lastUpdated: "2025-04-20T08:30:00"
     },
     {
       id: 2,
       contact: {
-        name: "Sarah Johnson",
-        company: "Global Industries",
+        name: "Klippi Risk Monitor",
+        company: "AI Assistant",
         avatar: null
       },
       messages: [
         {
           id: 201,
-          sender: "me",
-          content: "Following up on our meeting yesterday, here's the documentation I promised.",
-          timestamp: "2025-04-13T14:20:00"
-        },
-        {
-          id: 202,
           sender: "them",
-          content: "Thank you! This is exactly what we needed.",
-          timestamp: "2025-04-13T15:05:00"
+          content: "⚠️ Weekly Risk Report Summary:\n\nHigh Attention Needed:\n- DataFlow Inc: Decrease in product usage (-25% MoM)\n- TechCorp: Missed two scheduled check-ins\n\nPositive Signals:\n- Acme Corp: Increased feature adoption (+15%)\n- StartupXYZ: Positive sentiment in recent communications\n\nBased on email and call analysis, would you like me to draft engagement plans for the at-risk accounts?",
+          timestamp: "2025-04-20T09:15:00"
         }
       ],
-      unread: false,
-      lastUpdated: "2025-04-13T15:05:00"
+      unread: true,
+      lastUpdated: "2025-04-20T09:15:00"
     },
     {
       id: 3,
       contact: {
-        name: "Mike Williams",
-        company: "Tech Corp",
+        name: "Klippi Feedback Bot",
+        company: "AI Assistant",
         avatar: null
       },
       messages: [
         {
           id: 301,
           sender: "them",
-          content: "Our team has reviewed the proposal and we have some feedback to share.",
-          timestamp: "2025-04-10T09:12:00"
-        },
-        {
-          id: 302,
-          sender: "me",
-          content: "I'd be happy to discuss the feedback. When would be a good time to connect?",
-          timestamp: "2025-04-10T09:30:00"
-        },
-        {
-          id: 303,
-          sender: "them",
-          content: "How about next Tuesday at 2pm?",
-          timestamp: "2025-04-10T10:15:00"
-        },
-        {
-          id: 304,
-          sender: "me",
-          content: "Tuesday at 2pm works for me. I'll send a calendar invite shortly.",
-          timestamp: "2025-04-10T10:20:00"
+          content: "📊 Customer Feedback Update:\n\nI've collected new feedback from 5 clients this week:\n\nCSM Performance Rating: 4.8/5\nKey Highlights:\n- 'Exceptional proactive support'\n- 'Great strategic guidance'\n\nProduct Satisfaction: 4.5/5\nSuggested Areas for Focus:\n- Advanced reporting features\n- API documentation\n\nWould you like to see the detailed responses?",
+          timestamp: "2025-04-20T10:00:00"
         }
       ],
       unread: false,
-      lastUpdated: "2025-04-10T10:20:00"
+      lastUpdated: "2025-04-20T10:00:00"
+    },
+    {
+      id: 4,
+      contact: {
+        name: "Klippi Productivity Report",
+        company: "AI Assistant",
+        avatar: null
+      },
+      messages: [
+        {
+          id: 401,
+          sender: "them",
+          content: "📈 Monthly Productivity Impact:\n\nTime Saved This Month:\n- 24.5 hours on email management\n- 12 hours on CRM updates\n- 8 hours on meeting preparation\n\nAutomation Metrics:\n- 145 CRM entries automated\n- 67 follow-up emails drafted\n- 28 meeting summaries generated\n\nEstimated Monthly Time Savings: 44.5 hours\nWould you like a detailed breakdown by task?",
+          timestamp: "2025-04-20T11:30:00"
+        }
+      ],
+      unread: false,
+      lastUpdated: "2025-04-20T11:30:00"
+    },
+    {
+      id: 5,
+      contact: {
+        name: "Klippi News Digest",
+        company: "AI Assistant",
+        avatar: null
+      },
+      messages: [
+        {
+          id: 501,
+          sender: "them",
+          content: "📰 Morning News Brief - Top Client Updates:\n\n1. Acme Corp: Announced new sustainability initiative, potential expansion opportunity\n2. TechStart Inc: Raised Series B funding ($50M)\n3. Global Systems: New CTO appointment\n4. DataFlow Inc: Released new API platform\n5. TechCorp: Featured in TechCrunch for innovation award\n\nWould you like me to prepare outreach messages for any of these updates?",
+          timestamp: "2025-04-20T07:00:00"
+        }
+      ],
+      unread: true,
+      lastUpdated: "2025-04-20T07:00:00"
     }
   ];
 
-  // Filter conversations based on search query
   const filteredConversations = conversations.filter(conversation => 
     conversation.contact.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
     conversation.contact.company.toLowerCase().includes(searchQuery.toLowerCase())
@@ -127,8 +112,6 @@ const Messages = () => {
 
   const handleSendMessage = () => {
     if (messageInput.trim()) {
-      // Would normally update state and send to backend
-      // For this demo, we'll just clear the input
       setMessageInput("");
     }
   };
@@ -153,7 +136,6 @@ const Messages = () => {
       <h1 className="text-3xl font-bold mb-6">Messages</h1>
       
       <div className="flex flex-col md:flex-row h-[calc(100vh-200px)] gap-4">
-        {/* Conversation List */}
         <Card className="w-full md:w-80 flex-shrink-0">
           <CardContent className="p-4 h-full flex flex-col">
             <div className="flex gap-2 mb-4">
@@ -207,11 +189,9 @@ const Messages = () => {
           </CardContent>
         </Card>
         
-        {/* Message Thread */}
         <Card className="flex-1">
           {selectedConversationData ? (
             <CardContent className="p-0 h-full flex flex-col">
-              {/* Header */}
               <div className="flex items-center justify-between p-4 border-b">
                 <div className="flex items-center gap-3">
                   <div className="rounded-full h-8 w-8 bg-primary/10 flex items-center justify-center text-primary">
@@ -227,7 +207,6 @@ const Messages = () => {
                 </div>
               </div>
               
-              {/* Messages */}
               <div className="flex-1 overflow-auto p-4 space-y-4">
                 {selectedConversationData.messages.map(message => (
                   <div
@@ -254,7 +233,6 @@ const Messages = () => {
                 ))}
               </div>
               
-              {/* Input */}
               <div className="p-4 border-t">
                 <div className="flex gap-2">
                   <Button variant="ghost" size="icon">
