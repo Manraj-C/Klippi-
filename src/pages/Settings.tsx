@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import DashboardLayout from "@/components/dashboard/DashboardLayout";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -31,46 +30,103 @@ const Settings = () => {
   // Mock integration data
   const integrations = [
     {
+      id: "gmail",
+      name: "Gmail",
+      category: "Communications",
+      status: "connected",
+      icon: "📧",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/7/7e/Gmail_icon_%282020%29.svg",
+      description: "Sync your emails and let Klippi help draft responses and identify risks."
+    },
+    {
       id: "slack",
       name: "Slack",
+      category: "Communications",
       status: "connected",
       icon: "💬",
-      description: "Send notifications and updates to Slack channels."
+      logo: "https://upload.wikimedia.org/wikipedia/commons/d/d5/Slack_icon_2019.svg",
+      description: "Get AI-powered insights and alerts right in your Slack channels."
     },
     {
       id: "zoom",
       name: "Zoom",
+      category: "Communications",
       status: "connected",
       icon: "🎥",
-      description: "Start and join meetings directly from Klippi."
+      logo: "https://download.logo.wine/logo/Zoom_Video_Communications/Zoom_Video_Communications-Logo.wine.png",
+      description: "Let Klippi join your meetings to take notes and identify action items."
     },
     {
-      id: "google_calendar",
-      name: "Google Calendar",
+      id: "gainsight",
+      name: "Gainsight",
+      category: "CRM",
       status: "connected",
-      icon: "📅",
-      description: "Sync meetings and events with your calendar."
+      icon: "📈",
+      logo: "https://www.gainsight.com/wp-content/uploads/2020/07/gainsight_primary_logo_horizontal.svg",
+      description: "Sync customer health scores and get AI-powered retention insights."
     },
     {
       id: "salesforce",
       name: "Salesforce",
-      status: "disconnected",
+      category: "CRM",
+      status: "connected",
       icon: "☁️",
-      description: "Sync customer data with your CRM."
+      logo: "https://upload.wikimedia.org/wikipedia/commons/f/f9/Salesforce.com_logo.svg",
+      description: "Keep your CRM up to date with AI-generated meeting summaries and tasks."
     },
     {
       id: "hubspot",
       name: "HubSpot",
+      category: "CRM",
       status: "disconnected",
       icon: "🔷",
-      description: "Import contacts and companies from HubSpot."
+      logo: "https://www.hubspot.com/hubfs/HubSpot_Logos/HubSpot-Logos_Full-Color_RGB/HubSpot_Logo_Gradient.svg",
+      description: "Sync contacts and get AI-powered relationship insights."
+    },
+    {
+      id: "csv_upload",
+      name: "CSV Upload",
+      category: "CRM",
+      status: "disconnected",
+      icon: "📄",
+      logo: "/placeholder.svg",
+      description: "Upload your customer data directly via CSV."
     },
     {
       id: "zendesk",
       name: "Zendesk",
+      category: "Support",
       status: "disconnected",
       icon: "🎫",
-      description: "Sync support tickets and customer inquiries."
+      logo: "https://upload.wikimedia.org/wikipedia/commons/c/c8/Zendesk_logo.svg",
+      description: "Monitor support tickets and get AI-powered customer satisfaction insights."
+    },
+    {
+      id: "intercom",
+      name: "Intercom",
+      category: "Support",
+      status: "disconnected",
+      icon: "💬",
+      logo: "https://logos-download.com/wp-content/uploads/2016/09/Intercom_logo.png",
+      description: "Get real-time analysis of customer conversations and sentiment."
+    },
+    {
+      id: "google_drive",
+      name: "Google Drive",
+      category: "Other",
+      status: "connected",
+      icon: "📁",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/1/12/Google_Drive_icon_%282020%29.svg",
+      description: "Store and analyze your documents with AI-powered insights."
+    },
+    {
+      id: "google_calendar",
+      name: "Google Calendar",
+      category: "Other",
+      status: "connected",
+      icon: "📅",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/a/a5/Google_Calendar_icon_%282020%29.svg",
+      description: "Let Klippi manage your calendar and prepare for upcoming meetings."
     }
   ];
 
@@ -610,41 +666,172 @@ const Settings = () => {
                 <Card className="mb-4">
                   <CardHeader className="pb-3">
                     <CardTitle>Connected Services</CardTitle>
-                    <CardDescription>Manage integrations with other tools and services</CardDescription>
+                    <CardDescription>
+                      Supercharge your workflow by connecting Klippi to your tech stack. The more tools you connect, 
+                      the better Klippi can assist you as your AI CSM companion.
+                    </CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <div className="grid gap-6">
-                      {integrations.map((integration) => (
-                        <div key={integration.id} className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                          <div className="flex items-center gap-4">
-                            <div className="h-10 w-10 rounded-md bg-muted flex items-center justify-center text-xl">
-                              {integration.icon}
-                            </div>
-                            <div>
-                              <div className="font-medium">{integration.name}</div>
-                              <div className="text-sm text-muted-foreground">{integration.description}</div>
-                            </div>
-                          </div>
-                          <div className="flex items-center gap-2 ml-14 sm:ml-0">
-                            {integration.status === "connected" ? (
-                              <>
-                                <span className="flex items-center text-xs text-green-600 gap-1">
-                                  <Check className="h-3 w-3" /> Connected
-                                </span>
-                                <Button variant="outline" size="sm">Configure</Button>
-                                <Button variant="ghost" size="sm">Disconnect</Button>
-                              </>
-                            ) : (
-                              <>
-                                <span className="flex items-center text-xs text-muted-foreground gap-1">
-                                  <X className="h-3 w-3" /> Disconnected
-                                </span>
-                                <Button size="sm">Connect</Button>
-                              </>
-                            )}
-                          </div>
+                    <div className="space-y-8">
+                      {/* Communications Section */}
+                      <div>
+                        <h3 className="text-lg font-semibold mb-4">Communications</h3>
+                        <div className="grid gap-6">
+                          {integrations
+                            .filter(integration => integration.category === "Communications")
+                            .map((integration) => (
+                              <div key={integration.id} className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                                <div className="flex items-center gap-4">
+                                  <div className="h-10 w-10 rounded-md bg-muted flex items-center justify-center text-xl">
+                                    {integration.icon}
+                                  </div>
+                                  <div>
+                                    <div className="font-medium">{integration.name}</div>
+                                    <div className="text-sm text-muted-foreground">{integration.description}</div>
+                                  </div>
+                                </div>
+                                <div className="flex items-center gap-2 ml-14 sm:ml-0">
+                                  {integration.status === "connected" ? (
+                                    <>
+                                      <span className="flex items-center text-xs text-green-600 gap-1">
+                                        <Check className="h-3 w-3" /> Connected
+                                      </span>
+                                      <Button variant="outline" size="sm">Configure</Button>
+                                      <Button variant="ghost" size="sm">Disconnect</Button>
+                                    </>
+                                  ) : (
+                                    <>
+                                      <span className="flex items-center text-xs text-muted-foreground gap-1">
+                                        <X className="h-3 w-3" /> Disconnected
+                                      </span>
+                                      <Button size="sm">Connect</Button>
+                                    </>
+                                  )}
+                                </div>
+                              </div>
+                            ))}
                         </div>
-                      ))}
+                      </div>
+
+                      {/* CRM Section */}
+                      <div>
+                        <h3 className="text-lg font-semibold mb-4">CRM & Customer Data</h3>
+                        <div className="grid gap-6">
+                          {integrations
+                            .filter(integration => integration.category === "CRM")
+                            .map((integration) => (
+                              <div key={integration.id} className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                                <div className="flex items-center gap-4">
+                                  <div className="h-10 w-10 rounded-md bg-muted flex items-center justify-center text-xl">
+                                    {integration.icon}
+                                  </div>
+                                  <div>
+                                    <div className="font-medium">{integration.name}</div>
+                                    <div className="text-sm text-muted-foreground">{integration.description}</div>
+                                  </div>
+                                </div>
+                                <div className="flex items-center gap-2 ml-14 sm:ml-0">
+                                  {integration.status === "connected" ? (
+                                    <>
+                                      <span className="flex items-center text-xs text-green-600 gap-1">
+                                        <Check className="h-3 w-3" /> Connected
+                                      </span>
+                                      <Button variant="outline" size="sm">Configure</Button>
+                                      <Button variant="ghost" size="sm">Disconnect</Button>
+                                    </>
+                                  ) : (
+                                    <>
+                                      <span className="flex items-center text-xs text-muted-foreground gap-1">
+                                        <X className="h-3 w-3" /> Disconnected
+                                      </span>
+                                      <Button size="sm">Connect</Button>
+                                    </>
+                                  )}
+                                </div>
+                              </div>
+                            ))}
+                        </div>
+                      </div>
+
+                      {/* Support Section */}
+                      <div>
+                        <h3 className="text-lg font-semibold mb-4">Customer Support</h3>
+                        <div className="grid gap-6">
+                          {integrations
+                            .filter(integration => integration.category === "Support")
+                            .map((integration) => (
+                              <div key={integration.id} className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                                <div className="flex items-center gap-4">
+                                  <div className="h-10 w-10 rounded-md bg-muted flex items-center justify-center text-xl">
+                                    {integration.icon}
+                                  </div>
+                                  <div>
+                                    <div className="font-medium">{integration.name}</div>
+                                    <div className="text-sm text-muted-foreground">{integration.description}</div>
+                                  </div>
+                                </div>
+                                <div className="flex items-center gap-2 ml-14 sm:ml-0">
+                                  {integration.status === "connected" ? (
+                                    <>
+                                      <span className="flex items-center text-xs text-green-600 gap-1">
+                                        <Check className="h-3 w-3" /> Connected
+                                      </span>
+                                      <Button variant="outline" size="sm">Configure</Button>
+                                      <Button variant="ghost" size="sm">Disconnect</Button>
+                                    </>
+                                  ) : (
+                                    <>
+                                      <span className="flex items-center text-xs text-muted-foreground gap-1">
+                                        <X className="h-3 w-3" /> Disconnected
+                                      </span>
+                                      <Button size="sm">Connect</Button>
+                                    </>
+                                  )}
+                                </div>
+                              </div>
+                            ))}
+                        </div>
+                      </div>
+
+                      {/* Other Tools Section */}
+                      <div>
+                        <h3 className="text-lg font-semibold mb-4">Other Tools</h3>
+                        <div className="grid gap-6">
+                          {integrations
+                            .filter(integration => integration.category === "Other")
+                            .map((integration) => (
+                              <div key={integration.id} className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                                <div className="flex items-center gap-4">
+                                  <div className="h-10 w-10 rounded-md bg-muted flex items-center justify-center text-xl">
+                                    {integration.icon}
+                                  </div>
+                                  <div>
+                                    <div className="font-medium">{integration.name}</div>
+                                    <div className="text-sm text-muted-foreground">{integration.description}</div>
+                                  </div>
+                                </div>
+                                <div className="flex items-center gap-2 ml-14 sm:ml-0">
+                                  {integration.status === "connected" ? (
+                                    <>
+                                      <span className="flex items-center text-xs text-green-600 gap-1">
+                                        <Check className="h-3 w-3" /> Connected
+                                      </span>
+                                      <Button variant="outline" size="sm">Configure</Button>
+                                      <Button variant="ghost" size="sm">Disconnect</Button>
+                                    </>
+                                  ) : (
+                                    <>
+                                      <span className="flex items-center text-xs text-muted-foreground gap-1">
+                                        <X className="h-3 w-3" /> Disconnected
+                                      </span>
+                                      <Button size="sm">Connect</Button>
+                                    </>
+                                  )}
+                                </div>
+                              </div>
+                            ))}
+                        </div>
+                      </div>
                     </div>
                   </CardContent>
                 </Card>
