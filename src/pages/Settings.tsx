@@ -1,222 +1,192 @@
+
 import { useState } from "react";
-import DashboardLayout from "@/components/dashboard/DashboardLayout";
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import { User, Mail, Bell, Lock, Laptop, Bot, Plug } from "lucide-react";
-import { useIsMobile } from "@/hooks/use-mobile";
+import { useNavigate } from "react-router-dom";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ProfileSettings } from "@/components/settings/ProfileSettings";
 import { NotificationSettings } from "@/components/settings/NotificationSettings";
 import { SecuritySettings } from "@/components/settings/SecuritySettings";
 import { AppearanceSettings } from "@/components/settings/AppearanceSettings";
 import { AISettings } from "@/components/settings/AISettings";
 import { IntegrationSettings } from "@/components/settings/IntegrationSettings";
+import { Integration } from "@/types/integration";
+
+import DashboardLayout from "@/components/dashboard/DashboardLayout";
 
 const Settings = () => {
   const [activeTab, setActiveTab] = useState("profile");
-  const isMobile = useIsMobile();
-  
-  // Mock user data
-  const user = {
-    name: "Alex Johnson",
-    email: "alex@example.com",
-    role: "Customer Success Manager",
-    company: "Klippi AI",
-    avatar: null,
-    timezone: "America/New_York"
+  const navigate = useNavigate();
+
+  const handleTabChange = (value: string) => {
+    setActiveTab(value);
   };
 
-  // Mock integration data
-  const integrations = [
+  const integrations: Integration[] = [
     {
-      id: "gmail",
+      id: "1",
       name: "Gmail",
-      category: "Communications",
+      category: "Email",
       status: "connected",
-      icon: "📧",
-      logo: "https://upload.wikimedia.org/wikipedia/commons/7/7e/Gmail_icon_%282020%29.svg",
-      description: "Sync your emails and let Klippi help draft responses and identify risks."
+      icon: "mail",
+      logo: "/integrations/gmail.svg",
+      description: "Connect your Gmail account to receive and send emails directly from Klippi."
     },
     {
-      id: "slack",
+      id: "2",
       name: "Slack",
-      category: "Communications",
+      category: "Communication",
       status: "connected",
-      icon: "💬",
-      logo: "https://upload.wikimedia.org/wikipedia/commons/d/d5/Slack_icon_2019.svg",
-      description: "Get AI-powered insights and alerts right in your Slack channels."
+      icon: "message-circle",
+      logo: "/integrations/slack.svg",
+      description: "Receive notifications and interact with Klippi through Slack."
     },
     {
-      id: "zoom",
-      name: "Zoom",
-      category: "Communications",
-      status: "connected",
-      icon: "🎥",
-      logo: "https://upload.wikimedia.org/wikipedia/commons/6/6b/Zoom_Video_Communications_Logo.svg",
-      description: "Let Klippi join your meetings to take notes and identify action items."
-    },
-    {
-      id: "gainsight",
-      name: "Gainsight",
-      category: "CRM",
-      status: "connected",
-      icon: "📈",
-      logo: "https://www.gainsight.com/wp-content/uploads/2020/07/gainsight_primary_logo_horizontal.svg",
-      description: "Sync customer health scores and get AI-powered retention insights."
-    },
-    {
-      id: "salesforce",
+      id: "3",
       name: "Salesforce",
       category: "CRM",
       status: "connected",
-      icon: "☁️",
-      logo: "https://upload.wikimedia.org/wikipedia/commons/f/f9/Salesforce.com_logo.svg",
-      description: "Keep your CRM up to date with AI-generated meeting summaries and tasks."
+      icon: "database",
+      logo: "/integrations/salesforce.svg",
+      description: "Sync customer data, manage contacts, and track sales opportunities."
     },
     {
-      id: "hubspot",
-      name: "HubSpot",
+      id: "4",
+      name: "Zoom",
+      category: "Meetings",
+      status: "disconnected",
+      icon: "video",
+      logo: "/integrations/zoom.svg",
+      description: "Schedule and join meetings directly from Klippi."
+    },
+    {
+      id: "5",
+      name: "Google Calendar",
+      category: "Calendar",
+      status: "connected",
+      icon: "calendar",
+      logo: "/integrations/gcal.svg",
+      description: "Sync your calendar to schedule meetings and get reminders."
+    },
+    {
+      id: "6",
+      name: "Hubspot",
       category: "CRM",
       status: "disconnected",
-      icon: "🔷",
-      logo: "https://upload.wikimedia.org/wikipedia/commons/8/8d/HubSpot_Logo.svg",
-      description: "Sync contacts and get AI-powered relationship insights."
+      icon: "database",
+      logo: "/integrations/hubspot.svg",
+      description: "Manage contacts, track customer journeys, and analyze marketing performance."
     },
     {
-      id: "csv_upload",
-      name: "CSV Upload",
-      category: "CRM",
-      status: "disconnected",
-      icon: "📄",
-      logo: "/placeholder.svg",
-      description: "Upload your customer data directly via CSV."
-    },
-    {
-      id: "zendesk",
+      id: "7",
       name: "Zendesk",
       category: "Support",
       status: "disconnected",
-      icon: "🎫",
-      logo: "https://upload.wikimedia.org/wikipedia/commons/c/c8/Zendesk_logo.svg",
-      description: "Monitor support tickets and get AI-powered customer satisfaction insights."
+      icon: "help-circle",
+      logo: "/integrations/zendesk.svg",
+      description: "Track and resolve customer support tickets efficiently."
     },
     {
-      id: "intercom",
+      id: "8",
       name: "Intercom",
       category: "Support",
       status: "disconnected",
-      icon: "💬",
-      logo: "https://upload.wikimedia.org/wikipedia/commons/2/27/Intercom_logo.svg",
-      description: "Get real-time analysis of customer conversations and sentiment."
-    },
-    {
-      id: "google_drive",
-      name: "Google Drive",
-      category: "Other",
-      status: "connected",
-      icon: "📁",
-      logo: "https://upload.wikimedia.org/wikipedia/commons/1/12/Google_Drive_icon_%282020%29.svg",
-      description: "Store and analyze your documents with AI-powered insights."
-    },
-    {
-      id: "google_calendar",
-      name: "Google Calendar",
-      category: "Other",
-      status: "connected",
-      icon: "📅",
-      logo: "https://upload.wikimedia.org/wikipedia/commons/a/a5/Google_Calendar_icon_%282020%29.svg",
-      description: "Let Klippi manage your calendar and prepare for upcoming meetings."
+      icon: "message-square",
+      logo: "/integrations/intercom.svg",
+      description: "Engage with customers through live chat, help articles, and product tours."
     }
   ];
 
   return (
     <DashboardLayout>
-      <div className="max-w-[1200px] mx-auto">
-        <h1 className="text-2xl md:text-3xl font-bold mb-4 md:mb-6">Settings</h1>
+      <div className="flex flex-col gap-6">
+        <div className="flex justify-between items-center">
+          <h1 className="text-3xl font-bold">Settings</h1>
+        </div>
 
-        <Tabs 
-          orientation={isMobile ? "horizontal" : "vertical"}
-          defaultValue="profile" 
-          value={activeTab} 
-          onValueChange={setActiveTab}
-          className="space-y-4 md:space-y-0"
-        >
-          <div className="flex flex-col md:flex-row gap-4 md:gap-6">
-            <div className="w-full md:w-[200px] flex-shrink-0">
-              <TabsList className={`
-                w-full flex ${isMobile ? 'flex-row overflow-x-auto' : 'flex-col'} 
-                h-auto justify-start bg-transparent gap-2 p-1
-              `}>
-                <TabsTrigger 
-                  value="profile" 
-                  className="w-full flex justify-start gap-2 data-[state=active]:bg-muted"
-                >
-                  <User className="h-4 w-4" />
-                  <span className="truncate">Profile</span>
-                </TabsTrigger>
-                <TabsTrigger 
-                  value="notifications" 
-                  className="w-full flex justify-start gap-2 data-[state=active]:bg-muted"
-                >
-                  <Bell className="h-4 w-4" />
-                  <span className="truncate">Notifications</span>
-                </TabsTrigger>
-                <TabsTrigger 
-                  value="security" 
-                  className="w-full flex justify-start gap-2 data-[state=active]:bg-muted"
-                >
-                  <Lock className="h-4 w-4" />
-                  <span className="truncate">Security</span>
-                </TabsTrigger>
-                <TabsTrigger 
-                  value="appearance" 
-                  className="w-full flex justify-start gap-2 data-[state=active]:bg-muted"
-                >
-                  <Laptop className="h-4 w-4" />
-                  <span className="truncate">Appearance</span>
-                </TabsTrigger>
-                <TabsTrigger 
-                  value="ai" 
-                  className="w-full flex justify-start gap-2 data-[state=active]:bg-muted"
-                >
-                  <Bot className="h-4 w-4" />
-                  <span className="truncate">AI Settings</span>
-                </TabsTrigger>
-                <TabsTrigger 
-                  value="integrations" 
-                  className="w-full flex justify-start gap-2 data-[state=active]:bg-muted"
-                >
-                  <Plug className="h-4 w-4" />
-                  <span className="truncate">Integrations</span>
-                </TabsTrigger>
-              </TabsList>
+        <Card className="p-0">
+          <CardContent className="p-0">
+            <div className="flex flex-col md:flex-row">
+              <div className="p-4 md:w-64 md:border-r space-y-1">
+                <TabsList className="flex flex-col w-full h-auto gap-1" orientation="vertical">
+                  <TabsTrigger
+                    className="w-full justify-start px-2 py-1.5 h-auto"
+                    value="profile"
+                    onClick={() => handleTabChange("profile")}
+                    data-state={activeTab === "profile" ? "active" : ""}
+                  >
+                    Profile
+                  </TabsTrigger>
+                  <TabsTrigger
+                    className="w-full justify-start px-2 py-1.5 h-auto"
+                    value="notifications"
+                    onClick={() => handleTabChange("notifications")}
+                    data-state={activeTab === "notifications" ? "active" : ""}
+                  >
+                    Notifications
+                  </TabsTrigger>
+                  <TabsTrigger
+                    className="w-full justify-start px-2 py-1.5 h-auto"
+                    value="security"
+                    onClick={() => handleTabChange("security")}
+                    data-state={activeTab === "security" ? "active" : ""}
+                  >
+                    Security
+                  </TabsTrigger>
+                  <TabsTrigger
+                    className="w-full justify-start px-2 py-1.5 h-auto"
+                    value="appearance"
+                    onClick={() => handleTabChange("appearance")}
+                    data-state={activeTab === "appearance" ? "active" : ""}
+                  >
+                    Appearance
+                  </TabsTrigger>
+                  <TabsTrigger
+                    className="w-full justify-start px-2 py-1.5 h-auto"
+                    value="ai"
+                    onClick={() => handleTabChange("ai")}
+                    data-state={activeTab === "ai" ? "active" : ""}
+                  >
+                    AI Settings
+                    <Badge className="ml-auto bg-primary/10 text-primary border-primary/20 hover:bg-primary/20">New</Badge>
+                  </TabsTrigger>
+                  <TabsTrigger
+                    className="w-full justify-start px-2 py-1.5 h-auto"
+                    value="integrations"
+                    onClick={() => handleTabChange("integrations")}
+                    data-state={activeTab === "integrations" ? "active" : ""}
+                  >
+                    Integrations
+                  </TabsTrigger>
+                </TabsList>
+              </div>
+
+              <div className="flex-1 p-6">
+                <Tabs value={activeTab} onValueChange={handleTabChange}>
+                  <TabsContent value="profile">
+                    <ProfileSettings />
+                  </TabsContent>
+                  <TabsContent value="notifications">
+                    <NotificationSettings />
+                  </TabsContent>
+                  <TabsContent value="security">
+                    <SecuritySettings />
+                  </TabsContent>
+                  <TabsContent value="appearance">
+                    <AppearanceSettings />
+                  </TabsContent>
+                  <TabsContent value="ai">
+                    <AISettings />
+                  </TabsContent>
+                  <TabsContent value="integrations">
+                    <IntegrationSettings integrations={integrations} />
+                  </TabsContent>
+                </Tabs>
+              </div>
             </div>
-
-            <div className="flex-1 space-y-4">
-              <TabsContent value="profile" className="mt-0">
-                <ProfileSettings user={user} />
-              </TabsContent>
-
-              <TabsContent value="notifications" className="mt-0">
-                <NotificationSettings />
-              </TabsContent>
-
-              <TabsContent value="security" className="mt-0">
-                <SecuritySettings />
-              </TabsContent>
-
-              <TabsContent value="appearance" className="mt-0">
-                <AppearanceSettings />
-              </TabsContent>
-
-              <TabsContent value="ai" className="mt-0">
-                <AISettings />
-              </TabsContent>
-
-              <TabsContent value="integrations" className="mt-0">
-                <IntegrationSettings integrations={integrations} />
-              </TabsContent>
-            </div>
-          </div>
-        </Tabs>
+          </CardContent>
+        </Card>
       </div>
     </DashboardLayout>
   );
