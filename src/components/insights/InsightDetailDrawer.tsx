@@ -55,7 +55,7 @@ const InsightDetailDrawer = ({ open, onClose, insight }: InsightDetailDrawerProp
           <div className="flex items-center mt-2 gap-2">
             <Badge variant={insight.category === "Feature Request" ? "default" : 
                    insight.category === "Churn Risk" ? "destructive" : 
-                   insight.category === "Adoption Issue" ? "warning" : "outline"} 
+                   insight.category === "Adoption Issue" ? "secondary" : "outline"} 
                    className="font-medium">
               {insight.category}
             </Badge>
@@ -92,8 +92,10 @@ const InsightDetailDrawer = ({ open, onClose, insight }: InsightDetailDrawerProp
                 <p className="text-sm font-medium">Churn Risk</p>
                 <p className="text-sm font-medium">{insight.churnRisk}%</p>
               </div>
-              <Progress value={insight.churnRisk} className="h-2 bg-gray-200" 
-                        indicatorClassName={`${insight.churnRisk > 66 ? "bg-red-500" : insight.churnRisk > 33 ? "bg-yellow-500" : "bg-green-500"}`} />
+              <Progress 
+                value={insight.churnRisk} 
+                className={`h-2 bg-gray-200 ${insight.churnRisk > 66 ? "bg-red-500" : insight.churnRisk > 33 ? "bg-yellow-500" : "bg-green-500"}`} 
+              />
             </div>
           </div>
         </SettingsSection>

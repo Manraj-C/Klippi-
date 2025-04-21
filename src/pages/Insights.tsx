@@ -1,4 +1,3 @@
-
 import { useState, useMemo } from "react";
 import DashboardLayout from "@/components/dashboard/DashboardLayout";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
@@ -34,6 +33,7 @@ import {
   RefreshCw,
   ChartPie,
   Users,
+  FileText
 } from "lucide-react";
 
 import InsightDetailDrawer from "@/components/insights/InsightDetailDrawer";
@@ -133,7 +133,7 @@ const SeverityBadge = ({ severity }: { severity: string }) => {
     case "Critical":
       return <Badge variant="destructive">Critical</Badge>;
     case "High":
-      return <Badge variant="warning" className="bg-yellow-500">High</Badge>;
+      return <Badge variant="secondary" className="bg-yellow-500">High</Badge>;
     case "Medium":
       return <Badge variant="secondary">Medium</Badge>;
     case "Low":
@@ -150,7 +150,7 @@ const CategoryBadge = ({ category }: { category: string }) => {
     case "Churn Risk":
       return <Badge variant="destructive">Churn Risk</Badge>;
     case "Adoption Issue":
-      return <Badge variant="warning" className="bg-orange-500">Adoption Issue</Badge>;
+      return <Badge variant="secondary" className="bg-orange-500">Adoption Issue</Badge>;
     case "Recurring Escalation":
       return <Badge variant="secondary" className="bg-purple-500 hover:bg-purple-600">Recurring Escalation</Badge>;
     default:
@@ -300,12 +300,10 @@ const Insights = () => {
   const filteredInsights = useMemo(() => {
     return insightsData
       .filter(insight => {
-        // Apply category filter
         if (categoryFilter !== "all" && insight.category !== categoryFilter) {
           return false;
         }
         
-        // Apply search query
         if (searchQuery) {
           const query = searchQuery.toLowerCase();
           return (
@@ -317,7 +315,6 @@ const Insights = () => {
         return true;
       })
       .sort((a, b) => {
-        // Apply sorting
         let comparison = 0;
         
         switch (sortBy) {
@@ -349,7 +346,6 @@ const Insights = () => {
       });
   }, [insightsData, searchQuery, categoryFilter, sortBy, sortDir]);
 
-  // Calculate summary metrics
   const totalARR = useMemo(() => {
     return insightsData.reduce((sum, insight) => sum + insight.impactedARR, 0);
   }, [insightsData]);
@@ -359,7 +355,6 @@ const Insights = () => {
   }, [insightsData]);
 
   const totalInteractions = useMemo(() => {
-    // This would typically come from a real data source
     return 1243;
   }, []);
 
