@@ -30,6 +30,7 @@ import {
   Sparkles,
   Inbox,
   Zap,
+  Lightbulb,
 } from "lucide-react";
 
 interface DashboardLayoutProps {
@@ -134,6 +135,14 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
                       <a href="/dashboard/documents">
                         <FileText />
                         <span>Documents</span>
+                      </a>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                  <SidebarMenuItem>
+                    <SidebarMenuButton asChild tooltip="Insights">
+                      <a href="/dashboard/insights">
+                        <Lightbulb />
+                        <span>Insights</span>
                       </a>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
