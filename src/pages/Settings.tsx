@@ -23,6 +23,16 @@ const Settings = () => {
     setActiveTab(value);
   };
 
+  // Mock user data
+  const userData = {
+    name: "Alex Johnson",
+    email: "alex.johnson@example.com",
+    role: "Customer Success Manager",
+    company: "TechCorp Inc.",
+    avatar: null,
+    timezone: "America/New_York"
+  };
+
   const integrations: Integration[] = [
     {
       id: "1",
@@ -109,7 +119,7 @@ const Settings = () => {
           <CardContent className="p-0">
             <div className="flex flex-col md:flex-row">
               <div className="p-4 md:w-64 md:border-r space-y-1">
-                <TabsList className="flex flex-col w-full h-auto gap-1" orientation="vertical">
+                <TabsList className="flex flex-col w-full h-auto gap-1">
                   <TabsTrigger
                     className="w-full justify-start px-2 py-1.5 h-auto"
                     value="profile"
@@ -165,7 +175,7 @@ const Settings = () => {
               <div className="flex-1 p-6">
                 <Tabs value={activeTab} onValueChange={handleTabChange}>
                   <TabsContent value="profile">
-                    <ProfileSettings />
+                    <ProfileSettings user={userData} />
                   </TabsContent>
                   <TabsContent value="notifications">
                     <NotificationSettings />

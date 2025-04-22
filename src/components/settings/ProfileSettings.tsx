@@ -6,7 +6,7 @@ import { Label } from "@/components/ui/label";
 import { SettingsSection } from "./SettingsSection";
 import { ImageIcon, Save } from "lucide-react";
 
-interface ProfileSettingsProps {
+export interface ProfileSettingsProps {
   user: {
     name: string;
     email: string;
