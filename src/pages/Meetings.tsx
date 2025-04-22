@@ -1,21 +1,14 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import DashboardLayout from "@/components/dashboard/DashboardLayout";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
-import { Calendar as CalendarIcon, Search, Filter, Play, Download, ArrowRight, Plus } from "lucide-react";
-import { Input } from "@/components/ui/input";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Plus } from "lucide-react";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import MeetingAINotetaker from "@/components/meetings/MeetingAINotetaker";
+import { MeetingTable } from "@/components/meetings/MeetingTable";
+import { MeetingSearchBar } from "@/components/meetings/MeetingSearchBar";
+import { MeetingListCard } from "@/components/meetings/MeetingListCard";
 
-const categoryColors: { [key: string]: string } = {
-  "QBR": "bg-purple-100 text-purple-700",
-  "Client Escalation": "bg-red-100 text-red-600",
-  "Pricing Call": "bg-yellow-100 text-yellow-700",
-  "Onboarding": "bg-green-100 text-green-700",
-  "Demo": "bg-blue-100 text-blue-700",
-  "Support": "bg-gray-100 text-gray-700"
-};
+const MEETING_CATEGORIES = ["QBR", "Client Escalation", "Pricing Call", "Onboarding", "Demo", "Support"];
 
 const meetings = [
   {
@@ -155,211 +148,194 @@ const meetings = [
       "Book analytics Q&A",
       "Share product roadmap"
     ]
+  },
+  {
+    id: 100,
+    title: "QBR with Future Tech",
+    date: "2025-03-20T09:30:00",
+    duration: 60,
+    client: "Future Tech",
+    type: "QBR",
+    status: "completed",
+    category: "QBR",
+    participants: ["Clara Jones", "You"],
+    summary: "Reviewed quarterly objectives and KPIs, discussed growth initiatives.",
+    action_items: [
+      "Share updated project roadmap",
+      "Schedule account expansion session",
+      "Send QBR recording"
+    ]
+  },
+  {
+    id: 101,
+    title: "Escalation: Delayed Integration for Nano Systems",
+    date: "2025-03-15T13:00:00",
+    duration: 45,
+    client: "Nano Systems",
+    type: "Support",
+    status: "completed",
+    category: "Client Escalation",
+    participants: ["Liam Smith", "You"],
+    summary: "Escalated delay concerns; action plan for expedited resolution agreed.",
+    action_items: [
+      "Provide new timeline to client",
+      "Escalate with engineering lead",
+      "Draft root-cause document"
+    ]
+  },
+  {
+    id: 102,
+    title: "Renewal & Pricing Review - Alpha Beta",
+    date: "2025-03-10T16:30:00",
+    duration: 50,
+    client: "Alpha Beta",
+    type: "Pricing Call",
+    status: "completed",
+    category: "Pricing Call",
+    participants: ["Isabella Green", "You"],
+    summary: "Engaged in pricing plan options for renewal and upsell.",
+    action_items: [
+      "Send new quote",
+      "Arrange finance review",
+      "Update CRM record"
+    ]
+  },
+  {
+    id: 103,
+    title: "Onboarding Kickoff - Gamma Solutions",
+    date: "2025-03-05T10:00:00",
+    duration: 60,
+    client: "Gamma Solutions",
+    type: "Onboarding",
+    status: "completed",
+    category: "Onboarding",
+    participants: ["Peter Brown", "You"],
+    summary: "Walked through onboarding checklist; client successfully setup.",
+    action_items: [
+      "Send onboarding docs",
+      "Check integration progress",
+      "Get feedback after 1 week"
+    ]
+  },
+  {
+    id: 104,
+    title: "Demo: Feature Walkthrough - DataWave",
+    date: "2025-02-28T14:30:00",
+    duration: 30,
+    client: "DataWave",
+    type: "Demo",
+    status: "completed",
+    category: "Demo",
+    participants: ["Angela Lee", "You"],
+    summary: "Highlighted analytics and reporting capabilities.",
+    action_items: [
+      "Send recorded demo",
+      "Book Q&A",
+      "Share release notes"
+    ]
+  },
+  {
+    id: 105,
+    title: "CSAT Check-in - SecureLogic",
+    date: "2025-02-23T09:00:00",
+    duration: 30,
+    client: "SecureLogic",
+    type: "Support",
+    status: "completed",
+    category: "Support",
+    participants: ["Oliver White", "You"],
+    summary: "Reviewed CSAT feedback survey results and next steps for support improvement.",
+    action_items: [
+      "Document feedback themes",
+      "Update support knowledge base",
+      "Book client follow-up"
+    ]
   }
 ];
+
+const dummyTranscript = `Speaker 1: Thank you everyone for joining the call.
+Speaker 2: Excited to dive into our Q2 goals.
+Speaker 1: First agenda item, progress since last meeting.
+Speaker 2: Integration is going well, but we have one blocker on API authentication.
+Speaker 1: Noted, let's flag it for our engineering team to resolve after this call.
+Speaker 2: Sounds great, looking forward to updates next week.`;
+
+const dummyMeetingSummary = `This session covered quarterly results, reviewed key account objectives, and addressed integration updates. Follow-up actions were established and sentiment was positive throughout.`;
 
 const Meetings = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedMeeting, setSelectedMeeting] = useState<any>(null);
-  const [showMeetingDetail, setShowMeetingDetail] = useState(false);
 
-  const filteredMeetings = meetings.filter(meeting => 
+  const filteredMeetings = meetings.filter(meeting =>
     meeting.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
     meeting.client.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    meeting.type.toLowerCase().includes(searchQuery.toLowerCase())
+    (meeting.category || meeting.type).toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  const upcomingMeetings = filteredMeetings.filter(meeting => meeting.status === "upcoming");
-  const pastMeetings = filteredMeetings.filter(meeting => meeting.status === "completed");
-
-  const handleViewMeeting = (meeting: any) => {
-    setSelectedMeeting(meeting);
-    setShowMeetingDetail(true);
-  };
+  const upcomingMeetings = filteredMeetings.filter(m => m.status === "upcoming");
+  const pastMeetings = filteredMeetings.filter(m => m.status === "completed");
 
   return (
     <DashboardLayout>
-      {!showMeetingDetail ? (
-        <>
-          <div className="flex justify-between items-center mb-6">
-            <h1 className="text-2xl font-bold">Customer Meetings</h1>
+      {!selectedMeeting ? (
+        <div className="flex flex-col gap-6">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4 md:gap-0 mb-4">
+            <h1 className="text-2xl font-bold">Meetings</h1>
             <Button className="gap-2">
               <Plus className="h-4 w-4" />
               Schedule Meeting
             </Button>
           </div>
-
-          <Card className="mb-6">
-            <CardContent className="pt-6">
-              <div className="flex flex-col sm:flex-row gap-4">
-                <div className="relative flex-1">
-                  <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
-                  <Input
-                    type="search"
-                    placeholder="Search meetings..."
-                    className="pl-8"
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                  />
-                </div>
-                <Button variant="outline" className="gap-2 whitespace-nowrap">
-                  <Filter className="h-4 w-4" />
-                  Filter
-                </Button>
-              </div>
-            </CardContent>
-          </Card>
-
-          <Tabs defaultValue="upcoming">
-            <TabsList className="mb-6">
+          <div className="flex flex-col md:flex-row items-center gap-3">
+            <MeetingSearchBar value={searchQuery} onChange={setSearchQuery} />
+            {/* Room for a filter button in the future */}
+          </div>
+          <Tabs defaultValue="upcoming" className="mt-2">
+            <TabsList>
               <TabsTrigger value="upcoming">Upcoming</TabsTrigger>
               <TabsTrigger value="past">Past Meetings</TabsTrigger>
             </TabsList>
-            
-            <TabsContent value="upcoming" className="mt-0">
+            <TabsContent value="upcoming" className="mt-4">
               {upcomingMeetings.length > 0 ? (
-                <div className="space-y-4">
+                <div className="space-y-3">
                   {upcomingMeetings.map(meeting => (
-                    <Card key={meeting.id} className="overflow-hidden">
-                      <CardContent className="p-0">
-                        <div className="p-4 border-l-4 border-primary">
-                          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
-                            <div className="flex-1">
-                              <div className="flex items-start gap-4">
-                                <div className="rounded-full h-10 w-10 bg-primary/10 flex items-center justify-center text-primary font-medium">
-                                  {meeting.client.charAt(0)}
-                                </div>
-                                <div>
-                                  <h3 className="font-semibold text-lg">{meeting.title}</h3>
-                                  <p className="text-sm text-muted-foreground">{meeting.client} • {meeting.type}</p>
-                                  <div className="flex items-center gap-4 mt-1 text-sm">
-                                    <span>{new Date(meeting.date).toLocaleDateString()} at {new Date(meeting.date).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</span>
-                                    <span>{meeting.duration} mins</span>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                            <div className="flex items-center gap-2 mt-4 lg:mt-0">
-                              <Button variant="outline" size="sm">Prepare</Button>
-                              <Button size="sm">Join Meeting</Button>
-                            </div>
-                          </div>
-                        </div>
-                      </CardContent>
-                    </Card>
+                    <MeetingListCard key={meeting.id} meeting={meeting} onView={setSelectedMeeting} />
                   ))}
                 </div>
               ) : (
-                <div className="text-center p-8">
-                  <CalendarIcon className="h-10 w-10 text-muted-foreground mx-auto mb-2" />
-                  <p className="font-medium">No upcoming meetings</p>
-                  <p className="text-sm text-muted-foreground">Schedule a new meeting to get started.</p>
-                  <Button className="mt-4">Schedule Meeting</Button>
+                <div className="text-center text-muted-foreground mt-10">
+                  No upcoming meetings. Schedule one!
                 </div>
               )}
             </TabsContent>
-            
-            <TabsContent value="past" className="mt-0">
+            <TabsContent value="past" className="mt-4">
               {pastMeetings.length > 0 ? (
-                <div className="rounded-md border">
-                  <Table>
-                    <TableHeader>
-                      <TableRow>
-                        <TableHead>Meeting</TableHead>
-                        <TableHead>Date</TableHead>
-                        <TableHead>Client</TableHead>
-                        <TableHead>Category</TableHead>
-                        <TableHead>Summary</TableHead>
-                        <TableHead></TableHead>
-                      </TableRow>
-                    </TableHeader>
-                    <TableBody>
-                      {pastMeetings.map(meeting => (
-                        <TableRow key={meeting.id}>
-                          <TableCell>
-                            <div>
-                              <div className="font-medium">{meeting.title}</div>
-                              <div className="text-xs text-muted-foreground">{meeting.type}</div>
-                            </div>
-                          </TableCell>
-                          <TableCell>
-                            {new Date(meeting.date).toLocaleDateString()}
-                          </TableCell>
-                          <TableCell>
-                            {meeting.client}
-                          </TableCell>
-                          <TableCell>
-                            {meeting.category && (
-                              <span
-                                className={`inline-flex items-center px-2 py-0.5 rounded-full font-medium text-xs ${categoryColors[meeting.category] || "bg-gray-200 text-gray-700"}`}
-                              >
-                                {meeting.category}
-                              </span>
-                            )}
-                          </TableCell>
-                          <TableCell className="max-w-[240px] truncate">
-                            {meeting.summary || "-"}
-                          </TableCell>
-                          <TableCell>
-                            <div className="flex justify-end gap-2">
-                              {meeting.recording_url && (
-                                <Button variant="ghost" size="icon">
-                                  <Play className="h-4 w-4" />
-                                </Button>
-                              )}
-                              <Button variant="ghost" size="icon">
-                                <Download className="h-4 w-4" />
-                              </Button>
-                              <Button
-                                variant="ghost"
-                                size="sm"
-                                className="gap-1"
-                                onClick={() => handleViewMeeting(meeting)}
-                              >
-                                View <ArrowRight className="h-4 w-4" />
-                              </Button>
-                            </div>
-                          </TableCell>
-                        </TableRow>
-                      ))}
-                    </TableBody>
-                  </Table>
-                </div>
+                <MeetingTable data={pastMeetings} onView={setSelectedMeeting} />
               ) : (
-                <div className="text-center p-8">
-                  <CalendarIcon className="h-10 w-10 text-muted-foreground mx-auto mb-2" />
-                  <p className="font-medium">No past meetings found</p>
-                  <p className="text-sm text-muted-foreground">Past meetings will appear here once completed.</p>
+                <div className="text-center text-muted-foreground mt-10">
+                  No past meetings found.
                 </div>
               )}
             </TabsContent>
           </Tabs>
-        </>
+        </div>
       ) : (
-        <>
-          <div className="flex items-center gap-4 mb-6">
+        <div className="flex flex-col gap-5">
+          <div className="flex items-center gap-5 mt-1">
             <Button
               variant="ghost"
               size="sm"
               className="gap-1"
-              onClick={() => setShowMeetingDetail(false)}
+              onClick={() => setSelectedMeeting(null)}
             >
-              <ArrowRight className="h-4 w-4 rotate-180" /> Back to meetings
+              ← Back
             </Button>
-            <h1 className="text-2xl font-bold truncate">{selectedMeeting?.title}</h1>
+            <h2 className="text-xl font-bold truncate">{selectedMeeting.title}</h2>
           </div>
-          
           <MeetingAINotetaker
             meetingTitle={selectedMeeting.title}
             client={selectedMeeting.client}
             aiSummary={selectedMeeting.summary || "The meeting was productive and action-oriented."}
-            transcript={
-              `Speaker 1: Welcome everyone, let's begin the review. 
-Speaker 2: Thanks, excited to discuss our Q1 achievements! 
-Speaker 1: We'll cover KPIs, then have time for Q&A.
-Speaker 2: Can we get an update on integration?
-Speaker 1: Yes, the timeline is on track.`
-            }
             aiTopicTrackers={[
               "Customer Success", "Product Integration", "Timeline Planning", "Resource Allocation"
             ]}
@@ -374,11 +350,10 @@ Speaker 1: Yes, the timeline is on track.`
               "Set up check-in cadence",
               "Document success metrics"
             ]}
-            meetingSummary={
-              `During this meeting, attendees reviewed the project timeline, discussed integration challenges, and highlighted next steps for both teams. The discussion was positive, and the client is engaged with upcoming milestones.`
-            }
+            transcript={dummyTranscript}
+            meetingSummary={dummyMeetingSummary}
           />
-        </>
+        </div>
       )}
     </DashboardLayout>
   );
