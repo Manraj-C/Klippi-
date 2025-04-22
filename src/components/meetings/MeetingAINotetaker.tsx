@@ -4,8 +4,9 @@ import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import { Search, List, Mail, FileText, TrendingUp, Lightbulb, MessageSquare, Tag, CheckCircle } from "lucide-react";
+import { Search, Mail, FileText, TrendingUp, Lightbulb, MessageSquare, Tag, CheckCircle } from "lucide-react";
 
+// MeetingAINotetakerProps now with transcript and meetingSummary props
 interface MeetingAINotetakerProps {
   meetingTitle: string;
   client: string;
@@ -14,6 +15,8 @@ interface MeetingAINotetakerProps {
   aiSummary?: string;
   aiSentimentScore?: number; // 0-100
   csmActions?: string[];
+  transcript?: string;
+  meetingSummary?: string;
 }
 
 const MeetingAINotetaker: React.FC<MeetingAINotetakerProps> = ({
@@ -36,7 +39,9 @@ const MeetingAINotetaker: React.FC<MeetingAINotetakerProps> = ({
     "Remind client of project milestones",
     "Suggest best practices for integration",
     "Send feedback request survey"
-  ]
+  ],
+  transcript = "Speaker 1: Welcome everyone...\nSpeaker 2: Thank you! Let's get started...",
+  meetingSummary = "This meeting focused on project updates, actions required, and next steps. Attendees were satisfied with discussions."
 }) => {
   return (
     <section className="w-full mx-auto rounded-xl bg-white">
@@ -48,13 +53,12 @@ const MeetingAINotetaker: React.FC<MeetingAINotetakerProps> = ({
               <span className="text-sm text-muted-foreground">{client}</span>
             </div>
             <TabsList>
-              <TabsTrigger value="notes">Notes</TabsTrigger>
-              <TabsTrigger value="transcription">Transcription</TabsTrigger>
+              <TabsTrigger value="notes">AI Notetaker</TabsTrigger>
+              <TabsTrigger value="transcription">Transcript</TabsTrigger>
               <TabsTrigger value="summary">Meeting Summary</TabsTrigger>
               <TabsTrigger value="analytics">Analytics</TabsTrigger>
             </TabsList>
           </div>
-          
           <TabsContent value="notes" className="px-0 pt-0">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-0">
               {/* Left panel with filters */}
@@ -62,13 +66,12 @@ const MeetingAINotetaker: React.FC<MeetingAINotetakerProps> = ({
                 <div>
                   <div className="relative">
                     <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
-                    <Input 
-                      placeholder="Smart Search..." 
+                    <Input
+                      placeholder="Smart Search..."
                       className="pl-8 bg-muted border-0"
                     />
                   </div>
                 </div>
-
                 <div className="space-y-4">
                   <div className="space-y-2">
                     <h3 className="text-sm font-medium flex items-center gap-1.5">
@@ -77,9 +80,9 @@ const MeetingAINotetaker: React.FC<MeetingAINotetakerProps> = ({
                     </h3>
                     <div className="flex flex-wrap gap-1.5">
                       {aiTopicTrackers.map((topic, idx) => (
-                        <Badge 
-                          variant="outline" 
-                          className="text-xs font-normal bg-primary/5 hover:bg-primary/10 transition-colors" 
+                        <Badge
+                          variant="outline"
+                          className="text-xs font-normal bg-primary/5 hover:bg-primary/10 transition-colors"
                           key={idx}
                         >
                           {topic}
@@ -87,7 +90,6 @@ const MeetingAINotetaker: React.FC<MeetingAINotetakerProps> = ({
                       ))}
                     </div>
                   </div>
-                  
                   <div className="space-y-2">
                     <h3 className="text-sm font-medium flex items-center gap-1.5">
                       <MessageSquare className="h-4 w-4 text-primary" />
@@ -95,9 +97,9 @@ const MeetingAINotetaker: React.FC<MeetingAINotetakerProps> = ({
                     </h3>
                     <div className="space-y-1">
                       <div className="flex items-center gap-2">
-                        <div 
+                        <div
                           className="w-10 h-10 rounded-full flex items-center justify-center text-sm font-semibold"
-                          style={{ 
+                          style={{
                             backgroundColor: aiSentimentScore > 70 ? '#e2f7e9' : aiSentimentScore > 45 ? '#f2f6fd' : '#fee7e7',
                             color: aiSentimentScore > 70 ? '#16a34a' : aiSentimentScore > 45 ? '#4b7fd1' : '#ef4444'
                           }}
@@ -109,9 +111,9 @@ const MeetingAINotetaker: React.FC<MeetingAINotetakerProps> = ({
                         </span>
                       </div>
                       <div className="h-2 w-full rounded-full bg-muted overflow-hidden">
-                        <div 
-                          className="h-full rounded-full" 
-                          style={{ 
+                        <div
+                          className="h-full rounded-full"
+                          style={{
                             width: `${aiSentimentScore}%`,
                             backgroundColor: aiSentimentScore > 70 ? '#16a34a' : aiSentimentScore > 45 ? '#4b7fd1' : '#ef4444'
                           }}
@@ -119,7 +121,6 @@ const MeetingAINotetaker: React.FC<MeetingAINotetakerProps> = ({
                       </div>
                     </div>
                   </div>
-                  
                   <div className="space-y-2">
                     <h3 className="text-sm font-medium flex items-center gap-1.5">
                       <Mail className="h-4 w-4 text-primary" />
@@ -136,18 +137,16 @@ const MeetingAINotetaker: React.FC<MeetingAINotetakerProps> = ({
                   </div>
                 </div>
               </div>
-              
-              {/* Main content - meeting notes and action items */}
+              {/* Main content - AI Notetaker */}
               <div className="col-span-2 p-6">
                 <div className="space-y-6">
                   <div className="space-y-3">
                     <h3 className="text-lg font-semibold flex items-center gap-1.5">
                       <FileText className="h-5 w-5 text-primary" />
-                      Meeting Summary
+                      Instant Meeting Summary
                     </h3>
                     <p className="text-sm leading-relaxed">{aiSummary}</p>
                   </div>
-                  
                   <div className="space-y-3">
                     <h3 className="text-lg font-semibold flex items-center gap-1.5">
                       <Lightbulb className="h-5 w-5 text-primary" />
@@ -164,7 +163,6 @@ const MeetingAINotetaker: React.FC<MeetingAINotetakerProps> = ({
                       ))}
                     </ul>
                   </div>
-                  
                   <div className="pt-4 flex gap-3">
                     <Button variant="outline" size="sm" className="gap-1.5">
                       <Mail className="h-4 w-4" />
@@ -179,19 +177,18 @@ const MeetingAINotetaker: React.FC<MeetingAINotetakerProps> = ({
               </div>
             </div>
           </TabsContent>
-          
           <TabsContent value="transcription">
             <div className="p-6">
-              <p className="text-muted-foreground text-sm">Full meeting transcript will appear here.</p>
+              <h3 className="text-lg font-semibold mb-2">Transcript</h3>
+              <pre className="text-muted-foreground text-sm bg-muted rounded p-4 whitespace-pre-wrap">{transcript}</pre>
             </div>
           </TabsContent>
-          
           <TabsContent value="summary">
             <div className="p-6">
-              <p className="text-muted-foreground text-sm">Meeting summary and key points will appear here.</p>
+              <h3 className="text-lg font-semibold mb-2">Meeting Summary</h3>
+              <p className="text-muted-foreground text-sm">{meetingSummary}</p>
             </div>
           </TabsContent>
-          
           <TabsContent value="analytics">
             <div className="p-6">
               <p className="text-muted-foreground text-sm">Meeting analytics and insights will appear here.</p>
@@ -204,3 +201,4 @@ const MeetingAINotetaker: React.FC<MeetingAINotetakerProps> = ({
 };
 
 export default MeetingAINotetaker;
+
