@@ -6,11 +6,13 @@ import { Button } from "@/components/ui/button";
 import { Calendar as CalendarIcon, Search, Filter, Play, Download, ArrowRight } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import MeetingAINotetaker from "@/components/meetings/MeetingAINotetaker";
 
 const Meetings = () => {
   const [searchQuery, setSearchQuery] = useState("");
-  
-  // Mock meetings data
+  const [aiNotetakerOpen, setAINotetakerOpen] = useState(false);
+  const [selectedMeeting, setSelectedMeeting] = useState<any>(null);
+
   const meetings = [
     {
       id: 1,
@@ -67,16 +69,19 @@ const Meetings = () => {
     }
   ];
 
-  // Filter meetings based on search query
   const filteredMeetings = meetings.filter(meeting => 
     meeting.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
     meeting.client.toLowerCase().includes(searchQuery.toLowerCase()) ||
     meeting.type.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  // Split meetings into upcoming and past
   const upcomingMeetings = filteredMeetings.filter(meeting => meeting.status === "upcoming");
   const pastMeetings = filteredMeetings.filter(meeting => meeting.status === "completed");
+
+  const handlePrepare = (meeting: any) => {
+    setSelectedMeeting(meeting);
+    setAINotetakerOpen(true);
+  };
 
   return (
     <DashboardLayout>
@@ -115,7 +120,6 @@ const Meetings = () => {
           <TabsTrigger value="past">Past Meetings</TabsTrigger>
         </TabsList>
         
-        {/* Upcoming Meetings Tab */}
         <TabsContent value="upcoming" className="mt-0">
           {upcomingMeetings.length > 0 ? (
             <div className="space-y-4">
@@ -139,7 +143,7 @@ const Meetings = () => {
                         </div>
                       </div>
                       <div className="flex items-center gap-2 mt-4 lg:mt-0">
-                        <Button variant="outline" size="sm">Prepare</Button>
+                        <Button variant="outline" size="sm" onClick={() => handlePrepare(meeting)}>Prepare</Button>
                         <Button size="sm">Join Meeting</Button>
                       </div>
                     </div>
@@ -157,7 +161,6 @@ const Meetings = () => {
           )}
         </TabsContent>
         
-        {/* Past Meetings Tab */}
         <TabsContent value="past" className="mt-0">
           {pastMeetings.length > 0 ? (
             <div className="rounded-md border">
@@ -219,7 +222,6 @@ const Meetings = () => {
         </TabsContent>
       </Tabs>
 
-      {/* Meeting Summary Example */}
       {pastMeetings.length > 0 && (
         <Card className="mt-8">
           <CardHeader>
@@ -265,6 +267,13 @@ const Meetings = () => {
           </CardContent>
         </Card>
       )}
+
+      <MeetingAINotetaker
+        open={aiNotetakerOpen}
+        onOpenChange={(open) => setAINotetakerOpen(open)}
+        meetingTitle={selectedMeeting?.title || ""}
+        client={selectedMeeting?.client || ""}
+      />
     </DashboardLayout>
   );
 };
