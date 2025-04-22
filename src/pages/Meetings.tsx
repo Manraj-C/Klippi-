@@ -10,7 +10,6 @@ import MeetingAINotetaker from "@/components/meetings/MeetingAINotetaker";
 
 const Meetings = () => {
   const [searchQuery, setSearchQuery] = useState("");
-  const [aiNotetakerOpen, setAINotetakerOpen] = useState(false);
   const [selectedMeeting, setSelectedMeeting] = useState<any>(null);
 
   const meetings = [
@@ -80,7 +79,6 @@ const Meetings = () => {
 
   const handlePrepare = (meeting: any) => {
     setSelectedMeeting(meeting);
-    setAINotetakerOpen(true);
   };
 
   return (
@@ -264,12 +262,11 @@ const Meetings = () => {
                 </Button>
               </div>
             </div>
-            {/* Add the AI Notetaker full view here as a new section */}
+            
             <MeetingAINotetaker
               meetingTitle={pastMeetings[0].title}
               client={pastMeetings[0].client}
               aiSummary={pastMeetings[0].summary}
-              // Placeholder/Example props for demo
               aiTopicTrackers={[
                 "Growth Strategy", "Integration", "Timeline", "Resource Allocation"
               ]}
@@ -288,13 +285,6 @@ const Meetings = () => {
           </CardContent>
         </Card>
       )}
-
-      <MeetingAINotetaker
-        open={aiNotetakerOpen}
-        onOpenChange={(open) => setAINotetakerOpen(open)}
-        meetingTitle={selectedMeeting?.title || ""}
-        client={selectedMeeting?.client || ""}
-      />
     </DashboardLayout>
   );
 };
