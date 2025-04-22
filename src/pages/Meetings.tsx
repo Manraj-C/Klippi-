@@ -264,6 +264,27 @@ const Meetings = () => {
                 </Button>
               </div>
             </div>
+            {/* Add the AI Notetaker full view here as a new section */}
+            <MeetingAINotetaker
+              meetingTitle={pastMeetings[0].title}
+              client={pastMeetings[0].client}
+              aiSummary={pastMeetings[0].summary}
+              // Placeholder/Example props for demo
+              aiTopicTrackers={[
+                "Growth Strategy", "Integration", "Timeline", "Resource Allocation"
+              ]}
+              aiFollowUps={[
+                "Send meeting notes to client",
+                "Confirm next meeting time",
+                "Share API documentation"
+              ]}
+              aiSentimentScore={86}
+              csmActions={[
+                "Remind client of project milestones",
+                "Suggest best practices for integration",
+                "Send feedback request survey"
+              ]}
+            />
           </CardContent>
         </Card>
       )}
