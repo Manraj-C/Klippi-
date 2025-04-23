@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
@@ -119,57 +118,53 @@ const Settings = () => {
           <CardContent className="p-0">
             <div className="flex flex-col md:flex-row">
               <div className="p-4 md:w-64 md:border-r space-y-1">
-                <TabsList className="flex flex-col w-full h-auto gap-1">
-                  <TabsTrigger
-                    className="w-full justify-start px-2 py-1.5 h-auto"
-                    value="profile"
-                    onClick={() => handleTabChange("profile")}
-                    data-state={activeTab === "profile" ? "active" : ""}
-                  >
-                    Profile
-                  </TabsTrigger>
-                  <TabsTrigger
-                    className="w-full justify-start px-2 py-1.5 h-auto"
-                    value="notifications"
-                    onClick={() => handleTabChange("notifications")}
-                    data-state={activeTab === "notifications" ? "active" : ""}
-                  >
-                    Notifications
-                  </TabsTrigger>
-                  <TabsTrigger
-                    className="w-full justify-start px-2 py-1.5 h-auto"
-                    value="security"
-                    onClick={() => handleTabChange("security")}
-                    data-state={activeTab === "security" ? "active" : ""}
-                  >
-                    Security
-                  </TabsTrigger>
-                  <TabsTrigger
-                    className="w-full justify-start px-2 py-1.5 h-auto"
-                    value="appearance"
-                    onClick={() => handleTabChange("appearance")}
-                    data-state={activeTab === "appearance" ? "active" : ""}
-                  >
-                    Appearance
-                  </TabsTrigger>
-                  <TabsTrigger
-                    className="w-full justify-start px-2 py-1.5 h-auto"
-                    value="ai"
-                    onClick={() => handleTabChange("ai")}
-                    data-state={activeTab === "ai" ? "active" : ""}
-                  >
-                    AI Settings
-                    <Badge className="ml-auto bg-primary/10 text-primary border-primary/20 hover:bg-primary/20">New</Badge>
-                  </TabsTrigger>
-                  <TabsTrigger
-                    className="w-full justify-start px-2 py-1.5 h-auto"
-                    value="integrations"
-                    onClick={() => handleTabChange("integrations")}
-                    data-state={activeTab === "integrations" ? "active" : ""}
-                  >
-                    Integrations
-                  </TabsTrigger>
-                </TabsList>
+                <Tabs value={activeTab} onValueChange={handleTabChange} orientation="vertical">
+                  <TabsList className="flex flex-col w-full h-auto gap-1">
+                    <TabsTrigger
+                      className="w-full justify-start px-2 py-1.5 h-auto"
+                      value="profile"
+                      data-state={activeTab === "profile" ? "active" : ""}
+                    >
+                      Profile
+                    </TabsTrigger>
+                    <TabsTrigger
+                      className="w-full justify-start px-2 py-1.5 h-auto"
+                      value="notifications"
+                      data-state={activeTab === "notifications" ? "active" : ""}
+                    >
+                      Notifications
+                    </TabsTrigger>
+                    <TabsTrigger
+                      className="w-full justify-start px-2 py-1.5 h-auto"
+                      value="security"
+                      data-state={activeTab === "security" ? "active" : ""}
+                    >
+                      Security
+                    </TabsTrigger>
+                    <TabsTrigger
+                      className="w-full justify-start px-2 py-1.5 h-auto"
+                      value="appearance"
+                      data-state={activeTab === "appearance" ? "active" : ""}
+                    >
+                      Appearance
+                    </TabsTrigger>
+                    <TabsTrigger
+                      className="w-full justify-start px-2 py-1.5 h-auto"
+                      value="ai"
+                      data-state={activeTab === "ai" ? "active" : ""}
+                    >
+                      AI Settings
+                      <Badge className="ml-auto bg-primary/10 text-primary border-primary/20 hover:bg-primary/20">New</Badge>
+                    </TabsTrigger>
+                    <TabsTrigger
+                      className="w-full justify-start px-2 py-1.5 h-auto"
+                      value="integrations"
+                      data-state={activeTab === "integrations" ? "active" : ""}
+                    >
+                      Integrations
+                    </TabsTrigger>
+                  </TabsList>
+                </Tabs>
               </div>
 
               <div className="flex-1 p-6">
