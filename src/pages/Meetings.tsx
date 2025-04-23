@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import DashboardLayout from "@/components/dashboard/DashboardLayout";
 import { Button } from "@/components/ui/button";
@@ -290,11 +291,13 @@ const Meetings = () => {
             <MeetingSearchBar value={searchQuery} onChange={setSearchQuery} />
             {/* Room for a filter button in the future */}
           </div>
-          <Tabs defaultValue="upcoming" className="mt-2">
-            <TabsList>
-              <TabsTrigger value="upcoming">Upcoming</TabsTrigger>
-              <TabsTrigger value="past">Past Meetings</TabsTrigger>
-            </TabsList>
+          <Tabs defaultValue="upcoming" className="mt-2 w-full">
+            <div className="border-b">
+              <TabsList>
+                <TabsTrigger value="upcoming">Upcoming</TabsTrigger>
+                <TabsTrigger value="past">Past Meetings</TabsTrigger>
+              </TabsList>
+            </div>
             <TabsContent value="upcoming" className="mt-4">
               {upcomingMeetings.length > 0 ? (
                 <div className="space-y-3">
