@@ -50,7 +50,7 @@ const IntegrationsSection = () => {
     },
     {
       name: "Jira",
-      logo: "https://wac-cdn.atlassian.com/assets/img/favicons/atlassian/apple-touch-icon-180x180.png"
+      logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jira/jira-original.svg"
     },
     {
       name: "Zendesk",
@@ -73,6 +73,24 @@ const IntegrationsSection = () => {
             Instantly connect your tools and allow AI to work for you across your entire tech stack.
             Klippi eliminates the need for multiple point solutions.
           </p>
+        </div>
+        
+        {/* Carousel moved above the feature cards and made more prominent */}
+        <div className="relative max-w-6xl mx-auto mb-16">
+          <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-background to-transparent z-10"></div>
+          <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-background to-transparent z-10"></div>
+          
+          <div className="overflow-hidden py-4">
+            <div className="flex animate-carousel">
+              {integrations.map((integration, index) => (
+                <IntegrationCard key={index} name={integration.name} logo={integration.logo} />
+              ))}
+              {/* Duplicate first few items to create seamless loop */}
+              {integrations.slice(0, 4).map((integration, index) => (
+                <IntegrationCard key={`dup-${index}`} name={integration.name} logo={integration.logo} />
+              ))}
+            </div>
+          </div>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12 max-w-5xl mx-auto">
@@ -107,23 +125,6 @@ const IntegrationsSection = () => {
               </div>
             </div>
           </Card>
-        </div>
-        
-        <div className="relative max-w-5xl mx-auto">
-          <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-background to-transparent z-10"></div>
-          <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-background to-transparent z-10"></div>
-          
-          <div className="overflow-hidden">
-            <div className="flex animate-carousel">
-              {integrations.map((integration, index) => (
-                <IntegrationCard key={index} name={integration.name} logo={integration.logo} />
-              ))}
-              {/* Duplicate first few items to create seamless loop */}
-              {integrations.slice(0, 4).map((integration, index) => (
-                <IntegrationCard key={`dup-${index}`} name={integration.name} logo={integration.logo} />
-              ))}
-            </div>
-          </div>
         </div>
         
         <div className="mt-8 text-center">
