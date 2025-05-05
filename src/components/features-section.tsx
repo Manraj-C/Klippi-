@@ -1,29 +1,21 @@
-
-import React from "react"
-import { FeaturesTabs } from "./features/features-tabs"
-import { SharedFeatures } from "./features/shared-features"
-import { AIFeatures } from "./features/ai-features"
-
+import React from "react";
+import { FeaturesTabs } from "./features/features-tabs";
+import { SharedFeatures } from "./features/shared-features";
+import { AIFeatures } from "./features/ai-features";
 const FeaturesSection = () => {
-  return (
-    <section id="features" className="py-20 bg-gradient-to-b from-background to-background/50">
+  return <section id="features" className="py-20 bg-gradient-to-b from-background to-background/50">
       <div className="container px-4 mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             Choose the Right <span className="text-gradient">Klip</span> for You
           </h2>
-          <p className="text-foreground/80 max-w-2xl mx-auto">
-            Whether you're an individual CSM looking to excel or a CS leader scaling your team's impact,
-            Klip provides tailored solutions to elevate your customer success operations.
-          </p>
+          <p className="text-foreground/80 max-w-2xl mx-auto">Whether you're an individual CSM looking to excel or a CS leader scaling your team's impact, Klippi provides tailored solutions to elevate your customer success operations.</p>
         </div>
         
         <FeaturesTabs />
         <SharedFeatures />
         <AIFeatures />
       </div>
-    </section>
-  )
-}
-
-export default FeaturesSection
+    </section>;
+};
+export default FeaturesSection;
