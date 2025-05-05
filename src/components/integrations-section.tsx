@@ -67,7 +67,7 @@ const IntegrationsSection = () => {
       <div className="container px-4 mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            <span className="text-gradient">Unified</span> Integration Platform
+            <span className="text-gradient">Powerful</span> Integrations
           </h2>
           <p className="text-foreground/80 max-w-2xl mx-auto mb-8">
             Instantly connect your tools and allow AI to work for you across your entire tech stack.
