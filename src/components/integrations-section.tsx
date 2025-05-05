@@ -34,11 +34,11 @@ const IntegrationsSection = () => {
     },
     {
       name: "Zapier",
-      logo: "https://cdn.worldvectorlogo.com/logos/zapier-1.svg"
+      logo: "https://cdn.worldvectorlogo.com/logos/zapier-2.svg"
     },
     {
       name: "Fireflies.ai",
-      logo: "https://assets-global.website-files.com/5f16d69f1e28d9a268bde31b/628e7f23271d9ed6e99cb0be_fireflies-icon-blue%20(1).svg"
+      logo: "https://www.fireflies.ai/static/images/brand/logo/ff_media_kit_new_logo_256.png"
     },
     {
       name: "ChatGPT",
@@ -58,7 +58,7 @@ const IntegrationsSection = () => {
     },
     {
       name: "HubSpot",
-      logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/HubSpot_Logo.svg/2560px-HubSpot_Logo.svg.png"
+      logo: "https://cdn.freebiesupply.com/logos/large/2x/hubspot-logo-png-transparent.png"
     }
   ]
   

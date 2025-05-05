@@ -55,4 +55,17 @@
   .artisan-shadow {
     @apply shadow-[0_4px_20px_rgba(0,0,0,0.08)];
   }
+  
+  @keyframes carousel {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(calc(-220px * 5.5)); /* Adjust based on card width */
+    }
+  }
+  
+  .animate-carousel {
+    animation: carousel 30s linear infinite;
+  }
 }
