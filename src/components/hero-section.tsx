@@ -34,28 +34,26 @@ const HeroSection = () => {
             Meet <span className="text-gradient">Klippi</span>, Your AI Customer Success Manager <br className="hidden md:block" />
           </h1>
           <p className="text-lg md:text-xl text-foreground/80 max-w-3xl mb-8">
-            Empowering Customer Success Managers to streamline workflows, automate tasks, 
-            and deliver exceptional client experiences with intelligent AI assistance.
+            The all-in-one integrated solution that works as a co-pilot for individual CSMs while 
+            helping teams scale operations across the entire customer lifecycle.
           </p>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-4xl mb-10">
-            <div className="glass-card p-6 rounded-xl border border-primary/20 text-left">
-              <Badge className="mb-3 bg-primary/10 text-primary hover:bg-primary/20">For Individual CSMs</Badge>
-              <h3 className="text-xl font-semibold mb-2">Supercharge Your Performance</h3>
-              <p className="text-sm text-foreground/70 mb-4">Get ahead in your role with AI assistance that helps you handle more accounts, deliver exceptional service, and stand out in your organization.</p>
-              <Button variant="outline" size="sm" className="border-primary/30 text-primary hover:bg-primary/10">
-                Learn More
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-            </div>
-            
-            <div className="glass-card p-6 rounded-xl border border-secondary/20 text-left">
-              <Badge className="mb-3 bg-secondary/10 text-secondary hover:bg-secondary/20">For CS Teams</Badge>
-              <h3 className="text-xl font-semibold mb-2">Elevate Your Entire Team</h3>
-              <p className="text-sm text-foreground/70 mb-4">Scale your CS operations with a unified platform that standardizes workflows, provides actionable insights, and boosts efficiency across your entire department.</p>
-              <Button variant="outline" size="sm" className="border-secondary/30 text-secondary hover:bg-secondary/10">
-                Request Demo
-                <ArrowRight className="ml-2 h-4 w-4" />
+          <div className="glass-card p-8 rounded-xl border border-primary/20 text-left w-full max-w-4xl mb-10">
+            <Badge className="mb-3 bg-gradient-to-r from-primary to-secondary text-white hover:from-primary/90 hover:to-secondary/90">
+              All-in-One Solution
+            </Badge>
+            <h3 className="text-2xl font-semibold mb-3">Supercharge Your Customer Success</h3>
+            <p className="text-foreground/70 mb-6">
+              Klippi serves as both your personal co-pilot and a powerful team scaling engine. From automating routine tasks 
+              and providing actionable insights to standardizing workflows and optimizing the entire customer lifecycle, 
+              Klippi adapts to your needs whether you're an individual CSM or leading an entire department.
+            </p>
+            <div className="flex flex-wrap gap-4">
+              <Button variant="outline" size="sm" className="border-primary/30 text-primary hover:bg-primary/10" asChild>
+                <a href="#signup">
+                  Contact Us
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </a>
               </Button>
             </div>
           </div>
@@ -67,8 +65,10 @@ const HeroSection = () => {
                 <ArrowRight className="ml-2 h-4 w-4" />
               </a>
             </Button>
-            <Button size="lg" variant="outline" className="border-white/10 h-12 px-8 text-base">
-              Learn More
+            <Button size="lg" variant="outline" className="border-white/10 h-12 px-8 text-base" asChild>
+              <a href="#signup">
+                Contact Us
+              </a>
             </Button>
           </div>
         </div>
