@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Headset, Settings, Search, Share } from "lucide-react";
 import { FeatureCard } from "./feature-card";
@@ -11,10 +12,10 @@ export const SharedFeatures = () => {
       text: "Try the Support Email Agent"
     }
   }, {
-    title: "Powerful Workflows",
-    description: "Automate complex daily tasks with intelligent, adaptive workflows that learn from your preferences.",
+    title: "Agentive AI Workflows",
+    description: "Experience true AI partnership with autonomous agents that learn your preferences, adapt to your processes, and work alongside you across your entire G2M tech stack.",
     icon: <Settings className="h-6 w-6 text-primary" />,
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&h=450&q=80",
+    image: "https://images.unsplash.com/photo-1605810230434-7631ac76ec81?auto=format&fit=crop&w=800&h=450&q=80",
     cta: {
       text: "Explore Workflow Automation"
     }
