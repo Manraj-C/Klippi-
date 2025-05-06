@@ -1,23 +1,19 @@
-
-import React from "react"
-import { MessageSquare, PieChart, Calendar, Bot, TrendingUp } from "lucide-react"
-import { Badge } from "@/components/ui/badge"
-
+import React from "react";
+import { MessageSquare, PieChart, Calendar, Bot, TrendingUp } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
 interface DashboardSlideProps {
-  active: boolean
+  active: boolean;
 }
-
-const DashboardSlide: React.FC<DashboardSlideProps> = ({ active }) => {
-  return (
-    <div 
-      className={`absolute inset-0 flex items-center justify-center transition-opacity duration-500 ease-in-out ${active ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
-    >
+const DashboardSlide: React.FC<DashboardSlideProps> = ({
+  active
+}) => {
+  return <div className={`absolute inset-0 flex items-center justify-center transition-opacity duration-500 ease-in-out ${active ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}>
       <div className="w-full max-w-5xl p-4 md:p-6 h-[400px] md:h-[550px] glass-card rounded-xl border border-white/5 shadow-lg overflow-hidden">
         <div className="flex items-center gap-2 mb-4">
           <div className="h-8 w-8 rounded-lg bg-primary/20 flex items-center justify-center">
             <span className="text-primary font-bold">K</span>
           </div>
-          <h3 className="text-lg font-semibold text-white">Klippi Dashboard</h3>
+          <h3 className="text-lg font-semibold text-gray-900">Klippi </h3>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 h-[calc(100%-40px)]">
@@ -55,25 +51,25 @@ const DashboardSlide: React.FC<DashboardSlideProps> = ({ active }) => {
                 </div>
                 <div className="glass-card p-2 rounded-lg text-xs max-w-[85%]">
                   <p className="text-foreground/80">
-                    <span className="font-medium text-primary">Acme Corp Account Analysis:</span><br/>
-                    <br/>
-                    <span className="font-medium">Usage Trends:</span><br/>
-                    • API usage increased 25% MoM<br/>
-                    • Active users up 18% (42 → 49)<br/>
-                    • Average session duration: 32 mins (+7% from last quarter)<br/>
-                    <br/>
-                    <span className="font-medium">Feature Adoption:</span><br/>
-                    • 85% adoption of new dashboard analytics<br/>
-                    • Low usage (23%) of custom reporting features<br/>
-                    • Integration with Salesforce successfully implemented last month<br/>
-                    <br/>
-                    <span className="font-medium">Support Tickets:</span><br/>
-                    • 7 tickets this quarter (down from 12)<br/>
-                    • Average resolution time: 4.2 hours<br/>
-                    • No critical issues reported<br/>
-                    <br/>
-                    <span className="font-medium">Contract Status:</span><br/>
-                    • 8 months remaining in current term<br/>
+                    <span className="font-medium text-primary">Acme Corp Account Analysis:</span><br />
+                    <br />
+                    <span className="font-medium">Usage Trends:</span><br />
+                    • API usage increased 25% MoM<br />
+                    • Active users up 18% (42 → 49)<br />
+                    • Average session duration: 32 mins (+7% from last quarter)<br />
+                    <br />
+                    <span className="font-medium">Feature Adoption:</span><br />
+                    • 85% adoption of new dashboard analytics<br />
+                    • Low usage (23%) of custom reporting features<br />
+                    • Integration with Salesforce successfully implemented last month<br />
+                    <br />
+                    <span className="font-medium">Support Tickets:</span><br />
+                    • 7 tickets this quarter (down from 12)<br />
+                    • Average resolution time: 4.2 hours<br />
+                    • No critical issues reported<br />
+                    <br />
+                    <span className="font-medium">Contract Status:</span><br />
+                    • 8 months remaining in current term<br />
                     • Opportunity for upsell to Enterprise tier (+$15K ARR)
                   </p>
                 </div>
@@ -81,7 +77,7 @@ const DashboardSlide: React.FC<DashboardSlideProps> = ({ active }) => {
               
               <div className="flex gap-2 justify-end">
                 <div className="glass-card p-2 rounded-lg text-xs max-w-[85%] bg-primary/10">
-                  <p className="text-foreground/90">This is amazing, Klippi! It would have taken me hours to compile all this data. Can you draft an email to their team highlighting this positive trend?</p>
+                  <p className="text-foreground/90">This is amazing, Klippi!. Can you draft an email to their team highlighting these KPIs ahead of tomorrows QBR</p>
                 </div>
                 <div className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center flex-shrink-0">
                   <span className="text-xs">CM</span>
@@ -151,8 +147,6 @@ const DashboardSlide: React.FC<DashboardSlideProps> = ({ active }) => {
           </div>
         </div>
       </div>
-    </div>
-  )
-}
-
-export default DashboardSlide
+    </div>;
+};
+export default DashboardSlide;
