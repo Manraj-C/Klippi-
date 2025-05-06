@@ -26,7 +26,7 @@ const Documents = () => {
 
   return (
     <DashboardLayout>
-      <div className="flex justify-between items-center mb-6">
+      <div className="flex justify-between items-center mb-4">
         <h1 className="text-3xl font-bold">Documents</h1>
         <div className="flex gap-2">
           <Button variant="outline" className="gap-2">
@@ -39,6 +39,12 @@ const Documents = () => {
           </Button>
         </div>
       </div>
+
+      <p className="text-muted-foreground mb-6">
+        Use this section to fine-tune Klippi by uploading documents that educate the AI about your company, customer base, and ways of working. 
+        Add relevant context like Standard Operating Procedures (SOPs), Product Guides, QBR Decks, Project plans, and more. 
+        Klippi will leverage this knowledge to provide better assistance as it works alongside you.
+      </p>
 
       <DocumentSearch 
         searchQuery={searchQuery}
