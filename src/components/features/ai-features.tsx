@@ -1,7 +1,7 @@
 import React from "react";
 import { Brain, Layers, Book, Target, Database } from "lucide-react";
 export const AIFeatures = () => {
-  return <div className="mt-16 glass-card p-8 max-w-4xl mx-auto rounded-full">
+  return <div className="mt-16 glass-card p-8 max-w-4xl mx-auto rounded-3xl">
       <h3 className="text-2xl font-bold mb-6 flex items-center">
         <Brain className="h-6 w-6 text-primary mr-3" />
         AI-Powered Intelligence
