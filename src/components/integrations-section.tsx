@@ -1,18 +1,7 @@
 
 import React from "react"
-import { Network, Workflow } from "lucide-react"
-import { Card } from "@/components/ui/card"
-
-interface IntegrationProps {
-  name: string;
-  logo: string;
-}
-
-const IntegrationCard = ({ name, logo }: IntegrationProps) => (
-  <div className="min-w-[220px] h-16 glass-card rounded-xl flex items-center justify-center px-6 mx-3">
-    <img src={logo} alt={name} className="h-8 object-contain" />
-  </div>
-)
+import { IntegrationCard } from "./integrations/integration-card"
+import { IntegrationWheel } from "./integrations/integration-wheel"
 
 const IntegrationsSection = () => {
   const integrations = [
@@ -34,11 +23,11 @@ const IntegrationsSection = () => {
     },
     {
       name: "Zapier",
-      logo: "https://cdn.worldvectorlogo.com/logos/zapier-2.svg"
+      logo: "https://cdn.zapier.com/zapier/images/logos/zapier-logo.svg"
     },
     {
       name: "Fireflies.ai",
-      logo: "https://www.fireflies.ai/static/images/brand/logo/ff_media_kit_new_logo_256.png"
+      logo: "https://assets-global.website-files.com/60a5fec8e2885a27fbdf1315/62238d450f0d504274bd40dd_fireflies_symbol_purple.svg"
     },
     {
       name: "ChatGPT",
@@ -50,7 +39,7 @@ const IntegrationsSection = () => {
     },
     {
       name: "Jira",
-      logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jira/jira-original.svg"
+      logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/jira/jira-original.svg"
     },
     {
       name: "Zendesk",
@@ -58,7 +47,50 @@ const IntegrationsSection = () => {
     },
     {
       name: "HubSpot",
-      logo: "https://cdn.freebiesupply.com/logos/large/2x/hubspot-logo-png-transparent.png"
+      logo: "https://cdn.worldvectorlogo.com/logos/hubspot-1.svg"
+    }
+  ]
+  
+  const wheelIntegrations = [
+    {
+      name: "Salesforce",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/f/f9/Salesforce.com_logo.svg",
+      position: "top"
+    },
+    {
+      name: "LinkedIn",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png",
+      position: "top-right"
+    },
+    {
+      name: "Atlassian",
+      logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/atlassian/atlassian-original.svg",
+      position: "right"
+    },
+    {
+      name: "HubSpot",
+      logo: "https://cdn.worldvectorlogo.com/logos/hubspot-1.svg",
+      position: "bottom-right"
+    },
+    {
+      name: "Google Sheets",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/3/30/Google_Sheets_logo_%282014-2020%29.svg",
+      position: "bottom"
+    },
+    {
+      name: "Gmail",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/7/7e/Gmail_icon_%282020%29.svg",
+      position: "bottom-left"
+    },
+    {
+      name: "Zoom",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/9/9b/Zoom_logo.svg",
+      position: "left"
+    },
+    {
+      name: "Intercom",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/9/9d/Intercom_logo.svg",
+      position: "top-left"
     }
   ]
   
@@ -75,7 +107,7 @@ const IntegrationsSection = () => {
           </p>
         </div>
         
-        {/* Carousel moved above the feature cards and made more prominent */}
+        {/* Integration carousel */}
         <div className="relative max-w-6xl mx-auto mb-16">
           <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-background to-transparent z-10"></div>
           <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-background to-transparent z-10"></div>
@@ -93,38 +125,21 @@ const IntegrationsSection = () => {
           </div>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12 max-w-5xl mx-auto">
-          <Card className="glass-card p-6 border-primary/20">
-            <div className="flex items-start gap-4">
-              <div className="p-2 rounded-lg bg-primary/20 mt-1">
-                <Network className="h-6 w-6 text-primary" />
-              </div>
-              <div>
-                <h3 className="text-xl font-semibold mb-2">Seamless Connectivity</h3>
-                <p className="text-foreground/80 text-sm">
-                  Connect once and let Klippi work across all your tools. No more switching between 
-                  interfaces or managing multiple AI solutions. Klippi's unified approach brings 
-                  intelligence to where you already work.
-                </p>
-              </div>
-            </div>
-          </Card>
+        {/* Integration wheel section - new component */}
+        <div className="max-w-5xl mx-auto mb-12 text-center">
+          <h3 className="text-2xl md:text-3xl font-bold mb-4">The Klippi Way</h3>
+          <p className="text-foreground/80 max-w-3xl mx-auto mb-12">
+            Supercharge your customer success operations by adding AI automation to where
+            you already work. Connect once and let Klippi work across all your tools, replacing 
+            fragmented solutions with one unified platform that learns your business 
+            context and continuously improves with usage.
+          </p>
           
-          <Card className="glass-card p-6 border-primary/20">
-            <div className="flex items-start gap-4">
-              <div className="p-2 rounded-lg bg-primary/20 mt-1">
-                <Workflow className="h-6 w-6 text-primary" />
-              </div>
-              <div>
-                <h3 className="text-xl font-semibold mb-2">Learning AI Ecosystem</h3>
-                <p className="text-foreground/80 text-sm">
-                  Replace fragmented tools with one solution that consolidates call recording, 
-                  note-taking, email automation, and agentive workflows. Klippi improves with 
-                  tenure, continuously learning your business context and preferences.
-                </p>
-              </div>
-            </div>
-          </Card>
+          <IntegrationWheel 
+            centerLogo="/lovable-uploads/fe97d71a-689f-475f-88ba-f8d99328a82f.png" 
+            centerName="Klippi"
+            integrations={wheelIntegrations} 
+          />
         </div>
         
         <div className="mt-8 text-center">
