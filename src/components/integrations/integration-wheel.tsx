@@ -30,23 +30,14 @@ export const IntegrationWheel = ({ centerLogo, centerName, integrations }: Integ
   };
 
   return (
-    <div className="relative w-full max-w-[700px] h-[700px] mx-auto">
+    <div className="relative w-full max-w-[500px] h-[500px] mx-auto">
       {/* Central hub */}
-      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-32 h-32 rounded-full bg-primary/20 flex items-center justify-center z-10">
-        <div className="w-24 h-24 rounded-full bg-primary flex items-center justify-center">
-          <img 
-            src={centerLogo} 
-            alt={centerName} 
-            className="w-16 h-16 object-contain" 
-          />
-        </div>
-        <div className="absolute bottom-[-15px] left-1/2 transform -translate-x-1/2">
-          <div className="cursor-pointer w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M8 9H6V15H8V9Z" fill="#000"/>
-              <path d="M18 9H16V15H18V9Z" fill="#000"/>
-              <path d="M12 9H10V15H12V9Z" fill="#000"/>
-            </svg>
+      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-24 h-24 rounded-full bg-primary/20 flex items-center justify-center z-10">
+        <div className="w-20 h-20 rounded-full bg-primary flex items-center justify-center">
+          <div className="flex items-center gap-2">
+            <div className="size-8 rounded-lg bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
+              <span className="text-white font-bold text-xl">K</span>
+            </div>
           </div>
         </div>
       </div>
@@ -60,9 +51,9 @@ export const IntegrationWheel = ({ centerLogo, centerName, integrations }: Integ
       {integrations.map((integration, index) => (
         <div 
           key={index} 
-          className={`absolute ${getPositionClass(integration.position)} w-20 h-20 bg-white rounded-full shadow-md flex items-center justify-center transition-transform hover:scale-105`}
+          className={`absolute ${getPositionClass(integration.position)} w-16 h-16 bg-white rounded-full shadow-md flex items-center justify-center transition-transform hover:scale-105`}
         >
-          <div className="w-16 h-16 rounded-full bg-white/80 flex items-center justify-center p-3">
+          <div className="w-12 h-12 rounded-full bg-white/80 flex items-center justify-center p-2">
             <img 
               src={integration.logo} 
               alt={integration.name} 

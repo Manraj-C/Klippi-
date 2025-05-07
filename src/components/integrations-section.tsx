@@ -43,7 +43,7 @@ const IntegrationsSection = () => {
     },
     {
       name: "Zendesk",
-      logo: "https://upload.wikimedia.org/wikipedia/commons/c/c8/Zendesk_logo.svg"
+      logo: "https://cdn.worldvectorlogo.com/logos/zendesk.svg"
     },
     {
       name: "HubSpot",
@@ -64,8 +64,8 @@ const IntegrationsSection = () => {
       position: "top-right" as const
     },
     {
-      name: "Atlassian",
-      logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/atlassian/atlassian-original.svg",
+      name: "Jira",
+      logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/jira/jira-original.svg",
       position: "right" as const
     },
     {
@@ -74,8 +74,8 @@ const IntegrationsSection = () => {
       position: "bottom-right" as const
     },
     {
-      name: "Google Sheets",
-      logo: "https://upload.wikimedia.org/wikipedia/commons/3/30/Google_Sheets_logo_%282014-2020%29.svg",
+      name: "Google Calendar",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/a/a5/Google_Calendar_icon_%282020%29.svg",
       position: "bottom" as const
     },
     {
@@ -84,8 +84,8 @@ const IntegrationsSection = () => {
       position: "bottom-left" as const
     },
     {
-      name: "Zoom",
-      logo: "https://upload.wikimedia.org/wikipedia/commons/9/9b/Zoom_logo.svg",
+      name: "Slack",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/d/d5/Slack_icon_2019.svg",
       position: "left" as const
     },
     {
@@ -127,20 +127,22 @@ const IntegrationsSection = () => {
         </div>
         
         {/* Integration wheel section - new component */}
-        <div className="max-w-5xl mx-auto mb-12 text-center">
+        <div className="max-w-4xl mx-auto mb-12 text-center">
           <h3 className="text-2xl md:text-3xl font-bold mb-4">The Klippi Way</h3>
-          <p className="text-foreground/80 max-w-3xl mx-auto mb-12">
+          <p className="text-foreground/80 max-w-3xl mx-auto mb-10">
             Supercharge your customer success operations by adding AI automation to where
             you already work. Connect once and let Klippi work across all your tools, replacing 
             fragmented solutions with one unified platform that learns your business 
             context and continuously improves with usage.
           </p>
           
-          <IntegrationWheel 
-            centerLogo="/lovable-uploads/fe97d71a-689f-475f-88ba-f8d99328a82f.png" 
-            centerName="Klippi"
-            integrations={wheelIntegrations} 
-          />
+          <div className="flex justify-center">
+            <IntegrationWheel 
+              centerLogo="klippi-logo" 
+              centerName="Klippi"
+              integrations={wheelIntegrations} 
+            />
+          </div>
         </div>
         
         <div className="mt-8 text-center">
