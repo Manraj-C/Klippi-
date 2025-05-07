@@ -51,46 +51,47 @@ const IntegrationsSection = () => {
     }
   ]
   
+  // Define the wheel integrations with proper type-safe positions
   const wheelIntegrations = [
     {
       name: "Salesforce",
       logo: "https://upload.wikimedia.org/wikipedia/commons/f/f9/Salesforce.com_logo.svg",
-      position: "top"
+      position: "top" as const
     },
     {
       name: "LinkedIn",
       logo: "https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png",
-      position: "top-right"
+      position: "top-right" as const
     },
     {
       name: "Atlassian",
       logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/atlassian/atlassian-original.svg",
-      position: "right"
+      position: "right" as const
     },
     {
       name: "HubSpot",
       logo: "https://cdn.worldvectorlogo.com/logos/hubspot-1.svg",
-      position: "bottom-right"
+      position: "bottom-right" as const
     },
     {
       name: "Google Sheets",
       logo: "https://upload.wikimedia.org/wikipedia/commons/3/30/Google_Sheets_logo_%282014-2020%29.svg",
-      position: "bottom"
+      position: "bottom" as const
     },
     {
       name: "Gmail",
       logo: "https://upload.wikimedia.org/wikipedia/commons/7/7e/Gmail_icon_%282020%29.svg",
-      position: "bottom-left"
+      position: "bottom-left" as const
     },
     {
       name: "Zoom",
       logo: "https://upload.wikimedia.org/wikipedia/commons/9/9b/Zoom_logo.svg",
-      position: "left"
+      position: "left" as const
     },
     {
       name: "Intercom",
       logo: "https://upload.wikimedia.org/wikipedia/commons/9/9d/Intercom_logo.svg",
-      position: "top-left"
+      position: "top-left" as const
     }
   ]
   
