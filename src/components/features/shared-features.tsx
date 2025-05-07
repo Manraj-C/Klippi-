@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Headset, Settings, Search, Share } from "lucide-react";
 import { FeatureCard } from "./feature-card";
@@ -38,8 +37,8 @@ export const SharedFeatures = () => {
   }];
   return <>
       <div className="text-center mb-8 mt-16">
-        <h3 className="text-2xl font-semibold mb-3">Core Features for Everyone</h3>
-        <p className="text-foreground/80 max-w-2xl mx-auto">All Klippi users benefit from these powerful capabilities, regardless of whether you choose the individual or team solution.</p>
+        
+        
       </div>
       
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
