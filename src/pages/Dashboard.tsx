@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import DashboardLayout from "@/components/dashboard/DashboardLayout";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
@@ -38,6 +37,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { GetStartedButton } from "@/components/onboarding/GetStartedButton";
 
 // Sample data for charts
 const clientActivityData = [
@@ -366,6 +366,7 @@ const Dashboard = () => {
           </TabsContent>
         </Tabs>
       </div>
+      <GetStartedButton />
     </DashboardLayout>
   );
 };

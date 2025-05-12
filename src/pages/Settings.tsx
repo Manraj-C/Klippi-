@@ -11,6 +11,7 @@ import { AppearanceSettings } from "@/components/settings/AppearanceSettings";
 import { AISettings } from "@/components/settings/AISettings";
 import { IntegrationSettings } from "@/components/settings/IntegrationSettings";
 import { Integration } from "@/types/integration";
+import { GetStartedButton } from "@/components/onboarding/GetStartedButton";
 
 import DashboardLayout from "@/components/dashboard/DashboardLayout";
 
@@ -193,6 +194,7 @@ const Settings = () => {
           </CardContent>
         </Card>
       </div>
+      <GetStartedButton />
     </DashboardLayout>
   );
 };
