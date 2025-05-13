@@ -2,16 +2,8 @@
 import { Button } from "@/components/ui/button";
 import { Check, X } from "lucide-react";
 import { SettingsSection } from "./SettingsSection";
-
-interface Integration {
-  id: string;
-  name: string;
-  category: string;
-  status: "connected" | "disconnected";
-  icon: string;
-  logo: string;
-  description: string;
-}
+import { Integration } from "@/types/integration";
+import { IntegrationLogo } from "@/components/integrations/IntegrationLogo";
 
 interface IntegrationSettingsProps {
   integrations: Integration[];
@@ -33,9 +25,8 @@ export const IntegrationSettings = ({ integrations }: IntegrationSettingsProps) 
             <div key={integration.id} className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <div className="flex items-center gap-4">
                 <div className="h-10 w-10 rounded-md bg-muted flex items-center justify-center text-xl">
-                  <img 
-                    src={integration.logo} 
-                    alt={integration.name} 
+                  <IntegrationLogo 
+                    name={integration.name} 
                     className="h-6 w-6 object-contain"
                   />
                 </div>

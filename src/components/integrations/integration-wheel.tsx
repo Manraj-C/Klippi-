@@ -1,5 +1,6 @@
 
-import React from "react"
+import React from "react";
+import { IntegrationLogo } from "./IntegrationLogo";
 
 interface IntegrationNode {
   name: string;
@@ -30,10 +31,10 @@ export const IntegrationWheel = ({ centerLogo, centerName, integrations }: Integ
   };
 
   return (
-    <div className="relative w-full max-w-[500px] h-[500px] mx-auto">
+    <div className="relative w-full max-w-[400px] h-[400px] mx-auto">
       {/* Central hub */}
-      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-24 h-24 rounded-full bg-primary/20 flex items-center justify-center z-10">
-        <div className="w-20 h-20 rounded-full bg-primary flex items-center justify-center">
+      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-20 h-20 rounded-full bg-primary/20 flex items-center justify-center z-10">
+        <div className="w-16 h-16 rounded-full bg-primary flex items-center justify-center">
           <div className="flex items-center gap-2">
             <div className="size-8 rounded-lg bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
               <span className="text-white font-bold text-xl">K</span>
@@ -51,13 +52,13 @@ export const IntegrationWheel = ({ centerLogo, centerName, integrations }: Integ
       {integrations.map((integration, index) => (
         <div 
           key={index} 
-          className={`absolute ${getPositionClass(integration.position)} w-16 h-16 bg-white rounded-full shadow-md flex items-center justify-center transition-transform hover:scale-105`}
+          className={`absolute ${getPositionClass(integration.position)} w-14 h-14 bg-white rounded-full shadow-md flex items-center justify-center transition-transform hover:scale-105`}
         >
-          <div className="w-12 h-12 rounded-full bg-white/80 flex items-center justify-center p-2">
-            <img 
-              src={integration.logo} 
+          <div className="w-10 h-10 rounded-full bg-white/80 flex items-center justify-center p-2">
+            <IntegrationLogo 
+              name={integration.name} 
+              className="w-full h-full object-contain"
               alt={integration.name} 
-              className="w-full h-full object-contain" 
             />
           </div>
         </div>

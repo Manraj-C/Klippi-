@@ -1,99 +1,99 @@
 
-import React from "react"
-import { IntegrationCard } from "./integrations/integration-card"
-import { IntegrationWheel } from "./integrations/integration-wheel"
+import React from "react";
+import { IntegrationCard } from "./integrations/integration-card";
+import { IntegrationWheel } from "./integrations/integration-wheel";
 
 const IntegrationsSection = () => {
   const integrations = [
     {
       name: "Salesforce",
-      logo: "https://upload.wikimedia.org/wikipedia/commons/f/f9/Salesforce.com_logo.svg"
+      logo: "salesforce"
     },
     {
       name: "Gmail",
-      logo: "https://upload.wikimedia.org/wikipedia/commons/7/7e/Gmail_icon_%282020%29.svg"
+      logo: "gmail"
     },
     {
       name: "Google Calendar",
-      logo: "https://upload.wikimedia.org/wikipedia/commons/a/a5/Google_Calendar_icon_%282020%29.svg"
+      logo: "google-calendar"
     },
     {
       name: "Slack",
-      logo: "https://upload.wikimedia.org/wikipedia/commons/d/d5/Slack_icon_2019.svg"
+      logo: "slack"
     },
     {
       name: "Zapier",
-      logo: "https://cdn.zapier.com/zapier/images/logos/zapier-logo.svg"
+      logo: "zapier"
     },
     {
       name: "Fireflies.ai",
-      logo: "https://assets-global.website-files.com/60a5fec8e2885a27fbdf1315/62238d450f0d504274bd40dd_fireflies_symbol_purple.svg"
+      logo: "fireflies"
     },
     {
       name: "ChatGPT",
-      logo: "https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg"
+      logo: "chatgpt"
     },
     {
       name: "Intercom",
-      logo: "https://upload.wikimedia.org/wikipedia/commons/9/9d/Intercom_logo.svg"
+      logo: "intercom"
     },
     {
       name: "Jira",
-      logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/jira/jira-original.svg"
+      logo: "jira"
     },
     {
       name: "Zendesk",
-      logo: "https://cdn.worldvectorlogo.com/logos/zendesk.svg"
+      logo: "zendesk"
     },
     {
       name: "HubSpot",
-      logo: "https://cdn.worldvectorlogo.com/logos/hubspot-1.svg"
+      logo: "hubspot"
     }
-  ]
+  ];
   
   // Define the wheel integrations with proper type-safe positions
   const wheelIntegrations = [
     {
       name: "Salesforce",
-      logo: "https://upload.wikimedia.org/wikipedia/commons/f/f9/Salesforce.com_logo.svg",
+      logo: "salesforce",
       position: "top" as const
     },
     {
       name: "LinkedIn",
-      logo: "https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png",
+      logo: "linkedin",
       position: "top-right" as const
     },
     {
       name: "Jira",
-      logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/jira/jira-original.svg",
+      logo: "jira",
       position: "right" as const
     },
     {
       name: "HubSpot",
-      logo: "https://cdn.worldvectorlogo.com/logos/hubspot-1.svg",
+      logo: "hubspot",
       position: "bottom-right" as const
     },
     {
       name: "Google Calendar",
-      logo: "https://upload.wikimedia.org/wikipedia/commons/a/a5/Google_Calendar_icon_%282020%29.svg",
+      logo: "google-calendar",
       position: "bottom" as const
     },
     {
       name: "Gmail",
-      logo: "https://upload.wikimedia.org/wikipedia/commons/7/7e/Gmail_icon_%282020%29.svg",
+      logo: "gmail",
       position: "bottom-left" as const
     },
     {
       name: "Slack",
-      logo: "https://upload.wikimedia.org/wikipedia/commons/d/d5/Slack_icon_2019.svg",
+      logo: "slack",
       position: "left" as const
     },
     {
       name: "Intercom",
-      logo: "https://upload.wikimedia.org/wikipedia/commons/9/9d/Intercom_logo.svg",
+      logo: "intercom",
       position: "top-left" as const
     }
-  ]
+  ];
   
   return (
     <section id="integrations" className="py-20 bg-gradient-to-b from-background/50 to-background">
@@ -138,7 +138,7 @@ const IntegrationsSection = () => {
           
           <div className="flex justify-center">
             <IntegrationWheel 
-              centerLogo="klippi-logo" 
+              centerLogo="klippi" 
               centerName="Klippi"
               integrations={wheelIntegrations} 
             />
@@ -151,7 +151,7 @@ const IntegrationsSection = () => {
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default IntegrationsSection
+export default IntegrationsSection;

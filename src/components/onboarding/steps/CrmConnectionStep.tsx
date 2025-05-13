@@ -4,6 +4,7 @@ import { Database, FileUp, ArrowLeft, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { IntegrationLogo } from "@/components/integrations/IntegrationLogo";
 
 interface CrmConnectionStepProps {
   onNext: () => void;
@@ -58,9 +59,8 @@ export const CrmConnectionStep: React.FC<CrmConnectionStepProps> = ({ onNext, on
                 className="w-full justify-between"
               >
                 <div className="flex items-center">
-                  <img
-                    src="/integrations/salesforce.svg"
-                    alt="Salesforce"
+                  <IntegrationLogo
+                    name="Salesforce"
                     className="w-5 h-5 mr-2"
                   />
                   Connect Salesforce
@@ -74,9 +74,8 @@ export const CrmConnectionStep: React.FC<CrmConnectionStepProps> = ({ onNext, on
                 className="w-full justify-between"
               >
                 <div className="flex items-center">
-                  <img
-                    src="/integrations/hubspot.svg"
-                    alt="Hubspot"
+                  <IntegrationLogo
+                    name="HubSpot"
                     className="w-5 h-5 mr-2"
                   />
                   Connect Hubspot
@@ -90,9 +89,8 @@ export const CrmConnectionStep: React.FC<CrmConnectionStepProps> = ({ onNext, on
                 className="w-full justify-between"
               >
                 <div className="flex items-center">
-                  <img
-                    src="/integrations/intercom.svg"
-                    alt="Intercom"
+                  <IntegrationLogo
+                    name="Intercom"
                     className="w-5 h-5 mr-2"
                   />
                   Connect Intercom

@@ -3,6 +3,7 @@ import React from "react";
 import { Calendar, ArrowLeft, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { IntegrationLogo } from "@/components/integrations/IntegrationLogo";
 
 interface CalendarConnectionStepProps {
   onNext: () => void;
@@ -58,9 +59,8 @@ export const CalendarConnectionStep: React.FC<CalendarConnectionStepProps> = ({ 
             className="w-full justify-between"
           >
             <div className="flex items-center">
-              <img
-                src="/integrations/gcal.svg"
-                alt="Google Calendar"
+              <IntegrationLogo
+                name="Google Calendar"
                 className="w-5 h-5 mr-2"
               />
               Connect Google Calendar
