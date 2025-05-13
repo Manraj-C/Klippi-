@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
@@ -12,12 +13,16 @@ import { AISettings } from "@/components/settings/AISettings";
 import { IntegrationSettings } from "@/components/settings/IntegrationSettings";
 import { Integration } from "@/types/integration";
 import { GetStartedButton } from "@/components/onboarding/GetStartedButton";
+import { usePreloadIntegrationLogos } from "@/utils/image-utils";
 
 import DashboardLayout from "@/components/dashboard/DashboardLayout";
 
 const Settings = () => {
   const [activeTab, setActiveTab] = useState("profile");
   const navigate = useNavigate();
+  
+  // Preload all integration logos when the settings page loads
+  usePreloadIntegrationLogos();
 
   const handleTabChange = (value: string) => {
     setActiveTab(value);
@@ -40,7 +45,7 @@ const Settings = () => {
       category: "Email",
       status: "connected",
       icon: "mail",
-      logo: "/integrations/gmail.svg",
+      logo: "gmail",
       description: "Connect your Gmail account to receive and send emails directly from Klippi."
     },
     {
@@ -49,7 +54,7 @@ const Settings = () => {
       category: "Communication",
       status: "connected",
       icon: "message-circle",
-      logo: "/integrations/slack.svg",
+      logo: "slack",
       description: "Receive notifications and interact with Klippi through Slack."
     },
     {
@@ -58,7 +63,7 @@ const Settings = () => {
       category: "CRM",
       status: "connected",
       icon: "database",
-      logo: "/integrations/salesforce.svg",
+      logo: "salesforce",
       description: "Sync customer data, manage contacts, and track sales opportunities."
     },
     {
@@ -67,7 +72,7 @@ const Settings = () => {
       category: "Meetings",
       status: "disconnected",
       icon: "video",
-      logo: "/integrations/zoom.svg",
+      logo: "zoom",
       description: "Schedule and join meetings directly from Klippi."
     },
     {
@@ -76,7 +81,7 @@ const Settings = () => {
       category: "Calendar",
       status: "connected",
       icon: "calendar",
-      logo: "/integrations/gcal.svg",
+      logo: "google-calendar",
       description: "Sync your calendar to schedule meetings and get reminders."
     },
     {
@@ -85,7 +90,7 @@ const Settings = () => {
       category: "CRM",
       status: "disconnected",
       icon: "database",
-      logo: "/integrations/hubspot.svg",
+      logo: "hubspot",
       description: "Manage contacts, track customer journeys, and analyze marketing performance."
     },
     {
@@ -94,7 +99,7 @@ const Settings = () => {
       category: "Support",
       status: "disconnected",
       icon: "help-circle",
-      logo: "/integrations/zendesk.svg",
+      logo: "zendesk",
       description: "Track and resolve customer support tickets efficiently."
     },
     {
@@ -103,7 +108,7 @@ const Settings = () => {
       category: "Support",
       status: "disconnected",
       icon: "message-square",
-      logo: "/integrations/intercom.svg",
+      logo: "intercom",
       description: "Engage with customers through live chat, help articles, and product tours."
     }
   ];

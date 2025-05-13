@@ -4,12 +4,16 @@ import { Check, X } from "lucide-react";
 import { SettingsSection } from "./SettingsSection";
 import { Integration } from "@/types/integration";
 import { IntegrationLogo } from "@/components/integrations/IntegrationLogo";
+import { usePreloadIntegrationLogos } from "@/utils/image-utils";
 
 interface IntegrationSettingsProps {
   integrations: Integration[];
 }
 
 export const IntegrationSettings = ({ integrations }: IntegrationSettingsProps) => {
+  // Preload all integration logos to avoid loading issues
+  usePreloadIntegrationLogos();
+  
   const renderIntegrationSection = (category: string) => {
     const categoryIntegrations = integrations.filter(
       integration => integration.category === category
