@@ -1,7 +1,6 @@
 
 import React from "react";
 import { IntegrationCard } from "./integrations/integration-card";
-import { IntegrationWheel } from "./integrations/integration-wheel";
 
 const IntegrationsSection = () => {
   const integrations = [
@@ -51,50 +50,6 @@ const IntegrationsSection = () => {
     }
   ];
   
-  // Define the wheel integrations with proper type-safe positions
-  const wheelIntegrations = [
-    {
-      name: "Salesforce",
-      logo: "salesforce",
-      position: "top" as const
-    },
-    {
-      name: "LinkedIn",
-      logo: "linkedin",
-      position: "top-right" as const
-    },
-    {
-      name: "Jira",
-      logo: "jira",
-      position: "right" as const
-    },
-    {
-      name: "HubSpot",
-      logo: "hubspot",
-      position: "bottom-right" as const
-    },
-    {
-      name: "Google Calendar",
-      logo: "google-calendar",
-      position: "bottom" as const
-    },
-    {
-      name: "Gmail",
-      logo: "gmail",
-      position: "bottom-left" as const
-    },
-    {
-      name: "Slack",
-      logo: "slack",
-      position: "left" as const
-    },
-    {
-      name: "Intercom",
-      logo: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AIntercom_logo.png&psig=AOvVaw07WdYQub_WDx8RzSDUYJDa&ust=1747283300611000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCPj8k9aPoo0DFQAAAAAdAAAAABAE",
-      position: "top-left" as const
-    }
-  ];
-  
   return (
     <section id="integrations" className="py-20 bg-gradient-to-b from-background/50 to-background">
       <div className="container px-4 mx-auto">
@@ -123,25 +78,6 @@ const IntegrationsSection = () => {
                 <IntegrationCard key={`dup-${index}`} name={integration.name} logo={integration.logo} />
               ))}
             </div>
-          </div>
-        </div>
-        
-        {/* Integration wheel section - new component */}
-        <div className="max-w-4xl mx-auto mb-12 text-center">
-          <h3 className="text-2xl md:text-3xl font-bold mb-4">The Klippi Way</h3>
-          <p className="text-foreground/80 max-w-3xl mx-auto mb-10">
-            Supercharge your customer success operations by adding AI automation to where
-            you already work. Connect once and let Klippi work across all your tools, replacing 
-            fragmented solutions with one unified platform that learns your business 
-            context and continuously improves with usage.
-          </p>
-          
-          <div className="flex justify-center">
-            <IntegrationWheel 
-              centerLogo="klippi" 
-              centerName="Klippi"
-              integrations={wheelIntegrations} 
-            />
           </div>
         </div>
         
