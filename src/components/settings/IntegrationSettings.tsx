@@ -29,10 +29,23 @@ export const IntegrationSettings = ({ integrations }: IntegrationSettingsProps) 
             <div key={integration.id} className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <div className="flex items-center gap-4">
                 <div className="h-10 w-10 rounded-md bg-muted flex items-center justify-center text-xl">
-                  <IntegrationLogo 
-                    name={integration.name} 
-                    className="h-6 w-6 object-contain"
-                  />
+                  {integration.logo.startsWith('http') ? (
+                    <img 
+                      src={integration.logo}
+                      alt={`${integration.name} logo`}
+                      className="h-6 w-6 object-contain"
+                      onError={(e) => {
+                        console.log(`Failed to load image for ${integration.name}`);
+                        e.currentTarget.style.display = 'none';
+                        const parent = e.currentTarget.parentElement;
+                        if (parent) {
+                          parent.textContent = integration.name.charAt(0).toUpperCase();
+                        }
+                      }}
+                    />
+                  ) : (
+                    <span>{integration.name.charAt(0).toUpperCase()}</span>
+                  )}
                 </div>
                 <div>
                   <div className="font-medium">{integration.name}</div>
