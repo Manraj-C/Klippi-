@@ -1,10 +1,6 @@
 
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { TabsContent } from "@/components/ui/tabs";
 import { ProfileSettings } from "@/components/settings/ProfileSettings";
 import { NotificationSettings } from "@/components/settings/NotificationSettings";
 import { SecuritySettings } from "@/components/settings/SecuritySettings";
@@ -14,12 +10,14 @@ import { IntegrationSettings } from "@/components/settings/IntegrationSettings";
 import { Integration } from "@/types/integration";
 import { GetStartedButton } from "@/components/onboarding/GetStartedButton";
 import { usePreloadIntegrationLogos } from "@/utils/image-utils";
+import { SettingsTabs } from "@/components/settings/SettingsTabs";
+import { SettingsContainer } from "@/components/settings/SettingsContainer";
+import { SettingsHeader } from "@/components/settings/SettingsHeader";
 
 import DashboardLayout from "@/components/dashboard/DashboardLayout";
 
 const Settings = () => {
   const [activeTab, setActiveTab] = useState("profile");
-  const navigate = useNavigate();
   
   // Preload all integration logos when the settings page loads
   usePreloadIntegrationLogos();
@@ -116,88 +114,30 @@ const Settings = () => {
   return (
     <DashboardLayout>
       <div className="flex flex-col gap-6">
-        <div className="flex justify-between items-center">
-          <h1 className="text-3xl font-bold">Settings</h1>
-        </div>
+        <SettingsHeader title="Settings" />
 
-        <Card className="p-0">
-          <CardContent className="p-0">
-            <div className="flex flex-col md:flex-row">
-              <div className="p-4 md:w-64 md:border-r space-y-1">
-                <Tabs value={activeTab} onValueChange={handleTabChange} orientation="vertical">
-                  <TabsList className="flex flex-col w-full h-auto gap-1">
-                    <TabsTrigger
-                      className="w-full justify-start px-2 py-1.5 h-auto"
-                      value="profile"
-                      data-state={activeTab === "profile" ? "active" : ""}
-                    >
-                      Profile
-                    </TabsTrigger>
-                    <TabsTrigger
-                      className="w-full justify-start px-2 py-1.5 h-auto"
-                      value="notifications"
-                      data-state={activeTab === "notifications" ? "active" : ""}
-                    >
-                      Notifications
-                    </TabsTrigger>
-                    <TabsTrigger
-                      className="w-full justify-start px-2 py-1.5 h-auto"
-                      value="security"
-                      data-state={activeTab === "security" ? "active" : ""}
-                    >
-                      Security
-                    </TabsTrigger>
-                    <TabsTrigger
-                      className="w-full justify-start px-2 py-1.5 h-auto"
-                      value="appearance"
-                      data-state={activeTab === "appearance" ? "active" : ""}
-                    >
-                      Appearance
-                    </TabsTrigger>
-                    <TabsTrigger
-                      className="w-full justify-start px-2 py-1.5 h-auto"
-                      value="ai"
-                      data-state={activeTab === "ai" ? "active" : ""}
-                    >
-                      AI Settings
-                      <Badge className="ml-auto bg-primary/10 text-primary border-primary/20 hover:bg-primary/20">New</Badge>
-                    </TabsTrigger>
-                    <TabsTrigger
-                      className="w-full justify-start px-2 py-1.5 h-auto"
-                      value="integrations"
-                      data-state={activeTab === "integrations" ? "active" : ""}
-                    >
-                      Integrations
-                    </TabsTrigger>
-                  </TabsList>
-                </Tabs>
-              </div>
-
-              <div className="flex-1 p-6">
-                <Tabs value={activeTab} onValueChange={handleTabChange}>
-                  <TabsContent value="profile">
-                    <ProfileSettings user={userData} />
-                  </TabsContent>
-                  <TabsContent value="notifications">
-                    <NotificationSettings />
-                  </TabsContent>
-                  <TabsContent value="security">
-                    <SecuritySettings />
-                  </TabsContent>
-                  <TabsContent value="appearance">
-                    <AppearanceSettings />
-                  </TabsContent>
-                  <TabsContent value="ai">
-                    <AISettings />
-                  </TabsContent>
-                  <TabsContent value="integrations">
-                    <IntegrationSettings integrations={integrations} />
-                  </TabsContent>
-                </Tabs>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
+        <SettingsContainer>
+          <SettingsTabs activeTab={activeTab} onTabChange={handleTabChange}>
+            <TabsContent value="profile">
+              <ProfileSettings user={userData} />
+            </TabsContent>
+            <TabsContent value="notifications">
+              <NotificationSettings />
+            </TabsContent>
+            <TabsContent value="security">
+              <SecuritySettings />
+            </TabsContent>
+            <TabsContent value="appearance">
+              <AppearanceSettings />
+            </TabsContent>
+            <TabsContent value="ai">
+              <AISettings />
+            </TabsContent>
+            <TabsContent value="integrations">
+              <IntegrationSettings integrations={integrations} />
+            </TabsContent>
+          </SettingsTabs>
+        </SettingsContainer>
       </div>
       <GetStartedButton />
     </DashboardLayout>
