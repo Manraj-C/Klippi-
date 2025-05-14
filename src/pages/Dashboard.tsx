@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import DashboardLayout from "@/components/dashboard/DashboardLayout";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
@@ -43,6 +43,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { GetStartedButton } from "@/components/onboarding/GetStartedButton";
+import GeoDistributionMap from "@/components/dashboard/GeoDistributionMap";
 
 // Sample data for charts
 const clientPortfolioData = [
@@ -69,17 +70,74 @@ const clientRiskData = [
   { name: "High Risk", value: 10, color: "#F87171" },
 ];
 
-// Geographic data (simplified for visualization)
+// Geographic data with enhanced details for visualization
 const regionData = [
-  { name: "North America", value: 42, color: "#8b5cf6" },
-  { name: "Europe", value: 28, color: "#4ADE80" },
-  { name: "Asia Pacific", value: 18, color: "#FACC15" },
-  { name: "Latin America", value: 8, color: "#F87171" },
-  { name: "Other", value: 4, color: "#94a3b8" },
+  { 
+    name: "North America", 
+    value: 42, 
+    color: "#8b5cf6",
+    clients: 63,
+    revenue: 3540000,
+    majorCities: [
+      { name: "New York", clients: 22, revenue: 1320000 },
+      { name: "San Francisco", clients: 18, revenue: 1080000 },
+      { name: "Chicago", clients: 13, revenue: 780000 },
+      { name: "Toronto", clients: 10, revenue: 360000 }
+    ]
+  },
+  { 
+    name: "Europe", 
+    value: 28, 
+    color: "#4ADE80",
+    clients: 42,
+    revenue: 1960000,
+    majorCities: [
+      { name: "London", clients: 16, revenue: 960000 },
+      { name: "Paris", clients: 12, revenue: 580000 },
+      { name: "Berlin", clients: 8, revenue: 280000 },
+      { name: "Madrid", clients: 6, revenue: 140000 }
+    ]
+  },
+  { 
+    name: "Asia Pacific", 
+    value: 18, 
+    color: "#FACC15",
+    clients: 27,
+    revenue: 1240000,
+    majorCities: [
+      { name: "Tokyo", clients: 11, revenue: 660000 },
+      { name: "Singapore", clients: 8, revenue: 340000 },
+      { name: "Sydney", clients: 5, revenue: 180000 },
+      { name: "Mumbai", clients: 3, revenue: 60000 }
+    ]
+  },
+  { 
+    name: "Latin America", 
+    value: 8, 
+    color: "#F87171",
+    clients: 12,
+    revenue: 460000,
+    majorCities: [
+      { name: "Mexico City", clients: 5, revenue: 220000 },
+      { name: "São Paulo", clients: 4, revenue: 160000 },
+      { name: "Buenos Aires", clients: 3, revenue: 80000 }
+    ]
+  },
+  { 
+    name: "Other", 
+    value: 4, 
+    color: "#94a3b8",
+    clients: 6,
+    revenue: 120000,
+    majorCities: [
+      { name: "Various", clients: 6, revenue: 120000 }
+    ]
+  },
 ];
 
 const Dashboard = () => {
   const [refreshing, setRefreshing] = useState(false);
+  const [selectedRegion, setSelectedRegion] = useState<string | null>(null);
 
   const handleRefresh = () => {
     setRefreshing(true);
@@ -100,6 +158,12 @@ const Dashboard = () => {
   };
 
   const healthScore = calculateHealthScore();
+
+  // Filter region data based on selection
+  const filteredRegionData = useMemo(() => {
+    if (!selectedRegion) return regionData;
+    return regionData.filter(region => region.name === selectedRegion);
+  }, [selectedRegion]);
 
   return (
     <DashboardLayout>
@@ -250,34 +314,99 @@ const Dashboard = () => {
                     </div>
                   </div>
                 </CardHeader>
-                <CardContent>
-                  <div className="flex flex-col h-[240px]">
-                    <div className="flex-1 mb-4 opacity-75">
-                      <img 
-                        src="/placeholder.svg" 
-                        alt="World Map" 
-                        className="w-full h-full object-contain opacity-25"
-                      />
-                    </div>
-                    <div className="grid grid-cols-5 gap-2">
-                      {regionData.map((region, index) => (
-                        <div key={index} className="flex flex-col items-center">
-                          <div className="w-full bg-gray-100 rounded-full h-1.5 mb-1">
-                            <div 
-                              className="h-1.5 rounded-full" 
-                              style={{ width: `${region.value}%`, backgroundColor: region.color }}
-                            ></div>
-                          </div>
-                          <span className="text-xs font-medium text-gray-500">{region.name}</span>
-                          <span className="text-xs font-bold">{region.value}%</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
+                <CardContent className="p-0">
+                  <GeoDistributionMap 
+                    regionData={regionData} 
+                    setSelectedRegion={setSelectedRegion}
+                    selectedRegion={selectedRegion}
+                  />
                 </CardContent>
               </Card>
             </div>
             
+            {/* Region Detail Cards if a region is selected */}
+            {selectedRegion && (
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                {filteredRegionData.map(region => (
+                  <React.Fragment key={region.name}>
+                    <Card className="col-span-1">
+                      <CardHeader className="pb-2">
+                        <CardTitle className="text-lg flex items-center">
+                          <MapPin className="h-4 w-4 mr-2" style={{ color: region.color }} />
+                          {region.name}
+                        </CardTitle>
+                        <CardDescription>Region Overview</CardDescription>
+                      </CardHeader>
+                      <CardContent>
+                        <div className="space-y-2">
+                          <div className="flex justify-between">
+                            <span className="text-sm text-muted-foreground">Clients</span>
+                            <span className="font-semibold">{region.clients}</span>
+                          </div>
+                          <div className="flex justify-between">
+                            <span className="text-sm text-muted-foreground">Revenue</span>
+                            <span className="font-semibold">${(region.revenue/1000000).toFixed(2)}M</span>
+                          </div>
+                          <div className="flex justify-between">
+                            <span className="text-sm text-muted-foreground">Market Share</span>
+                            <span className="font-semibold">{region.value}%</span>
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+                    
+                    <Card className="col-span-2">
+                      <CardHeader className="pb-2">
+                        <CardTitle className="text-lg">Top Cities</CardTitle>
+                        <CardDescription>Distribution by major city</CardDescription>
+                      </CardHeader>
+                      <CardContent>
+                        <div className="space-y-4">
+                          {region.majorCities.map((city, idx) => (
+                            <div key={idx}>
+                              <div className="flex justify-between items-center mb-1">
+                                <span className="font-medium">{city.name}</span>
+                                <span className="text-sm text-muted-foreground">
+                                  {city.clients} clients | ${(city.revenue/1000).toFixed(0)}K
+                                </span>
+                              </div>
+                              <div className="flex gap-2 items-center">
+                                <Progress 
+                                  value={(city.revenue / region.revenue) * 100} 
+                                  className="h-2"
+                                  style={{ backgroundColor: `${region.color}20` }}
+                                  indicatorClassName={cn("bg-gradient-to-r", { 
+                                    "from-purple-500 to-purple-600": region.name === "North America",
+                                    "from-green-500 to-green-600": region.name === "Europe",
+                                    "from-yellow-500 to-yellow-600": region.name === "Asia Pacific",
+                                    "from-red-500 to-red-600": region.name === "Latin America",
+                                    "from-gray-500 to-gray-600": region.name === "Other",
+                                  })}
+                                />
+                                <span className="text-xs font-medium">
+                                  {((city.revenue / region.revenue) * 100).toFixed(0)}%
+                                </span>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </React.Fragment>
+                ))}
+                <div className="col-span-1 md:col-span-3 flex justify-end">
+                  <Button 
+                    variant="outline" 
+                    size="sm" 
+                    onClick={() => setSelectedRegion(null)}
+                    className="text-xs"
+                  >
+                    Back to World View
+                  </Button>
+                </div>
+              </div>
+            )}
+
             {/* Second row of charts */}
             <div className="grid grid-cols-1 gap-4">
               {/* Revenue Metrics */}
