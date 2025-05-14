@@ -9,47 +9,58 @@ const WorldMapBackground = () => {
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAxMCAwIEwgMCAwIDAgMTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0icmdiYSgxMDAsMTAwLDEwMCwwLjEpIiBzdHJva2Utd2lkdGg9IjEiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JpZCkiLz48L3N2Zz4=')]" />
       </div>
 
-      {/* World map - more detailed and realistic representation */}
-      <div className="absolute inset-0 opacity-25 p-4">
+      {/* World map - more accurate representation */}
+      <div className="absolute inset-0 opacity-25 p-6">
         <svg viewBox="0 0 1000 500" xmlns="http://www.w3.org/2000/svg">
           {/* North America */}
-          <path d="M148,117 l12,-3 l7,-9 l-7,-5 l-14,3 l-10,9 l12,5 Z" fill="currentColor" />
-          <path d="M158,108 l15,-12 l10,0 l16,-13 l-6,-13 l-11,-9 l-14,3 l-11,12 l-12,6 l7,9 l6,17 Z" fill="currentColor" />
-          <path d="M198,83 l13,-12 l9,0 l10,-6 l8,-12 l-9,-6 l-10,0 l-9,6 l-12,0 l-7,6 l6,13 l1,11 Z" fill="currentColor" />
-          <path d="M228,53 l21,-21 l21,-7 l30,-18 l-8,-7 l-17,7 l-13,0 l-9,11 l-19,9 l-15,12 l9,14 Z" fill="currentColor" />
+          <path d="M123,102 L143,77 L173,64 L199,52 L223,48 L256,51 L287,51 L321,64 L321,77 L304,97 L282,116 L256,125 L230,143 L217,162 L212,187 L204,207 L188,226 L173,235 L153,235 L139,218 L123,202 L119,179 L107,165 L94,158 L83,143 L93,131 L99,116 L123,102" fill="currentColor" />
           
           {/* Central America */}
-          <path d="M213,157 l-9,-13 l-10,-3 l-10,6 l-8,12 l-12,11 l-10,15 l9,6 l10,-5 l8,-10 l13,-8 l19,-11 Z" fill="currentColor" />
+          <path d="M204,207 L212,226 L217,252 L212,281 L199,297 L188,312 L173,332 L161,352 L156,364 L153,378 L160,392 L173,400 L180,415 L173,424 L156,427 L143,434 L131,441 L113,441 L104,427 L113,412 L123,397 L123,378 L131,361 L143,342 L153,325 L153,307 L143,292 L139,274 L153,259 L166,248 L183,229 L204,207" fill="currentColor" />
           
           {/* South America */}
-          <path d="M278,193 l-19,-9 l-12,-12 l-9,-3 l-10,6 l-8,13 l-11,18 l-6,21 l-9,17 l-13,15 l-9,18 l-4,22 l-9,18 l-4,24 l8,21 l13,15 l14,9 l15,3 l15,-6 l12,-15 l10,-6 l13,-3 l12,6 l10,15 l13,12 l10,3 l9,-6 l8,-12 l4,-19 l9,-18 l-4,-10 l-13,-6 l-13,6 l-11,-6 l-4,-12 l5,-15 l13,-12 l10,-3 l11,-9 l10,-21 l1,-21 l-12,-21 l-13,-15 l-12,-12 l-13,-9 Z" fill="currentColor" />
+          <path d="M180,415 L188,429 L199,441 L212,449 L225,458 L230,473 L243,481 L256,490 L273,490 L287,481 L295,467 L295,449 L302,437 L314,429 L326,415 L335,400 L343,383 L348,364 L359,350 L366,336 L372,322 L370,299 L359,287 L343,281 L326,281 L314,292 L302,307 L287,322 L273,342 L265,361 L256,378 L243,397 L225,415 L212,424 L199,429 L180,415" fill="currentColor" />
           
           {/* Europe */}
-          <path d="M493,104 l-10,6 l-7,15 l9,9 l12,0 l10,-6 l9,-12 l-9,-12 l-14,0 Z" fill="currentColor" />
-          <path d="M516,90 l16,-9 l12,0 l6,6 l15,-6 l9,0 l1,9 l-12,12 l-15,6 l-10,0 l-12,6 l-10,-12 l0,-12 Z" fill="currentColor" />
-          <path d="M555,87 l13,-9 l11,0 l9,-6 l10,6 l0,12 l-7,9 l-13,6 l-10,-6 l-13,-12 Z" fill="currentColor" />
-          <path d="M598,78 l11,-12 l10,0 l10,-6 l9,9 l-6,9 l-13,6 l-10,6 l-11,-12 Z" fill="currentColor" />
+          <path d="M500,85 L500,102 L526,116 L545,122 L561,138 L568,151 L585,158 L601,158 L605,144 L605,122 L596,102 L585,77 L568,65 L545,57 L526,56 L500,66 L500,85" fill="currentColor" />
           
           {/* Africa */}
-          <path d="M493,180 l-9,-15 l-3,-18 l9,-18 l14,-12 l15,-6 l21,-3 l21,6 l15,15 l9,18 l9,18 l4,18 l9,12 l16,9 l21,9 l12,15 l6,15 l12,12 l-3,15 l-12,12 l-15,15 l-12,21 l-9,15 l-6,24 l-9,0 l-6,9 l-13,0 l-9,-9 l-12,0 l-9,-9 l-9,0 l-7,-6 l-12,0 l-9,-6 l-10,-18 l-9,-18 l-6,-27 l-7,-24 l-9,-18 l-10,-18 l-6,-24 l9,-15 l16,-12 Z" fill="currentColor" />
+          <path d="M500,179 L523,165 L540,158 L557,158 L580,172 L584,202 L584,235 L584,259 L574,274 L570,292 L566,304 L562,319 L566,338 L557,356 L542,367 L523,367 L506,378 L489,378 L476,367 L458,361 L437,356 L425,336 L425,319 L432,304 L448,292 L462,274 L469,252 L472,235 L479,215 L489,198 L500,179" fill="currentColor" />
           
           {/* Asia */}
-          <path d="M703,139 l-14,-18 l-6,-21 l9,-15 l15,-9 l16,-3 l15,-9 l12,-12 l15,-6 l18,-6 l21,0 l18,6 l15,9 l15,15 l21,9 l18,15 l10,18 l9,27 l9,18 l15,9 l18,15 l15,12 l10,15 l12,15 l9,18 l-9,9 l-12,-9 l-12,-6 l-21,-6 l-18,-9 l-24,-6 l-18,0 l-15,9 l-18,3 l-16,9 l-18,9 l-9,12 l-15,6 l-16,9 l-15,0 l-15,6 l-12,18 l-15,0 l-15,-24 l-9,-24 l0,-30 l-12,-36 l-6,-24 l-9,-21 Z" fill="currentColor" />
+          <path d="M739,94 L756,79 L771,62 L797,53 L819,51 L841,57 L858,70 L866,94 L878,112 L888,133 L898,151 L905,169 L925,179 L938,189 L942,208 L929,220 L905,226 L888,236 L878,247 L866,267 L846,276 L829,289 L807,289 L793,276 L785,261 L771,242 L756,230 L739,215 L727,196 L714,175 L707,152 L714,125 L727,107 L739,94" fill="currentColor" />
+          <path d="M601,158 L614,151 L631,147 L649,143 L669,140 L686,133 L704,125 L718,116 L718,134 L708,143 L699,152 L692,162 L679,169 L666,169 L655,176 L644,187 L634,196 L620,202 L605,208 L597,218 L586,226 L571,226 L559,215 L550,202 L546,189 L546,176 L557,169 L568,162 L580,158 L594,158 L601,158" fill="currentColor" />
+          <path d="M695,169 L705,169 L714,174 L719,184 L726,189 L733,179 L745,170 L755,163 L764,153 L776,146 L790,146 L799,137 L805,129 L814,120 L820,111 L809,111 L799,118 L788,124 L778,132 L769,139 L761,149 L752,158 L745,163 L740,170 L733,177 L724,177 L717,174 L706,177 L695,169" fill="currentColor" />
           
           {/* Australia */}
-          <path d="M853,312 l-6,-18 l-9,-18 l-15,-9 l-19,-9 l-21,0 l-18,9 l-15,18 l-9,18 l-3,24 l6,18 l10,15 l15,6 l19,9 l21,-6 l18,-15 l12,-18 l9,-24 l5,-1 Z" fill="currentColor" />
+          <path d="M850,310 L866,301 L886,301 L903,310 L916,322 L925,337 L925,356 L916,372 L903,383 L881,390 L863,390 L846,378 L833,361 L829,342 L836,322 L850,310" fill="currentColor" />
+          
+          {/* Antarctica */}
+          <path d="M500,490 L750,490 L750,470 L726,450 L700,444 L670,436 L630,432 L590,430 L550,432 L510,436 L480,444 L454,450 L430,470 L430,490 L500,490" fill="currentColor" />
           
           {/* Japan */}
-          <path d="M865,166 l6,-15 l9,-6 l6,12 l-6,15 l-15,17 l-12,6 l0,12 l9,9 l0,15 l-10,6 l-8,-12 l-4,-18 l0,-18 l10,-12 l15,-11 Z" fill="currentColor" />
+          <path d="M871,151 L879,162 L879,176 L871,187 L862,196 L862,209 L868,216 L874,222 L874,235 L865,243 L855,243 L846,235 L846,222 L855,211 L862,202 L862,187 L855,176 L855,162 L862,156 L871,151" fill="currentColor" />
           
-          {/* UK */}
-          <path d="M446,114 l-9,-9 l-6,0 l-3,9 l9,12 l9,-12 Z" fill="currentColor" />
-          <path d="M459,98 l-6,-6 l-9,0 l-6,6 l0,7 l6,6 l9,-1 l6,-12 Z" fill="currentColor" />
+          {/* United Kingdom */}
+          <path d="M475,102 L483,93 L494,93 L499,102 L494,110 L483,110 L475,102" fill="currentColor" />
           
           {/* Indonesia */}
-          <path d="M763,284 l15,-6 l16,6 l0,12 l-16,0 l-15,-12 Z" fill="currentColor" />
-          <path d="M799,284 l13,0 l12,6 l-9,9 l-16,-6 l0,-9 Z" fill="currentColor" />
-          <path d="M824,275 l13,0 l9,9 l-9,9 l-13,-3 l-9,-6 l9,-9 Z" fill="currentColor" />
+          <path d="M778,261 L789,261 L798,267 L798,276 L789,282 L778,276 L778,261" fill="currentColor" />
+          <path d="M807,261 L816,261 L824,267 L824,276 L816,282 L807,276 L807,261" fill="currentColor" />
+          <path d="M833,261 L842,261 L851,267 L851,276 L842,282 L833,276 L833,261" fill="currentColor" />
+          <path d="M860,261 L869,261 L878,267 L878,276 L869,282 L860,276 L860,261" fill="currentColor" />
+          
+          {/* New Zealand */}
+          <path d="M915,390 L922,390 L929,396 L929,403 L922,410 L915,410 L908,403 L908,396 L915,390" fill="currentColor" />
+          
+          {/* Greenland */}
+          <path d="M372,48 L396,41 L419,41 L442,48 L442,66 L425,81 L402,90 L379,90 L356,81 L356,66 L372,48" fill="currentColor" />
+          
+          {/* India */}
+          <path d="M710,175 L721,184 L734,192 L745,201 L752,215 L752,230 L745,243 L734,251 L721,256 L710,256 L698,251 L687,243 L680,230 L680,215 L687,201 L698,193 L710,175" fill="currentColor" />
+          
+          {/* Middle East */}
+          <path d="M620,170 L632,170 L643,176 L653,185 L643,199 L632,208 L620,214 L607,214 L597,208 L587,199 L597,185 L607,176 L620,170" fill="currentColor" />
         </svg>
       </div>
     </>
