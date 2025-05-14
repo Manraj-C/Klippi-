@@ -29,20 +29,16 @@ import {
 } from "recharts";
 import {
   Users,
-  DollarSign,
+  CircleDollarSign,
   AlertTriangle,
   Mail,
   RefreshCw,
   ChevronUp,
-  ArrowUpRight,
-  CircleDollarSign,
-  Heart,
-  MapPin,
   ChartPie,
   TrendingUp,
-  CircleUser,
+  Heart,
+  MapPin,
   Calendar,
-  Clock,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
