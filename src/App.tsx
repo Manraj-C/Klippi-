@@ -21,6 +21,16 @@ import Inbox from "./pages/Inbox";
 import AIFlows from "./pages/AIFlows";
 import AIFlowDetail from "./pages/AIFlowDetail";
 import Insights from "./pages/Insights";
+// Import site structure pages
+import Solutions from "./pages/site/Solutions";
+import Features from "./pages/site/Features";
+import Platform from "./pages/site/Platform";
+import Resources from "./pages/site/Resources";
+import Blog from "./pages/site/Blog";
+import BlogPost from "./pages/site/BlogPost";
+import About from "./pages/site/About";
+import Pricing from "./pages/site/Pricing";
+import Contact from "./pages/site/Contact";
 
 const queryClient = new QueryClient();
 
@@ -64,6 +74,28 @@ const App = () => (
         <Routes>
           <Route path="/" element={<HomeRedirect />} />
           <Route path="/auth" element={<Auth />} />
+          
+          {/* Public Site Structure */}
+          <Route path="/solutions" element={<Solutions />} />
+          <Route path="/solutions/individual-csm" element={<Solutions />} />
+          <Route path="/solutions/cs-teams" element={<Solutions />} />
+          <Route path="/features" element={<Features />} />
+          <Route path="/features/ai-assistant" element={<Features />} />
+          <Route path="/features/meeting-support" element={<Features />} />
+          <Route path="/features/client-management" element={<Features />} />
+          <Route path="/platform" element={<Platform />} />
+          <Route path="/platform/integrations" element={<Platform />} />
+          <Route path="/platform/security" element={<Platform />} />
+          <Route path="/resources" element={<Resources />} />
+          <Route path="/resources/case-studies" element={<Resources />} />
+          <Route path="/resources/guides" element={<Resources />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/:slug" element={<BlogPost />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/pricing" element={<Pricing />} />
+          <Route path="/contact" element={<Contact />} />
+          
+          {/* Dashboard Structure */}
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/dashboard/clients" element={<Clients />} />
           <Route path="/dashboard/clients/:id" element={<ClientDetail />} />
@@ -76,7 +108,8 @@ const App = () => (
           <Route path="/dashboard/insights" element={<Insights />} />
           <Route path="/dashboard/ai-flows" element={<AIFlows />} />
           <Route path="/dashboard/ai-flows/:id" element={<AIFlowDetail />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+          
+          {/* Catch-all route */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
