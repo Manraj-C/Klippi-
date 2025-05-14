@@ -63,7 +63,7 @@ export const SettingsDataProvider = ({ children }: SettingsDataProviderProps) =>
       category: "Email",
       status: "connected",
       icon: "mail",
-      logo: "gmail",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/7/7e/Gmail_icon_%282020%29.svg",
       description: "Connect your Gmail account to receive and send emails directly from Klippi."
     },
     {
@@ -72,7 +72,7 @@ export const SettingsDataProvider = ({ children }: SettingsDataProviderProps) =>
       category: "Communication",
       status: "connected",
       icon: "message-circle",
-      logo: "slack",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/d/d5/Slack_icon_2019.svg",
       description: "Receive notifications and interact with Klippi through Slack."
     },
     {
@@ -81,7 +81,7 @@ export const SettingsDataProvider = ({ children }: SettingsDataProviderProps) =>
       category: "CRM",
       status: "connected",
       icon: "database",
-      logo: "salesforce",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/f/f9/Salesforce.com_logo.svg",
       description: "Sync customer data, manage contacts, and track sales opportunities."
     },
     {
@@ -90,7 +90,7 @@ export const SettingsDataProvider = ({ children }: SettingsDataProviderProps) =>
       category: "Meetings",
       status: "disconnected",
       icon: "video",
-      logo: "zoom",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/9/9b/Zoom_logo.svg",
       description: "Schedule and join meetings directly from Klippi."
     },
     {
@@ -99,7 +99,7 @@ export const SettingsDataProvider = ({ children }: SettingsDataProviderProps) =>
       category: "Calendar",
       status: "connected",
       icon: "calendar",
-      logo: "google-calendar",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/a/a5/Google_Calendar_icon_%282020%29.svg",
       description: "Sync your calendar to schedule meetings and get reminders."
     },
     {
@@ -108,7 +108,7 @@ export const SettingsDataProvider = ({ children }: SettingsDataProviderProps) =>
       category: "CRM",
       status: "disconnected",
       icon: "database",
-      logo: "hubspot",
+      logo: "https://cdn.worldvectorlogo.com/logos/hubspot-1.svg",
       description: "Manage contacts, track customer journeys, and analyze marketing performance."
     },
     {
@@ -117,7 +117,7 @@ export const SettingsDataProvider = ({ children }: SettingsDataProviderProps) =>
       category: "Support",
       status: "disconnected",
       icon: "help-circle",
-      logo: "zendesk",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/c/c8/Zendesk_logo.svg",
       description: "Track and resolve customer support tickets efficiently."
     },
     {
@@ -126,7 +126,7 @@ export const SettingsDataProvider = ({ children }: SettingsDataProviderProps) =>
       category: "Support",
       status: "disconnected",
       icon: "message-square",
-      logo: "intercom",
+      logo: "https://cdn.worldvectorlogo.com/logos/intercom-1.svg",
       description: "Engage with customers through live chat, help articles, and product tours."
     }
   ];
