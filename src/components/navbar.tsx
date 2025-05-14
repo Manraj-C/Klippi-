@@ -137,9 +137,10 @@ const Navbar = () => {
             <Link to="/pricing">Pricing</Link>
           </Button>
           
-          <Button variant="ghost" className="text-foreground/80 hover:text-foreground" asChild>
+          {/* About link temporarily hidden */}
+          {/* <Button variant="ghost" className="text-foreground/80 hover:text-foreground" asChild>
             <Link to="/about">About</Link>
-          </Button>
+          </Button> */}
           
           <Button variant="ghost" className="text-foreground/80 hover:text-foreground" asChild>
             <Link to="/contact">Contact</Link>
@@ -256,7 +257,8 @@ const Navbar = () => {
                   Pricing
                 </Link>
               </div>
-              <div>
+              {/* About link temporarily hidden */}
+              {/* <div>
                 <Link 
                   to="/about" 
                   className="text-foreground/80 hover:text-foreground"
@@ -264,7 +266,7 @@ const Navbar = () => {
                 >
                   About
                 </Link>
-              </div>
+              </div> */}
               <div>
                 <Link 
                   to="/contact" 

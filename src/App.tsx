@@ -91,7 +91,8 @@ const App = () => (
           <Route path="/resources/guides" element={<Resources />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:slug" element={<BlogPost />} />
-          <Route path="/about" element={<About />} />
+          {/* About page temporarily hidden */}
+          {/* <Route path="/about" element={<About />} /> */}
           <Route path="/pricing" element={<Pricing />} />
           <Route path="/contact" element={<Contact />} />
           
