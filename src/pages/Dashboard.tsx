@@ -43,6 +43,7 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { GetStartedButton } from "@/components/onboarding/GetStartedButton";
 import GeoDistributionMap from "@/components/dashboard/GeoDistributionMap";
+import React from "react";
 
 // Sample data for charts
 const clientPortfolioData = [
