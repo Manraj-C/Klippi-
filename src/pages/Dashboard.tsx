@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import DashboardLayout from "@/components/dashboard/DashboardLayout";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
@@ -23,31 +24,47 @@ import {
   PieChart,
   Pie,
   Cell,
+  AreaChart,
+  Area,
 } from "recharts";
 import {
   Users,
   DollarSign,
-  Activity,
   AlertTriangle,
   Mail,
-  Clock,
-  CalendarClock,
-  ArrowUpRight,
   RefreshCw,
+  ChevronUp,
+  ArrowUpRight,
+  CircleDollarSign,
+  Heart,
+  MapPin,
+  ChartPie,
+  TrendingUp,
+  CircleUser,
+  Calendar,
+  Clock,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { GetStartedButton } from "@/components/onboarding/GetStartedButton";
 
 // Sample data for charts
-const clientActivityData = [
-  { name: "Mon", active: 65, inactive: 35 },
-  { name: "Tue", active: 70, inactive: 30 },
-  { name: "Wed", active: 80, inactive: 20 },
-  { name: "Thu", active: 75, inactive: 25 },
-  { name: "Fri", active: 60, inactive: 40 },
-  { name: "Sat", active: 45, inactive: 55 },
-  { name: "Sun", active: 40, inactive: 60 },
+const clientPortfolioData = [
+  { name: "Enterprise", value: 45, color: "#4ADE80" },
+  { name: "Mid-Market", value: 30, color: "#FACC15" },
+  { name: "SMB", value: 25, color: "#8b5cf6" },
+];
+
+const revenueData = [
+  { name: "Jan", mrr: 12000, arr: 144000 },
+  { name: "Feb", mrr: 13500, arr: 162000 },
+  { name: "Mar", mrr: 15000, arr: 180000 },
+  { name: "Apr", mrr: 14200, arr: 170400 },
+  { name: "May", mrr: 16800, arr: 201600 },
+  { name: "Jun", mrr: 19500, arr: 234000 },
+  { name: "Jul", mrr: 21000, arr: 252000 },
+  { name: "Aug", mrr: 22500, arr: 270000 },
+  { name: "Sep", mrr: 24000, arr: 288000 },
 ];
 
 const clientRiskData = [
@@ -56,11 +73,13 @@ const clientRiskData = [
   { name: "High Risk", value: 10, color: "#F87171" },
 ];
 
-const responseTimeData = [
-  { name: "Week 1", time: 16 },
-  { name: "Week 2", time: 12 },
-  { name: "Week 3", time: 8 },
-  { name: "Week 4", time: 6 },
+// Geographic data (simplified for visualization)
+const regionData = [
+  { name: "North America", value: 42, color: "#8b5cf6" },
+  { name: "Europe", value: 28, color: "#4ADE80" },
+  { name: "Asia Pacific", value: 18, color: "#FACC15" },
+  { name: "Latin America", value: 8, color: "#F87171" },
+  { name: "Other", value: 4, color: "#94a3b8" },
 ];
 
 const Dashboard = () => {
@@ -71,17 +90,98 @@ const Dashboard = () => {
     setTimeout(() => setRefreshing(false), 1000);
   };
 
+  const calculateHealthScore = () => {
+    return {
+      score: 78,
+      change: 5,
+      indicators: [
+        { name: "Engagement", value: 82 },
+        { name: "Renewal Risk", value: 74 },
+        { name: "Product Usage", value: 89 },
+        { name: "Support Cases", value: 68 },
+      ]
+    };
+  };
+
+  const healthScore = calculateHealthScore();
+
   return (
     <DashboardLayout>
       <div className="flex flex-col gap-6">
         <div className="flex justify-between items-center">
           <h1 className="text-3xl font-bold">CSM Dashboard</h1>
           <div className="flex items-center gap-2">
-            <span className="text-sm text-muted-foreground">Auto refreshes every 60s</span>
+            <span className="text-sm text-muted-foreground">Last updated: Today, 10:24 AM</span>
             <Button variant="outline" size="icon" onClick={handleRefresh} className={cn(refreshing && "animate-spin")}>
               <RefreshCw className="h-4 w-4" />
             </Button>
           </div>
+        </div>
+        
+        {/* Key Metrics Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <Card className="border border-border/40 shadow-sm">
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium">Total Clients</CardTitle>
+              <Users className="h-4 w-4 text-primary" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold">142</div>
+              <p className="text-xs text-muted-foreground mt-1">
+                <span className="text-green-500 inline-flex items-center">
+                  <ChevronUp className="h-3 w-3 mr-1" /> 6%
+                </span>{" "}
+                from last month
+              </p>
+            </CardContent>
+          </Card>
+          
+          <Card className="border border-border/40 shadow-sm">
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium">Total ARR</CardTitle>
+              <CircleDollarSign className="h-4 w-4 text-primary" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold">$1.42M</div>
+              <p className="text-xs text-muted-foreground mt-1">
+                <span className="text-green-500 inline-flex items-center">
+                  <ChevronUp className="h-3 w-3 mr-1" /> 12.5%
+                </span>{" "}
+                from last quarter
+              </p>
+            </CardContent>
+          </Card>
+          
+          <Card className="border border-border/40 shadow-sm">
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium">Customer Health</CardTitle>
+              <Heart className="h-4 w-4 text-primary" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold">{healthScore.score}%</div>
+              <p className="text-xs text-muted-foreground mt-1">
+                <span className="text-green-500 inline-flex items-center">
+                  <ChevronUp className="h-3 w-3 mr-1" /> {healthScore.change}%
+                </span>{" "}
+                from last month
+              </p>
+            </CardContent>
+          </Card>
+          
+          <Card className="border border-border/40 shadow-sm">
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium">Emails Drafted</CardTitle>
+              <Mail className="h-4 w-4 text-primary" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold">127</div>
+              <p className="text-xs text-muted-foreground mt-1">
+                <span className="text-gray-500">
+                  89% sent, 11% pending
+                </span>
+              </p>
+            </CardContent>
+          </Card>
         </div>
         
         <Tabs defaultValue="overview" className="space-y-4">
@@ -94,75 +194,190 @@ const Dashboard = () => {
           </div>
           
           <TabsContent value="overview" className="space-y-4">
-            {/* Key Metrics */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-              <Card>
-                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                  <CardTitle className="text-sm font-medium">Total Clients</CardTitle>
-                  <Users className="h-4 w-4 text-muted-foreground" />
+            {/* First row of charts */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {/* Client Portfolio Breakdown */}
+              <Card className="border border-border/40 shadow-sm">
+                <CardHeader>
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <CardTitle className="flex items-center">
+                        <ChartPie className="h-4 w-4 mr-2 text-primary" />
+                        Client Portfolio Breakdown
+                      </CardTitle>
+                      <CardDescription>Distribution by segment</CardDescription>
+                    </div>
+                  </div>
                 </CardHeader>
                 <CardContent>
-                  <div className="text-2xl font-bold">142</div>
-                  <p className="text-xs text-muted-foreground mt-1">
-                    <span className="text-green-500 inline-flex items-center">
-                      +6% <ArrowUpRight className="h-3 w-3" />
-                    </span>{" "}
-                    from last month
-                  </p>
+                  <div className="flex items-center justify-center">
+                    <ChartContainer className="h-[240px]" config={{
+                      "Enterprise": { color: "#4ADE80" },
+                      "Mid-Market": { color: "#FACC15" },
+                      "SMB": { color: "#8b5cf6" },
+                    }}>
+                      <PieChart>
+                        <Pie
+                          data={clientPortfolioData}
+                          cx="50%"
+                          cy="50%"
+                          outerRadius={80}
+                          innerRadius={50}
+                          fill="#8884d8"
+                          dataKey="value"
+                          nameKey="name"
+                          label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%`}
+                          labelLine={false}
+                        >
+                          {clientPortfolioData.map((entry, index) => (
+                            <Cell key={`cell-${index}`} fill={entry.color} />
+                          ))}
+                        </Pie>
+                        <ChartTooltip content={<ChartTooltipContent />} />
+                        <ChartLegend content={<ChartLegendContent />} />
+                      </PieChart>
+                    </ChartContainer>
+                  </div>
                 </CardContent>
               </Card>
               
-              <Card>
-                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                  <CardTitle className="text-sm font-medium">Total ARR</CardTitle>
-                  <DollarSign className="h-4 w-4 text-muted-foreground" />
+              {/* Geographic Breakdown */}
+              <Card className="border border-border/40 shadow-sm">
+                <CardHeader>
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <CardTitle className="flex items-center">
+                        <MapPin className="h-4 w-4 mr-2 text-primary" />
+                        Geographic Distribution
+                      </CardTitle>
+                      <CardDescription>Client locations by region</CardDescription>
+                    </div>
+                  </div>
                 </CardHeader>
                 <CardContent>
-                  <div className="text-2xl font-bold">$1.42M</div>
-                  <p className="text-xs text-muted-foreground mt-1">
-                    <span className="text-green-500 inline-flex items-center">
-                      +12.5% <ArrowUpRight className="h-3 w-3" />
-                    </span>{" "}
-                    from last quarter
-                  </p>
-                </CardContent>
-              </Card>
-              
-              <Card>
-                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                  <CardTitle className="text-sm font-medium">Avg. Response Time</CardTitle>
-                  <Clock className="h-4 w-4 text-muted-foreground" />
-                </CardHeader>
-                <CardContent>
-                  <div className="text-2xl font-bold">26m 50s</div>
-                  <p className="text-xs text-muted-foreground mt-1">
-                    <span className="text-green-500 inline-flex items-center">
-                      -15% <ArrowUpRight className="h-3 w-3" />
-                    </span>{" "}
-                    improved from last week
-                  </p>
-                </CardContent>
-              </Card>
-              
-              <Card>
-                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                  <CardTitle className="text-sm font-medium">Emails Drafted</CardTitle>
-                  <Mail className="h-4 w-4 text-muted-foreground" />
-                </CardHeader>
-                <CardContent>
-                  <div className="text-2xl font-bold">127</div>
-                  <p className="text-xs text-muted-foreground mt-1">
-                    <span className="text-gray-500">
-                      89% sent, 11% pending
-                    </span>
-                  </p>
+                  <div className="flex flex-col h-[240px]">
+                    <div className="flex-1 mb-4 opacity-75">
+                      <img 
+                        src="/placeholder.svg" 
+                        alt="World Map" 
+                        className="w-full h-full object-contain opacity-25"
+                      />
+                    </div>
+                    <div className="grid grid-cols-5 gap-2">
+                      {regionData.map((region, index) => (
+                        <div key={index} className="flex flex-col items-center">
+                          <div className="w-full bg-gray-100 rounded-full h-1.5 mb-1">
+                            <div 
+                              className="h-1.5 rounded-full" 
+                              style={{ width: `${region.value}%`, backgroundColor: region.color }}
+                            ></div>
+                          </div>
+                          <span className="text-xs font-medium text-gray-500">{region.name}</span>
+                          <span className="text-xs font-bold">{region.value}%</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
                 </CardContent>
               </Card>
             </div>
             
-            {/* Client Risk */}
+            {/* Second row of charts */}
+            <div className="grid grid-cols-1 gap-4">
+              {/* Revenue Metrics */}
+              <Card className="border border-border/40 shadow-sm">
+                <CardHeader>
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <CardTitle className="flex items-center">
+                        <TrendingUp className="h-4 w-4 mr-2 text-primary" />
+                        Revenue Metrics
+                      </CardTitle>
+                      <CardDescription>MRR & ARR growth over time</CardDescription>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <div className="flex items-center">
+                        <div className="w-3 h-3 rounded-full bg-primary mr-1"></div>
+                        <span className="text-xs font-medium">MRR</span>
+                      </div>
+                      <div className="flex items-center">
+                        <div className="w-3 h-3 rounded-full bg-secondary mr-1"></div>
+                        <span className="text-xs font-medium">ARR</span>
+                      </div>
+                    </div>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <ChartContainer className="h-[300px]" config={{
+                    "mrr": { color: "#8b5cf6" },
+                    "arr": { color: "#7E69AB" },
+                  }}>
+                    <AreaChart data={revenueData}>
+                      <defs>
+                        <linearGradient id="colorMrr" x1="0" y1="0" x2="0" y2="1">
+                          <stop offset="5%" stopColor="#8b5cf6" stopOpacity={0.8}/>
+                          <stop offset="95%" stopColor="#8b5cf6" stopOpacity={0.1}/>
+                        </linearGradient>
+                        <linearGradient id="colorArr" x1="0" y1="0" x2="0" y2="1">
+                          <stop offset="5%" stopColor="#7E69AB" stopOpacity={0.8}/>
+                          <stop offset="95%" stopColor="#7E69AB" stopOpacity={0.1}/>
+                        </linearGradient>
+                      </defs>
+                      <CartesianGrid strokeDasharray="3 3" vertical={false} opacity={0.2} />
+                      <XAxis dataKey="name" />
+                      <YAxis tickFormatter={(value) => `$${value/1000}k`} />
+                      <ChartTooltip 
+                        content={({ payload, label }) => {
+                          if (payload && payload.length) {
+                            return (
+                              <div className="rounded-lg border bg-background p-2 shadow-sm">
+                                <div className="font-medium">{label}</div>
+                                <div className="grid grid-cols-2 gap-2 pt-1">
+                                  <div className="flex items-center gap-1 text-sm">
+                                    <div className="h-2 w-2 rounded bg-primary"></div>
+                                    <span>MRR:</span>
+                                  </div>
+                                  <div className="text-right text-sm font-medium">${payload[0].value?.toLocaleString()}</div>
+                                </div>
+                                <div className="grid grid-cols-2 gap-2">
+                                  <div className="flex items-center gap-1 text-sm">
+                                    <div className="h-2 w-2 rounded bg-secondary"></div>
+                                    <span>ARR:</span>
+                                  </div>
+                                  <div className="text-right text-sm font-medium">${payload[1].value?.toLocaleString()}</div>
+                                </div>
+                              </div>
+                            );
+                          }
+                          return null;
+                        }}
+                      />
+                      <Area 
+                        type="monotone" 
+                        dataKey="mrr" 
+                        stroke="#8b5cf6" 
+                        fillOpacity={1} 
+                        fill="url(#colorMrr)" 
+                        strokeWidth={2}
+                      />
+                      <Area 
+                        type="monotone" 
+                        dataKey="arr" 
+                        stroke="#7E69AB" 
+                        fillOpacity={1}
+                        fill="url(#colorArr)" 
+                        strokeWidth={2}
+                      />
+                    </AreaChart>
+                  </ChartContainer>
+                </CardContent>
+              </Card>
+            </div>
+            
+            {/* Client Risk and Health */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <Card className="col-span-1">
+              {/* Client Risk */}
+              <Card className="border border-border/40 shadow-sm">
                 <CardHeader>
                   <CardTitle>Client Risk Distribution</CardTitle>
                   <CardDescription>AI generated risk signals based on client data</CardDescription>
@@ -195,77 +410,39 @@ const Dashboard = () => {
                 </CardContent>
               </Card>
               
-              <Card className="col-span-1">
+              {/* Health Score Details */}
+              <Card className="border border-border/40 shadow-sm">
                 <CardHeader>
-                  <CardTitle>Response Time Trend</CardTitle>
-                  <CardDescription>Average weekly response time to client inquiries</CardDescription>
+                  <CardTitle className="flex items-center">
+                    <Heart className="h-4 w-4 mr-2 text-primary" />
+                    Customer Health Details
+                  </CardTitle>
+                  <CardDescription>Breakdown of health indicators</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <ChartContainer className="h-[240px]" config={{
-                    "time": { color: "#8b5cf6" },
-                  }}>
-                    <LineChart data={responseTimeData}>
-                      <CartesianGrid strokeDasharray="3 3" vertical={false} />
-                      <XAxis dataKey="name" />
-                      <YAxis tickFormatter={(value) => `${value}m`} />
-                      <Tooltip content={({ payload }) => {
-                        if (payload && payload.length) {
-                          return (
-                            <div className="rounded-lg border bg-background p-2 shadow-sm">
-                              <div className="grid grid-cols-2 gap-2">
-                                <div className="font-medium">{payload[0].payload.name}</div>
-                                <div className="font-medium text-right">{`${payload[0].value}m`}</div>
-                              </div>
-                            </div>
-                          );
-                        }
-                        return null;
-                      }} />
-                      <Line
-                        type="monotone"
-                        dataKey="time"
-                        stroke="#8b5cf6"
-                        strokeWidth={2}
-                        activeDot={{ r: 8 }}
-                      />
-                    </LineChart>
-                  </ChartContainer>
+                  <div className="space-y-4">
+                    {healthScore.indicators.map((indicator, index) => (
+                      <div key={index} className="space-y-1">
+                        <div className="flex justify-between text-sm">
+                          <span>{indicator.name}</span>
+                          <span className="font-medium">{indicator.value}%</span>
+                        </div>
+                        <Progress value={indicator.value} className="h-2" />
+                      </div>
+                    ))}
+                  </div>
                 </CardContent>
               </Card>
             </div>
             
-            {/* Client Activity */}
-            <Card>
-              <CardHeader>
-                <CardTitle>Weekly Client Activity</CardTitle>
-                <CardDescription>Active vs inactive clients over the past week</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <ChartContainer className="h-[300px]" config={{
-                  "active": { color: "#8b5cf6" },
-                  "inactive": { color: "#e5e7eb" },
-                }}>
-                  <BarChart data={clientActivityData}>
-                    <CartesianGrid strokeDasharray="3 3" vertical={false} />
-                    <XAxis dataKey="name" />
-                    <YAxis />
-                    <ChartTooltip content={<ChartTooltipContent />} />
-                    <Bar dataKey="active" stackId="a" fill="#8b5cf6" radius={[4, 4, 0, 0]} />
-                    <Bar dataKey="inactive" stackId="a" fill="#e5e7eb" radius={[4, 4, 0, 0]} />
-                    <ChartLegend content={<ChartLegendContent />} />
-                  </BarChart>
-                </ChartContainer>
-              </CardContent>
-            </Card>
-            
-            {/* Recent Activity */}
-            <Card>
+            {/* At-Risk Clients */}
+            <Card className="border border-border/40 shadow-sm">
               <CardHeader>
                 <CardTitle>At-Risk Clients</CardTitle>
                 <CardDescription>Clients that require immediate attention</CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="space-y-6">
+                <div className="space-y-4">
                   <div className="flex justify-between items-center">
                     <div className="flex items-center gap-2">
                       <AlertTriangle className="h-4 w-4 text-red-500" />
@@ -297,7 +474,7 @@ const Dashboard = () => {
             </Card>
             
             {/* Upcoming Meetings */}
-            <Card>
+            <Card className="border border-border/40 shadow-sm">
               <CardHeader>
                 <CardTitle>Upcoming Meetings</CardTitle>
                 <CardDescription>Your schedule for today and tomorrow</CardDescription>
@@ -310,7 +487,7 @@ const Dashboard = () => {
                       <p className="text-sm text-muted-foreground">with Acme Inc.</p>
                     </div>
                     <div className="flex items-center gap-2">
-                      <CalendarClock className="h-4 w-4 text-muted-foreground" />
+                      <Calendar className="h-4 w-4 text-muted-foreground" />
                       <span className="text-sm">Today, 3:00 PM</span>
                     </div>
                   </div>
@@ -321,7 +498,7 @@ const Dashboard = () => {
                       <p className="text-sm text-muted-foreground">with TechCorp Solutions</p>
                     </div>
                     <div className="flex items-center gap-2">
-                      <CalendarClock className="h-4 w-4 text-muted-foreground" />
+                      <Calendar className="h-4 w-4 text-muted-foreground" />
                       <span className="text-sm">Tomorrow, 11:00 AM</span>
                     </div>
                   </div>
@@ -332,7 +509,7 @@ const Dashboard = () => {
                       <p className="text-sm text-muted-foreground">with Globex Corporation</p>
                     </div>
                     <div className="flex items-center gap-2">
-                      <CalendarClock className="h-4 w-4 text-muted-foreground" />
+                      <Calendar className="h-4 w-4 text-muted-foreground" />
                       <span className="text-sm">Tomorrow, 2:30 PM</span>
                     </div>
                   </div>
