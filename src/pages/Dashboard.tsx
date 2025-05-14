@@ -1,4 +1,3 @@
-
 import { useState, useMemo } from "react";
 import DashboardLayout from "@/components/dashboard/DashboardLayout";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
@@ -375,13 +374,6 @@ const Dashboard = () => {
                                   value={(city.revenue / region.revenue) * 100} 
                                   className="h-2"
                                   style={{ backgroundColor: `${region.color}20` }}
-                                  indicatorClassName={cn("bg-gradient-to-r", { 
-                                    "from-purple-500 to-purple-600": region.name === "North America",
-                                    "from-green-500 to-green-600": region.name === "Europe",
-                                    "from-yellow-500 to-yellow-600": region.name === "Asia Pacific",
-                                    "from-red-500 to-red-600": region.name === "Latin America",
-                                    "from-gray-500 to-gray-600": region.name === "Other",
-                                  })}
                                 />
                                 <span className="text-xs font-medium">
                                   {((city.revenue / region.revenue) * 100).toFixed(0)}%
