@@ -63,21 +63,7 @@ const Navbar = () => {
         
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center gap-1">
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="ghost" className="text-foreground/80 hover:text-foreground">
-                Solutions
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="start" className="w-56">
-              <DropdownMenuItem asChild>
-                <Link to="/solutions/individual-csm">For Individual CSMs</Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <Link to="/solutions/cs-teams">For CS Teams</Link>
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+          {/* Solutions dropdown removed */}
           
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -190,29 +176,7 @@ const Navbar = () => {
       {mobileMenuOpen && (
         <div className="md:hidden py-4 px-4 border-t border-border">
           <div className="space-y-4">
-            <div>
-              <div className="font-medium mb-2">Solutions</div>
-              <div className="space-y-2 ml-4">
-                <div>
-                  <Link 
-                    to="/solutions/individual-csm" 
-                    className="text-foreground/80 hover:text-foreground"
-                    onClick={closeMobileMenu}
-                  >
-                    For Individual CSMs
-                  </Link>
-                </div>
-                <div>
-                  <Link 
-                    to="/solutions/cs-teams" 
-                    className="text-foreground/80 hover:text-foreground"
-                    onClick={closeMobileMenu}
-                  >
-                    For CS Teams
-                  </Link>
-                </div>
-              </div>
-            </div>
+            {/* Solutions section removed from mobile menu */}
             
             <div>
               <div className="font-medium mb-2">Features</div>

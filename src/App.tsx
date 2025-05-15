@@ -22,7 +22,7 @@ import AIFlows from "./pages/AIFlows";
 import AIFlowDetail from "./pages/AIFlowDetail";
 import Insights from "./pages/Insights";
 // Import site structure pages
-import Solutions from "./pages/site/Solutions";
+// Solutions page removed
 import Features from "./pages/site/Features";
 import Platform from "./pages/site/Platform";
 import Resources from "./pages/site/Resources";
@@ -76,9 +76,7 @@ const App = () => (
           <Route path="/auth" element={<Auth />} />
           
           {/* Public Site Structure */}
-          <Route path="/solutions" element={<Solutions />} />
-          <Route path="/solutions/individual-csm" element={<Solutions />} />
-          <Route path="/solutions/cs-teams" element={<Solutions />} />
+          {/* Solutions routes removed */}
           <Route path="/features" element={<Features />} />
           <Route path="/features/ai-assistant" element={<Features />} />
           <Route path="/features/meeting-support" element={<Features />} />
