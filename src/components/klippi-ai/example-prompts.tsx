@@ -2,6 +2,7 @@
 import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Bot, LineChart, MessageSquare, Clock, Users } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 interface PromptExample {
   id: string;
@@ -59,11 +60,11 @@ export const ExamplePrompts = ({ onPromptSelect }: ExamplePromptsProps) => {
       {examples.map((example) => (
         <Card 
           key={example.id} 
-          className="cursor-pointer hover:bg-muted/50 transition-colors bg-card border border-border"
+          className="cursor-pointer hover:shadow-md transition-all duration-200 border-border bg-background hover:bg-muted/20"
           onClick={() => onPromptSelect(example.prompt)}
         >
           <CardContent className="p-4 flex items-start gap-3">
-            <div className="mt-1 p-1.5 rounded-md bg-primary/20 text-primary">
+            <div className="mt-1 p-1.5 rounded-md bg-primary/10 text-primary">
               {example.icon}
             </div>
             <div>

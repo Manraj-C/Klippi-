@@ -36,12 +36,12 @@ export const ChatSidebar = ({
     : sessions;
 
   return (
-    <div className="flex flex-col h-full border-r border-border">
+    <div className="flex flex-col h-full bg-background">
       <div className="p-4">
         <Button 
           onClick={onNewChat}
-          variant="outline" 
-          className="w-full justify-start gap-2"
+          variant="default" 
+          className="w-full justify-start gap-2 bg-primary/90 hover:bg-primary"
         >
           <PlusCircle className="h-4 w-4" />
           <span>New Chat</span>
@@ -51,7 +51,7 @@ export const ChatSidebar = ({
           <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
           <Input
             placeholder="Search conversations"
-            className="pl-9"
+            className="pl-8 bg-background border-border"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
@@ -59,21 +59,24 @@ export const ChatSidebar = ({
       </div>
 
       <ScrollArea className="flex-1 px-2">
-        <div className="space-y-1 p-2">
+        <div className="space-y-1 p-1">
           {filteredSessions.length > 0 ? (
             filteredSessions.map((session) => (
               <button
                 key={session.id}
                 className={cn(
-                  "flex flex-col w-full text-left rounded-md p-3 text-sm transition-colors",
+                  "flex flex-col w-full text-left rounded-lg p-3 text-sm transition-colors",
                   activeChatId === session.id
-                    ? "bg-primary/10 text-primary"
+                    ? "bg-primary/10 text-primary border border-primary/20"
                     : "hover:bg-muted text-foreground"
                 )}
                 onClick={() => onChatSelect(session.id)}
               >
                 <div className="flex items-center gap-2">
-                  <MessageSquare className="h-4 w-4" />
+                  <MessageSquare className={cn(
+                    "h-4 w-4", 
+                    activeChatId === session.id ? "text-primary" : "text-foreground"
+                  )} />
                   <span className="font-medium truncate">{session.title}</span>
                 </div>
                 <div className="flex items-center gap-2 mt-1 text-xs text-muted-foreground">

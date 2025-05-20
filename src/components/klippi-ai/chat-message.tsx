@@ -3,6 +3,9 @@ import React from "react";
 import { Button } from "@/components/ui/button";
 import { Copy, RefreshCcw } from "lucide-react";
 import { cn } from "@/lib/utils";
+import remarkGfm from 'remark-gfm';
+import remarkMath from 'remark-math';
+import ReactMarkdown from 'react-markdown';
 
 export interface Message {
   id: string;
@@ -25,24 +28,24 @@ export const ChatMessage = ({ message, onRetry, onCopy }: ChatMessageProps) => {
 
   return (
     <div className={cn(
-      "py-8 px-4 md:px-8 flex flex-col",
+      "py-6 px-4 md:px-8 flex flex-col border-b",
       message.role === "user" 
-        ? "bg-muted/50" 
+        ? "bg-muted/30" 
         : "bg-background",
       message.role === "system" && "bg-primary/5"
     )}>
       <div className="max-w-4xl mx-auto w-full">
-        <div className="flex items-center gap-2 mb-2">
+        <div className="flex items-center gap-2 mb-4">
           <div className={cn(
-            "w-6 h-6 flex items-center justify-center rounded-full text-xs",
+            "w-8 h-8 flex items-center justify-center rounded-full text-xs font-medium",
             message.role === "user" 
-              ? "bg-primary text-primary-foreground" 
+              ? "bg-muted text-foreground border border-border" 
               : message.role === "system" 
                 ? "bg-secondary text-secondary-foreground"
-                : "bg-muted text-foreground"
+                : "bg-primary text-primary-foreground"
           )}>
             {message.role === "user" 
-              ? "U" 
+              ? "You" 
               : message.role === "system" 
                 ? "S"
                 : "K"}
@@ -52,21 +55,59 @@ export const ChatMessage = ({ message, onRetry, onCopy }: ChatMessageProps) => {
               ? "You" 
               : message.role === "system" 
                 ? "System"
-                : "Klippi"}
+                : "Klippi AI"}
           </div>
           <div className="text-xs text-muted-foreground ml-auto">
             {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
           </div>
         </div>
         
-        <div className="whitespace-pre-wrap text-foreground pl-8">
-          {message.content}
+        <div className="pl-10 prose prose-sm dark:prose-invert max-w-none prose-pre:bg-muted prose-pre:text-muted-foreground prose-code:text-primary prose-code:bg-muted/50 prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-code:font-normal prose-headings:scroll-m-20 prose-h2:text-xl prose-h2:font-semibold prose-h3:text-lg prose-h3:font-medium">
+          <ReactMarkdown
+            remarkPlugins={[remarkGfm, remarkMath]}
+            components={{
+              code({ node, inline, className, children, ...props }) {
+                const match = /language-(\w+)/.exec(className || '');
+                return !inline ? (
+                  <pre className={cn("p-4 rounded-md bg-muted/50", className)}>
+                    <code className={cn("text-sm", match && `language-${match[1]}`)} {...props}>
+                      {children}
+                    </code>
+                  </pre>
+                ) : (
+                  <code className="text-primary px-1 py-0.5 rounded bg-muted/50" {...props}>
+                    {children}
+                  </code>
+                );
+              },
+              table({ children }) {
+                return (
+                  <div className="overflow-x-auto">
+                    <table className="w-full border-collapse border border-border text-sm">
+                      {children}
+                    </table>
+                  </div>
+                );
+              },
+              thead({ children }) {
+                return <thead className="bg-muted/50">{children}</thead>;
+              },
+              th({ children }) {
+                return <th className="border border-border px-4 py-2 text-left font-medium">{children}</th>;
+              },
+              td({ children }) {
+                return <td className="border border-border px-4 py-2">{children}</td>;
+              },
+            }}
+          >
+            {message.content}
+          </ReactMarkdown>
         </div>
 
         {message.role === "assistant" && (
-          <div className="flex gap-2 mt-4 pl-8">
+          <div className="flex gap-2 mt-6 pl-10">
             <Button 
-              variant="ghost" 
+              variant="outline" 
               size="sm" 
               className="text-xs text-muted-foreground hover:text-foreground"
               onClick={copyToClipboard}
@@ -76,7 +117,7 @@ export const ChatMessage = ({ message, onRetry, onCopy }: ChatMessageProps) => {
             </Button>
             {onRetry && (
               <Button 
-                variant="ghost" 
+                variant="outline" 
                 size="sm" 
                 className="text-xs text-muted-foreground hover:text-foreground"
                 onClick={onRetry}

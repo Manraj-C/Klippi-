@@ -190,7 +190,7 @@ const KlippiAI = () => {
         <div className="flex-1 flex overflow-hidden">
           {/* Sidebar - Desktop */}
           <div className={cn(
-            "w-80 border-r border-border md:flex flex-col h-full transition-all duration-300 ease-in-out",
+            "w-80 border-r border-border md:flex flex-col h-full transition-all duration-300 ease-in-out bg-background",
             showSidebar ? "flex" : "hidden"
           )}>
             <ChatSidebar 
@@ -225,7 +225,7 @@ const KlippiAI = () => {
           </Sheet>
 
           {/* Main Chat Area */}
-          <div className="flex-1 flex flex-col h-full relative">
+          <div className="flex-1 flex flex-col h-full relative bg-muted/20">
             {/* Toggle Sidebar Button (Desktop) */}
             <Button 
               variant="ghost" 
@@ -238,38 +238,40 @@ const KlippiAI = () => {
 
             {/* Chat Messages */}
             <ScrollArea className="flex-1">
-              {activeChat?.messages.map((message) => (
-                <ChatMessage 
-                  key={message.id} 
-                  message={message} 
-                  onRetry={message.role === "assistant" ? () => simulateResponse(activeChat.messages[activeChat.messages.length - 2]?.content || "") : undefined}
-                  onCopy={() => {}}
-                />
-              ))}
-              
-              {/* Loading message */}
-              {isLoading && (
-                <div className="py-8 px-4 md:px-8">
-                  <div className="max-w-4xl mx-auto">
-                    <div className="flex items-center gap-3 bg-muted/30 rounded-lg p-4">
-                      <Sparkles className="h-5 w-5 animate-pulse text-primary" />
-                      <span>Klippi is thinking...</span>
+              <div className="py-4 md:py-6">
+                {activeChat?.messages.map((message) => (
+                  <ChatMessage 
+                    key={message.id} 
+                    message={message} 
+                    onRetry={message.role === "assistant" ? () => simulateResponse(activeChat.messages[activeChat.messages.length - 2]?.content || "") : undefined}
+                    onCopy={() => {}}
+                  />
+                ))}
+                
+                {/* Loading message */}
+                {isLoading && (
+                  <div className="py-8 px-4 md:px-8">
+                    <div className="max-w-4xl mx-auto">
+                      <div className="flex items-center gap-3 bg-muted/30 rounded-lg p-4">
+                        <Sparkles className="h-5 w-5 animate-pulse text-primary" />
+                        <span>Klippi is thinking...</span>
+                      </div>
                     </div>
                   </div>
-                </div>
-              )}
-              
-              {/* Examples section */}
-              {showExamples && activeChat?.messages.length <= 1 && (
-                <div className="py-8 px-4 md:px-8">
-                  <div className="max-w-4xl mx-auto">
-                    <h2 className="text-lg font-medium mb-4">Try asking Klippi about:</h2>
-                    <ExamplePrompts onPromptSelect={handlePromptSelect} />
+                )}
+                
+                {/* Examples section */}
+                {showExamples && activeChat?.messages.length <= 1 && (
+                  <div className="py-8 px-4 md:px-8">
+                    <div className="max-w-4xl mx-auto">
+                      <h2 className="text-lg font-medium mb-4">Try asking Klippi about:</h2>
+                      <ExamplePrompts onPromptSelect={handlePromptSelect} />
+                    </div>
                   </div>
-                </div>
-              )}
-              
-              <div ref={messagesEndRef} />
+                )}
+                
+                <div ref={messagesEndRef} />
+              </div>
             </ScrollArea>
 
             {/* Chat Input */}
