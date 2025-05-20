@@ -40,7 +40,7 @@ const KlippiAI = () => {
             <ChatSidebar 
               sessions={chatSessions} 
               activeChatId={activeChatId}
-              onChatSelect={setActiveChatId}
+              onChatSelect={handleChatSelect}
               onNewChat={handleNewChat}
             />
           </div>
