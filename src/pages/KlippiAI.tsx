@@ -25,6 +25,8 @@ const KlippiAI = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [showExamples, setShowExamples] = useState(true);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  // Reference to close the mobile sheet dialog
+  const sheetTriggerRef = useRef<HTMLButtonElement>(null);
   
   // Sample data - will be replaced with real data when connected to backend
   const [chatSessions, setChatSessions] = useState<ChatSession[]>([
@@ -184,6 +186,26 @@ const KlippiAI = () => {
     setShowSidebar(!showSidebar);
   };
 
+  // Handle closing the sheet on mobile after selecting a chat
+  const handleChatSelect = (id: string) => {
+    setActiveChatId(id);
+    // Use optional chaining to safely access the click method
+    const sheetCloseElement = document.querySelector('[data-radix-collection-item]');
+    if (sheetCloseElement && 'click' in sheetCloseElement) {
+      (sheetCloseElement as HTMLElement).click();
+    }
+  };
+
+  // Handle closing the sheet on mobile after creating a new chat
+  const handleMobileNewChat = () => {
+    handleNewChat();
+    // Use optional chaining to safely access the click method
+    const sheetCloseElement = document.querySelector('[data-radix-collection-item]');
+    if (sheetCloseElement && 'click' in sheetCloseElement) {
+      (sheetCloseElement as HTMLElement).click();
+    }
+  };
+
   return (
     <DashboardLayout>
       <div className="h-[calc(100vh-2rem)] flex flex-col">
@@ -204,7 +226,12 @@ const KlippiAI = () => {
           {/* Sidebar - Mobile */}
           <Sheet>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" className="md:hidden absolute left-4 top-4 z-10">
+              <Button 
+                ref={sheetTriggerRef}
+                variant="ghost" 
+                size="icon" 
+                className="md:hidden absolute left-4 top-4 z-10"
+              >
                 <PanelLeft className="h-5 w-5" />
               </Button>
             </SheetTrigger>
@@ -212,14 +239,8 @@ const KlippiAI = () => {
               <ChatSidebar 
                 sessions={chatSessions} 
                 activeChatId={activeChatId}
-                onChatSelect={(id) => {
-                  setActiveChatId(id);
-                  document.querySelector('[data-radix-collection-item]')?.click(); // Close sheet
-                }}
-                onNewChat={() => {
-                  handleNewChat();
-                  document.querySelector('[data-radix-collection-item]')?.click(); // Close sheet
-                }}
+                onChatSelect={handleChatSelect}
+                onNewChat={handleMobileNewChat}
               />
             </SheetContent>
           </Sheet>
