@@ -184,6 +184,14 @@ const KlippiAI = () => {
     setShowSidebar(!showSidebar);
   };
 
+  const closeSheet = () => {
+    // Find and use the close button using a safe method
+    const closeButton = document.querySelector('[data-radix-collection-item]');
+    if (closeButton && 'click' in closeButton) {
+      (closeButton as HTMLElement).click();
+    }
+  };
+
   return (
     <DashboardLayout>
       <div className="h-[calc(100vh-2rem)] flex flex-col">
@@ -214,11 +222,11 @@ const KlippiAI = () => {
                 activeChatId={activeChatId}
                 onChatSelect={(id) => {
                   setActiveChatId(id);
-                  document.querySelector('[data-radix-collection-item]')?.click(); // Close sheet
+                  closeSheet();
                 }}
                 onNewChat={() => {
                   handleNewChat();
-                  document.querySelector('[data-radix-collection-item]')?.click(); // Close sheet
+                  closeSheet();
                 }}
               />
             </SheetContent>

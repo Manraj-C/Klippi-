@@ -66,9 +66,9 @@ export const ChatMessage = ({ message, onRetry, onCopy }: ChatMessageProps) => {
           <ReactMarkdown
             remarkPlugins={[remarkGfm, remarkMath]}
             components={{
-              code({ node, inline, className, children, ...props }) {
+              code({ node, className, children, ...props }) {
                 const match = /language-(\w+)/.exec(className || '');
-                return !inline ? (
+                return !props.inline ? (
                   <pre className={cn("p-4 rounded-md bg-muted/50", className)}>
                     <code className={cn("text-sm", match && `language-${match[1]}`)} {...props}>
                       {children}
