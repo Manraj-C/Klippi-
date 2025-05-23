@@ -1,7 +1,7 @@
 
 import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Bot, LineChart, MessageSquare, Clock, Users } from "lucide-react";
+import { Bot, LineChart, MessageSquare, Clock, Users, Zap } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface PromptExample {
@@ -9,7 +9,7 @@ interface PromptExample {
   icon: JSX.Element;
   title: string;
   prompt: string;
-  category: "analysis" | "monitoring" | "feedback" | "segmentation" | "performance";
+  category: "analysis" | "monitoring" | "feedback" | "segmentation" | "performance" | "strategy";
 }
 
 interface ExamplePromptsProps {
@@ -52,6 +52,13 @@ export const ExamplePrompts = ({ onPromptSelect }: ExamplePromptsProps) => {
       title: "Team performance review",
       prompt: "Give me a summary of how each CSM is tracking against their upsell targets this quarter.",
       category: "performance"
+    },
+    {
+      id: "q3-strategy",
+      icon: <Zap className="h-5 w-5" />,
+      title: "Create Q3 CS Strategy",
+      prompt: "Let's plan our Q3 customer success strategy. First, show me churn numbers and analysis from previous quarters so we can identify key issues.",
+      category: "strategy"
     }
   ];
 

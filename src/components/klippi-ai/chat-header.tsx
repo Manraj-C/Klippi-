@@ -23,7 +23,7 @@ export const ChatHeader = ({ onPromptSelect }: ChatHeaderProps) => {
           <div className="space-y-4 py-2">
             <h3 className="text-lg font-medium">How to use Klippi AI</h3>
             <p className="text-sm text-muted-foreground">
-              Klippi can help you analyze customer data, track relationship health, and automate CS workflows. Here are some examples of what you can ask:
+              Klippi can help you analyze customer data, track relationship health, automate CS workflows, and create strategic plans. Here are some examples of what you can ask:
             </p>
             <ExamplePrompts onPromptSelect={(prompt) => {
               onPromptSelect(prompt);
