@@ -6,16 +6,18 @@ import { ChatMessage, Message } from "@/components/klippi-ai/chat-message";
 import { ChatInput } from "@/components/klippi-ai/chat-input";
 import { ChatSidebar } from "@/components/klippi-ai/chat-sidebar";
 import { ExamplePrompts } from "@/components/klippi-ai/example-prompts";
-import { PanelLeft, PanelLeftClose, Sparkles } from "lucide-react";
+import { PanelLeft, PanelLeftClose, Sparkles, HelpCircle } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { cn } from "@/lib/utils";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 
 interface ChatSession {
   id: string;
   title: string;
   timestamp: Date;
   preview: string;
+  tags?: string[];
   messages: Message[];
 }
 
@@ -26,19 +28,56 @@ const KlippiAI = () => {
   const [showExamples, setShowExamples] = useState(true);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   
-  // Sample data - will be replaced with real data when connected to backend
+  // Enhanced sample data with tags for demonstration
   const [chatSessions, setChatSessions] = useState<ChatSession[]>([
     {
       id: "default",
-      title: "First Conversation",
+      title: "Getting Started with Klippi AI",
       timestamp: new Date(),
-      preview: "Getting started with Klippi AI",
+      preview: "Welcome to Klippi AI",
+      tags: ["onboarding"],
       messages: [
         {
           id: "welcome",
+          role: "system",
+          content: "Welcome to Klippi AI. This system is designed to help you analyze customer data, track relationship health, and automate your customer success workflows.",
+          timestamp: new Date(Date.now() - 60000)
+        },
+        {
+          id: "welcome2",
           role: "assistant",
           content: "👋 Hello! I'm Klippi, your Customer Success assistant. I can help with customer analysis, meeting insights, and tracking performance metrics. How can I help you today?",
           timestamp: new Date()
+        }
+      ]
+    },
+    {
+      id: "churn-analysis",
+      title: "Q2 Churn Risk Report",
+      timestamp: new Date(Date.now() - 86400000),
+      preview: "Analysis of SMB clients at risk",
+      tags: ["analysis", "churn"],
+      messages: [
+        {
+          id: "welcome-churn",
+          role: "assistant",
+          content: "How can I help you with churn analysis today?",
+          timestamp: new Date(Date.now() - 86400000)
+        }
+      ]
+    },
+    {
+      id: "team-performance",
+      title: "CSM Performance Review",
+      timestamp: new Date(Date.now() - 172800000),
+      preview: "Performance against upsell targets",
+      tags: ["team", "metrics"],
+      messages: [
+        {
+          id: "welcome-perf",
+          role: "assistant",
+          content: "What metrics would you like to analyze for the CSM team?",
+          timestamp: new Date(Date.now() - 172800000)
         }
       ]
     }
@@ -63,12 +102,21 @@ const KlippiAI = () => {
       timestamp: new Date()
     };
 
+    // Generate a smart title for new conversations
+    let updatedTitle = activeChat.title;
+    if (activeChat.messages.length <= 1) {
+      updatedTitle = content.length > 30 
+        ? content.substring(0, 30) + "..." 
+        : content;
+    }
+
     // Update chat sessions
     setChatSessions(prev => 
       prev.map(session => 
         session.id === activeChatId
           ? {
               ...session,
+              title: updatedTitle,
               preview: content,
               messages: [...session.messages, userMessage]
             }
@@ -127,13 +175,18 @@ const KlippiAI = () => {
         timestamp: new Date()
       };
 
-      // Update chat title based on first interaction
-      let updatedTitle = activeChat.title;
-      if (activeChat.messages.length <= 1) {
-        // This is the first real interaction, generate a title from the user message
-        updatedTitle = userMessage.length > 20 
-          ? userMessage.substring(0, 20) + "..." 
-          : userMessage;
+      // Generate tags based on content for new chats
+      let updatedTags = activeChat.tags || [];
+      if (activeChat.messages.length <= 2) {
+        const content = userMessage.toLowerCase();
+        if (content.includes("churn")) updatedTags.push("churn");
+        if (content.includes("performance") || content.includes("metric")) updatedTags.push("metrics");
+        if (content.includes("analysis") || content.includes("report")) updatedTags.push("analysis");
+        if (content.includes("team") || content.includes("csm")) updatedTags.push("team");
+        if (content.includes("integration")) updatedTags.push("integrations");
+        
+        // Remove duplicates
+        updatedTags = Array.from(new Set(updatedTags));
       }
 
       // Update chat sessions with AI response
@@ -142,7 +195,7 @@ const KlippiAI = () => {
           session.id === activeChatId
             ? {
                 ...session,
-                title: updatedTitle,
+                tags: updatedTags,
                 messages: [...session.messages, aiMessage]
               }
             : session
@@ -187,7 +240,7 @@ const KlippiAI = () => {
   const closeSheet = () => {
     // Find and use the close button using a safe method
     const closeButton = document.querySelector('[data-radix-collection-item]');
-    if (closeButton && 'click' in closeButton) {
+    if (closeButton && 'click' in (closeButton as HTMLElement)) {
       (closeButton as HTMLElement).click();
     }
   };
@@ -244,6 +297,33 @@ const KlippiAI = () => {
               {showSidebar ? <PanelLeftClose className="h-5 w-5" /> : <PanelLeft className="h-5 w-5" />}
             </Button>
 
+            {/* Chat Header with Help Button */}
+            <div className="flex justify-end items-center p-2 border-b border-border">
+              <Dialog>
+                <DialogTrigger asChild>
+                  <Button variant="outline" size="sm" className="gap-2">
+                    <HelpCircle className="h-4 w-4" />
+                    <span className="hidden sm:inline">Help & Examples</span>
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="sm:max-w-[600px]">
+                  <div className="space-y-4 py-2">
+                    <h3 className="text-lg font-medium">How to use Klippi AI</h3>
+                    <p className="text-sm text-muted-foreground">
+                      Klippi can help you analyze customer data, track relationship health, and automate CS workflows. Here are some examples of what you can ask:
+                    </p>
+                    <ExamplePrompts onPromptSelect={(prompt) => {
+                      handlePromptSelect(prompt);
+                      // Close the dialog after selecting a prompt
+                      document.querySelector('[data-radix-dialog-close]')?.dispatchEvent(
+                        new MouseEvent('click', { bubbles: true })
+                      );
+                    }} />
+                  </div>
+                </DialogContent>
+              </Dialog>
+            </div>
+
             {/* Chat Messages */}
             <ScrollArea className="flex-1">
               <div className="py-4 md:py-6">
@@ -259,7 +339,7 @@ const KlippiAI = () => {
                 {/* Loading message */}
                 {isLoading && (
                   <div className="py-8 px-4 md:px-8">
-                    <div className="max-w-4xl mx-auto">
+                    <div className="max-w-3xl mx-auto">
                       <div className="flex items-center gap-3 bg-muted/30 rounded-lg p-4">
                         <Sparkles className="h-5 w-5 animate-pulse text-primary" />
                         <span>Klippi is thinking...</span>
@@ -271,7 +351,7 @@ const KlippiAI = () => {
                 {/* Examples section */}
                 {showExamples && activeChat?.messages.length <= 1 && (
                   <div className="py-8 px-4 md:px-8">
-                    <div className="max-w-4xl mx-auto">
+                    <div className="max-w-3xl mx-auto">
                       <h2 className="text-lg font-medium mb-4">Try asking Klippi about:</h2>
                       <ExamplePrompts onPromptSelect={handlePromptSelect} />
                     </div>

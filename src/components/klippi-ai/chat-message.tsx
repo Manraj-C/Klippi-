@@ -1,11 +1,11 @@
-
-import React from "react";
+import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Copy, RefreshCcw } from "lucide-react";
+import { Copy, RefreshCcw, ThumbsUp, ThumbsDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 import remarkGfm from 'remark-gfm';
 import remarkMath from 'remark-math';
 import ReactMarkdown from 'react-markdown';
+import { toast } from "sonner";
 
 export interface Message {
   id: string;
@@ -21,9 +21,17 @@ interface ChatMessageProps {
 }
 
 export const ChatMessage = ({ message, onRetry, onCopy }: ChatMessageProps) => {
+  const [feedbackGiven, setFeedbackGiven] = useState<"positive" | "negative" | null>(null);
+  
   const copyToClipboard = () => {
     navigator.clipboard.writeText(message.content);
+    toast.success("Message copied to clipboard");
     if (onCopy) onCopy();
+  };
+  
+  const giveFeedback = (type: "positive" | "negative") => {
+    setFeedbackGiven(type);
+    toast.success(`${type === "positive" ? "Positive" : "Negative"} feedback recorded`);
   };
 
   return (
@@ -34,7 +42,7 @@ export const ChatMessage = ({ message, onRetry, onCopy }: ChatMessageProps) => {
         : "bg-background",
       message.role === "system" && "bg-primary/5"
     )}>
-      <div className="max-w-4xl mx-auto w-full">
+      <div className="max-w-3xl mx-auto w-full">
         <div className="flex items-center gap-2 mb-4">
           <div className={cn(
             "w-8 h-8 flex items-center justify-center rounded-full text-xs font-medium",
@@ -68,16 +76,16 @@ export const ChatMessage = ({ message, onRetry, onCopy }: ChatMessageProps) => {
             components={{
               code({ node, className, children, ...props }) {
                 const match = /language-(\w+)/.exec(className || '');
-                return !props.inline ? (
+                return props.inline ? (
+                  <code className="text-primary px-1 py-0.5 rounded bg-muted/50" {...props}>
+                    {children}
+                  </code>
+                ) : (
                   <pre className={cn("p-4 rounded-md bg-muted/50", className)}>
                     <code className={cn("text-sm", match && `language-${match[1]}`)} {...props}>
                       {children}
                     </code>
                   </pre>
-                ) : (
-                  <code className="text-primary px-1 py-0.5 rounded bg-muted/50" {...props}>
-                    {children}
-                  </code>
                 );
               },
               table({ children }) {
@@ -126,6 +134,36 @@ export const ChatMessage = ({ message, onRetry, onCopy }: ChatMessageProps) => {
                 Regenerate
               </Button>
             )}
+            <div className="ml-auto flex gap-1">
+              <Button 
+                variant="outline" 
+                size="sm" 
+                className={cn(
+                  "text-xs",
+                  feedbackGiven === "positive" 
+                    ? "bg-green-50 text-green-600 border-green-200" 
+                    : "text-muted-foreground hover:text-foreground"
+                )}
+                onClick={() => giveFeedback("positive")}
+                disabled={feedbackGiven !== null}
+              >
+                <ThumbsUp className="h-3 w-3" />
+              </Button>
+              <Button 
+                variant="outline" 
+                size="sm"
+                className={cn(
+                  "text-xs", 
+                  feedbackGiven === "negative" 
+                    ? "bg-red-50 text-red-600 border-red-200" 
+                    : "text-muted-foreground hover:text-foreground"
+                )}
+                onClick={() => giveFeedback("negative")}
+                disabled={feedbackGiven !== null}
+              >
+                <ThumbsDown className="h-3 w-3" />
+              </Button>
+            </div>
           </div>
         )}
       </div>
