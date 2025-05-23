@@ -31,7 +31,7 @@ const KlippiAI = () => {
 
   return (
     <DashboardLayout>
-      <div className="h-[calc(100vh-2rem)] flex flex-col">
+      <div className="h-[calc(100vh-2rem)] flex flex-col bg-background">
         <div className="flex-1 flex overflow-hidden">
           {/* Sidebar - Desktop */}
           <div className={cn(
@@ -55,7 +55,7 @@ const KlippiAI = () => {
           />
 
           {/* Main Chat Area */}
-          <div className="flex-1 flex flex-col h-full relative bg-muted/20">
+          <div className="flex-1 flex flex-col h-full relative">
             {/* Toggle Sidebar Button (Desktop) */}
             <Button 
               variant="ghost" 
@@ -65,9 +65,6 @@ const KlippiAI = () => {
             >
               {showSidebar ? <PanelLeftClose className="h-5 w-5" /> : <PanelLeft className="h-5 w-5" />}
             </Button>
-
-            {/* Chat Header with Help Button */}
-            <ChatHeader onPromptSelect={handlePromptSelect} />
 
             {/* Chat Container */}
             <ChatContainer

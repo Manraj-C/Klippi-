@@ -39,11 +39,11 @@ export const MobileSidebar = ({
           sessions={chatSessions}
           activeChatId={activeChatId}
           onChatSelect={(id) => {
-            setActiveChatId(id);
+            onChatSelect(id);
             closeSheet();
           }}
           onNewChat={() => {
-            handleNewChat();
+            onNewChat();
             closeSheet();
           }}
         />

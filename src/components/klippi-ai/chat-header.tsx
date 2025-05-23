@@ -11,12 +11,13 @@ interface ChatHeaderProps {
 
 export const ChatHeader = ({ onPromptSelect }: ChatHeaderProps) => {
   return (
-    <div className="flex justify-end items-center p-2 border-b border-border">
+    <div className="flex items-center justify-center p-2 border-b border-border bg-background h-14">
+      <h1 className="text-lg font-medium">Klippi AI</h1>
       <Dialog>
         <DialogTrigger asChild>
-          <Button variant="outline" size="sm" className="gap-2">
+          <Button variant="ghost" size="sm" className="absolute right-4 gap-2">
             <HelpCircle className="h-4 w-4" />
-            <span className="hidden sm:inline">Help & Examples</span>
+            <span className="hidden sm:inline">Help</span>
           </Button>
         </DialogTrigger>
         <DialogContent className="sm:max-w-[600px]">
