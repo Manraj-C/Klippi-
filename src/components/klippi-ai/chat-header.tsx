@@ -2,20 +2,24 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogTrigger, DialogContent } from "@/components/ui/dialog";
-import { HelpCircle } from "lucide-react";
+import { ChevronDown, HelpCircle } from "lucide-react";
 import { ExamplePrompts } from "@/components/klippi-ai/example-prompts";
 
 interface ChatHeaderProps {
   onPromptSelect: (prompt: string) => void;
+  title?: string;
 }
 
-export const ChatHeader = ({ onPromptSelect }: ChatHeaderProps) => {
+export const ChatHeader = ({ onPromptSelect, title = "Klippi" }: ChatHeaderProps) => {
   return (
-    <div className="flex items-center justify-center p-2 border-b border-border bg-background h-14">
-      <h1 className="text-lg font-medium">Klippi AI</h1>
+    <div className="flex items-center justify-between p-2 border-b border-border bg-background h-14 sticky top-0 z-10">
+      <div className="flex items-center">
+        <h1 className="text-lg font-medium">{title}</h1>
+        <ChevronDown className="h-4 w-4 ml-1 text-muted-foreground" />
+      </div>
       <Dialog>
         <DialogTrigger asChild>
-          <Button variant="ghost" size="sm" className="absolute right-4 gap-2">
+          <Button variant="ghost" size="sm" className="gap-2">
             <HelpCircle className="h-4 w-4" />
             <span className="hidden sm:inline">Help</span>
           </Button>

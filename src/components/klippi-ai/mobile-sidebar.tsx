@@ -34,7 +34,7 @@ export const MobileSidebar = ({
           <PanelLeft className="h-5 w-5" />
         </Button>
       </SheetTrigger>
-      <SheetContent side="left" className="p-0 w-80">
+      <SheetContent side="left" className="p-0 w-72 bg-sidebar">
         <ChatSidebar
           sessions={chatSessions}
           activeChatId={activeChatId}
