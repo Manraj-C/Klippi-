@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Copy, RefreshCcw, ThumbsUp, ThumbsDown } from "lucide-react";
@@ -76,7 +77,7 @@ export const ChatMessage = ({ message, onRetry, onCopy }: ChatMessageProps) => {
             components={{
               code({ node, className, children, ...props }) {
                 const match = /language-(\w+)/.exec(className || '');
-                return props.inline ? (
+                return (props as React.HTMLAttributes<HTMLElement>).className?.includes('inline') ? (
                   <code className="text-primary px-1 py-0.5 rounded bg-muted/50" {...props}>
                     {children}
                   </code>
