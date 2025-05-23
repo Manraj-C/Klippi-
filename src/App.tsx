@@ -100,6 +100,7 @@ const App = () => (
           <Route path="/dashboard/clients/:id" element={<ClientDetail />} />
           <Route path="/dashboard/meetings" element={<Meetings />} />
           <Route path="/dashboard/messages" element={<Messages />} />
+          <Route path="/dashboard/customer-success-cockpit" element={<Navigate to="/dashboard/messages" replace />} />
           <Route path="/dashboard/documents" element={<Documents />} />
           <Route path="/dashboard/settings" element={<Settings />} />
           <Route path="/dashboard/klippi-ai" element={<KlippiAI />} />
