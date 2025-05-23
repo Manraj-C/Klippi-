@@ -6,7 +6,6 @@ import { ChatMessage } from "@/components/klippi-ai/chat-message";
 import { ExamplePrompts } from "@/components/klippi-ai/example-prompts";
 import { ChatInput } from "@/components/klippi-ai/chat-input";
 import { ChatSession } from "./types";
-import { ChatHeader } from "./chat-header";
 
 interface ChatContainerProps {
   activeChat: ChatSession;
@@ -33,12 +32,9 @@ export const ChatContainer = ({
   }, [activeChat.messages]);
 
   return (
-    <div className="flex flex-col h-full">
-      {/* Chat Header with Help Button */}
-      <ChatHeader onPromptSelect={onPromptSelect} />
-      
+    <>
       {/* Chat Messages */}
-      <ScrollArea className="flex-1 overflow-y-auto">
+      <ScrollArea className="flex-1">
         <div className="py-4 md:py-6">
           {activeChat.messages.map((message) => (
             <ChatMessage 
@@ -87,6 +83,6 @@ export const ChatContainer = ({
         onSend={onSendMessage} 
         isLoading={isLoading}
       />
-    </div>
+    </>
   );
 };

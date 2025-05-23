@@ -55,22 +55,22 @@ export const ChatSidebar = ({
   });
 
   return (
-    <div className="flex flex-col h-full bg-sidebar text-sidebar-foreground">
+    <div className="flex flex-col h-full bg-background">
       <div className="p-4">
         <Button 
           onClick={onNewChat}
           variant="default" 
-          className="w-full justify-start gap-2 bg-white/10 hover:bg-white/20 text-white"
+          className="w-full justify-start gap-2 bg-primary/90 hover:bg-primary"
         >
           <PlusCircle className="h-4 w-4" />
           <span>New Chat</span>
         </Button>
         
         <div className="relative mt-4">
-          <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-sidebar-foreground/70" />
+          <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
           <Input
             placeholder="Search conversations"
-            className="pl-8 bg-sidebar-accent/30 border-sidebar-border text-sidebar-foreground placeholder:text-sidebar-foreground/50"
+            className="pl-8 bg-background border-border"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
@@ -84,8 +84,8 @@ export const ChatSidebar = ({
                 variant="outline"
                 size="sm"
                 className={cn(
-                  "text-xs border-sidebar-border bg-transparent",
-                  selectedTag === tag ? "bg-sidebar-accent text-sidebar-foreground" : "text-sidebar-foreground/70"
+                  "text-xs",
+                  selectedTag === tag ? "bg-primary/10 border-primary/20 text-primary" : ""
                 )}
                 onClick={() => setSelectedTag(selectedTag === tag ? null : tag)}
               >
@@ -104,22 +104,25 @@ export const ChatSidebar = ({
               <button
                 key={session.id}
                 className={cn(
-                  "flex flex-col w-full text-left rounded-md p-3 text-sm transition-colors",
+                  "flex flex-col w-full text-left rounded-lg p-3 text-sm transition-colors",
                   activeChatId === session.id
-                    ? "bg-sidebar-accent text-sidebar-foreground"
-                    : "hover:bg-sidebar-accent/50 text-sidebar-foreground"
+                    ? "bg-primary/10 text-primary border border-primary/20"
+                    : "hover:bg-muted text-foreground"
                 )}
                 onClick={() => onChatSelect(session.id)}
               >
                 <div className="flex items-center gap-2">
-                  <MessageSquare className="h-4 w-4" />
+                  <MessageSquare className={cn(
+                    "h-4 w-4", 
+                    activeChatId === session.id ? "text-primary" : "text-foreground"
+                  )} />
                   <span className="font-medium truncate">{session.title}</span>
                 </div>
-                <div className="flex items-center gap-2 mt-1 text-xs text-sidebar-foreground/70">
+                <div className="flex items-center gap-2 mt-1 text-xs text-muted-foreground">
                   <Clock className="h-3 w-3" />
                   <span>{session.timestamp.toLocaleDateString()} {session.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
                 </div>
-                <p className="text-xs text-sidebar-foreground/70 mt-1 truncate">
+                <p className="text-xs text-muted-foreground mt-1 truncate">
                   {session.preview}
                 </p>
                 {session.tags && session.tags.length > 0 && (
@@ -127,7 +130,7 @@ export const ChatSidebar = ({
                     {session.tags.map(tag => (
                       <span 
                         key={tag} 
-                        className="text-xs px-1.5 py-0.5 bg-sidebar-accent/70 rounded-full text-sidebar-foreground/70"
+                        className="text-xs px-1.5 py-0.5 bg-muted rounded-full text-muted-foreground"
                       >
                         #{tag}
                       </span>
@@ -137,7 +140,7 @@ export const ChatSidebar = ({
               </button>
             ))
           ) : (
-            <p className="text-center py-4 text-sidebar-foreground/50 text-sm">
+            <p className="text-center py-4 text-muted-foreground text-sm">
               No chats found
             </p>
           )}

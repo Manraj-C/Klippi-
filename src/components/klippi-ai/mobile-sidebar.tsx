@@ -34,16 +34,16 @@ export const MobileSidebar = ({
           <PanelLeft className="h-5 w-5" />
         </Button>
       </SheetTrigger>
-      <SheetContent side="left" className="p-0 w-72 bg-sidebar">
+      <SheetContent side="left" className="p-0 w-80">
         <ChatSidebar
           sessions={chatSessions}
           activeChatId={activeChatId}
           onChatSelect={(id) => {
-            onChatSelect(id);
+            setActiveChatId(id);
             closeSheet();
           }}
           onNewChat={() => {
-            onNewChat();
+            handleNewChat();
             closeSheet();
           }}
         />
