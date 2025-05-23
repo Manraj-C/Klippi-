@@ -156,7 +156,7 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
                 <SidebarMenu>
                   <SidebarMenuItem>
                     <SidebarMenuButton asChild tooltip="Klippi AI">
-                      <a href="/dashboard/klippi">
+                      <a href="/dashboard/klippi-ai">
                         <Sparkles />
                         <span>Klippi AI</span>
                       </a>
