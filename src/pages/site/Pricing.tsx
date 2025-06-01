@@ -17,51 +17,55 @@ const Pricing = () => {
   const plans = [
     {
       name: "Individual",
-      description: "For solo CSMs looking to boost productivity",
-      monthlyPrice: 49,
-      annualPrice: 39,
+      description: "Ideal for individual CSMs who want to augment their workflow using Klippi as their personal assistant",
+      monthlyPrice: "Custom",
+      annualPrice: "Custom",
       features: [
-        "AI writing assistant",
-        "Meeting preparation and notes",
-        "Email templates",
-        "Basic client management",
-        "Limited AI flows (3)",
+        "AI-powered workflow automation",
+        "Personal CSM assistant capabilities",
+        "Client interaction support",
+        "Meeting preparation and follow-up",
+        "Personalized insights and recommendations",
+        "Basic integrations with your existing tools"
       ],
       highlight: false,
-      cta: "Start Free Trial"
-    },
-    {
-      name: "Professional",
-      description: "Perfect for growing CS professionals",
-      monthlyPrice: 99,
-      annualPrice: 79,
-      features: [
-        "Everything in Individual",
-        "Unlimited AI flows",
-        "Advanced analytics",
-        "CS knowledge base",
-        "Priority support",
-        "2 integrations"
-      ],
-      highlight: true,
-      cta: "Start Free Trial"
+      cta: "Contact Sales for More Info"
     },
     {
       name: "Team",
-      description: "Ideal for CS teams of any size",
-      monthlyPrice: 199,
-      annualPrice: 159,
+      description: "Designed for teams that want to hire Klippi as a full-time AI-powered Customer Success Manager across multiple accounts or roles",
+      monthlyPrice: "Custom",
+      annualPrice: "Custom",
       features: [
-        "Everything in Professional",
+        "Everything in Individual",
+        "Multi-account management",
         "Team collaboration features",
-        "Workflow automation",
-        "Custom reporting",
-        "Dedicated success manager",
-        "Unlimited integrations",
-        "SOC 2 compliance"
+        "Advanced workflow automation",
+        "Cross-functional CS operations",
+        "Comprehensive analytics and reporting",
+        "Priority support and training",
+        "Custom integrations"
+      ],
+      highlight: true,
+      cta: "Contact Sales for More Info"
+    },
+    {
+      name: "Consultant",
+      description: "For organizations seeking to co-create bespoke AI workflows using Klippi—essentially working with Klippi as an AI consultant",
+      monthlyPrice: "Custom",
+      annualPrice: "Custom",
+      features: [
+        "Everything in Team",
+        "Bespoke AI workflow creation",
+        "Custom strategy development",
+        "Dedicated AI consultant partnership",
+        "Advanced customization capabilities",
+        "Strategic CS transformation guidance",
+        "Executive-level support",
+        "Unlimited integrations and customizations"
       ],
       highlight: false,
-      cta: "Contact Sales"
+      cta: "Contact Sales for More Info"
     }
   ];
 
@@ -71,7 +75,7 @@ const Pricing = () => {
         <div className="max-w-3xl mx-auto text-center mb-12">
           <h1 className="text-4xl font-bold mb-4">Simple, Transparent Pricing</h1>
           <p className="text-lg text-muted-foreground mb-8">
-            Choose the plan that's right for you or your team.
+            Choose the plan that's right for you or your team. Hire Klippi as your virtual Customer Success Manager.
           </p>
           
           <div className="inline-flex items-center p-1 border rounded-lg bg-muted/30 mb-2">
@@ -123,15 +127,12 @@ const Pricing = () => {
                 <div className="mb-6">
                   <div className="flex items-baseline">
                     <span className="text-3xl font-bold">
-                      ${billingCycle === "monthly" ? plan.monthlyPrice : plan.annualPrice}
+                      {plan.monthlyPrice}
                     </span>
-                    <span className="text-muted-foreground ml-1">/month</span>
                   </div>
-                  {billingCycle === "annual" && (
-                    <div className="text-xs text-muted-foreground mt-1">
-                      Billed annually (${plan.annualPrice * 12}/year)
-                    </div>
-                  )}
+                  <div className="text-xs text-muted-foreground mt-1">
+                    Pricing tailored to your needs
+                  </div>
                 </div>
                 
                 <ul className="space-y-3">
@@ -164,34 +165,34 @@ const Pricing = () => {
           <div className="space-y-4">
             <div className="p-4 border rounded-lg">
               <h3 className="font-medium mb-2 flex items-center">
-                Can I change plans later?
+                How does Klippi work as a virtual CSM?
                 <TooltipProvider>
                   <Tooltip>
                     <TooltipTrigger asChild>
                       <HelpCircle className="h-4 w-4 text-muted-foreground ml-1" />
                     </TooltipTrigger>
                     <TooltipContent>
-                      <p className="w-80">You can upgrade or downgrade your plan at any time.</p>
+                      <p className="w-80">Klippi integrates with your existing tools and processes to provide AI-powered customer success management.</p>
                     </TooltipContent>
                   </Tooltip>
                 </TooltipProvider>
               </h3>
-              <p className="text-muted-foreground text-sm">Yes, you can upgrade or downgrade your plan at any time. Changes will be prorated for your billing period.</p>
+              <p className="text-muted-foreground text-sm">Klippi acts as your AI-powered Customer Success Manager, automating workflows, providing insights, and helping you manage customer relationships more effectively.</p>
             </div>
             
             <div className="p-4 border rounded-lg">
-              <h3 className="font-medium mb-2">Do you offer a free trial?</h3>
-              <p className="text-muted-foreground text-sm">Yes, we offer a 14-day free trial on all plans. No credit card required to start your trial.</p>
+              <h3 className="font-medium mb-2">What's included in the custom pricing?</h3>
+              <p className="text-muted-foreground text-sm">Our pricing is tailored to your specific needs, team size, and use case. Contact our sales team to discuss a plan that works best for your organization.</p>
             </div>
             
             <div className="p-4 border rounded-lg">
-              <h3 className="font-medium mb-2">What payment methods do you accept?</h3>
-              <p className="text-muted-foreground text-sm">We accept all major credit cards, including Visa, Mastercard, and American Express. For Team plans, we can also provide invoicing.</p>
+              <h3 className="font-medium mb-2">Can I switch between plans?</h3>
+              <p className="text-muted-foreground text-sm">Yes, you can upgrade or modify your plan as your needs evolve. Our team will work with you to ensure a smooth transition.</p>
             </div>
             
             <div className="p-4 border rounded-lg">
-              <h3 className="font-medium mb-2">Can I get a custom plan for my enterprise?</h3>
-              <p className="text-muted-foreground text-sm">Absolutely! Contact our sales team to discuss custom enterprise pricing and features tailored to your specific needs.</p>
+              <h3 className="font-medium mb-2">Do you offer implementation support?</h3>
+              <p className="text-muted-foreground text-sm">Absolutely! All plans include dedicated support to help you get the most out of Klippi. Higher-tier plans include more comprehensive onboarding and strategic guidance.</p>
             </div>
           </div>
         </div>
