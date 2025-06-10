@@ -1,76 +1,37 @@
-
 import React, { useState } from "react";
 import SiteLayout from "@/components/site/SiteLayout";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Check, HelpCircle } from "lucide-react";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
-
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 const Pricing = () => {
   const [billingCycle, setBillingCycle] = useState<"monthly" | "annual">("annual");
-  
-  const plans = [
-    {
-      name: "Individual",
-      description: "Ideal for individual CSMs who want to augment their workflow using Klippi as their personal assistant",
-      monthlyPrice: "Custom",
-      annualPrice: "Custom",
-      features: [
-        "AI-powered workflow automation",
-        "Personal CSM assistant capabilities",
-        "Client interaction support",
-        "Meeting preparation and follow-up",
-        "Personalized insights and recommendations",
-        "Basic integrations with your existing tools"
-      ],
-      highlight: false,
-      cta: "Contact Sales for More Info"
-    },
-    {
-      name: "Team",
-      description: "Designed for teams that want to hire Klippi as a full-time AI-powered Customer Success Manager across multiple accounts or roles",
-      monthlyPrice: "Custom",
-      annualPrice: "Custom",
-      features: [
-        "Everything in Individual",
-        "Multi-account management",
-        "Team collaboration features",
-        "Advanced workflow automation",
-        "Cross-functional CS operations",
-        "Comprehensive analytics and reporting",
-        "Priority support and training",
-        "Custom integrations"
-      ],
-      highlight: true,
-      cta: "Contact Sales for More Info"
-    },
-    {
-      name: "Consultant",
-      description: "For organizations seeking to co-create bespoke AI workflows using Klippi—essentially working with Klippi as an AI consultant",
-      monthlyPrice: "Custom",
-      annualPrice: "Custom",
-      features: [
-        "Everything in Team",
-        "Bespoke AI workflow creation",
-        "Custom strategy development",
-        "Dedicated AI consultant partnership",
-        "Advanced customization capabilities",
-        "Strategic CS transformation guidance",
-        "Executive-level support",
-        "Unlimited integrations and customizations"
-      ],
-      highlight: false,
-      cta: "Contact Sales for More Info"
-    }
-  ];
-
-  return (
-    <SiteLayout>
+  const plans = [{
+    name: "Individual",
+    description: "Ideal for individual CSMs who want to augment their workflow using Klippi as their personal assistant",
+    monthlyPrice: "Custom",
+    annualPrice: "Custom",
+    features: ["AI-powered workflow automation", "Personal CSM assistant capabilities", "Client interaction support", "Meeting preparation and follow-up", "Personalized insights and recommendations", "Basic integrations with your existing tools"],
+    highlight: false,
+    cta: "Contact Sales for More Info"
+  }, {
+    name: "Team",
+    description: "Designed for teams that want to hire Klippi as a full-time AI-powered Customer Success Manager across multiple accounts or roles",
+    monthlyPrice: "Custom",
+    annualPrice: "Custom",
+    features: ["Everything in Individual", "Multi-account management", "Team collaboration features", "Advanced workflow automation", "Cross-functional CS operations", "Comprehensive analytics and reporting", "Priority support and training", "Custom integrations"],
+    highlight: true,
+    cta: "Contact Sales for More Info"
+  }, {
+    name: "Consultant",
+    description: "For organizations seeking to co-create bespoke AI workflows using Klippi—essentially working with Klippi as an AI consultant",
+    monthlyPrice: "Custom",
+    annualPrice: "Custom",
+    features: ["Everything in Team", "Bespoke AI workflow creation", "Custom strategy development", "Dedicated AI consultant partnership", "Advanced customization capabilities", "Strategic CS transformation guidance", "Executive-level support", "Unlimited integrations and customizations"],
+    highlight: false,
+    cta: "Contact Sales for More Info"
+  }];
+  return <SiteLayout>
       <div className="container px-4 py-16 mx-auto">
         <div className="max-w-3xl mx-auto text-center mb-12">
           <h1 className="text-4xl font-bold mb-4">Simple, Transparent Pricing</h1>
@@ -79,54 +40,28 @@ const Pricing = () => {
           </p>
           
           <div className="inline-flex items-center p-1 border rounded-lg bg-muted/30 mb-2">
-            <button
-              onClick={() => setBillingCycle("monthly")}
-              className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
-                billingCycle === "monthly" 
-                  ? "bg-background text-foreground shadow-sm" 
-                  : "text-muted-foreground"
-              }`}
-            >
-              Monthly
-            </button>
-            <button
-              onClick={() => setBillingCycle("annual")}
-              className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
-                billingCycle === "annual" 
-                  ? "bg-background text-foreground shadow-sm" 
-                  : "text-muted-foreground"
-              }`}
-            >
-              Annual <span className="text-xs text-emerald-500 ml-1">Save 20%</span>
-            </button>
+            
+            
           </div>
         </div>
         
         <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-          {plans.map((plan, index) => (
-            <Card 
-              key={index}
-              className={`transition-all ${plan.highlight 
-                ? "border-primary/50 shadow-md relative" 
-                : "border-border"}`}
-            >
-              {plan.highlight && (
-                <div className="absolute -top-3 left-0 right-0 flex justify-center">
+          {plans.map((plan, index) => <Card key={index} className={`transition-all ${plan.highlight ? "border-primary/50 shadow-md relative" : "border-border"}`}>
+              {plan.highlight && <div className="absolute -top-3 left-0 right-0 flex justify-center">
                   <div className="bg-primary text-white text-xs font-medium px-3 py-1 rounded-full">
                     Most Popular
                   </div>
-                </div>
-              )}
+                </div>}
               
               <CardHeader>
-                <CardTitle>{plan.name}</CardTitle>
+                <CardTitle className="text-center">{plan.name}</CardTitle>
                 <p className="text-muted-foreground text-sm mt-1">{plan.description}</p>
               </CardHeader>
               
               <CardContent>
                 <div className="mb-6">
                   <div className="flex items-baseline">
-                    <span className="text-3xl font-bold">
+                    <span className="text-3xl font-bold text-center">
                       {plan.monthlyPrice}
                     </span>
                   </div>
@@ -136,27 +71,19 @@ const Pricing = () => {
                 </div>
                 
                 <ul className="space-y-3">
-                  {plan.features.map((feature, i) => (
-                    <li key={i} className="flex items-start gap-2">
+                  {plan.features.map((feature, i) => <li key={i} className="flex items-start gap-2">
                       <Check className="h-5 w-5 text-primary shrink-0 mt-0.5" />
                       <span>{feature}</span>
-                    </li>
-                  ))}
+                    </li>)}
                 </ul>
               </CardContent>
               
               <CardFooter>
-                <Button 
-                  className={`w-full ${plan.highlight 
-                    ? "bg-primary text-white hover:bg-primary/90" 
-                    : ""}`}
-                  variant={plan.highlight ? "default" : "outline"}
-                >
+                <Button className={`w-full ${plan.highlight ? "bg-primary text-white hover:bg-primary/90" : ""}`} variant={plan.highlight ? "default" : "outline"}>
                   {plan.cta}
                 </Button>
               </CardFooter>
-            </Card>
-          ))}
+            </Card>)}
         </div>
         
         <div className="max-w-3xl mx-auto mt-16">
@@ -197,8 +124,6 @@ const Pricing = () => {
           </div>
         </div>
       </div>
-    </SiteLayout>
-  );
+    </SiteLayout>;
 };
-
 export default Pricing;
