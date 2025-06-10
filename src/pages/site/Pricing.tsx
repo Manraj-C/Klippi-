@@ -53,7 +53,7 @@ const Pricing = () => {
               
               <CardHeader>
                 <CardTitle className="text-center">{plan.name}</CardTitle>
-                <p className="text-muted-foreground text-sm mt-1">{plan.description}</p>
+                <p className="text-muted-foreground text-sm mt-1 text-center">{plan.description}</p>
               </CardHeader>
               
               <CardContent>
