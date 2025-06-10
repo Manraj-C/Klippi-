@@ -7,7 +7,7 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/comp
 const Pricing = () => {
   const [billingCycle, setBillingCycle] = useState<"monthly" | "annual">("annual");
   const plans = [{
-    name: "Individual",
+    name: "Assistant",
     description: "Ideal for individual CSMs who want to augment their workflow using Klippi as their personal assistant",
     monthlyPrice: "Custom",
     annualPrice: "Custom",
@@ -15,11 +15,11 @@ const Pricing = () => {
     highlight: false,
     cta: "Contact Sales for More Info"
   }, {
-    name: "Team",
+    name: "Full-Time CSM",
     description: "Designed for teams that want to hire Klippi as a full-time AI-powered Customer Success Manager across multiple accounts or roles",
     monthlyPrice: "Custom",
     annualPrice: "Custom",
-    features: ["Everything in Individual", "Multi-account management", "Team collaboration features", "Advanced workflow automation", "Cross-functional CS operations", "Comprehensive analytics and reporting", "Priority support and training", "Custom integrations"],
+    features: ["Everything in Assistant", "Multi-account management", "Team collaboration features", "Advanced workflow automation", "Cross-functional CS operations", "Comprehensive analytics and reporting", "Priority support and training", "Custom integrations"],
     highlight: true,
     cta: "Contact Sales for More Info"
   }, {
@@ -27,7 +27,7 @@ const Pricing = () => {
     description: "For organizations seeking to co-create bespoke AI workflows using Klippi—essentially working with Klippi as an AI consultant",
     monthlyPrice: "Custom",
     annualPrice: "Custom",
-    features: ["Everything in Team", "Bespoke AI workflow creation", "Custom strategy development", "Dedicated AI consultant partnership", "Advanced customization capabilities", "Strategic CS transformation guidance", "Executive-level support", "Unlimited integrations and customizations"],
+    features: ["Everything in Full-Time CSM", "Bespoke AI workflow creation", "Custom strategy development", "Dedicated AI consultant partnership", "Advanced customization capabilities", "Strategic CS transformation guidance", "Executive-level support", "Unlimited integrations and customizations"],
     highlight: false,
     cta: "Contact Sales for More Info"
   }];
