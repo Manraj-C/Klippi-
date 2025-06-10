@@ -35,9 +35,7 @@ const Pricing = () => {
       <div className="container px-4 py-16 mx-auto">
         <div className="max-w-3xl mx-auto text-center mb-12">
           <h1 className="text-4xl font-bold mb-4">Simple, Transparent Pricing</h1>
-          <p className="text-lg text-muted-foreground mb-8">
-            Choose the plan that's right for you or your team. Hire Klippi as your virtual Customer Success Manager.
-          </p>
+          <p className="text-lg text-muted-foreground mb-8">Choose the plan that's right for you or your team. Hire Klippi as your virtual Customer Success Manager.</p>
           
           <div className="inline-flex items-center p-1 border rounded-lg bg-muted/30 mb-2">
             
