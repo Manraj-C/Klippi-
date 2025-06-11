@@ -20,7 +20,7 @@ const HeroSection = () => {
 
           {/* Main headline */}
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-8 animate-fade-in">
-            Your AI Customer Success
+            Meet Klippi, Your AI Customer Success
             <span className="block text-gradient-purple">Manager</span>
           </h1>
 
