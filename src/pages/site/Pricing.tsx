@@ -79,13 +79,13 @@ const Pricing = () => {
                 key={index} 
                 className={`relative transition-all duration-200 ${
                   plan.highlight 
-                    ? "border-black shadow-lg scale-105" 
-                    : "border-gray-200 hover:border-gray-300 hover:shadow-md"
+                    ? "border-primary shadow-lg scale-105" 
+                    : "border-gray-200 hover:border-purple-300 hover:shadow-md"
                 }`}
               >
                 {plan.highlight && (
                   <div className="absolute -top-4 left-0 right-0 flex justify-center">
-                    <div className="bg-black text-white text-sm font-medium px-4 py-2 rounded-full">
+                    <div className="bg-primary text-primary-foreground text-sm font-medium px-4 py-2 rounded-full">
                       Most Popular
                     </div>
                   </div>
@@ -120,8 +120,8 @@ const Pricing = () => {
                   <Button 
                     className={`w-full h-12 font-medium ${
                       plan.highlight 
-                        ? "bg-black text-white hover:bg-gray-800" 
-                        : "bg-white text-gray-900 border border-gray-300 hover:bg-gray-50"
+                        ? "bg-primary text-primary-foreground hover:bg-primary/90" 
+                        : "bg-white text-gray-900 border border-gray-300 hover:bg-purple-50"
                     }`}
                     variant={plan.highlight ? "default" : "outline"}
                   >
@@ -138,7 +138,7 @@ const Pricing = () => {
             </h2>
             
             <div className="space-y-6">
-              <div className="border border-gray-200 rounded-lg p-6 hover:shadow-sm transition-shadow">
+              <div className="border border-gray-200 rounded-lg p-6 hover:shadow-sm hover:border-purple-200 transition-all">
                 <h3 className="font-semibold text-gray-900 mb-3 flex items-center">
                   How does Klippi work as a virtual CSM?
                   <TooltipProvider>
@@ -157,21 +157,21 @@ const Pricing = () => {
                 </p>
               </div>
               
-              <div className="border border-gray-200 rounded-lg p-6 hover:shadow-sm transition-shadow">
+              <div className="border border-gray-200 rounded-lg p-6 hover:shadow-sm hover:border-purple-200 transition-all">
                 <h3 className="font-semibold text-gray-900 mb-3">What's included in the custom pricing?</h3>
                 <p className="text-gray-600">
                   Our pricing is tailored to your specific needs, team size, and use case. Contact our sales team to discuss a plan that works best for your organization.
                 </p>
               </div>
               
-              <div className="border border-gray-200 rounded-lg p-6 hover:shadow-sm transition-shadow">
+              <div className="border border-gray-200 rounded-lg p-6 hover:shadow-sm hover:border-purple-200 transition-all">
                 <h3 className="font-semibold text-gray-900 mb-3">Can I switch between plans?</h3>
                 <p className="text-gray-600">
                   Yes, you can upgrade or modify your plan as your needs evolve. Our team will work with you to ensure a smooth transition.
                 </p>
               </div>
               
-              <div className="border border-gray-200 rounded-lg p-6 hover:shadow-sm transition-shadow">
+              <div className="border border-gray-200 rounded-lg p-6 hover:shadow-sm hover:border-purple-200 transition-all">
                 <h3 className="font-semibold text-gray-900 mb-3">Do you offer implementation support?</h3>
                 <p className="text-gray-600">
                   Absolutely! All plans include dedicated support to help you get the most out of Klippi. Higher-tier plans include more comprehensive onboarding and strategic guidance.

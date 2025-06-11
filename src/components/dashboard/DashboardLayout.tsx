@@ -73,7 +73,7 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
         <Sidebar variant="inset" className="border-r border-gray-200">
           <SidebarHeader className="border-b border-gray-200 px-6 py-4">
             <div className="flex items-center gap-3">
-              <div className="size-8 rounded-lg bg-black flex items-center justify-center">
+              <div className="size-8 rounded-lg bg-gradient-purple flex items-center justify-center">
                 <span className="text-white font-bold text-lg">K</span>
               </div>
               <span className="text-xl font-semibold text-gray-900">Klippi</span>
@@ -88,7 +88,7 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
               <SidebarGroupContent>
                 <SidebarMenu className="space-y-1">
                   <SidebarMenuItem>
-                    <SidebarMenuButton asChild className="h-10 px-3 text-gray-700 hover:bg-gray-100 hover:text-gray-900 rounded-md transition-colors">
+                    <SidebarMenuButton asChild className="h-10 px-3 text-gray-700 hover:bg-purple-50 hover:text-primary rounded-md transition-colors">
                       <a href="/dashboard" className="flex items-center gap-3">
                         <LayoutDashboard className="h-4 w-4" />
                         <span className="font-medium">Overview</span>
@@ -96,7 +96,7 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                   <SidebarMenuItem>
-                    <SidebarMenuButton asChild className="h-10 px-3 text-gray-700 hover:bg-gray-100 hover:text-gray-900 rounded-md transition-colors">
+                    <SidebarMenuButton asChild className="h-10 px-3 text-gray-700 hover:bg-purple-50 hover:text-primary rounded-md transition-colors">
                       <a href="/dashboard/clients" className="flex items-center gap-3">
                         <Users className="h-4 w-4" />
                         <span className="font-medium">Clients</span>
@@ -104,7 +104,7 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                   <SidebarMenuItem>
-                    <SidebarMenuButton asChild className="h-10 px-3 text-gray-700 hover:bg-gray-100 hover:text-gray-900 rounded-md transition-colors">
+                    <SidebarMenuButton asChild className="h-10 px-3 text-gray-700 hover:bg-purple-50 hover:text-primary rounded-md transition-colors">
                       <a href="/dashboard/meetings" className="flex items-center gap-3">
                         <Calendar className="h-4 w-4" />
                         <span className="font-medium">Meetings</span>
@@ -112,7 +112,7 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                   <SidebarMenuItem>
-                    <SidebarMenuButton asChild className="h-10 px-3 text-gray-700 hover:bg-gray-100 hover:text-gray-900 rounded-md transition-colors">
+                    <SidebarMenuButton asChild className="h-10 px-3 text-gray-700 hover:bg-purple-50 hover:text-primary rounded-md transition-colors">
                       <a href="/dashboard/messages" className="flex items-center gap-3">
                         <MessageSquare className="h-4 w-4" />
                         <span className="font-medium">Messages</span>
@@ -120,7 +120,7 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                   <SidebarMenuItem>
-                    <SidebarMenuButton asChild className="h-10 px-3 text-gray-700 hover:bg-gray-100 hover:text-gray-900 rounded-md transition-colors">
+                    <SidebarMenuButton asChild className="h-10 px-3 text-gray-700 hover:bg-purple-50 hover:text-primary rounded-md transition-colors">
                       <a href="/dashboard/inbox" className="flex items-center gap-3">
                         <Inbox className="h-4 w-4" />
                         <span className="font-medium">Inbox</span>
@@ -128,7 +128,7 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                   <SidebarMenuItem>
-                    <SidebarMenuButton asChild className="h-10 px-3 text-gray-700 hover:bg-gray-100 hover:text-gray-900 rounded-md transition-colors">
+                    <SidebarMenuButton asChild className="h-10 px-3 text-gray-700 hover:bg-purple-50 hover:text-primary rounded-md transition-colors">
                       <a href="/dashboard/documents" className="flex items-center gap-3">
                         <FileText className="h-4 w-4" />
                         <span className="font-medium">Documents</span>
@@ -136,7 +136,7 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                   <SidebarMenuItem>
-                    <SidebarMenuButton asChild className="h-10 px-3 text-gray-700 hover:bg-gray-100 hover:text-gray-900 rounded-md transition-colors">
+                    <SidebarMenuButton asChild className="h-10 px-3 text-gray-700 hover:bg-purple-50 hover:text-primary rounded-md transition-colors">
                       <a href="/dashboard/insights" className="flex items-center gap-3">
                         <Lightbulb className="h-4 w-4" />
                         <span className="font-medium">Insights</span>
@@ -154,7 +154,7 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
               <SidebarGroupContent>
                 <SidebarMenu className="space-y-1">
                   <SidebarMenuItem>
-                    <SidebarMenuButton asChild className="h-10 px-3 text-gray-700 hover:bg-gray-100 hover:text-gray-900 rounded-md transition-colors">
+                    <SidebarMenuButton asChild className="h-10 px-3 text-gray-700 hover:bg-purple-50 hover:text-primary rounded-md transition-colors">
                       <a href="/dashboard/klippi-ai" className="flex items-center gap-3">
                         <Sparkles className="h-4 w-4" />
                         <span className="font-medium">Klippi AI</span>
@@ -162,7 +162,7 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                   <SidebarMenuItem>
-                    <SidebarMenuButton asChild className="h-10 px-3 text-gray-700 hover:bg-gray-100 hover:text-gray-900 rounded-md transition-colors">
+                    <SidebarMenuButton asChild className="h-10 px-3 text-gray-700 hover:bg-purple-50 hover:text-primary rounded-md transition-colors">
                       <a href="/dashboard/ai-flows" className="flex items-center gap-3">
                         <Zap className="h-4 w-4" />
                         <span className="font-medium">AI Flows</span>
@@ -177,7 +177,7 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
           <SidebarFooter className="border-t border-gray-200 p-4">
             <SidebarMenu>
               <SidebarMenuItem>
-                <SidebarMenuButton asChild className="h-10 px-3 text-gray-700 hover:bg-gray-100 hover:text-gray-900 rounded-md transition-colors">
+                <SidebarMenuButton asChild className="h-10 px-3 text-gray-700 hover:bg-purple-50 hover:text-primary rounded-md transition-colors">
                   <a href="/dashboard/settings" className="flex items-center gap-3">
                     <Settings className="h-4 w-4" />
                     <span className="font-medium">Settings</span>
@@ -187,7 +187,7 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
             </SidebarMenu>
             <Button 
               variant="ghost" 
-              className="w-full justify-start text-gray-500 hover:text-gray-700 hover:bg-gray-100 mt-2" 
+              className="w-full justify-start text-gray-500 hover:text-primary hover:bg-purple-50 mt-2" 
               onClick={handleLogout}
             >
               <LogOut className="h-4 w-4 mr-3" />

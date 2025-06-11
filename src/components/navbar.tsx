@@ -13,7 +13,7 @@ const Navbar = () => {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-black rounded-lg flex items-center justify-center">
+            <div className="w-8 h-8 bg-gradient-purple rounded-lg flex items-center justify-center">
               <span className="text-white font-bold text-lg">K</span>
             </div>
             <span className="text-xl font-semibold text-gray-900">Klippi</span>
@@ -21,19 +21,19 @@ const Navbar = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            <Link to="/features" className="text-gray-600 hover:text-gray-900 font-medium transition-colors">
+            <Link to="/features" className="text-gray-600 hover:text-primary font-medium transition-colors">
               Features
             </Link>
-            <Link to="/platform" className="text-gray-600 hover:text-gray-900 font-medium transition-colors">
+            <Link to="/platform" className="text-gray-600 hover:text-primary font-medium transition-colors">
               Platform
             </Link>
-            <Link to="/pricing" className="text-gray-600 hover:text-gray-900 font-medium transition-colors">
+            <Link to="/pricing" className="text-gray-600 hover:text-primary font-medium transition-colors">
               Pricing
             </Link>
-            <Link to="/resources" className="text-gray-600 hover:text-gray-900 font-medium transition-colors">
+            <Link to="/resources" className="text-gray-600 hover:text-primary font-medium transition-colors">
               Resources
             </Link>
-            <Link to="/contact" className="text-gray-600 hover:text-gray-900 font-medium transition-colors">
+            <Link to="/contact" className="text-gray-600 hover:text-primary font-medium transition-colors">
               Contact
             </Link>
           </div>
@@ -41,12 +41,12 @@ const Navbar = () => {
           {/* CTA Buttons */}
           <div className="hidden md:flex items-center space-x-4">
             <Link to="/auth">
-              <Button variant="ghost" className="text-gray-600 hover:text-gray-900 font-medium">
+              <Button variant="ghost" className="text-gray-600 hover:text-primary font-medium">
                 Sign In
               </Button>
             </Link>
             <Link to="/auth">
-              <Button className="bg-black text-white hover:bg-gray-800 font-medium">
+              <Button className="bg-primary text-primary-foreground hover:bg-primary/90 font-medium">
                 Get Started
               </Button>
             </Link>
@@ -69,19 +69,19 @@ const Navbar = () => {
         {isOpen && (
           <div className="md:hidden border-t border-gray-200 mt-4 pt-4 pb-4 animate-fade-in">
             <div className="flex flex-col space-y-4">
-              <Link to="/features" className="text-gray-600 hover:text-gray-900 font-medium">
+              <Link to="/features" className="text-gray-600 hover:text-primary font-medium">
                 Features
               </Link>
-              <Link to="/platform" className="text-gray-600 hover:text-gray-900 font-medium">
+              <Link to="/platform" className="text-gray-600 hover:text-primary font-medium">
                 Platform
               </Link>
-              <Link to="/pricing" className="text-gray-600 hover:text-gray-900 font-medium">
+              <Link to="/pricing" className="text-gray-600 hover:text-primary font-medium">
                 Pricing
               </Link>
-              <Link to="/resources" className="text-gray-600 hover:text-gray-900 font-medium">
+              <Link to="/resources" className="text-gray-600 hover:text-primary font-medium">
                 Resources
               </Link>
-              <Link to="/contact" className="text-gray-600 hover:text-gray-900 font-medium">
+              <Link to="/contact" className="text-gray-600 hover:text-primary font-medium">
                 Contact
               </Link>
               <div className="pt-4 border-t border-gray-200 flex flex-col space-y-2">
@@ -91,7 +91,7 @@ const Navbar = () => {
                   </Button>
                 </Link>
                 <Link to="/auth">
-                  <Button className="w-full bg-black text-white hover:bg-gray-800">
+                  <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90">
                     Get Started
                   </Button>
                 </Link>

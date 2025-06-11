@@ -8,12 +8,12 @@ const HeroSection = () => {
   return (
     <section className="relative pt-20 pb-24 bg-white overflow-hidden">
       {/* Subtle background pattern */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(0,0,0,0.02)_0%,transparent_50%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(168,85,247,0.1)_0%,transparent_50%)]" />
       
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-4xl mx-auto">
           {/* Badge */}
-          <div className="inline-flex items-center px-4 py-2 rounded-full bg-gray-100 text-gray-800 text-sm font-medium mb-8 animate-fade-in">
+          <div className="inline-flex items-center px-4 py-2 rounded-full bg-purple-100 text-purple-800 text-sm font-medium mb-8 animate-fade-in">
             <Sparkles className="w-4 h-4 mr-2" />
             AI-Powered Customer Success Platform
           </div>
@@ -21,7 +21,7 @@ const HeroSection = () => {
           {/* Main headline */}
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-8 animate-fade-in">
             Your AI Customer Success
-            <span className="block text-gradient">Manager</span>
+            <span className="block text-gradient-purple">Manager</span>
           </h1>
 
           {/* Subheadline */}
@@ -33,7 +33,7 @@ const HeroSection = () => {
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16 animate-fade-in">
             <Link to="/auth">
-              <Button size="lg" className="bg-black text-white hover:bg-gray-800 h-12 px-8 text-base font-medium">
+              <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 h-12 px-8 text-base font-medium">
                 Start Free Trial
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
