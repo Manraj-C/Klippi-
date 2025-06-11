@@ -1,12 +1,9 @@
-
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { Link } from "react-router-dom";
-
 const HeroSection = () => {
-  return (
-    <section className="relative pt-20 pb-24 bg-white overflow-hidden">
+  return <section className="relative pt-20 pb-24 bg-white overflow-hidden">
       {/* Subtle background pattern */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(168,85,247,0.1)_0%,transparent_50%)]" />
       
@@ -19,7 +16,7 @@ const HeroSection = () => {
           </div>
 
           {/* Main headline */}
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-8 animate-fade-in">
+          <h1 className="text-5xl md:text-6xl text-gray-900 mb-8 animate-fade-in font-bold lg:text-7xl text-center">
             Meet Klippi, Your AI Customer Success
             <span className="block text-gradient-purple">Manager</span>
           </h1>
@@ -57,8 +54,6 @@ const HeroSection = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default HeroSection;
