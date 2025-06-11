@@ -26,7 +26,6 @@ import {
   FileText,
   Settings,
   LogOut,
-  PlusCircle,
   Sparkles,
   Inbox,
   Zap,
@@ -70,79 +69,77 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
 
   return (
     <SidebarProvider>
-      <div className="flex w-full min-h-screen bg-background">
-        <Sidebar variant="inset">
-          <SidebarHeader>
-            <div className="flex items-center gap-2 px-2">
-              <div className="size-8 rounded-lg bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
-                <span className="text-white font-bold text-xl">K</span>
+      <div className="flex w-full min-h-screen bg-gray-50/50">
+        <Sidebar variant="inset" className="border-r border-gray-200">
+          <SidebarHeader className="border-b border-gray-200 px-6 py-4">
+            <div className="flex items-center gap-3">
+              <div className="size-8 rounded-lg bg-black flex items-center justify-center">
+                <span className="text-white font-bold text-lg">K</span>
               </div>
-              <span className="text-xl font-bold text-foreground">Klippi</span>
+              <span className="text-xl font-semibold text-gray-900">Klippi</span>
             </div>
-            <Button variant="outline" size="sm" className="w-full mt-2 gap-1">
-              <PlusCircle className="h-4 w-4" />
-              New Action
-            </Button>
           </SidebarHeader>
           
-          <SidebarContent>
+          <SidebarContent className="px-4 py-6">
             <SidebarGroup>
-              <SidebarGroupLabel>Dashboard</SidebarGroupLabel>
+              <SidebarGroupLabel className="text-xs font-medium text-gray-500 uppercase tracking-wider mb-4">
+                Dashboard
+              </SidebarGroupLabel>
               <SidebarGroupContent>
-                <SidebarMenu>
+                <SidebarMenu className="space-y-1">
                   <SidebarMenuItem>
-                    <SidebarMenuButton asChild tooltip="Dashboard">
-                      <a href="/dashboard">
-                        <LayoutDashboard />
-                        <span>Dashboard</span>
+                    <SidebarMenuButton asChild className="h-10 px-3 text-gray-700 hover:bg-gray-100 hover:text-gray-900 rounded-md transition-colors">
+                      <a href="/dashboard" className="flex items-center gap-3">
+                        <LayoutDashboard className="h-4 w-4" />
+                        <span className="font-medium">Overview</span>
                       </a>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                   <SidebarMenuItem>
-                    <SidebarMenuButton asChild tooltip="Clients">
-                      <a href="/dashboard/clients">
-                        <Users />
-                        <span>Clients</span>
+                    <SidebarMenuButton asChild className="h-10 px-3 text-gray-700 hover:bg-gray-100 hover:text-gray-900 rounded-md transition-colors">
+                      <a href="/dashboard/clients" className="flex items-center gap-3">
+                        <Users className="h-4 w-4" />
+                        <span className="font-medium">Clients</span>
                       </a>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                   <SidebarMenuItem>
-                    <SidebarMenuButton asChild tooltip="Meetings">
-                      <a href="/dashboard/meetings">
-                        <Calendar />
-                        <span>Meetings</span>
+                    <SidebarMenuButton asChild className="h-10 px-3 text-gray-700 hover:bg-gray-100 hover:text-gray-900 rounded-md transition-colors">
+                      <a href="/dashboard/meetings" className="flex items-center gap-3">
+                        <Calendar className="h-4 w-4" />
+                        <span className="font-medium">Meetings</span>
                       </a>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                   <SidebarMenuItem>
-                    <SidebarMenuButton asChild tooltip="Messages">
-                      <a href="/dashboard/messages">
-                        <MessageSquare />
-                        <span>Messages</span>
+                    <SidebarMenuButton asChild className="h-10 px-3 text-gray-700 hover:bg-gray-100 hover:text-gray-900 rounded-md transition-colors">
+                      <a href="/dashboard/messages" className="flex items-center gap-3">
+                        <MessageSquare className="h-4 w-4" />
+                        <span className="font-medium">Messages</span>
                       </a>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                   <SidebarMenuItem>
-                    <SidebarMenuButton asChild tooltip="Inbox">
-                      <a href="/dashboard/inbox">
-                        <Inbox />
-                        <span>Inbox</span>
+                    <SidebarMenuButton asChild className="h-10 px-3 text-gray-700 hover:bg-gray-100 hover:text-gray-900 rounded-md transition-colors">
+                      <a href="/dashboard/inbox" className="flex items-center gap-3">
+                        <Inbox className="h-4 w-4" />
+                        <span className="font-medium">Inbox</span>
                       </a>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                   <SidebarMenuItem>
-                    <SidebarMenuButton asChild tooltip="Documents">
-                      <a href="/dashboard/documents">
-                        <FileText />
-                        <span>Documents</span>
+                    <SidebarMenuButton asChild className="h-10 px-3 text-gray-700 hover:bg-gray-100 hover:text-gray-900 rounded-md transition-colors">
+                      <a href="/dashboard/documents" className="flex items-center gap-3">
+                        <FileText className="h-4 w-4" />
+                        <span className="font-medium">Documents</span>
                       </a>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                   <SidebarMenuItem>
-                    <SidebarMenuButton asChild tooltip="Insights">
-                      <a href="/dashboard/insights">
-                        <Lightbulb />
-                        <span>Insights</span>
+                    <SidebarMenuButton asChild className="h-10 px-3 text-gray-700 hover:bg-gray-100 hover:text-gray-900 rounded-md transition-colors">
+                      <a href="/dashboard/insights" className="flex items-center gap-3">
+                        <Lightbulb className="h-4 w-4" />
+                        <span className="font-medium">Insights</span>
                       </a>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
@@ -150,39 +147,25 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
               </SidebarGroupContent>
             </SidebarGroup>
 
-            <SidebarGroup>
-              <SidebarGroupLabel>AI Tools</SidebarGroupLabel>
+            <SidebarGroup className="mt-8">
+              <SidebarGroupLabel className="text-xs font-medium text-gray-500 uppercase tracking-wider mb-4">
+                AI Tools
+              </SidebarGroupLabel>
               <SidebarGroupContent>
-                <SidebarMenu>
+                <SidebarMenu className="space-y-1">
                   <SidebarMenuItem>
-                    <SidebarMenuButton asChild tooltip="Klippi AI">
-                      <a href="/dashboard/klippi-ai">
-                        <Sparkles />
-                        <span>Klippi AI</span>
+                    <SidebarMenuButton asChild className="h-10 px-3 text-gray-700 hover:bg-gray-100 hover:text-gray-900 rounded-md transition-colors">
+                      <a href="/dashboard/klippi-ai" className="flex items-center gap-3">
+                        <Sparkles className="h-4 w-4" />
+                        <span className="font-medium">Klippi AI</span>
                       </a>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                   <SidebarMenuItem>
-                    <SidebarMenuButton asChild tooltip="AI CSM Flows">
-                      <a href="/dashboard/ai-flows">
-                        <Zap />
-                        <span>AI CSM Flows</span>
-                      </a>
-                    </SidebarMenuButton>
-                  </SidebarMenuItem>
-                </SidebarMenu>
-              </SidebarGroupContent>
-            </SidebarGroup>
-
-            <SidebarGroup>
-              <SidebarGroupLabel>Settings</SidebarGroupLabel>
-              <SidebarGroupContent>
-                <SidebarMenu>
-                  <SidebarMenuItem>
-                    <SidebarMenuButton asChild tooltip="Account Settings">
-                      <a href="/dashboard/settings">
-                        <Settings />
-                        <span>Settings</span>
+                    <SidebarMenuButton asChild className="h-10 px-3 text-gray-700 hover:bg-gray-100 hover:text-gray-900 rounded-md transition-colors">
+                      <a href="/dashboard/ai-flows" className="flex items-center gap-3">
+                        <Zap className="h-4 w-4" />
+                        <span className="font-medium">AI Flows</span>
                       </a>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
@@ -191,26 +174,34 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
             </SidebarGroup>
           </SidebarContent>
 
-          <SidebarFooter>
+          <SidebarFooter className="border-t border-gray-200 p-4">
+            <SidebarMenu>
+              <SidebarMenuItem>
+                <SidebarMenuButton asChild className="h-10 px-3 text-gray-700 hover:bg-gray-100 hover:text-gray-900 rounded-md transition-colors">
+                  <a href="/dashboard/settings" className="flex items-center gap-3">
+                    <Settings className="h-4 w-4" />
+                    <span className="font-medium">Settings</span>
+                  </a>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            </SidebarMenu>
             <Button 
               variant="ghost" 
-              className="w-full justify-start text-muted-foreground" 
+              className="w-full justify-start text-gray-500 hover:text-gray-700 hover:bg-gray-100 mt-2" 
               onClick={handleLogout}
             >
-              <LogOut className="h-4 w-4 mr-2" />
+              <LogOut className="h-4 w-4 mr-3" />
               Sign out
             </Button>
           </SidebarFooter>
         </Sidebar>
         
-        <SidebarInset>
-          <div className="h-full w-full p-4 md:p-6">
-            <header className="flex justify-between items-center mb-6">
-              <div>
-                <SidebarTrigger className="md:hidden" />
-              </div>
+        <SidebarInset className="flex-1">
+          <div className="h-full w-full">
+            <header className="sticky top-0 z-10 bg-white/80 backdrop-blur-md border-b border-gray-200 px-6 py-4">
+              <SidebarTrigger className="md:hidden" />
             </header>
-            <main>{children}</main>
+            <main className="p-6">{children}</main>
           </div>
         </SidebarInset>
       </div>
