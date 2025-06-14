@@ -1,7 +1,7 @@
 import React from "react";
 import { Brain, Layers, Book, Target, Database } from "lucide-react";
 export const AIFeatures = () => {
-  return <div className="mt-16 glass-card p-8 max-w-4xl mx-auto rounded-3xl bg-indigo-50">
+  return <div className="mt-16 glass-card p-8 max-w-4xl mx-auto rounded-3xl">
       <h3 className="font-bold mb-6 flex items-center text-2xl text-center">
         <Brain className="h-6 w-6 text-primary mr-3" />
         AI-Powered Intelligence
@@ -48,7 +48,15 @@ export const AIFeatures = () => {
           </div>
         </div>
         
-        
+        <div className="flex items-start gap-3">
+          <div className="p-1.5 rounded-md bg-primary/20 shrink-0 mt-1">
+            <Database className="h-5 w-5 text-primary" />
+          </div>
+          <div>
+            <h4 className="font-medium mb-1">Secure Cloud Backend</h4>
+            <p className="text-sm text-foreground/70">Powered by Supabase for enterprise-grade security and reliability.</p>
+          </div>
+        </div>
       </div>
     </div>;
 };
