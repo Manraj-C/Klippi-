@@ -1,9 +1,7 @@
-
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { Link } from "react-router-dom";
-
 const HeroSection = () => {
   return <section className="relative pt-20 pb-24 bg-white overflow-hidden">
       {/* Subtle background pattern */}
@@ -44,18 +42,9 @@ const HeroSection = () => {
           </div>
 
           {/* Social proof */}
-          <div className="flex flex-col items-center animate-fade-in">
-            <p className="text-sm text-gray-500 mb-6">Trusted by customer success teams at</p>
-            <div className="flex items-center justify-center space-x-8 opacity-60">
-              <div className="h-8 bg-gray-300 rounded w-24"></div>
-              <div className="h-8 bg-gray-300 rounded w-20"></div>
-              <div className="h-8 bg-gray-300 rounded w-28"></div>
-              <div className="h-8 bg-gray-300 rounded w-22"></div>
-            </div>
-          </div>
+          
         </div>
       </div>
     </section>;
 };
-
 export default HeroSection;
