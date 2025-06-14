@@ -1,7 +1,8 @@
+
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Sparkles } from "lucide-react";
-import { Link } from "react-router-dom";
+
 const HeroSection = () => {
   return <section className="relative pt-20 pb-24 bg-white overflow-hidden">
       {/* Subtle background pattern */}
@@ -26,19 +27,16 @@ const HeroSection = () => {
             proactive insights, and seamless workflow management.
           </p>
 
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16 animate-fade-in">
-            <Link to="/auth">
-              <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 h-12 px-8 text-base font-medium">
-                Start Free Trial
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-            </Link>
-            <Link to="/features">
-              <Button variant="outline" size="lg" className="h-12 px-8 text-base font-medium border-gray-300 hover:bg-gray-50">
-                See How It Works
-              </Button>
-            </Link>
+          {/* Single CTA Button */}
+          <div className="flex justify-center mb-16 animate-fade-in">
+            <Button 
+              size="lg" 
+              className="bg-primary text-primary-foreground hover:bg-primary/90 h-12 px-8 text-base font-medium"
+              id="contact-cta"
+            >
+              Join the Waitlist
+              <ArrowRight className="ml-2 h-4 w-4" />
+            </Button>
           </div>
 
           {/* Social proof */}
@@ -47,4 +45,5 @@ const HeroSection = () => {
       </div>
     </section>;
 };
+
 export default HeroSection;

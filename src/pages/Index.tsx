@@ -6,6 +6,7 @@ import FeaturesSection from "@/components/features-section"
 import IntegrationsSection from "@/components/integrations-section"
 import SignupForm from "@/components/signup-form"
 import Footer from "@/components/footer"
+import GlobalContactForm from "@/components/GlobalContactForm"
 import { User, Users } from "lucide-react"
 
 const Index = () => {
@@ -52,6 +53,7 @@ const Index = () => {
       </main>
       
       <Footer />
+      <GlobalContactForm />
     </div>
   )
 }
