@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Facebook, Twitter, Instagram, Linkedin, Github } from "lucide-react";
 
@@ -8,10 +7,11 @@ const Footer = () => {
       <div className="container px-4 mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="flex items-center gap-2 mb-6 md:mb-0">
-            <div className="size-8 rounded-lg bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
-              <span className="text-white font-bold text-xl">K</span>
-            </div>
-            <span className="text-xl font-bold text-foreground">Klippi</span>
+            <img 
+              src="/lovable-uploads/39e2f289-0d35-4b3e-b968-b310ff607ecc.png" 
+              alt="Klippi" 
+              className="h-8 w-auto"
+            />
           </div>
           
           <div className="flex flex-wrap justify-center gap-6 mb-6 md:mb-0">
