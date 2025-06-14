@@ -1,8 +1,6 @@
-
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Sparkles } from "lucide-react";
-
 const HeroSection = () => {
   return <section className="relative pt-20 pb-24 bg-white overflow-hidden">
       {/* Subtle background pattern */}
@@ -17,7 +15,7 @@ const HeroSection = () => {
           </div>
 
           {/* Main headline */}
-          <h1 className="text-5xl md:text-6xl text-gray-900 mb-8 animate-fade-in font-bold lg:text-7xl text-center">
+          <h1 className="text-5xl md:text-6xl mb-8 animate-fade-in font-bold lg:text-7xl text-center text-black">
             Meet <span className="text-gradient-purple">Klippi</span>, Your AI Customer Success Manager
           </h1>
 
@@ -29,11 +27,7 @@ const HeroSection = () => {
 
           {/* Single CTA Button */}
           <div className="flex justify-center mb-16 animate-fade-in">
-            <Button 
-              size="lg" 
-              className="bg-primary text-primary-foreground hover:bg-primary/90 h-12 px-8 text-base font-medium"
-              id="contact-cta"
-            >
+            <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 h-12 px-8 text-base font-medium" id="contact-cta">
               Join the Waitlist
               <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
@@ -45,5 +39,4 @@ const HeroSection = () => {
       </div>
     </section>;
 };
-
 export default HeroSection;
