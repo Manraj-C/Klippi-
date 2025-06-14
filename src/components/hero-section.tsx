@@ -1,19 +1,16 @@
-
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { Link } from "react-router-dom";
-
 const HeroSection = () => {
-  return (
-    <section className="relative pt-20 pb-24 bg-white overflow-hidden">
+  return <section className="relative pt-20 pb-24 bg-white overflow-hidden">
       {/* Subtle background pattern */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(168,85,247,0.1)_0%,transparent_50%)]" />
       
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-4xl mx-auto">
           {/* Badge */}
-          <div className="inline-flex items-center px-4 py-2 rounded-full bg-purple-100 text-purple-800 text-sm font-medium mb-8 animate-fade-in">
+          <div className="inline-flex items-center px-4 py-2 rounded-full text-purple-800 text-sm font-medium mb-8 animate-fade-in bg-purple-100">
             <Sparkles className="w-4 h-4 mr-2" />
             AI-Powered Customer Success Platform
           </div>
@@ -56,8 +53,6 @@ const HeroSection = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default HeroSection;
