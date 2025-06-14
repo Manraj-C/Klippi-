@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
@@ -13,7 +14,7 @@ const Navbar = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
             <img 
-              src="/lovable-uploads/ce814fb6-e142-4dbc-b341-5cdad5af6b62.png" 
+              src="/lovable-uploads/39e2f289-0d35-4b3e-b968-b310ff607ecc.png" 
               alt="Klippi" 
               className="h-8 w-auto"
             />
