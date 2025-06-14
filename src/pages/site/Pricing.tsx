@@ -4,8 +4,10 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/componen
 import { Button } from "@/components/ui/button";
 import { Check, HelpCircle } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+
 const Pricing = () => {
   const [billingCycle, setBillingCycle] = useState<"monthly" | "annual">("annual");
+  
   const plans = [{
     name: "Assistant",
     description: "Ideal for individual CSMs who want to augment their workflow using Klippi as their personal assistant",
@@ -13,7 +15,7 @@ const Pricing = () => {
     annualPrice: "Custom",
     features: ["AI-powered workflow automation", "Personal CSM assistant capabilities", "Client interaction support", "Meeting preparation and follow-up", "Personalized insights and recommendations", "Basic integrations with your existing tools"],
     highlight: false,
-    cta: "Contact Sales for More Info"
+    cta: "Contact for More Info"
   }, {
     name: "Full-Time CSM",
     description: "Designed for teams that want to hire Klippi as a full-time AI-powered Customer Success Manager across multiple accounts or roles",
@@ -21,7 +23,7 @@ const Pricing = () => {
     annualPrice: "Custom",
     features: ["Everything in Assistant", "Multi-account management", "Team collaboration features", "Advanced workflow automation", "Cross-functional CS operations", "Comprehensive analytics and reporting", "Priority support and training", "Custom integrations"],
     highlight: true,
-    cta: "Contact Sales for More Info"
+    cta: "Contact for More Info"
   }, {
     name: "Consultant",
     description: "For organizations seeking to co-create bespoke AI workflows using Klippi—essentially working with Klippi as an AI consultant",
@@ -29,8 +31,9 @@ const Pricing = () => {
     annualPrice: "Custom",
     features: ["Everything in Full-Time CSM", "Bespoke AI workflow creation", "Custom strategy development", "Dedicated AI consultant partnership", "Advanced customization capabilities", "Strategic CS transformation guidance", "Executive-level support", "Unlimited integrations and customizations"],
     highlight: false,
-    cta: "Contact Sales for More Info"
+    cta: "Contact for More Info"
   }];
+
   return <SiteLayout>
       <div className="bg-white py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -127,4 +130,5 @@ const Pricing = () => {
       </div>
     </SiteLayout>;
 };
+
 export default Pricing;
