@@ -6,6 +6,33 @@ import { Check, Shield } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 
 const Platform = () => {
+  const integrations = [
+    {
+      name: "Salesforce",
+      logo: "https://www.salesforce.com/news/wp-content/uploads/sites/3/2021/05/Salesforce-logo.jpg"
+    },
+    {
+      name: "HubSpot", 
+      logo: "https://cdn.worldvectorlogo.com/logos/hubspot-1.svg"
+    },
+    {
+      name: "Slack",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/d/d5/Slack_icon_2019.svg"
+    },
+    {
+      name: "Zoom",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/9/9b/Zoom_logo.svg"
+    },
+    {
+      name: "Intercom",
+      logo: "https://cdn.worldvectorlogo.com/logos/intercom-1.svg"
+    },
+    {
+      name: "Zendesk",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/c/c8/Zendesk_logo.svg"
+    }
+  ];
+
   return (
     <SiteLayout>
       <div className="container px-4 py-16 mx-auto">
@@ -60,12 +87,27 @@ const Platform = () => {
               Klippi connects with the tools you already use, creating a seamless workflow for your customer success operations.
             </p>
             <div className="grid grid-cols-3 gap-4">
-              {["Salesforce", "HubSpot", "Slack", "Zoom", "Intercom", "Zendesk"].map((tool) => (
-                <div key={tool} className="bg-muted/30 rounded p-3 text-center">
+              {integrations.map((integration) => (
+                <div key={integration.name} className="bg-muted/30 rounded p-3 text-center">
                   <div className="h-12 flex items-center justify-center mb-2">
-                    <div className="w-8 h-8 bg-primary/10 rounded-full"></div>
+                    <img 
+                      src={integration.logo} 
+                      alt={`${integration.name} logo`}
+                      className="h-8 max-w-full object-contain"
+                      onError={(e) => {
+                        console.log(`Failed to load logo for ${integration.name}`);
+                        e.currentTarget.style.display = 'none';
+                        const parent = e.currentTarget.parentElement;
+                        if (parent) {
+                          const fallback = document.createElement('div');
+                          fallback.className = 'w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center';
+                          fallback.textContent = integration.name.charAt(0);
+                          parent.appendChild(fallback);
+                        }
+                      }}
+                    />
                   </div>
-                  <p className="text-sm font-medium">{tool}</p>
+                  <p className="text-sm font-medium">{integration.name}</p>
                 </div>
               ))}
             </div>
