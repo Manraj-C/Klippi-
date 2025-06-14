@@ -23,7 +23,7 @@ const Footer = () => {
           </div>
           
           <div className="flex items-center gap-4 mb-6 md:mb-0">
-            <a href="https://twitter.com/klippiapp" target="_blank" rel="noopener noreferrer" className="text-foreground/70 hover:text-primary transition-colors">
+            <a href="https://x.com/Klippiai" target="_blank" rel="noopener noreferrer" className="text-foreground/70 hover:text-primary transition-colors">
               <Twitter size={18} />
             </a>
             <a href="https://facebook.com/klippiapp" target="_blank" rel="noopener noreferrer" className="text-foreground/70 hover:text-primary transition-colors">
