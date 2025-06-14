@@ -88,8 +88,8 @@ const ContactFormPopup: React.FC<ContactFormPopupProps> = ({ isOpen, onClose }) 
         "Source Page": window.location.href,
       };
 
-      // Google Sheets Web App URL (you'll need to create this)
-      const GOOGLE_SHEETS_URL = "https://script.google.com/macros/s/AKfycbzGoogleSheetsWebAppURLHere/exec";
+      // Google Sheets Web App URL
+      const GOOGLE_SHEETS_URL = "https://script.google.com/macros/s/AKfycbzA5T1zAp9GK18koQtcm-pluHEE1AFk_9p87tuuepzWPE1kWOTjkOU7t1Z3Lw_b0BOT/exec";
       
       const response = await fetch(GOOGLE_SHEETS_URL, {
         method: "POST",
@@ -112,8 +112,8 @@ const ContactFormPopup: React.FC<ContactFormPopupProps> = ({ isOpen, onClose }) 
       onClose();
 
       // Optional: Send analytics event
-      if (typeof gtag !== "undefined") {
-        gtag("event", "ContactFormSubmitted", {
+      if (typeof (window as any).gtag !== "undefined") {
+        (window as any).gtag("event", "ContactFormSubmitted", {
           event_category: "engagement",
           event_label: formData.plan || "unspecified_plan",
         });
