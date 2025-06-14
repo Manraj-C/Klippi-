@@ -32,7 +32,7 @@ const Footer = () => {
             <a href="https://instagram.com/klippiapp" target="_blank" rel="noopener noreferrer" className="text-foreground/70 hover:text-primary transition-colors">
               <Instagram size={18} />
             </a>
-            <a href="https://linkedin.com/company/klippiapp" target="_blank" rel="noopener noreferrer" className="text-foreground/70 hover:text-primary transition-colors">
+            <a href="https://www.linkedin.com/company/klippi-ai" target="_blank" rel="noopener noreferrer" className="text-foreground/70 hover:text-primary transition-colors">
               <Linkedin size={18} />
             </a>
             <a href="https://github.com/klippiapp" target="_blank" rel="noopener noreferrer" className="text-foreground/70 hover:text-primary transition-colors">
