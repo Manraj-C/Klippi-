@@ -1,10 +1,7 @@
-
-import React from "react"
-import { Facebook, Twitter, Instagram, Linkedin, Github } from "lucide-react"
-
+import React from "react";
+import { Facebook, Twitter, Instagram, Linkedin, Github } from "lucide-react";
 const Footer = () => {
-  return (
-    <footer className="border-t border-border py-12 bg-muted/30">
+  return <footer className="border-t border-border py-12 bg-muted/30">
       <div className="container px-4 mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="flex items-center gap-2 mb-6 md:mb-0">
@@ -23,14 +20,14 @@ const Footer = () => {
           </div>
           
           <div className="flex items-center gap-4 mb-6 md:mb-0">
-            <a href="https://x.com/Klippiai" target="_blank" rel="noopener noreferrer" className="text-foreground/70 hover:text-primary transition-colors">
+            <a href="https://twitter.com/klippiapp" target="_blank" rel="noopener noreferrer" className="text-foreground/70 hover:text-primary transition-colors">
               <Twitter size={18} />
             </a>
             <a href="https://facebook.com/klippiapp" target="_blank" rel="noopener noreferrer" className="text-foreground/70 hover:text-primary transition-colors">
-              <Facebook size={18} />
+              
             </a>
             <a href="https://instagram.com/klippiapp" target="_blank" rel="noopener noreferrer" className="text-foreground/70 hover:text-primary transition-colors">
-              <Instagram size={18} />
+              
             </a>
             <a href="https://www.linkedin.com/company/klippi-ai" target="_blank" rel="noopener noreferrer" className="text-foreground/70 hover:text-primary transition-colors">
               <Linkedin size={18} />
@@ -47,8 +44,6 @@ const Footer = () => {
           </div>
         </div>
       </div>
-    </footer>
-  )
-}
-
-export default Footer
+    </footer>;
+};
+export default Footer;
