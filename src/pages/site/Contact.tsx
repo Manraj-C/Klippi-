@@ -1,28 +1,18 @@
-
 import React from "react";
 import SiteLayout from "@/components/site/SiteLayout";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { 
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Mail, MapPin, Phone, Send } from "lucide-react";
-
 const Contact = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // In a real app, this would send the form data to your backend
     console.log("Contact form submitted");
   };
-
-  return (
-    <SiteLayout>
+  return <SiteLayout>
       <div className="container px-4 py-16 mx-auto">
         <div className="max-w-3xl mx-auto text-center mb-12">
           <h1 className="text-4xl font-bold mb-4">Contact Us</h1>
@@ -71,12 +61,7 @@ const Contact = () => {
                 <label htmlFor="message" className="text-sm font-medium">
                   Message
                 </label>
-                <Textarea 
-                  id="message" 
-                  placeholder="How can we help you?" 
-                  rows={5}
-                  required
-                />
+                <Textarea id="message" placeholder="How can we help you?" rows={5} required />
               </div>
               
               <Button type="submit" className="w-full flex items-center gap-2">
@@ -98,21 +83,17 @@ const Contact = () => {
                     </div>
                     <div>
                       <h3 className="font-medium">Email Us</h3>
-                      <p className="text-muted-foreground">info@klippi.com</p>
+                      
                       <p className="text-muted-foreground">support@klippi.com</p>
                     </div>
                   </div>
                   
                   <div className="flex items-start gap-3">
-                    <div className="bg-primary/10 p-2 rounded-lg">
-                      <Phone className="h-5 w-5 text-primary" />
-                    </div>
+                    
                     <div>
-                      <h3 className="font-medium">Call Us</h3>
-                      <p className="text-muted-foreground">+1 (555) 123-4567</p>
-                      <p className="text-xs text-muted-foreground mt-1">
-                        Monday-Friday, 9AM-5PM PT
-                      </p>
+                      
+                      
+                      
                     </div>
                   </div>
                   
@@ -139,8 +120,6 @@ const Contact = () => {
           </div>
         </div>
       </div>
-    </SiteLayout>
-  );
+    </SiteLayout>;
 };
-
 export default Contact;
