@@ -3,67 +3,37 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { supabase } from "@/integrations/supabase/client";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import Auth from "./pages/Auth";
-import NotFound from "./pages/NotFound";
 import Dashboard from "./pages/Dashboard";
 import Clients from "./pages/Clients";
 import ClientDetail from "./pages/ClientDetail";
 import Meetings from "./pages/Meetings";
 import Messages from "./pages/Messages";
+import Inbox from "./pages/Inbox";
 import Documents from "./pages/Documents";
 import Settings from "./pages/Settings";
-import KlippiAI from "./pages/KlippiAI";
-import Inbox from "./pages/Inbox";
 import AIFlows from "./pages/AIFlows";
 import AIFlowDetail from "./pages/AIFlowDetail";
 import Insights from "./pages/Insights";
-// Import site structure pages
-// Solutions page removed
+import Klippi from "./pages/Klippi";
+import KlippiAI from "./pages/KlippiAI";
+import NotFound from "./pages/NotFound";
+
+// Site pages
+import About from "./pages/site/About";
 import Features from "./pages/site/Features";
 import Platform from "./pages/site/Platform";
+import Pricing from "./pages/site/Pricing";
 import Resources from "./pages/site/Resources";
+import Contact from "./pages/site/Contact";
 import Blog from "./pages/site/Blog";
 import BlogPost from "./pages/site/BlogPost";
-import About from "./pages/site/About";
-import Pricing from "./pages/site/Pricing";
-import Contact from "./pages/site/Contact";
+import Solutions from "./pages/site/Solutions";
+import GlobalContactForm from "./components/GlobalContactForm";
 
 const queryClient = new QueryClient();
-
-// Create a wrapper component to handle redirection based on auth state
-const HomeRedirect = () => {
-  const [session, setSession] = useState(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    // Get initial session
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session);
-      setLoading(false);
-    });
-
-    // Listen for auth changes
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      (_event, session) => {
-        setSession(session);
-      }
-    );
-
-    return () => subscription.unsubscribe();
-  }, []);
-
-  // Show nothing while loading
-  if (loading) {
-    return null;
-  }
-
-  // Redirect to Dashboard if logged in, otherwise show landing page
-  return session ? <Navigate to="/dashboard" replace /> : <Index />;
-};
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
@@ -72,48 +42,36 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<HomeRedirect />} />
+          <Route path="/" element={<Index />} />
           <Route path="/auth" element={<Auth />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/clients" element={<Clients />} />
+          <Route path="/clients/:id" element={<ClientDetail />} />
+          <Route path="/meetings" element={<Meetings />} />
+          <Route path="/messages" element={<Messages />} />
+          <Route path="/inbox" element={<Inbox />} />
+          <Route path="/documents" element={<Documents />} />
+          <Route path="/settings" element={<Settings />} />
+          <Route path="/ai-flows" element={<AIFlows />} />
+          <Route path="/ai-flows/:id" element={<AIFlowDetail />} />
+          <Route path="/insights" element={<Insights />} />
+          <Route path="/klippi" element={<Klippi />} />
+          <Route path="/klippi-ai" element={<KlippiAI />} />
           
-          {/* Public Site Structure */}
-          {/* Solutions routes removed */}
+          {/* Site pages */}
+          <Route path="/about" element={<About />} />
           <Route path="/features" element={<Features />} />
-          <Route path="/features/ai-assistant" element={<Features />} />
-          <Route path="/features/meeting-support" element={<Features />} />
-          <Route path="/features/client-management" element={<Features />} />
           <Route path="/platform" element={<Platform />} />
-          <Route path="/platform/integrations" element={<Platform />} />
-          <Route path="/platform/security" element={<Platform />} />
+          <Route path="/pricing" element={<Pricing />} />
           <Route path="/resources" element={<Resources />} />
-          <Route path="/resources/case-studies" element={<Resources />} />
-          <Route path="/resources/guides" element={<Resources />} />
+          <Route path="/contact" element={<Contact />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:slug" element={<BlogPost />} />
-          {/* About page temporarily hidden */}
-          {/* <Route path="/about" element={<About />} /> */}
-          <Route path="/pricing" element={<Pricing />} />
-          <Route path="/contact" element={<Contact />} />
+          <Route path="/solutions" element={<Solutions />} />
           
-          {/* Dashboard Structure */}
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/dashboard/clients" element={<Clients />} />
-          <Route path="/dashboard/clients/:id" element={<ClientDetail />} />
-          <Route path="/dashboard/meetings" element={<Meetings />} />
-          <Route path="/dashboard/messages" element={<Messages />} />
-          <Route path="/dashboard/customer-success-cockpit" element={<Navigate to="/dashboard/messages" replace />} />
-          <Route path="/dashboard/documents" element={<Documents />} />
-          <Route path="/dashboard/settings" element={<Settings />} />
-          <Route path="/dashboard/klippi-ai" element={<KlippiAI />} />
-          {/* Add a redirect from the old path to the new path */}
-          <Route path="/dashboard/klippi" element={<Navigate to="/dashboard/klippi-ai" replace />} />
-          <Route path="/dashboard/inbox" element={<Inbox />} />
-          <Route path="/dashboard/insights" element={<Insights />} />
-          <Route path="/dashboard/ai-flows" element={<AIFlows />} />
-          <Route path="/dashboard/ai-flows/:id" element={<AIFlowDetail />} />
-          
-          {/* Catch-all route */}
           <Route path="*" element={<NotFound />} />
         </Routes>
+        <GlobalContactForm />
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
