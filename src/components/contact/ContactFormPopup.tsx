@@ -18,6 +18,8 @@ import {
 } from "@/components/ui/select";
 import { X } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { sanitizeInput, validateEmail, createRateLimiter } from "@/utils/security";
+import { useSecurity } from "@/contexts/SecurityContext";
 
 interface ContactFormPopupProps {
   isOpen: boolean;
@@ -31,6 +33,9 @@ interface FormData {
   plan: string;
 }
 
+// Rate limiter: 3 submissions per 10 minutes
+const submissionRateLimiter = createRateLimiter(3, 10 * 60 * 1000);
+
 const ContactFormPopup: React.FC<ContactFormPopupProps> = ({ isOpen, onClose }) => {
   const [formData, setFormData] = useState<FormData>({
     name: "",
@@ -40,28 +45,36 @@ const ContactFormPopup: React.FC<ContactFormPopupProps> = ({ isOpen, onClose }) 
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState<Partial<FormData>>({});
+  const [honeypot, setHoneypot] = useState("");
   const { toast } = useToast();
-
-  const validateEmail = (email: string): boolean => {
-    const corporateEmailRegex = /^[a-zA-Z0-9._%+-]+@(?!(gmail|yahoo|hotmail|outlook)\.).+\..+$/;
-    return corporateEmailRegex.test(email);
-  };
+  const { csrfToken } = useSecurity();
 
   const validateForm = (): boolean => {
     const newErrors: Partial<FormData> = {};
 
-    if (!formData.name.trim()) {
+    // Sanitize and validate name
+    const sanitizedName = sanitizeInput(formData.name);
+    if (!sanitizedName.trim()) {
       newErrors.name = "Name is required";
+    } else if (sanitizedName.length < 2) {
+      newErrors.name = "Name must be at least 2 characters";
+    } else if (sanitizedName.length > 100) {
+      newErrors.name = "Name must be less than 100 characters";
     }
 
+    // Validate email
     if (!formData.email.trim()) {
       newErrors.email = "Corporate email is required";
     } else if (!validateEmail(formData.email)) {
-      newErrors.email = "Please use a corporate email address";
+      newErrors.email = "Please use a valid corporate email address";
     }
 
-    if (!formData.role.trim()) {
+    // Validate role
+    const sanitizedRole = sanitizeInput(formData.role);
+    if (!sanitizedRole.trim()) {
       newErrors.role = "Role is required";
+    } else if (sanitizedRole.length > 100) {
+      newErrors.role = "Role must be less than 100 characters";
     }
 
     setErrors(newErrors);
@@ -71,6 +84,22 @@ const ContactFormPopup: React.FC<ContactFormPopupProps> = ({ isOpen, onClose }) 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
+    // Check honeypot (bot detection)
+    if (honeypot) {
+      console.log("Bot detected");
+      return;
+    }
+
+    // Rate limiting
+    if (!submissionRateLimiter('contact-form')) {
+      toast({
+        title: "Too many submissions",
+        description: "Please wait before submitting again.",
+        variant: "destructive",
+      });
+      return;
+    }
+    
     if (!validateForm()) {
       return;
     }
@@ -78,14 +107,16 @@ const ContactFormPopup: React.FC<ContactFormPopupProps> = ({ isOpen, onClose }) 
     setIsSubmitting(true);
 
     try {
-      // Prepare data for Google Sheets
+      // Prepare sanitized data for Google Sheets
       const submissionData = {
-        Name: formData.name,
-        "Corporate Email": formData.email,
-        Role: formData.role,
+        Name: sanitizeInput(formData.name),
+        "Corporate Email": sanitizeInput(formData.email.toLowerCase()),
+        Role: sanitizeInput(formData.role),
         Plan: formData.plan || "Not specified",
         Timestamp: new Date().toISOString(),
         "Source Page": window.location.href,
+        "User Agent": navigator.userAgent.substring(0, 200), // Truncate for security
+        "CSRF Token": csrfToken
       };
 
       // Google Sheets Web App URL
@@ -115,7 +146,7 @@ const ContactFormPopup: React.FC<ContactFormPopupProps> = ({ isOpen, onClose }) 
       if (typeof (window as any).gtag !== "undefined") {
         (window as any).gtag("event", "ContactFormSubmitted", {
           event_category: "engagement",
-          event_label: formData.plan || "unspecified_plan",
+          event_label: sanitizeInput(formData.plan || "unspecified_plan"),
         });
       }
 
@@ -132,6 +163,9 @@ const ContactFormPopup: React.FC<ContactFormPopupProps> = ({ isOpen, onClose }) 
   };
 
   const handleInputChange = (field: keyof FormData, value: string) => {
+    // Basic length validation on input
+    if (value.length > 500) return;
+    
     setFormData(prev => ({ ...prev, [field]: value }));
     if (errors[field]) {
       setErrors(prev => ({ ...prev, [field]: undefined }));
@@ -159,11 +193,16 @@ const ContactFormPopup: React.FC<ContactFormPopupProps> = ({ isOpen, onClose }) 
           {/* Honeypot field for spam protection */}
           <input
             type="text"
-            name="honeypot"
+            name="website"
+            value={honeypot}
+            onChange={(e) => setHoneypot(e.target.value)}
             style={{ display: "none" }}
             tabIndex={-1}
             autoComplete="off"
           />
+
+          {/* Hidden CSRF token */}
+          <input type="hidden" name="_token" value={csrfToken} />
 
           <div className="space-y-2">
             <Label htmlFor="name">Name *</Label>
@@ -174,6 +213,8 @@ const ContactFormPopup: React.FC<ContactFormPopupProps> = ({ isOpen, onClose }) 
               onChange={(e) => handleInputChange("name", e.target.value)}
               className={errors.name ? "border-red-500" : ""}
               placeholder="Your full name"
+              maxLength={100}
+              autoComplete="name"
             />
             {errors.name && (
               <p className="text-sm text-red-500">{errors.name}</p>
@@ -189,6 +230,8 @@ const ContactFormPopup: React.FC<ContactFormPopupProps> = ({ isOpen, onClose }) 
               onChange={(e) => handleInputChange("email", e.target.value)}
               className={errors.email ? "border-red-500" : ""}
               placeholder="you@company.com"
+              maxLength={254}
+              autoComplete="email"
             />
             {errors.email && (
               <p className="text-sm text-red-500">{errors.email}</p>
@@ -204,6 +247,8 @@ const ContactFormPopup: React.FC<ContactFormPopupProps> = ({ isOpen, onClose }) 
               onChange={(e) => handleInputChange("role", e.target.value)}
               className={errors.role ? "border-red-500" : ""}
               placeholder="e.g., Customer Success Manager"
+              maxLength={100}
+              autoComplete="organization-title"
             />
             {errors.role && (
               <p className="text-sm text-red-500">{errors.role}</p>

@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -7,26 +6,42 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter }
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
-import { Eye, EyeOff, Mail, Lock, ArrowRight } from "lucide-react";
+import { Eye, EyeOff, Mail, Lock, ArrowRight, Shield } from "lucide-react";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { validatePassword, createRateLimiter, sanitizeInput } from "@/utils/security";
+import { useSecurity } from "@/contexts/SecurityContext";
 
 const loginSchema = z.object({
-  email: z.string().email("Please enter a valid email address"),
+  email: z.string().email("Please enter a valid email address").min(1, "Email is required"),
   password: z.string().min(6, "Password must be at least 6 characters"),
 });
+
+const signupSchema = z.object({
+  email: z.string().email("Please enter a valid email address").min(1, "Email is required"),
+  password: z.string().min(8, "Password must be at least 8 characters")
+    .refine((password) => validatePassword(password).isValid, {
+      message: "Password must contain uppercase, lowercase, number, and special character"
+    }),
+});
+
+// Rate limiter: 5 attempts per 15 minutes
+const authRateLimiter = createRateLimiter(5, 15 * 60 * 1000);
 
 const Auth = () => {
   const [isSignUp, setIsSignUp] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [session, setSession] = useState(null);
+  const [passwordStrength, setPasswordStrength] = useState<string[]>([]);
   const { toast } = useToast();
   const navigate = useNavigate();
+  const { csrfToken, isSecureConnection } = useSecurity();
   
+  const schema = isSignUp ? signupSchema : loginSchema;
   const form = useForm({
-    resolver: zodResolver(loginSchema),
+    resolver: zodResolver(schema),
     defaultValues: {
       email: "",
       password: "",
@@ -34,6 +49,15 @@ const Auth = () => {
   });
 
   useEffect(() => {
+    // Security warning for non-HTTPS connections
+    if (!isSecureConnection && window.location.hostname !== 'localhost') {
+      toast({
+        title: "Security Warning",
+        description: "This connection is not secure. Please use HTTPS.",
+        variant: "destructive",
+      });
+    }
+
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session);
       if (session) navigate("/");
@@ -47,40 +71,91 @@ const Auth = () => {
     );
 
     return () => subscription.unsubscribe();
-  }, [navigate]);
+  }, [navigate, isSecureConnection, toast]);
 
   const toggleMode = () => {
     setIsSignUp(!isSignUp);
     form.reset();
+    setPasswordStrength([]);
+  };
+
+  const handlePasswordChange = (password: string) => {
+    if (isSignUp) {
+      const validation = validatePassword(password);
+      setPasswordStrength(validation.errors);
+    }
   };
 
   const onSubmit = async (values) => {
+    const clientIP = 'user-session'; // In production, use actual IP or user ID
+    
+    if (!authRateLimiter(clientIP)) {
+      toast({
+        title: "Too many attempts",
+        description: "Please wait before trying again.",
+        variant: "destructive",
+      });
+      return;
+    }
+
     setIsLoading(true);
+    
     try {
+      // Sanitize inputs
+      const sanitizedEmail = sanitizeInput(values.email.toLowerCase().trim());
+      const password = values.password;
+
       if (isSignUp) {
         const { error } = await supabase.auth.signUp({
-          email: values.email,
-          password: values.password,
+          email: sanitizedEmail,
+          password: password,
+          options: {
+            emailRedirectTo: `${window.location.origin}/`,
+            data: {
+              csrf_token: csrfToken
+            }
+          }
         });
 
-        if (error) throw error;
-        
-        toast({
-          title: "Account created successfully!",
-          description: "Please check your email for verification link.",
-        });
+        if (error) {
+          if (error.message.includes('already registered')) {
+            toast({
+              title: "Account exists",
+              description: "An account with this email already exists. Try signing in instead.",
+              variant: "destructive",
+            });
+          } else {
+            throw error;
+          }
+        } else {
+          toast({
+            title: "Account created successfully!",
+            description: "Please check your email for verification link.",
+          });
+        }
       } else {
         const { error } = await supabase.auth.signInWithPassword({
-          email: values.email,
-          password: values.password,
+          email: sanitizedEmail,
+          password: password,
         });
 
-        if (error) throw error;
+        if (error) {
+          if (error.message.includes('Invalid login credentials')) {
+            toast({
+              title: "Invalid credentials",
+              description: "Please check your email and password and try again.",
+              variant: "destructive",
+            });
+          } else {
+            throw error;
+          }
+        }
       }
     } catch (error) {
+      console.error('Authentication error:', error);
       toast({
         title: "Authentication error",
-        description: error.message,
+        description: "An unexpected error occurred. Please try again.",
         variant: "destructive",
       });
     } finally {
@@ -89,20 +164,33 @@ const Auth = () => {
   };
 
   const handleGoogleSignIn = async () => {
+    if (!authRateLimiter('google-signin')) {
+      toast({
+        title: "Too many attempts",
+        description: "Please wait before trying again.",
+        variant: "destructive",
+      });
+      return;
+    }
+
     setIsLoading(true);
     try {
       const { error } = await supabase.auth.signInWithOAuth({
         provider: "google",
         options: {
           redirectTo: `${window.location.origin}/`,
+          queryParams: {
+            csrf_token: csrfToken
+          }
         },
       });
       
       if (error) throw error;
     } catch (error) {
+      console.error('Google sign in error:', error);
       toast({
         title: "Google sign in error",
-        description: error.message,
+        description: "Unable to sign in with Google. Please try again.",
         variant: "destructive",
       });
       setIsLoading(false);
@@ -114,7 +202,7 @@ const Auth = () => {
       <div className="flex flex-1 flex-col justify-center items-center px-6 py-12">
         <div className="mb-8 flex flex-col items-center">
           <div className="size-12 rounded-lg bg-gradient-to-br from-primary to-secondary flex items-center justify-center mb-4">
-            <span className="text-white font-bold text-2xl">K</span>
+            <Shield className="text-white h-6 w-6" />
           </div>
           <h2 className="mt-2 text-3xl font-bold tracking-tight text-foreground">
             {isSignUp ? "Create your account" : "Welcome back"}
@@ -124,6 +212,12 @@ const Auth = () => {
               ? "Sign up to get started with Klippi" 
               : "Sign in to your account to continue"}
           </p>
+          {!isSecureConnection && window.location.hostname !== 'localhost' && (
+            <div className="mt-2 text-xs text-red-500 flex items-center gap-1">
+              <Shield className="h-3 w-3" />
+              Insecure connection detected
+            </div>
+          )}
         </div>
 
         <Card className="w-full max-w-md">
@@ -135,6 +229,7 @@ const Auth = () => {
               disabled={isLoading}
               className="w-full flex items-center justify-center gap-2 h-12 mb-4"
             >
+              {/* Google icon SVG remains the same */}
               <svg
                 width="18"
                 height="18"
@@ -174,6 +269,9 @@ const Auth = () => {
 
             <Form {...form}>
               <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+                {/* Hidden CSRF token */}
+                <input type="hidden" name="_token" value={csrfToken} />
+                
                 <FormField
                   control={form.control}
                   name="email"
@@ -186,6 +284,7 @@ const Auth = () => {
                           <Input
                             placeholder="you@company.com"
                             className="pl-10"
+                            autoComplete="email"
                             {...field}
                           />
                         </FormControl>
@@ -207,7 +306,12 @@ const Auth = () => {
                           <Input
                             type={showPassword ? "text" : "password"}
                             className="pl-10 pr-10"
+                            autoComplete={isSignUp ? "new-password" : "current-password"}
                             {...field}
+                            onChange={(e) => {
+                              field.onChange(e);
+                              handlePasswordChange(e.target.value);
+                            }}
                           />
                         </FormControl>
                         <Button
@@ -228,6 +332,13 @@ const Auth = () => {
                         </Button>
                       </div>
                       <FormMessage />
+                      {isSignUp && passwordStrength.length > 0 && (
+                        <div className="text-xs text-red-500 space-y-1">
+                          {passwordStrength.map((error, index) => (
+                            <div key={index}>• {error}</div>
+                          ))}
+                        </div>
+                      )}
                     </FormItem>
                   )}
                 />
@@ -259,6 +370,7 @@ const Auth = () => {
         </Card>
       </div>
 
+      {/* Right side content remains the same */}
       <div className="hidden lg:block relative w-0 flex-1">
         <div className="absolute inset-0 bg-gradient-to-r from-primary to-secondary opacity-90"></div>
         <div className="absolute inset-0 flex items-center justify-center text-white p-12">
