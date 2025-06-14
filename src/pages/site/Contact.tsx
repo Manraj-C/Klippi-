@@ -1,4 +1,3 @@
-
 import React from "react";
 import SiteLayout from "@/components/site/SiteLayout";
 import { Button } from "@/components/ui/button";
@@ -6,16 +5,13 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Send } from "lucide-react";
-
 const Contact = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // In a real app, this would send the form data to your backend
     console.log("Contact form submitted");
   };
-
-  return (
-    <SiteLayout>
+  return <SiteLayout>
       <div className="container px-4 py-16 mx-auto">
         <div className="max-w-3xl mx-auto text-center mb-12">
           <h1 className="text-4xl font-bold mb-4">Contact Us</h1>
@@ -25,7 +21,7 @@ const Contact = () => {
         </div>
         
         <div className="max-w-2xl mx-auto">
-          <h2 className="text-2xl font-bold mb-6">Get in Touch</h2>
+          <h2 className="text-2xl font-bold mb-6 text-center">Get in Touch</h2>
           
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="space-y-2">
@@ -73,8 +69,6 @@ const Contact = () => {
           </form>
         </div>
       </div>
-    </SiteLayout>
-  );
+    </SiteLayout>;
 };
-
 export default Contact;
