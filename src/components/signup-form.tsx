@@ -58,6 +58,33 @@ const SignupForm = () => {
         ])
 
       if (error) throw error
+
+      // Also send to Google Sheets
+      try {
+        const submissionData = {
+          Name: name,
+          "Corporate Email": email,
+          Role: "Waitlist Registration",
+          Plan: licenseType === "individual" ? "Individual CSM" : "Team",
+          Timestamp: new Date().toISOString(),
+          "Source Page": window.location.href,
+          "Form Type": "Waitlist"
+        };
+
+        const GOOGLE_SHEETS_URL = "https://script.google.com/macros/s/AKfycbzA5T1zAp9GK18koQtcm-pluHEE1AFk_9p87tuuepzWPE1kWOTjkOU7t1Z3Lw_b0BOT/exec";
+        
+        await fetch(GOOGLE_SHEETS_URL, {
+          method: "POST",
+          mode: "no-cors",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(submissionData),
+        });
+      } catch (googleSheetsError) {
+        console.error('Error sending to Google Sheets:', googleSheetsError);
+        // Don't fail the submission if Google Sheets fails
+      }
       
       // Try to send email notification if the Edge Function exists
       try {
@@ -81,6 +108,14 @@ const SignupForm = () => {
         title: "Thanks for joining the waitlist!",
         description: "We'll notify you when Klippi is ready.",
       })
+
+      // Optional: Send analytics event
+      if (typeof (window as any).gtag !== "undefined") {
+        (window as any).gtag("event", "WaitlistSignup", {
+          event_category: "engagement",
+          event_label: licenseType,
+        });
+      }
     } catch (error: any) {
       console.error('Error submitting to waitlist:', error)
       setIsSubmitting(false)
@@ -125,6 +160,15 @@ const SignupForm = () => {
       )}
       
       <form onSubmit={handleSubmit} className="space-y-4">
+        {/* Honeypot field for spam protection */}
+        <input
+          type="text"
+          name="honeypot"
+          style={{ display: "none" }}
+          tabIndex={-1}
+          autoComplete="off"
+        />
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="space-y-2">
             <Label htmlFor="name">Full Name</Label>
