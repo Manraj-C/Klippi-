@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Facebook, Twitter, Instagram, Linkedin, Github } from "lucide-react";
 
@@ -8,7 +9,7 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="flex items-center gap-2 mb-6 md:mb-0">
             <img 
-              src="/lovable-uploads/39e2f289-0d35-4b3e-b968-b310ff607ecc.png" 
+              src="/lovable-uploads/b34edeee-8ced-4968-bbdb-1d436f697376.png" 
               alt="Klippi" 
               className="h-8 w-auto"
             />

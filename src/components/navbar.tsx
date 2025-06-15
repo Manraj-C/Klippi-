@@ -14,7 +14,7 @@ const Navbar = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
             <img 
-              src="/lovable-uploads/39e2f289-0d35-4b3e-b968-b310ff607ecc.png" 
+              src="/lovable-uploads/b34edeee-8ced-4968-bbdb-1d436f697376.png" 
               alt="Klippi" 
               className="h-8 w-auto"
             />
