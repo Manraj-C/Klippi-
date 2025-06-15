@@ -1,18 +1,11 @@
-
 import React from "react";
 import { Facebook, Twitter, Instagram, Linkedin, Github } from "lucide-react";
-
 const Footer = () => {
-  return (
-    <footer className="border-t border-border py-12 bg-muted/30">
+  return <footer className="border-t border-border py-12 bg-muted/30">
       <div className="container px-4 mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="flex items-center gap-2 mb-6 md:mb-0">
-            <img 
-              src="/lovable-uploads/b34edeee-8ced-4968-bbdb-1d436f697376.png" 
-              alt="Klippi" 
-              className="h-8 w-auto"
-            />
+            <img src="/lovable-uploads/b34edeee-8ced-4968-bbdb-1d436f697376.png" alt="Klippi" className="h-8 w-auto object-fill" />
           </div>
           
           <div className="flex flex-wrap justify-center gap-6 mb-6 md:mb-0">
@@ -48,8 +41,6 @@ const Footer = () => {
           </div>
         </div>
       </div>
-    </footer>
-  );
+    </footer>;
 };
-
 export default Footer;
