@@ -1,23 +1,15 @@
-
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { Link } from "react-router-dom";
-
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-
-  return (
-    <nav className="sticky top-0 z-50 w-full border-b border-gray-200/80 bg-white/80 backdrop-blur-md">
+  return <nav className="sticky top-0 z-50 w-full border-b border-gray-200/80 bg-white/80 backdrop-blur-md">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
-            <img 
-              src="/lovable-uploads/b34edeee-8ced-4968-bbdb-1d436f697376.png" 
-              alt="Klippi" 
-              className="h-8 w-auto"
-            />
+            <img src="/lovable-uploads/b34edeee-8ced-4968-bbdb-1d436f697376.png" alt="Klippi" className="h-8 w-auto object-fill" />
           </Link>
 
           {/* Desktop Navigation */}
@@ -55,20 +47,14 @@ const Navbar = () => {
 
           {/* Mobile menu button */}
           <div className="md:hidden">
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setIsOpen(!isOpen)}
-              className="text-gray-600"
-            >
+            <Button variant="ghost" size="icon" onClick={() => setIsOpen(!isOpen)} className="text-gray-600">
               {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </Button>
           </div>
         </div>
 
         {/* Mobile Navigation */}
-        {isOpen && (
-          <div className="md:hidden border-t border-gray-200 mt-4 pt-4 pb-4 animate-fade-in">
+        {isOpen && <div className="md:hidden border-t border-gray-200 mt-4 pt-4 pb-4 animate-fade-in">
             <div className="flex flex-col space-y-4">
               <Link to="/features" className="text-gray-600 hover:text-primary font-medium">
                 Features
@@ -98,11 +84,8 @@ const Navbar = () => {
                 </Link>
               </div>
             </div>
-          </div>
-        )}
+          </div>}
       </div>
-    </nav>
-  );
+    </nav>;
 };
-
 export default Navbar;
