@@ -6,6 +6,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { useToast } from "@/hooks/use-toast";
 import { ArrowRight, Mail, CheckCircle, AlertCircle } from "lucide-react";
 import { supabase, testSupabaseConnection } from "@/lib/supabase";
+import { useSecurity } from "@/contexts/SecurityContext";
 const SignupForm = () => {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
@@ -22,9 +23,8 @@ const SignupForm = () => {
     success: false,
     message: 'Checking connection...'
   });
-  const {
-    toast
-  } = useToast();
+  const { toast } = useToast();
+  const { csrfToken } = useSecurity();
   useEffect(() => {
     const checkConnection = async () => {
       const result = await testSupabaseConnection();
@@ -61,9 +61,16 @@ const SignupForm = () => {
           Plan: licenseType === "individual" ? "Individual CSM" : "Team",
           Timestamp: new Date().toISOString(),
           "Source Page": window.location.href,
-          "Form Type": "Waitlist"
+          "User Agent": navigator.userAgent.substring(0, 200), // Truncate for security
+          "Form Type": "Waitlist",
+          "CSRF Token": csrfToken
         };
-        const GOOGLE_SHEETS_URL = "https://script.google.com/macros/s/AKfycbzA5T1zAp9GK18koQtcm-pluHEE1AFk_9p87tuuepzWPE1kWOTjkOU7t1Z3Lw_b0BOT/exec";
+        
+        console.log('Submitting to Google Sheets:', submissionData);
+        
+        const GOOGLE_SHEETS_URL = "https://script.google.com/macros/s/AKfycbwTm58UaC7atjJrkNiguJnzXvQwRiliKWxeGoPepJxtHzozDKzw7k6DS5EGu4Nbbz5P/exec";
+        
+        // Using no-cors mode for Google Apps Script endpoints
         await fetch(GOOGLE_SHEETS_URL, {
           method: "POST",
           mode: "no-cors",
@@ -72,6 +79,9 @@ const SignupForm = () => {
           },
           body: JSON.stringify(submissionData)
         });
+        
+        // With no-cors mode, we can't read the response, but we'll assume it worked
+        console.log('Submitted to Google Sheets (response not readable in no-cors mode)');
       } catch (googleSheetsError) {
         console.error('Error sending to Google Sheets:', googleSheetsError);
         // Don't fail the submission if Google Sheets fails

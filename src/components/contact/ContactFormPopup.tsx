@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import {
   Dialog,
@@ -18,7 +17,11 @@ import {
 } from "@/components/ui/select";
 import { X } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
-import { sanitizeInput, validateEmail, createRateLimiter } from "@/utils/security";
+import {
+  sanitizeInput,
+  validateEmail,
+  createRateLimiter,
+} from "@/utils/security";
 import { useSecurity } from "@/contexts/SecurityContext";
 
 interface ContactFormPopupProps {
@@ -36,7 +39,10 @@ interface FormData {
 // Rate limiter: 3 submissions per 10 minutes
 const submissionRateLimiter = createRateLimiter(3, 10 * 60 * 1000);
 
-const ContactFormPopup: React.FC<ContactFormPopupProps> = ({ isOpen, onClose }) => {
+const ContactFormPopup: React.FC<ContactFormPopupProps> = ({
+  isOpen,
+  onClose,
+}) => {
   const [formData, setFormData] = useState<FormData>({
     name: "",
     email: "",
@@ -83,7 +89,7 @@ const ContactFormPopup: React.FC<ContactFormPopupProps> = ({ isOpen, onClose }) 
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     // Check honeypot (bot detection)
     if (honeypot) {
       console.log("Bot detected");
@@ -91,7 +97,7 @@ const ContactFormPopup: React.FC<ContactFormPopupProps> = ({ isOpen, onClose }) 
     }
 
     // Rate limiting
-    if (!submissionRateLimiter('contact-form')) {
+    if (!submissionRateLimiter("contact-form")) {
       toast({
         title: "Too many submissions",
         description: "Please wait before submitting again.",
@@ -99,7 +105,7 @@ const ContactFormPopup: React.FC<ContactFormPopupProps> = ({ isOpen, onClose }) 
       });
       return;
     }
-    
+
     if (!validateForm()) {
       return;
     }
@@ -116,12 +122,13 @@ const ContactFormPopup: React.FC<ContactFormPopupProps> = ({ isOpen, onClose }) 
         Timestamp: new Date().toISOString(),
         "Source Page": window.location.href,
         "User Agent": navigator.userAgent.substring(0, 200), // Truncate for security
-        "CSRF Token": csrfToken
+        "CSRF Token": csrfToken,
       };
 
       // Google Sheets Web App URL
-      const GOOGLE_SHEETS_URL = "https://script.google.com/macros/s/AKfycbzA5T1zAp9GK18koQtcm-pluHEE1AFk_9p87tuuepzWPE1kWOTjkOU7t1Z3Lw_b0BOT/exec";
-      
+      const GOOGLE_SHEETS_URL =
+        "https://script.google.com/macros/s/AKfycbwTm58UaC7atjJrkNiguJnzXvQwRiliKWxeGoPepJxtHzozDKzw7k6DS5EGu4Nbbz5P/exec";
+
       const response = await fetch(GOOGLE_SHEETS_URL, {
         method: "POST",
         mode: "no-cors",
@@ -149,7 +156,6 @@ const ContactFormPopup: React.FC<ContactFormPopupProps> = ({ isOpen, onClose }) 
           event_label: sanitizeInput(formData.plan || "unspecified_plan"),
         });
       }
-
     } catch (error) {
       console.error("Error submitting form:", error);
       toast({
@@ -165,10 +171,10 @@ const ContactFormPopup: React.FC<ContactFormPopupProps> = ({ isOpen, onClose }) 
   const handleInputChange = (field: keyof FormData, value: string) => {
     // Basic length validation on input
     if (value.length > 500) return;
-    
-    setFormData(prev => ({ ...prev, [field]: value }));
+
+    setFormData((prev) => ({ ...prev, [field]: value }));
     if (errors[field]) {
-      setErrors(prev => ({ ...prev, [field]: undefined }));
+      setErrors((prev) => ({ ...prev, [field]: undefined }));
     }
   };
 
@@ -176,16 +182,8 @@ const ContactFormPopup: React.FC<ContactFormPopupProps> = ({ isOpen, onClose }) 
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="max-w-md mx-auto">
         <DialogHeader>
-          <DialogTitle className="text-xl font-semibold flex items-center justify-between">
+          <DialogTitle className="text-xl font-semibold">
             📝 Let's Connect
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={onClose}
-              className="h-6 w-6"
-            >
-              <X className="h-4 w-4" />
-            </Button>
           </DialogTitle>
         </DialogHeader>
 
@@ -257,7 +255,10 @@ const ContactFormPopup: React.FC<ContactFormPopupProps> = ({ isOpen, onClose }) 
 
           <div className="space-y-2">
             <Label htmlFor="plan">Plan (Optional)</Label>
-            <Select value={formData.plan} onValueChange={(value) => handleInputChange("plan", value)}>
+            <Select
+              value={formData.plan}
+              onValueChange={(value) => handleInputChange("plan", value)}
+            >
               <SelectTrigger>
                 <SelectValue placeholder="Select a plan" />
               </SelectTrigger>
@@ -269,11 +270,7 @@ const ContactFormPopup: React.FC<ContactFormPopupProps> = ({ isOpen, onClose }) 
             </Select>
           </div>
 
-          <Button
-            type="submit"
-            className="w-full"
-            disabled={isSubmitting}
-          >
+          <Button type="submit" className="w-full" disabled={isSubmitting}>
             {isSubmitting ? "Submitting..." : "Submit"}
           </Button>
         </form>
