@@ -1,6 +1,6 @@
 
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import {
   SidebarProvider,
@@ -89,58 +89,58 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
                 <SidebarMenu className="space-y-1">
                   <SidebarMenuItem>
                     <SidebarMenuButton asChild className="h-10 px-3 text-gray-700 hover:bg-purple-50 hover:text-primary rounded-md transition-colors">
-                      <a href="/dashboard" className="flex items-center gap-3">
+                      <Link to="/dashboard" className="flex items-center gap-3">
                         <LayoutDashboard className="h-4 w-4" />
                         <span className="font-medium">Overview</span>
-                      </a>
+                      </Link>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                   <SidebarMenuItem>
                     <SidebarMenuButton asChild className="h-10 px-3 text-gray-700 hover:bg-purple-50 hover:text-primary rounded-md transition-colors">
-                      <a href="/dashboard/clients" className="flex items-center gap-3">
+                      <Link to="/clients" className="flex items-center gap-3">
                         <Users className="h-4 w-4" />
                         <span className="font-medium">Clients</span>
-                      </a>
+                      </Link>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                   <SidebarMenuItem>
                     <SidebarMenuButton asChild className="h-10 px-3 text-gray-700 hover:bg-purple-50 hover:text-primary rounded-md transition-colors">
-                      <a href="/dashboard/meetings" className="flex items-center gap-3">
+                      <Link to="/meetings" className="flex items-center gap-3">
                         <Calendar className="h-4 w-4" />
                         <span className="font-medium">Meetings</span>
-                      </a>
+                      </Link>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                   <SidebarMenuItem>
                     <SidebarMenuButton asChild className="h-10 px-3 text-gray-700 hover:bg-purple-50 hover:text-primary rounded-md transition-colors">
-                      <a href="/dashboard/messages" className="flex items-center gap-3">
+                      <Link to="/messages" className="flex items-center gap-3">
                         <MessageSquare className="h-4 w-4" />
                         <span className="font-medium">Messages</span>
-                      </a>
+                      </Link>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                   <SidebarMenuItem>
                     <SidebarMenuButton asChild className="h-10 px-3 text-gray-700 hover:bg-purple-50 hover:text-primary rounded-md transition-colors">
-                      <a href="/dashboard/inbox" className="flex items-center gap-3">
+                      <Link to="/inbox" className="flex items-center gap-3">
                         <Inbox className="h-4 w-4" />
                         <span className="font-medium">Inbox</span>
-                      </a>
+                      </Link>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                   <SidebarMenuItem>
                     <SidebarMenuButton asChild className="h-10 px-3 text-gray-700 hover:bg-purple-50 hover:text-primary rounded-md transition-colors">
-                      <a href="/dashboard/documents" className="flex items-center gap-3">
+                      <Link to="/documents" className="flex items-center gap-3">
                         <FileText className="h-4 w-4" />
                         <span className="font-medium">Documents</span>
-                      </a>
+                      </Link>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                   <SidebarMenuItem>
                     <SidebarMenuButton asChild className="h-10 px-3 text-gray-700 hover:bg-purple-50 hover:text-primary rounded-md transition-colors">
-                      <a href="/dashboard/insights" className="flex items-center gap-3">
+                      <Link to="/insights" className="flex items-center gap-3">
                         <Lightbulb className="h-4 w-4" />
                         <span className="font-medium">Insights</span>
-                      </a>
+                      </Link>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                 </SidebarMenu>
@@ -155,18 +155,18 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
                 <SidebarMenu className="space-y-1">
                   <SidebarMenuItem>
                     <SidebarMenuButton asChild className="h-10 px-3 text-gray-700 hover:bg-purple-50 hover:text-primary rounded-md transition-colors">
-                      <a href="/dashboard/klippi-ai" className="flex items-center gap-3">
+                      <Link to="/klippi-ai" className="flex items-center gap-3">
                         <Sparkles className="h-4 w-4" />
                         <span className="font-medium">Klippi AI</span>
-                      </a>
+                      </Link>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                   <SidebarMenuItem>
                     <SidebarMenuButton asChild className="h-10 px-3 text-gray-700 hover:bg-purple-50 hover:text-primary rounded-md transition-colors">
-                      <a href="/dashboard/ai-flows" className="flex items-center gap-3">
+                      <Link to="/ai-flows" className="flex items-center gap-3">
                         <Zap className="h-4 w-4" />
                         <span className="font-medium">AI Flows</span>
-                      </a>
+                      </Link>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                 </SidebarMenu>
@@ -178,10 +178,10 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
             <SidebarMenu>
               <SidebarMenuItem>
                 <SidebarMenuButton asChild className="h-10 px-3 text-gray-700 hover:bg-purple-50 hover:text-primary rounded-md transition-colors">
-                  <a href="/dashboard/settings" className="flex items-center gap-3">
+                  <Link to="/settings" className="flex items-center gap-3">
                     <Settings className="h-4 w-4" />
                     <span className="font-medium">Settings</span>
-                  </a>
+                  </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
             </SidebarMenu>
