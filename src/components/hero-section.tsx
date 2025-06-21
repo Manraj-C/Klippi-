@@ -1,13 +1,17 @@
+
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Sparkles } from "lucide-react";
+import ProductCarousel from "./product-carousel";
+
 const HeroSection = () => {
-  return <section className="relative pt-20 pb-24 bg-white overflow-hidden">
+  return (
+    <section className="relative pt-20 pb-24 bg-white overflow-hidden">
       {/* Subtle background pattern */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(168,85,247,0.1)_0%,transparent_50%)]" />
       
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-4xl mx-auto">
+        <div className="text-center max-w-4xl mx-auto mb-16">
           {/* Badge */}
           <div className="inline-flex items-center px-4 py-2 rounded-full text-purple-800 text-sm font-medium mb-8 animate-fade-in bg-purple-100">
             <Sparkles className="w-4 h-4 mr-2" />
@@ -32,11 +36,15 @@ const HeroSection = () => {
               <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
           </div>
+        </div>
 
-          {/* Social proof */}
-          
+        {/* Product Carousel */}
+        <div className="animate-fade-in">
+          <ProductCarousel />
         </div>
       </div>
-    </section>;
+    </section>
+  );
 };
+
 export default HeroSection;
