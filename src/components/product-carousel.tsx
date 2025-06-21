@@ -7,30 +7,23 @@ const slides = [
   {
     id: 1,
     title: "Customer Success Cockpit",
-    subtitle: "AI-powered insights and priority management at your fingertips",
-    image: "/lovable-uploads/19b6a4c3-d43b-4b75-8cb1-ad273356b0a3.png",
-    alt: "Customer Success Cockpit showing activity feed and priorities"
+    subtitle: "AI-powered activity feed with intelligent priority management and automated insights",
+    image: "/lovable-uploads/2c711582-8b01-4711-bd39-e823893871d3.png",
+    alt: "Customer Success Cockpit showing activity feed with churn risk detection and priority management"
   },
   {
     id: 2,
-    title: "AI CSM Flows",
-    subtitle: "Pre-built AI assistants to automate your customer success workflows",
-    image: "/lovable-uploads/e68197df-5be3-4c51-859b-2a772d108d67.png",
-    alt: "AI CSM Flows dashboard with automated workflow cards"
+    title: "Customer Insights Dashboard",
+    subtitle: "Data-driven insights with topic analysis, ARR impact tracking, and actionable recommendations",
+    image: "/lovable-uploads/b9037f5e-cd8c-4b35-a5b0-bcc4fede70d6.png",
+    alt: "Customer Insights dashboard with analytics, feature requests, and churn risk analysis"
   },
   {
     id: 3,
-    title: "Klippi AI Assistant",
-    subtitle: "Intelligent conversations that drive customer success strategies",
-    image: "/lovable-uploads/00d4c1fa-3889-4e96-b7cd-9070e8f13e57.png",
-    alt: "Klippi AI chat interface with customer success insights"
-  },
-  {
-    id: 4,
-    title: "Customer Insights",
-    subtitle: "Data-driven insights to maximize customer lifetime value",
-    image: "/lovable-uploads/24217b5f-ef1d-4adb-ba2e-9439276ea365.png",
-    alt: "Customer insights dashboard with analytics and metrics"
+    title: "AI CSM Flows",
+    subtitle: "Pre-built AI assistants to automate your customer success workflows and processes",
+    image: "/lovable-uploads/2dd0f2a6-72e6-4635-9fa2-540b45ed3a04.png",
+    alt: "AI CSM Flows dashboard with automated workflow cards including QBR prep and sentiment analysis"
   }
 ];
 
