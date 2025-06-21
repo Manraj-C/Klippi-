@@ -65,26 +65,26 @@ const ProductCarousel = () => {
 
   return (
     <div className="relative w-full max-w-6xl mx-auto">
-      {/* Main Carousel Container */}
-      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-gray-50 to-white shadow-2xl">
-        {/* Device Frame */}
-        <div className="relative bg-white p-6 md:p-8">
-          {/* Browser Header */}
-          <div className="flex items-center gap-2 mb-4 pb-4 border-b border-gray-200">
+      {/* Main Carousel Container with Klippi branding */}
+      <div className="relative overflow-hidden rounded-2xl klippi-gradient-subtle shadow-klippi-lg border border-primary/10">
+        {/* Device Frame with enhanced branding */}
+        <div className="relative bg-white/95 backdrop-blur-sm p-6 md:p-8">
+          {/* Browser Header with Klippi colors */}
+          <div className="flex items-center gap-2 mb-4 pb-4 border-b border-primary/20">
             <div className="flex gap-2">
               <div className="w-3 h-3 bg-red-400 rounded-full"></div>
               <div className="w-3 h-3 bg-yellow-400 rounded-full"></div>
               <div className="w-3 h-3 bg-green-400 rounded-full"></div>
             </div>
             <div className="flex-1 ml-4">
-              <div className="bg-gray-100 rounded-lg px-4 py-2 text-sm text-gray-600 max-w-md">
+              <div className="bg-primary/5 border border-primary/20 rounded-lg px-4 py-2 text-sm text-primary font-medium max-w-md">
                 klippi.ai/dashboard
               </div>
             </div>
           </div>
 
-          {/* Screenshot Container */}
-          <div className="relative overflow-hidden rounded-lg shadow-lg">
+          {/* Screenshot Container with enhanced styling */}
+          <div className="relative overflow-hidden rounded-lg shadow-klippi border border-primary/10">
             <div 
               className="flex transition-transform duration-500 ease-in-out"
               style={{ transform: `translateX(-${currentSlide * 100}%)` }}
@@ -102,27 +102,27 @@ const ProductCarousel = () => {
           </div>
         </div>
 
-        {/* Navigation Arrows */}
+        {/* Navigation Arrows with Klippi styling */}
         <Button
           variant="outline"
           size="icon"
-          className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/90 backdrop-blur-sm hover:bg-white shadow-lg border-gray-200"
+          className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/95 backdrop-blur-sm hover:bg-white shadow-klippi border-primary/20 hover:border-primary/40 transition-all duration-200"
           onClick={prevSlide}
         >
-          <ChevronLeft className="h-4 w-4" />
+          <ChevronLeft className="h-4 w-4 text-primary" />
         </Button>
         
         <Button
           variant="outline"
           size="icon"
-          className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/90 backdrop-blur-sm hover:bg-white shadow-lg border-gray-200"
+          className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/95 backdrop-blur-sm hover:bg-white shadow-klippi border-primary/20 hover:border-primary/40 transition-all duration-200"
           onClick={nextSlide}
         >
-          <ChevronRight className="h-4 w-4" />
+          <ChevronRight className="h-4 w-4 text-primary" />
         </Button>
       </div>
 
-      {/* Slide Information */}
+      {/* Slide Information with enhanced branding */}
       <div className="text-center mt-8 mb-6">
         <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
           {slides[currentSlide].title}
@@ -132,15 +132,15 @@ const ProductCarousel = () => {
         </p>
       </div>
 
-      {/* Slide Indicators */}
+      {/* Slide Indicators with Klippi branding */}
       <div className="flex justify-center gap-2">
         {slides.map((_, index) => (
           <button
             key={index}
             className={`w-3 h-3 rounded-full transition-all duration-300 ${
               index === currentSlide
-                ? "bg-primary scale-110"
-                : "bg-gray-300 hover:bg-gray-400"
+                ? "bg-primary scale-110 shadow-klippi"
+                : "bg-gray-300 hover:bg-primary/60"
             }`}
             onClick={() => goToSlide(index)}
           />
