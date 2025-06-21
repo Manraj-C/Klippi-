@@ -6,30 +6,60 @@
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
+    --foreground: 220 15% 20%;
     --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
+    --card-foreground: 220 15% 20%;
     --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
-    --primary: 270 91% 65%;
+    --popover-foreground: 220 15% 20%;
+    
+    /* Klippi Brand Colors - Primary Blue from logo */
+    --primary: 235 65% 55%;
     --primary-foreground: 0 0% 98%;
-    --secondary: 240 4.8% 95.9%;
-    --secondary-foreground: 240 5.9% 10%;
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
-    --accent: 270 91% 65%;
+    
+    /* Secondary colors inspired by logo */
+    --secondary: 220 14% 96%;
+    --secondary-foreground: 220 15% 25%;
+    --muted: 220 14% 96%;
+    --muted-foreground: 220 8% 46%;
+    --accent: 235 65% 55%;
     --accent-foreground: 0 0% 98%;
-    --destructive: 0 84.2% 60.2%;
+    
+    /* Neutral colors for modern SaaS feel */
+    --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-    --ring: 270 91% 65%;
-    --radius: 0.5rem;
-    --chart-1: 270 91% 65%;
-    --chart-2: 280 100% 70%;
-    --chart-3: 260 84% 57%;
-    --chart-4: 290 95% 75%;
-    --chart-5: 250 87% 60%;
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 235 65% 55%;
+    --radius: 0.75rem;
+    
+    /* Chart colors using Klippi brand palette */
+    --chart-1: 235 65% 55%;
+    --chart-2: 240 70% 60%;
+    --chart-3: 230 60% 50%;
+    --chart-4: 245 75% 65%;
+    --chart-5: 225 55% 45%;
+  }
+
+  .dark {
+    --background: 220 15% 8%;
+    --foreground: 210 20% 98%;
+    --card: 220 15% 10%;
+    --card-foreground: 210 20% 98%;
+    --popover: 220 15% 10%;
+    --popover-foreground: 210 20% 98%;
+    --primary: 235 65% 60%;
+    --primary-foreground: 220 15% 8%;
+    --secondary: 220 15% 15%;
+    --secondary-foreground: 210 20% 98%;
+    --muted: 220 15% 15%;
+    --muted-foreground: 215 20% 65%;
+    --accent: 235 65% 60%;
+    --accent-foreground: 220 15% 8%;
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 210 20% 98%;
+    --border: 220 15% 15%;
+    --input: 220 15% 15%;
+    --ring: 235 65% 60%;
   }
 }
 
@@ -41,34 +71,87 @@
   body {
     @apply bg-background text-foreground font-sans antialiased;
     font-feature-settings: "rlig" 1, "calt" 1;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
   }
 
   html {
     @apply scroll-smooth;
   }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-weight: 600;
+    letter-spacing: -0.025em;
+  }
 }
 
 @layer utilities {
-  .glass-card {
-    @apply bg-white/80 backdrop-blur-sm border border-gray-200/50 shadow-sm;
+  /* Klippi Brand Utilities */
+  .klippi-gradient {
+    @apply bg-gradient-to-r from-primary via-blue-600 to-blue-700;
   }
   
+  .klippi-gradient-subtle {
+    @apply bg-gradient-to-br from-primary/10 via-blue-50 to-indigo-50;
+  }
+  
+  .klippi-text-gradient {
+    @apply bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent;
+  }
+  
+  .klippi-border-gradient {
+    background: linear-gradient(white, white) padding-box,
+                linear-gradient(to right, hsl(var(--primary)), rgb(59 130 246)) border-box;
+    border: 2px solid transparent;
+  }
+
+  /* Enhanced Glass Effects */
+  .glass-card {
+    @apply bg-white/90 backdrop-blur-sm border border-gray-200/60 shadow-lg shadow-gray-200/20;
+  }
+  
+  .glass-card-dark {
+    @apply bg-gray-900/90 backdrop-blur-sm border border-gray-700/60 shadow-lg shadow-gray-900/20;
+  }
+
+  /* Modern SaaS Shadows */
+  .shadow-klippi {
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15), 0 2px 4px rgba(59, 130, 246, 0.1);
+  }
+  
+  .shadow-klippi-lg {
+    box-shadow: 0 8px 25px rgba(59, 130, 246, 0.15), 0 4px 8px rgba(59, 130, 246, 0.1);
+  }
+
+  /* Legacy gradient classes for compatibility */
   .text-gradient {
-    @apply bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent;
+    @apply klippi-text-gradient;
   }
 
   .text-gradient-purple {
-    @apply bg-gradient-to-r from-purple-600 to-purple-400 bg-clip-text text-transparent;
+    @apply klippi-text-gradient;
   }
 
-  .minimal-shadow {
-    @apply shadow-[0_1px_3px_rgba(0,0,0,0.05)];
+  .bg-gradient-purple {
+    @apply klippi-gradient;
   }
-  
+
+  /* Enhanced animations */
   @keyframes fade-in {
     from {
       opacity: 0;
-      transform: translateY(10px);
+      transform: translateY(15px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes slide-up {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
     }
     to {
       opacity: 1;
@@ -77,14 +160,19 @@
   }
   
   .animate-fade-in {
-    animation: fade-in 0.3s ease-out;
+    animation: fade-in 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .animate-slide-up {
+    animation: slide-up 0.6s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  .bg-gradient-purple {
-    @apply bg-gradient-to-r from-purple-600 to-purple-500;
+  /* Interactive elements */
+  .hover-lift {
+    @apply transition-all duration-300 hover:shadow-klippi hover:-translate-y-1;
   }
-
-  .border-gradient-purple {
-    border-image: linear-gradient(to right, rgb(147, 51, 234), rgb(168, 85, 247)) 1;
+  
+  .button-primary {
+    @apply klippi-gradient text-white font-medium px-6 py-3 rounded-lg shadow-klippi hover:shadow-klippi-lg transition-all duration-200 hover:-translate-y-0.5;
   }
 }

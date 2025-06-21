@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
@@ -73,7 +72,7 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
         <Sidebar variant="inset" className="border-r border-gray-200">
           <SidebarHeader className="border-b border-gray-200 px-6 py-4">
             <div className="flex items-center gap-3">
-              <div className="size-8 rounded-lg bg-gradient-purple flex items-center justify-center">
+              <div className="size-8 rounded-lg klippi-gradient flex items-center justify-center">
                 <span className="text-white font-bold text-lg">K</span>
               </div>
               <span className="text-xl font-semibold text-gray-900">Klippi</span>
@@ -88,7 +87,7 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
               <SidebarGroupContent>
                 <SidebarMenu className="space-y-1">
                   <SidebarMenuItem>
-                    <SidebarMenuButton asChild className="h-10 px-3 text-gray-700 hover:bg-purple-50 hover:text-primary rounded-md transition-colors">
+                    <SidebarMenuButton asChild className="h-10 px-3 text-gray-700 hover:bg-primary/10 hover:text-primary rounded-md transition-colors">
                       <Link to="/dashboard" className="flex items-center gap-3">
                         <LayoutDashboard className="h-4 w-4" />
                         <span className="font-medium">Overview</span>
@@ -96,7 +95,7 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                   <SidebarMenuItem>
-                    <SidebarMenuButton asChild className="h-10 px-3 text-gray-700 hover:bg-purple-50 hover:text-primary rounded-md transition-colors">
+                    <SidebarMenuButton asChild className="h-10 px-3 text-gray-700 hover:bg-primary/10 hover:text-primary rounded-md transition-colors">
                       <Link to="/clients" className="flex items-center gap-3">
                         <Users className="h-4 w-4" />
                         <span className="font-medium">Clients</span>
@@ -104,7 +103,7 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                   <SidebarMenuItem>
-                    <SidebarMenuButton asChild className="h-10 px-3 text-gray-700 hover:bg-purple-50 hover:text-primary rounded-md transition-colors">
+                    <SidebarMenuButton asChild className="h-10 px-3 text-gray-700 hover:bg-primary/10 hover:text-primary rounded-md transition-colors">
                       <Link to="/meetings" className="flex items-center gap-3">
                         <Calendar className="h-4 w-4" />
                         <span className="font-medium">Meetings</span>
@@ -112,7 +111,7 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                   <SidebarMenuItem>
-                    <SidebarMenuButton asChild className="h-10 px-3 text-gray-700 hover:bg-purple-50 hover:text-primary rounded-md transition-colors">
+                    <SidebarMenuButton asChild className="h-10 px-3 text-gray-700 hover:bg-primary/10 hover:text-primary rounded-md transition-colors">
                       <Link to="/messages" className="flex items-center gap-3">
                         <MessageSquare className="h-4 w-4" />
                         <span className="font-medium">Messages</span>
@@ -120,7 +119,7 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                   <SidebarMenuItem>
-                    <SidebarMenuButton asChild className="h-10 px-3 text-gray-700 hover:bg-purple-50 hover:text-primary rounded-md transition-colors">
+                    <SidebarMenuButton asChild className="h-10 px-3 text-gray-700 hover:bg-primary/10 hover:text-primary rounded-md transition-colors">
                       <Link to="/inbox" className="flex items-center gap-3">
                         <Inbox className="h-4 w-4" />
                         <span className="font-medium">Inbox</span>
@@ -128,7 +127,7 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                   <SidebarMenuItem>
-                    <SidebarMenuButton asChild className="h-10 px-3 text-gray-700 hover:bg-purple-50 hover:text-primary rounded-md transition-colors">
+                    <SidebarMenuButton asChild className="h-10 px-3 text-gray-700 hover:bg-primary/10 hover:text-primary rounded-md transition-colors">
                       <Link to="/documents" className="flex items-center gap-3">
                         <FileText className="h-4 w-4" />
                         <span className="font-medium">Documents</span>
@@ -136,7 +135,7 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                   <SidebarMenuItem>
-                    <SidebarMenuButton asChild className="h-10 px-3 text-gray-700 hover:bg-purple-50 hover:text-primary rounded-md transition-colors">
+                    <SidebarMenuButton asChild className="h-10 px-3 text-gray-700 hover:bg-primary/10 hover:text-primary rounded-md transition-colors">
                       <Link to="/insights" className="flex items-center gap-3">
                         <Lightbulb className="h-4 w-4" />
                         <span className="font-medium">Insights</span>
@@ -154,7 +153,7 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
               <SidebarGroupContent>
                 <SidebarMenu className="space-y-1">
                   <SidebarMenuItem>
-                    <SidebarMenuButton asChild className="h-10 px-3 text-gray-700 hover:bg-purple-50 hover:text-primary rounded-md transition-colors">
+                    <SidebarMenuButton asChild className="h-10 px-3 text-gray-700 hover:bg-primary/10 hover:text-primary rounded-md transition-colors">
                       <Link to="/klippi-ai" className="flex items-center gap-3">
                         <Sparkles className="h-4 w-4" />
                         <span className="font-medium">Klippi AI</span>
@@ -162,7 +161,7 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                   <SidebarMenuItem>
-                    <SidebarMenuButton asChild className="h-10 px-3 text-gray-700 hover:bg-purple-50 hover:text-primary rounded-md transition-colors">
+                    <SidebarMenuButton asChild className="h-10 px-3 text-gray-700 hover:bg-primary/10 hover:text-primary rounded-md transition-colors">
                       <Link to="/ai-flows" className="flex items-center gap-3">
                         <Zap className="h-4 w-4" />
                         <span className="font-medium">AI Flows</span>
@@ -177,7 +176,7 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
           <SidebarFooter className="border-t border-gray-200 p-4">
             <SidebarMenu>
               <SidebarMenuItem>
-                <SidebarMenuButton asChild className="h-10 px-3 text-gray-700 hover:bg-purple-50 hover:text-primary rounded-md transition-colors">
+                <SidebarMenuButton asChild className="h-10 px-3 text-gray-700 hover:bg-primary/10 hover:text-primary rounded-md transition-colors">
                   <Link to="/settings" className="flex items-center gap-3">
                     <Settings className="h-4 w-4" />
                     <span className="font-medium">Settings</span>
@@ -187,7 +186,7 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
             </SidebarMenu>
             <Button 
               variant="ghost" 
-              className="w-full justify-start text-gray-500 hover:text-primary hover:bg-purple-50 mt-2" 
+              className="w-full justify-start text-gray-500 hover:text-primary hover:bg-primary/10 mt-2" 
               onClick={handleLogout}
             >
               <LogOut className="h-4 w-4 mr-3" />
@@ -198,7 +197,7 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
         
         <SidebarInset className="flex-1">
           <div className="h-full w-full">
-            <header className="sticky top-0 z-10 bg-white/80 backdrop-blur-md border-b border-gray-200 px-6 py-4">
+            <header className="sticky top-0 z-10 bg-white/95 backdrop-blur-md border-b border-gray-200 px-6 py-4">
               <SidebarTrigger className="md:hidden" />
             </header>
             <main className="p-6">{children}</main>
