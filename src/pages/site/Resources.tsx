@@ -1,11 +1,23 @@
-
-import React from "react";
+import React, { useEffect } from "react";
 import SiteLayout from "@/components/site/SiteLayout";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link } from "react-router-dom";
 import { ArrowRight, FileText, GraduationCap } from "lucide-react";
 
 const Resources = () => {
+  useEffect(() => {
+    // Load Elfsight platform script
+    const script = document.createElement('script');
+    script.src = 'https://static.elfsight.com/platform/platform.js';
+    script.async = true;
+    document.head.appendChild(script);
+
+    return () => {
+      // Cleanup script when component unmounts
+      document.head.removeChild(script);
+    };
+  }, []);
+
   const caseStudies = [
     {
       title: "How Acme Inc. Improved Customer Retention by 35%",
@@ -53,6 +65,14 @@ const Resources = () => {
           <p className="text-lg text-muted-foreground">
             Explore case studies, guides, and best practices to level up your customer success.
           </p>
+        </div>
+        
+        {/* RSS Feed Section */}
+        <div className="mb-16">
+          <h2 className="text-2xl font-bold mb-8 text-center">Latest from Our Blog</h2>
+          <div className="max-w-4xl mx-auto">
+            <div className="elfsight-app-12b58294-205b-46a2-ae14-4cd9c1f4cc27" data-elfsight-app-lazy></div>
+          </div>
         </div>
         
         <div className="mb-16">
