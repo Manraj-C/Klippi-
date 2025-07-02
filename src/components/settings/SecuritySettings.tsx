@@ -10,9 +10,10 @@ import { Shield, AlertTriangle, CheckCircle } from "lucide-react";
 import { useSecurity } from "@/contexts/SecurityContext";
 import { validatePassword } from "@/utils/security";
 import { useState } from "react";
+import { SecurityAudit } from "@/components/security/SecurityAudit";
 
 export const SecuritySettings = () => {
-  const { isSecureConnection } = useSecurity();
+  const { isSecureConnection, securityScore } = useSecurity();
   const [passwords, setPasswords] = useState({
     current: "",
     new: "",
@@ -29,8 +30,40 @@ export const SecuritySettings = () => {
     }
   };
 
+  const getSecurityScoreColor = (score: number) => {
+    if (score >= 75) return "text-green-600";
+    if (score >= 50) return "text-yellow-600";
+    return "text-red-600";
+  };
+
   return (
     <>
+      {/* Security Score Dashboard */}
+      <SettingsSection
+        title="Security Dashboard"
+        description="Overall security status and recommendations"
+        className="mb-4"
+      >
+        <div className="space-y-4">
+          <div className="flex items-center justify-between p-4 border rounded-lg">
+            <div className="flex items-center gap-3">
+              <Shield className="h-6 w-6 text-primary" />
+              <div>
+                <div className="font-medium">Security Score</div>
+                <div className="text-sm text-muted-foreground">
+                  Overall security assessment
+                </div>
+              </div>
+            </div>
+            <div className={`text-2xl font-bold ${getSecurityScoreColor(securityScore)}`}>
+              {securityScore}/100
+            </div>
+          </div>
+
+          <SecurityAudit />
+        </div>
+      </SettingsSection>
+
       {/* Security Status */}
       <SettingsSection
         title="Security Status"
@@ -68,7 +101,7 @@ export const SecuritySettings = () => {
               <div>
                 <div className="font-medium">Input Sanitization</div>
                 <div className="text-sm text-muted-foreground">
-                  All user inputs are sanitized
+                  All user inputs are sanitized with DOMPurify
                 </div>
               </div>
             </div>
@@ -87,12 +120,26 @@ export const SecuritySettings = () => {
             </div>
             <Badge variant="default">Active</Badge>
           </div>
+
+          <div className="flex items-center justify-between p-4 border rounded-lg">
+            <div className="flex items-center gap-3">
+              <CheckCircle className="h-5 w-5 text-green-600" />
+              <div>
+                <div className="font-medium">Content Security Policy</div>
+                <div className="text-sm text-muted-foreground">
+                  CSP headers configured to prevent XSS attacks
+                </div>
+              </div>
+            </div>
+            <Badge variant="default">Active</Badge>
+          </div>
         </div>
       </SettingsSection>
 
+      {/* Password Security */}
       <SettingsSection
-        title="Password"
-        description="Change your password to keep your account secure"
+        title="Password Security"
+        description="Change your password and manage authentication security"
         className="mb-4"
       >
         <div className="space-y-4">
@@ -102,7 +149,7 @@ export const SecuritySettings = () => {
               id="current-password" 
               type="password" 
               value={passwords.current}
-              onChange={(e) => handlePasswordChange("current", e.target.value)}
+              onChange={(e) => handlePasswordChange("current", e.target.value)}  
               autoComplete="current-password"
             />
           </div>
@@ -144,6 +191,7 @@ export const SecuritySettings = () => {
         </div>
       </SettingsSection>
 
+      {/* Two-Factor Authentication */}
       <SettingsSection
         title="Two-Factor Authentication"
         description="Add an extra layer of security to your account"
@@ -169,6 +217,7 @@ export const SecuritySettings = () => {
         </div>
       </SettingsSection>
 
+      {/* Active Sessions */}
       <SettingsSection
         title="Active Sessions"
         description="Manage devices that are currently signed in to your account"
@@ -179,24 +228,12 @@ export const SecuritySettings = () => {
               <div>
                 <div className="font-medium">Current Session</div>
                 <div className="text-sm text-muted-foreground">
-                  Chrome on macOS • San Francisco, CA • Active now
+                  {navigator.userAgent.includes('Chrome') ? 'Chrome' : 'Browser'} on {navigator.platform} • Active now
                 </div>
               </div>
               <span className="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">
                 Current
               </span>
-            </div>
-          </div>
-          
-          <div className="rounded-lg border p-4">
-            <div className="flex items-center justify-between flex-wrap gap-2">
-              <div>
-                <div className="font-medium">Mobile App</div>
-                <div className="text-sm text-muted-foreground">
-                  iPhone • New York, NY • Last active: 2 hours ago
-                </div>
-              </div>
-              <Button variant="ghost" size="sm" className="text-destructive">Sign Out</Button>
             </div>
           </div>
           

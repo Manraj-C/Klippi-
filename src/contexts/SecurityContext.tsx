@@ -1,10 +1,12 @@
 
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import { generateCSRFToken, setCSRFToken } from '@/utils/security';
+import { generateCSRFToken, setCSRFToken, setSecurityHeaders, validateSession } from '@/utils/security';
 
 interface SecurityContextType {
   csrfToken: string;
   isSecureConnection: boolean;
+  sessionValid: boolean;
+  securityScore: number;
 }
 
 const SecurityContext = createContext<SecurityContextType | undefined>(undefined);
@@ -12,6 +14,8 @@ const SecurityContext = createContext<SecurityContextType | undefined>(undefined
 export const SecurityProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [csrfToken, setCsrfToken] = useState<string>('');
   const [isSecureConnection, setIsSecureConnection] = useState<boolean>(false);
+  const [sessionValid, setSessionValid] = useState<boolean>(false);
+  const [securityScore, setSecurityScore] = useState<number>(0);
 
   useEffect(() => {
     // Generate CSRF token on mount
@@ -20,33 +24,43 @@ export const SecurityProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     setCSRFToken(token);
 
     // Check if connection is secure
-    setIsSecureConnection(window.location.protocol === 'https:');
+    const isSecure = window.location.protocol === 'https:';
+    setIsSecureConnection(isSecure);
 
-    // Set security headers via meta tags
-    const cspMeta = document.createElement('meta');
-    cspMeta.httpEquiv = 'Content-Security-Policy';
-    cspMeta.content = "default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.gpteng.co; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self' https:; frame-ancestors 'none';";
-    document.head.appendChild(cspMeta);
+    // Validate session
+    const sessionIsValid = validateSession();
+    setSessionValid(sessionIsValid);
 
-    const xFrameOptions = document.createElement('meta');
-    xFrameOptions.httpEquiv = 'X-Frame-Options';
-    xFrameOptions.content = 'DENY';
-    document.head.appendChild(xFrameOptions);
+    // Set security headers
+    setSecurityHeaders();
 
-    const xContentTypeOptions = document.createElement('meta');
-    xContentTypeOptions.httpEquiv = 'X-Content-Type-Options';
-    xContentTypeOptions.content = 'nosniff';
-    document.head.appendChild(xContentTypeOptions);
+    // Calculate security score
+    let score = 0;
+    if (isSecure) score += 25;
+    if (sessionIsValid) score += 25;
+    if (token.length === 64) score += 25;
+    if (navigator.userAgent.includes('Chrome') || navigator.userAgent.includes('Firefox')) score += 25;
+    setSecurityScore(score);
+
+    // Security monitoring
+    const handleSecurityViolation = (event: SecurityPolicyViolationEvent) => {
+      console.warn('Security Policy Violation:', event.violatedDirective, event.blockedURI);
+    };
+
+    document.addEventListener('securitypolicyviolation', handleSecurityViolation);
 
     return () => {
-      document.head.removeChild(cspMeta);
-      document.head.removeChild(xFrameOptions);
-      document.head.removeChild(xContentTypeOptions);
+      document.removeEventListener('securitypolicyviolation', handleSecurityViolation);
     };
   }, []);
 
   return (
-    <SecurityContext.Provider value={{ csrfToken, isSecureConnection }}>
+    <SecurityContext.Provider value={{ 
+      csrfToken, 
+      isSecureConnection, 
+      sessionValid, 
+      securityScore 
+    }}>
       {children}
     </SecurityContext.Provider>
   );
