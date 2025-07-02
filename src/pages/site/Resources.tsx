@@ -3,6 +3,7 @@ import SiteLayout from "@/components/site/SiteLayout";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link } from "react-router-dom";
 import { ArrowRight, FileText, GraduationCap } from "lucide-react";
+import MediumFeed from "@/components/site/MediumFeed";
 
 const Resources = () => {
   useEffect(() => {
@@ -67,12 +68,22 @@ const Resources = () => {
           </p>
         </div>
         
-        {/* RSS Feed Section */}
+        {/* Blog Section */}
         <div className="mb-16">
-          <h2 className="text-2xl font-bold mb-8 text-center">Latest from Our Blog</h2>
-          <div className="max-w-4xl mx-auto">
-            <div className="elfsight-app-12b58294-205b-46a2-ae14-4cd9c1f4cc27" data-elfsight-app-lazy></div>
+          <div className="flex items-center justify-between mb-8">
+            <h2 className="text-2xl font-bold flex items-center gap-2">
+              Latest from Our Blog
+            </h2>
+            <a 
+              href="https://medium.com/@klippiai" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-primary hover:underline flex items-center"
+            >
+              View all articles <ArrowRight className="ml-1 h-4 w-4" />
+            </a>
           </div>
+          <MediumFeed />
         </div>
         
         <div className="mb-16">
